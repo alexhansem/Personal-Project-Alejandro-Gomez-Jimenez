@@ -40,7 +40,7 @@ const project: Project = {
   figures: [
     { value: '300', label: 'Escenarios simulados' },
     { value: '91 %', label: 'Esquema estructural más probable' },
-    { value: '214', label: 'Elementos en el modelo IFC' },
+    { value: '144', label: 'Elementos constructivos en el IFC' },
     { value: '202', label: 'Partidas medidas con precios CYPE' },
   ],
 
@@ -118,10 +118,10 @@ const project: Project = {
     src: `${base}/modelo/estado-actual.glb`,
     ifc: `${base}/modelo/estado-actual.ifc`,
     poster: `${base}/modelo/estado-actual.jpg`,
-    alt: 'Modelo 3D del estado actual del edificio: fachada en esquina con balcones volados, cubierta de teja a cuatro aguas, casetas y torreón de escalera',
+    alt: 'Modelo 3D del estado actual del edificio: fachada en esquina con balcones volados, terraza plana con pretil rematado en teja, casetas y torreón de escalera',
     caption:
-      'Estado actual regenerado desde la tabla de datos del CAD: muros con sus huecos, forjados, escalera, balcones y cubierta. Alturas de casetas y ventanas de escalera según hipótesis del proyecto.',
-    size: '0,3 MB',
+      'Estado actual regenerado desde la tabla de datos del CAD: muros con sus huecos, forjados, escalera, balcones y terraza de cubierta. Alturas de casetas, pretil y ventanas de escalera según hipótesis del proyecto.',
+    size: '0,2 MB',
     storeys: [
       { key: 'sotano', label: 'Sótano' },
       { key: 'pb', label: 'Baja' },
@@ -177,7 +177,7 @@ const project: Project = {
   },
 
   context:
-    'Edificio residencial real de 1969 en esquina, con sótano, planta baja, tres plantas tipo de dos viviendas en torno a escalera y patio, y cubierta de teja con casetas. Trabajo propio para una operación real: comprar el edificio, rehabilitar siete viviendas con ascensor y venderlas. La octava vivienda es de otro propietario y queda fuera del alcance.',
+    'Edificio residencial real de 1969 en esquina, con sótano, planta baja, tres plantas tipo de dos viviendas en torno a escalera y patio, y cubierta en terraza con casetas y torreón de escalera. Trabajo propio para una operación real: comprar el edificio, rehabilitar siete viviendas con ascensor y venderlas. La octava vivienda es de otro propietario y queda fuera del alcance.',
   objective:
     'Comprobar hasta dónde se llega en un proyecto completo de reforma: desde el plano existente hasta un estudio de viabilidad y un preproyecto que sirvan a la vez para presentar la operación a inversores y para que un arquitecto lo revise y lo firme.',
   problem:
@@ -185,7 +185,7 @@ const project: Project = {
 
   cover: {
     src: `${base}/imagenes/modelo-frontal.jpg`,
-    alt: 'Modelo 3D del edificio en esquina: cuatro plantas de fachada ocre, balcones volados con barandilla, cubierta de teja a cuatro aguas, casetas y torreón',
+    alt: 'Modelo 3D del edificio en esquina: cuatro plantas de fachada ocre, balcones volados con barandilla, terraza de cubierta, casetas y torreón',
     caption: 'Modelo 3D del estado actual · vista frontal',
     kind: 'modelo',
     ratio: 1.5,
@@ -245,9 +245,9 @@ const project: Project = {
       phase: 'revision',
       tool: 'Python · shapely · trimesh · IfcOpenShell · three.js',
       description:
-        'El primer IFC no convencía: muros troceados en cientos de piezas, cantos de forjado asomando en fachada y una cubierta mal resuelta. Se rehace desde la misma tabla de datos: los muros se fusionan por tipo y planta, se rellenan bajo y sobre cada hueco y se abren por franjas de altura; los forjados acaban en la cara interior de la fachada; la cubierta son cuatro faldones planos recortados por el patio, las casetas y el torreón.',
+        'El primer IFC no convencía: muros troceados en cientos de piezas, cantos de forjado asomando en fachada y una cubierta mal resuelta. Se rehace desde la misma tabla de datos: los muros se fusionan por tipo y planta, se rellenan bajo y sobre cada hueco y se abren por franjas de altura; los forjados acaban en la cara interior de la fachada; la cubierta es una terraza plana transitable con pretil rematado en teja, y solo el torreón de la escalera lleva tejado a cuatro aguas.',
       input: 'Tabla de datos del estado actual',
-      output: 'IFC4 validado sin errores (214 elementos y 71 espacios) y modelo web por plantas',
+      output: 'IFC4 validado sin errores (144 elementos constructivos y 71 espacios) y modelo web por plantas',
       media: {
         src: `${base}/imagenes/modelo-corte-p1.jpg`,
         alt: 'Modelo 3D cortado por encima de la planta primera: tabiquería de las dos viviendas, escalera y patio',

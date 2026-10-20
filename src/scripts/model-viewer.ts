@@ -22,8 +22,6 @@ import {
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-type View = 'frontal' | 'trasera' | 'planta';
-
 export async function mountModel(root: HTMLElement): Promise<void> {
   const stage = root.querySelector<HTMLElement>('[data-mv-stage]')!;
   const status = root.querySelector<HTMLElement>('[data-mv-status]')!;
@@ -80,18 +78,12 @@ export async function mountModel(root: HTMLElement): Promise<void> {
   };
   controls.addEventListener('change', render);
 
-  const setView = (v: View) => {
+  // vista inicial en perspectiva desde la esquina de la fachada principal (z positivo en el GLB)
+  const resetView = () => {
     // en pantallas verticales se aleja la cámara para que quepa el ancho del edificio
-    const d = radius * 2.7 * Math.max(1, 1.15 / camera.aspect);
-    const target = center.clone();
-    if (v === 'planta') {
-      camera.position.set(center.x, center.y + d * 1.1, center.z + 0.01);
-    } else {
-      // frontal: fachada principal (z positivo en el GLB); trasera: la opuesta
-      const s = v === 'frontal' ? 1 : -1;
-      camera.position.set(center.x - s * d * 0.55, center.y + d * 0.42, center.z + s * d * 0.75);
-    }
-    controls.target.copy(target);
+    const d = radius * 2.8 * Math.max(1, 1.15 / camera.aspect);
+    camera.position.set(center.x - d * 0.55, center.y + d * 0.42, center.z + d * 0.75);
+    controls.target.copy(center);
     camera.updateProjectionMatrix();
     controls.update();
     render();
@@ -103,7 +95,6 @@ export async function mountModel(root: HTMLElement): Promise<void> {
       const i = order.indexOf(k);
       objs.forEach((o) => (o.visible = limit < 0 || i <= limit));
     }
-    root.querySelectorAll<HTMLButtonElement>('[data-mv-storey]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mvStorey === key)));
     render();
   };
 
@@ -117,10 +108,10 @@ export async function mountModel(root: HTMLElement): Promise<void> {
   };
   new ResizeObserver(resize).observe(stage);
   resize();
-  setView('frontal');
+  resetView();
 
-  root.querySelectorAll<HTMLButtonElement>('[data-mv-storey]').forEach((b) => b.addEventListener('click', () => showUpTo(b.dataset.mvStorey!)));
-  root.querySelectorAll<HTMLButtonElement>('[data-mv-view]').forEach((b) => b.addEventListener('click', () => setView(b.dataset.mvView as View)));
+  root.querySelector<HTMLSelectElement>('[data-mv-storeys]')?.addEventListener('change', (e) => showUpTo((e.target as HTMLSelectElement).value));
+  renderer.domElement.addEventListener('dblclick', () => resetView());
 
   render();
   status.hidden = true;
