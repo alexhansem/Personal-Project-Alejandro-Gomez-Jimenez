@@ -3,21 +3,20 @@ import type { Profile } from '../content/types';
 /**
  * PERFIL — datos personales y profesionales.
  *
- * Todo lo que hay aquí es provisional (EJEMPLO). Sustitúyelo por tus datos
- * reales y cambia `isExample` a `false`. Mientras `isExample` sea `true`, la web
- * muestra un aviso visible y los datos de contacto no son enlaces activos.
+ * Nombre, titular y contacto viven solo aquí (y el nombre de la web en
+ * config/site.ts): para pasar a una marca personal basta con cambiar estos campos.
+ * Con `isExample: true` la web marca los datos como EJEMPLO, no enlaza el contacto
+ * y pide a los buscadores que no la indexen.
  *
  * Deja vacíos (`[]`) los apartados de los que todavía no tengas datos
  * acreditables: la web los oculta.
  */
 export const profile: Profile = {
-  isExample: true,
+  isExample: false,
 
-  name: 'Nombre Apellido',
+  name: 'Alejandro Gómez Jiménez',
 
-  // Titular propuesto a partir del brief. Revísalo y ajústalo a tu forma de hablar.
-  headline:
-    'Documentación técnica y soluciones para edificación: delineación, software CAD/BIM y flujos de trabajo asistidos por IA.',
+  headline: 'Técnico en Proyectos de Edificación · IA y Automatización',
 
   intro:
     'Desarrollo planos, documentación de proyecto y herramientas auxiliares combinando criterio técnico, software especializado y modelos de IA. Cada trabajo incluye cómo se hizo, cuánto tiempo llevó y qué se comprobó.',
@@ -29,15 +28,15 @@ export const profile: Profile = {
     'Las limitaciones se documentan igual que los resultados.',
   ],
 
-  email: 'ejemplo@ejemplo.invalid',
+  email: 'alejandro.gomez.jimenez.2000@gmail.com',
   location: undefined,
 
   links: [
-    { label: 'LinkedIn (EJEMPLO)', href: 'https://example.com' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/alexhansem/' },
   ],
 
   // Solo software que puedas acreditar. Vacío = no se muestra.
-  software: [],
+  software: ['CAD', 'CYPE', 'Revit'],
 
   // Solo formación real. Vacío = no se muestra.
   education: [],

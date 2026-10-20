@@ -7,3 +7,6 @@ export const nav = [
 ] as const;
 
 export const siteTitle = 'Portfolio técnico';
+
+/** Antetítulo de la portada. */
+export const siteKicker = `${siteTitle} · Edificación`;

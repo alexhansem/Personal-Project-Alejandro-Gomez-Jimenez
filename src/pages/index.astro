@@ -8,6 +8,7 @@ import ContactLinks from '../components/ContactLinks.astro';
 import { profile } from '../config/profile';
 import { activeCategories, featuredProjects, projectIndex, projects, processes, sheetCode } from '../lib/content';
 import { url } from '../lib/url';
+import { siteKicker } from '../config/site';
 
 const [lead, ...rest] = featuredProjects;
 const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.find((p) => p.workflow?.length);
@@ -16,13 +17,21 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
 <BaseLayout>
   <section class="hero container">
     <div class="hero__main">
-      <p class="label hero__kicker">Portfolio técnico · Edificación</p>
+      <p class="label hero__kicker">{siteKicker}</p>
       <h1 class="hero__name">
         {profile.name}
         {profile.isExample && <span class="stamp stamp--demo hero__stamp">Ejemplo</span>}
       </h1>
-      <p class="hero__headline">{profile.headline}</p>
+      <p class="hero__headline">{profile.headline.split(' · ').map((part) => <span class="hero__headline-part">{part}</span>)}</p>
       <p class="lead hero__intro">{profile.intro}</p>
+      {
+        profile.software.length > 0 && (
+          <p class="hero__tools">
+            <span class="label">Software</span>
+            {profile.software.map((s) => <span class="mono hero__tool">{s}</span>)}
+          </p>
+        )
+      }
       <div class="hero__actions">
         <a class="btn btn--solid" href={url('/proyectos/')}>Ver proyectos</a>
         <a class="btn" href={url('/metodologia/')}>Cómo trabajo</a>
@@ -172,6 +181,28 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
 
   .hero__intro {
     max-width: 58ch;
+  }
+
+  .hero__headline-part {
+    display: block;
+  }
+
+  .hero__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+    margin: 0;
+  }
+
+  .hero__tools .label {
+    margin-right: 4px;
+  }
+
+  .hero__tool {
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    font-size: 0.75rem;
   }
 
   .hero__actions {
