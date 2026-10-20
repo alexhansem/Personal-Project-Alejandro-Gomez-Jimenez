@@ -47,7 +47,6 @@ export const profile: Profile = {
   ],
 
   // Solo experiencia real (perfil de LinkedIn exportado por Alex, 20/10/2026).
-  // La empresa inmobiliaria no se nombra: está ligada a un proyecto publicado con datos retenidos.
   experience: [
     {
       role: 'Ayudante de Oficina Técnica',
@@ -57,13 +56,13 @@ export const profile: Profile = {
     },
     {
       role: 'Manager de Desarrollo de Negocio y Marca',
-      org: 'Empresa de servicios inmobiliarios',
+      org: 'SOLEY Servicios Inmobiliarios · Toledo',
       period: 'oct. 2023 – actualidad',
       text: 'Optimización de procesos internos e integración de soluciones tecnológicas; gestión y resolución de operaciones complejas.',
     },
     {
       role: 'Administrativo y Gestor de cuentas',
-      org: 'Empresa de servicios inmobiliarios',
+      org: 'SOLEY Servicios Inmobiliarios · Toledo',
       period: 'sept. 2022 – actualidad',
       text: 'Gestión de clientes, CRM y bases de datos, facturación, contratos y documentación.',
     },
