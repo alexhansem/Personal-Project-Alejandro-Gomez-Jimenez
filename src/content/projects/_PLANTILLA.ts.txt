@@ -18,6 +18,12 @@ const project: Project = {
   categories: ['delineacion'],
 
   summary: 'Una o dos líneas que expliquen qué es y qué se resolvió.',
+
+  // Lo que hace especial al proyecto (3 claves) y cifras reales. Lo vacío no se muestra.
+  highlights: [{ title: '', text: '' }],
+  figures: [{ value: '', label: '' }],
+  // Método propio explicado con valores reales (opcional).
+  // method: { title: '', intro: '', steps: [{ value: '', valueNote: '', title: '', text: '' }] },
   context: '',
   objective: '',
   problem: '',
@@ -40,7 +46,7 @@ const project: Project = {
     },
   ],
 
-  // Comparativa con el método convencional. Sin `reference` queda "pendiente de medir".
+  // Comparativa con el método convencional. Solo se muestra si hay tiempo de referencia y tiempo propio.
   comparison: {
     task: '',
     used: {

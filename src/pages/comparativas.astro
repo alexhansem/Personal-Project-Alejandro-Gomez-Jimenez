@@ -11,7 +11,9 @@ import { url } from '../lib/url';
 const rows = projects
   .map((p, i) => ({ p, i }))
   .filter(({ p }) => p.comparison)
-  .map(({ p, i }) => ({ p, code: sheetCode('P', i), c: p.comparison!, r: evaluateComparison(p.comparison!) }));
+  .map(({ p, i }) => ({ p, code: sheetCode('P', i), c: p.comparison!, r: evaluateComparison(p.comparison!) }))
+  // Solo comparativas con los dos totales: una sin referencia no aporta.
+  .filter(({ r }) => r.status !== 'pendiente');
 ---
 
 <BaseLayout title="Comparativas" description="Tiempos de generación, revisión y total de cada proceso, con su procedencia.">

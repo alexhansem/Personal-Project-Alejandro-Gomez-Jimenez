@@ -29,6 +29,8 @@ const firstReview = steps.findIndex((s) => s.phase === 'revision');
 const reviewOffset =
   firstReview > 0 ? (weights.slice(0, firstReview).reduce((a, b) => a + b, 0) / totalWeight) * 100 : null;
 const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary.byActor[a] > 0);
+// Sin ningún tiempo registrado la barra muestra solo quién hace cada paso, sin tiempos ni pendientes.
+const timed = known.length > 0;
 ---
 
 <div class="wf">
@@ -42,12 +44,12 @@ const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary
             </span>
           )}
           <span class="wf__phase wf__phase--start mono">Generación →</span>
-          <ol class="wf__bar" aria-label="Duración relativa de cada paso">
+          <ol class="wf__bar" aria-label={timed ? 'Duración relativa de cada paso' : 'Quién ejecuta cada paso'}>
             {steps.map((s, i) => (
               <li
-                class:list={['wf__seg', `wf__seg--${s.actor}`, `wf__seg--${s.time?.provenance ?? 'pendiente'}`]}
+                class:list={['wf__seg', `wf__seg--${s.actor}`, timed ? `wf__seg--${s.time?.provenance ?? 'pendiente'}` : 'wf__seg--medido']}
                 style={`flex-grow: ${weights[i]}`}
-                title={`${String(i + 1).padStart(2, '0')} · ${s.title} · ${hasValue(s.time) ? formatMinutes(s.time.minutes) : 'sin tiempo'}`}
+                title={`${String(i + 1).padStart(2, '0')} · ${s.title}${hasValue(s.time) ? ` · ${formatMinutes(s.time.minutes)}` : ''}`}
               >
                 <span class="mono">{String(i + 1).padStart(2, '0')}</span>
               </li>
@@ -55,6 +57,7 @@ const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary
           </ol>
         </div>
 
+        {timed && (
         <dl class="wf__totals">
           <div>
             <dt class="label">Generación</dt>
@@ -88,13 +91,14 @@ const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary
             </div>
           )}
         </dl>
-        {summary.missing > 0 && (
+        )}
+        {timed && summary.missing > 0 && (
           <p class="wf__missing mono">
             {summary.missing === 1 ? '1 paso sin tiempo registrado' : `${summary.missing} pasos sin tiempo registrado`}: el total queda
             pendiente.
           </p>
         )}
-        <ProvenanceLegend actors />
+        <ProvenanceLegend actors provenance={timed} />
       </div>
     )
   }
@@ -138,7 +142,7 @@ const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary
             )}
           </div>
           <div class="wf__time">
-            <TimeTag time={s.time} size="sm" />
+            {hasValue(s.time) && <TimeTag time={s.time} size="sm" />}
           </div>
         </li>
       ))
