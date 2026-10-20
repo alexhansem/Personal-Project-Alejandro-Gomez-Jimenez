@@ -40,7 +40,7 @@ const project: Project = {
   figures: [
     { value: '300', label: 'Escenarios simulados' },
     { value: '91 %', label: 'Esquema estructural más probable' },
-    { value: '593', label: 'Muros en el modelo IFC' },
+    { value: '214', label: 'Elementos en el modelo IFC' },
     { value: '202', label: 'Partidas medidas con precios CYPE' },
   ],
 
@@ -114,6 +114,24 @@ const project: Project = {
     ],
   },
 
+  model: {
+    src: `${base}/modelo/estado-actual.glb`,
+    ifc: `${base}/modelo/estado-actual.ifc`,
+    poster: `${base}/modelo/estado-actual.jpg`,
+    alt: 'Modelo 3D del estado actual del edificio: fachada en esquina con balcones volados, cubierta de teja a cuatro aguas, casetas y torreón de escalera',
+    caption:
+      'Estado actual regenerado desde la tabla de datos del CAD: muros con sus huecos, forjados, escalera, balcones y cubierta. Alturas de casetas y ventanas de escalera según hipótesis del proyecto.',
+    size: '0,3 MB',
+    storeys: [
+      { key: 'sotano', label: 'Sótano' },
+      { key: 'pb', label: 'Baja' },
+      { key: 'p1', label: '1ª' },
+      { key: 'p2', label: '2ª' },
+      { key: 'p3', label: '3ª' },
+      { key: 'cubierta', label: 'Cubierta' },
+    ],
+  },
+
   method: {
     title: 'Cómo se dedujo la estructura sin abrir catas',
     intro:
@@ -166,11 +184,11 @@ const project: Project = {
     'El plano de partida tenía tres versiones mezcladas de la planta tipo, no tenía cotas de altura y sus superficies no coincidían con las oficiales. La estructura interior no se veía y la normativa aplicable estaba repartida entre un plan de 1986 y sus modificaciones.',
 
   cover: {
-    src: `${base}/imagenes/vista3d-frontal.jpg`,
-    alt: 'Vista 3D del modelo del edificio: cuatro plantas de fachada ocre con ventanas azules, balcones volados y cubierta de teja',
-    caption: 'Modelo IFC del estado actual · vista frontal',
+    src: `${base}/imagenes/modelo-frontal.jpg`,
+    alt: 'Modelo 3D del edificio en esquina: cuatro plantas de fachada ocre, balcones volados con barandilla, cubierta de teja a cuatro aguas, casetas y torreón',
+    caption: 'Modelo 3D del estado actual · vista frontal',
     kind: 'modelo',
-    ratio: 1.455,
+    ratio: 1.5,
   },
 
   workflow: [
@@ -217,9 +235,26 @@ const project: Project = {
       actor: 'software',
       tool: 'Python · ezdxf · shapely · IFC4',
       description:
-        'Los muros se detectan como pares de líneas paralelas separadas entre 6 y 36 cm, y el espesor los clasifica: 0,30 fachada, 0,20 escalera, 0,21 patio, 0,10 tabique. Las alturas se miden en el alzado: 2,93 m entre plantas, libre de 2,60 m, que coincide con el croquis. Con todo ello se generan el DXF/DWG por capas, el IFC4 georreferenciado y 8 láminas A3.',
+        'Los muros se detectan como pares de líneas paralelas separadas entre 6 y 36 cm, y el espesor los clasifica: 0,30 fachada, 0,20 escalera, 0,21 patio, 0,10 tabique. Las alturas se miden en el alzado: 2,93 m entre plantas, libre de 2,60 m, que coincide con el croquis. Con todo ello se generan el DXF/DWG por capas, un primer IFC4 y 8 láminas A3.',
       input: 'CAD original',
-      output: 'IFC con 593 muros, 53 ventanas, 62 puertas, 71 espacios y 44 pilares',
+      output: 'DXF/DWG por capas y láminas de estado actual',
+    },
+    {
+      title: 'Modelo 3D rehecho tras la revisión',
+      actor: 'ia',
+      phase: 'revision',
+      tool: 'Python · shapely · trimesh · IfcOpenShell · three.js',
+      description:
+        'El primer IFC no convencía: muros troceados en cientos de piezas, cantos de forjado asomando en fachada y una cubierta mal resuelta. Se rehace desde la misma tabla de datos: los muros se fusionan por tipo y planta, se rellenan bajo y sobre cada hueco y se abren por franjas de altura; los forjados acaban en la cara interior de la fachada; la cubierta son cuatro faldones planos recortados por el patio, las casetas y el torreón.',
+      input: 'Tabla de datos del estado actual',
+      output: 'IFC4 validado sin errores (214 elementos y 71 espacios) y modelo web por plantas',
+      media: {
+        src: `${base}/imagenes/modelo-corte-p1.jpg`,
+        alt: 'Modelo 3D cortado por encima de la planta primera: tabiquería de las dos viviendas, escalera y patio',
+        caption: 'Modelo cortado sobre la planta 1ª',
+        kind: 'modelo',
+        ratio: 1.5,
+      },
     },
     {
       title: 'Estructura supuesta y probabilidad de pilares',
@@ -323,7 +358,7 @@ const project: Project = {
   ],
 
   media: [
-    { src: `${base}/imagenes/vista3d-trasera.jpg`, alt: 'Vista 3D trasera del modelo con el torreón de escalera, casetas de cubierta y patio', caption: 'Modelo IFC · vista trasera', kind: 'modelo', ratio: 1.455 },
+    { src: `${base}/imagenes/modelo-trasera.jpg`, alt: 'Vista 3D trasera del modelo con el patio central abierto, la tapia de la finca trasera, casetas y torreón', caption: 'Modelo 3D · vista trasera', kind: 'modelo', ratio: 1.5 },
     { src: `${base}/planos/ea04-planta-tipo.png`, alt: 'Planta tipo a 1:50 con las dos viviendas, escalera central, patio y superficies por estancia', caption: 'EA-04 · Planta tipo 1ª, 2ª y 3ª · E 1:50', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/ea03-planta-baja.png`, alt: 'Planta baja a 1:50 con portal, escalera y la vivienda fuera de alcance rayada', caption: 'EA-03 · Planta baja · E 1:50', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/ea05-cubierta.png`, alt: 'Planta de cubierta con las dos casetas y el torreón de escalera', caption: 'EA-05 · Cubierta · E 1:50', kind: 'plano', ratio: 1.414 },
@@ -334,7 +369,6 @@ const project: Project = {
     { src: `${base}/dosier/dosier-preproyecto.png`, alt: 'Diapositiva con ocho tarjetas: estado actual, estructura, urbanismo, riesgo legal, distribución, presupuesto, modelo económico y panel de control', caption: 'Dosier · qué hay detrás de las cifras', kind: 'esquema', ratio: 1.778 },
     { src: `${base}/dosier/dosier-calidades.png`, alt: 'Diapositiva de calidades de gama media: puerta acorazada, ventanas de PVC, laminado, baños, aerotermia, clima, cocina y ascensor', caption: 'Dosier · calidades del presupuesto', kind: 'esquema', ratio: 1.778 },
     { src: `${base}/dosier/dosier-metodo.png`, alt: 'Diapositiva del anexo técnico: cadena CAD, modelo, planos, mediciones, CYPE y BC3, cuenta', caption: 'Dosier · anexo técnico, todo sale del mismo modelo', kind: 'esquema', ratio: 1.778 },
-    { src: `${base}/planos/ea08-vistas-3d.png`, alt: 'Lámina con dos vistas 3D del modelo', caption: 'EA-08 · Modelo BIM, vistas 3D', kind: 'modelo', ratio: 1.414 },
   ],
 
   tables: [
@@ -497,7 +531,7 @@ def coste_tramo(a, b, s):
   ],
 
   deliverables: [
-    'Estado actual en DXF/DWG por capas y modelo IFC4 georreferenciado',
+    'Estado actual en DXF/DWG por capas y modelo IFC4 descargable',
     '8 láminas A3 de estado actual a 1:50 y 1:100',
     '2 láminas de estructura supuesta con catas',
     'Marco normativo, escenarios de programa y propuesta de distribución',
@@ -516,7 +550,7 @@ def coste_tramo(a, b, s):
   ],
 
   checks: [
-    'Modelo IFC4 validado sin errores; cada elemento lleva origen, estado y nota de control.',
+    'Modelo IFC4 regenerado y validado sin errores con IfcOpenShell; sin georreferencia ni datos de parcela.',
     'Superficies del CAD cuadradas con el rótulo del plano (152,9 frente a 152 m²).',
     'Fachada del CAD contrastada con el Catastro (19,21 frente a 19,37 m).',
   ],
