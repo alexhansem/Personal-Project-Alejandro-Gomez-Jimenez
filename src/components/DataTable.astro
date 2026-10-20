@@ -104,8 +104,16 @@ const isNum = (i: number) => t.numeric?.includes(i);
 
   .num {
     text-align: right;
-    padding-right: 0;
     padding-left: 14px;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 0;
+  }
+
+  .num + :not(.num) {
+    padding-left: 28px;
   }
 
   .dt__caption {

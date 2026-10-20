@@ -1,0 +1,698 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="78.50 50.00 273.00 175.00" width="2184" height="1400" font-family="Arial, Helvetica, sans-serif" preserveAspectRatio="xMidYMid meet"><style>.MH-MUROS{stroke:#000;stroke-width:0.5;fill:none;stroke-linecap:round}.MH-RELLENO{stroke:#1d1d1d;stroke-width:0.1;fill:none;stroke-linecap:round}.MH-CONTORNO{stroke:#000;stroke-width:0.35;fill:none;stroke-linecap:round}.MH-PROYECCION{stroke:#555;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-HUECOS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-VIDRIO{stroke:#333;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-PUERTAS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-ESCALERAS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-MOBILIARIO{stroke:#444;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-OCULTO{stroke:#666;stroke-width:0.18;fill:none;stroke-linecap:round;stroke-dasharray:1.2 0.8}.MH-COTAS{stroke:#000;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-TEXTOS{stroke:#000;stroke-width:0.1;fill:none;stroke-linecap:round}.MH-PARCELA{stroke:#000;stroke-width:0.35;fill:none;stroke-linecap:round;stroke-dasharray:4 0.8 0.4 0.8}.MH-SECCION{stroke:#000;stroke-width:0.7;fill:none;stroke-linecap:round}.MH-TERRENO{stroke:#000;stroke-width:0.6;fill:none;stroke-linecap:round}.MH-TRAMA{stroke:#888;stroke-width:0.09;fill:none;stroke-linecap:round}.MH-VEGETACION{stroke:#4f6f4f;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-MARCO{stroke:#000;stroke-width:0.5;fill:none;stroke-linecap:round}.MH-MARCO-FINO{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round} text{font-family:Arial,Helvetica,sans-serif;stroke:none}</style>
+<rect x="257.6" y="118.74" width="3.944" height="0.6" fill="#1d1d1d"/>
+<rect x="279.009" y="118.74" width="7.888" height="0.6" fill="#1d1d1d"/>
+<rect x="311.686" y="118.74" width="2.254" height="0.6" fill="#1d1d1d"/>
+<rect x="257.6" y="79" width="56.34" height="0.6" fill="#1d1d1d"/>
+<rect x="257.6" y="79.6" width="0.6" height="39.14" fill="#1d1d1d"/>
+<rect x="313.34" y="101.187" width="0.6" height="17.553" fill="#1d1d1d"/>
+<rect x="313.34" y="79.6" width="0.6" height="3.434" fill="#1d1d1d"/>
+<rect x="210.8" y="96.74" width="16.687" height="0.6" fill="#1d1d1d"/>
+<rect x="238.713" y="96.74" width="2.427" height="0.6" fill="#1d1d1d"/>
+<rect x="210.8" y="79" width="3.034" height="0.6" fill="#1d1d1d"/>
+<rect x="225.06" y="79" width="1.82" height="0.6" fill="#1d1d1d"/>
+<rect x="238.106" y="79" width="3.034" height="0.6" fill="#1d1d1d"/>
+<rect x="210.8" y="79.6" width="0.6" height="17.14" fill="#1d1d1d"/>
+<rect x="240.54" y="79.6" width="0.6" height="17.14" fill="#1d1d1d"/>
+<rect x="111.5" y="113.05" width="10.826" height="0.6" fill="#1d1d1d"/>
+<rect x="141.43" y="113.05" width="1.91" height="0.6" fill="#1d1d1d"/>
+<rect x="111.5" y="86.31" width="7.642" height="0.6" fill="#1d1d1d"/>
+<rect x="126.783" y="86.31" width="0.637" height="0.6" fill="#1d1d1d"/>
+<rect x="135.062" y="86.31" width="8.278" height="0.6" fill="#1d1d1d"/>
+<rect x="111.5" y="86.91" width="0.6" height="26.14" fill="#1d1d1d"/>
+<rect x="142.74" y="86.91" width="0.6" height="26.14" fill="#1d1d1d"/>
+<rect x="111.5" y="191.35" width="1.514" height="0.6" fill="#1d1d1d"/>
+<rect x="130.42" y="191.35" width="18.92" height="0.6" fill="#1d1d1d"/>
+<rect x="111.5" y="141.61" width="37.84" height="0.6" fill="#1d1d1d"/>
+<rect x="111.5" y="142.21" width="0.6" height="49.14" fill="#1d1d1d"/>
+<rect x="148.74" y="187.923" width="0.6" height="3.427" fill="#1d1d1d"/>
+<rect x="148.74" y="142.21" width="0.6" height="24.57" fill="#1d1d1d"/>
+<rect x="173.3" y="201.4" width="23.34" height="0.6" fill="#1d1d1d"/>
+<rect x="173.3" y="188.5" width="23.34" height="0.6" fill="#1d1d1d"/>
+<rect x="173.3" y="189.1" width="0.6" height="12.3" fill="#1d1d1d"/>
+<rect x="196.04" y="189.1" width="0.6" height="12.3" fill="#1d1d1d"/>
+<rect x="230.3" y="201.4" width="47.78" height="0.6" fill="#1d1d1d"/>
+<rect x="230.3" y="159.22" width="2.389" height="0.6" fill="#1d1d1d"/>
+<rect x="254.19" y="159.22" width="23.89" height="0.6" fill="#1d1d1d"/>
+<rect x="230.3" y="159.82" width="0.6" height="41.58" fill="#1d1d1d"/>
+<rect x="277.48" y="199.433" width="0.6" height="1.967" fill="#1d1d1d"/>
+<rect x="277.48" y="159.82" width="0.6" height="16.512" fill="#1d1d1d"/>
+<line class="MH-PARCELA" x1="102.05" y1="210.7" x2="324.05" y2="210.7"/>
+<line class="MH-PARCELA" x1="324.05" y1="210.7" x2="324.05" y2="73"/>
+<line class="MH-PARCELA" x1="324.05" y1="73" x2="102.05" y2="73"/>
+<line class="MH-PARCELA" x1="102.05" y1="73" x2="102.05" y2="210.7"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="131.86" x2="201.35" y2="131.86"/>
+<line class="MH-ESCALERAS" x1="201.35" y1="131.86" x2="201.35" y2="124.45"/>
+<line class="MH-ESCALERAS" x1="201.35" y1="124.45" x2="193.55" y2="124.45"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="124.45" x2="193.55" y2="131.86"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="131.186" x2="201.35" y2="131.186"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="130.513" x2="201.35" y2="130.513"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="129.839" x2="201.35" y2="129.839"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="129.165" x2="201.35" y2="129.165"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="128.492" x2="201.35" y2="128.492"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="127.818" x2="201.35" y2="127.818"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="127.145" x2="201.35" y2="127.145"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="126.471" x2="201.35" y2="126.471"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="125.797" x2="201.35" y2="125.797"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="125.124" x2="201.35" y2="125.124"/>
+<line class="MH-MUROS" x1="257.6" y1="119.34" x2="261.544" y2="119.34"/>
+<line class="MH-MUROS" x1="279.009" y1="119.34" x2="286.897" y2="119.34"/>
+<line class="MH-MUROS" x1="311.686" y1="119.34" x2="313.94" y2="119.34"/>
+<line class="MH-MUROS" x1="258.2" y1="118.74" x2="261.544" y2="118.74"/>
+<line class="MH-MUROS" x1="279.009" y1="118.74" x2="286.897" y2="118.74"/>
+<line class="MH-MUROS" x1="311.686" y1="118.74" x2="313.34" y2="118.74"/>
+<line class="MH-MUROS" x1="261.544" y1="119.34" x2="261.544" y2="118.74"/>
+<line class="MH-MUROS" x1="279.009" y1="119.34" x2="279.009" y2="118.74"/>
+<line class="MH-HUECOS" x1="261.544" y1="119.34" x2="279.009" y2="119.34"/>
+<line class="MH-HUECOS" x1="261.544" y1="119.04" x2="279.009" y2="119.04"/>
+<line class="MH-HUECOS" x1="261.544" y1="118.74" x2="279.009" y2="118.74"/>
+<line class="MH-MUROS" x1="286.897" y1="119.34" x2="286.897" y2="118.74"/>
+<line class="MH-MUROS" x1="311.686" y1="119.34" x2="311.686" y2="118.74"/>
+<line class="MH-HUECOS" x1="286.897" y1="119.34" x2="311.686" y2="119.34"/>
+<line class="MH-HUECOS" x1="286.897" y1="119.04" x2="311.686" y2="119.04"/>
+<line class="MH-HUECOS" x1="286.897" y1="118.74" x2="311.686" y2="118.74"/>
+<line class="MH-MUROS" x1="257.6" y1="79" x2="313.94" y2="79"/>
+<line class="MH-MUROS" x1="258.2" y1="79.6" x2="313.34" y2="79.6"/>
+<line class="MH-MUROS" x1="257.6" y1="119.34" x2="257.6" y2="79"/>
+<line class="MH-MUROS" x1="258.2" y1="118.74" x2="258.2" y2="79.6"/>
+<line class="MH-MUROS" x1="313.94" y1="119.34" x2="313.94" y2="101.187"/>
+<line class="MH-MUROS" x1="313.94" y1="83.034" x2="313.94" y2="79"/>
+<line class="MH-MUROS" x1="313.34" y1="118.74" x2="313.34" y2="101.187"/>
+<line class="MH-MUROS" x1="313.34" y1="83.034" x2="313.34" y2="79.6"/>
+<line class="MH-MUROS" x1="313.94" y1="101.187" x2="313.34" y2="101.187"/>
+<line class="MH-MUROS" x1="313.94" y1="83.034" x2="313.34" y2="83.034"/>
+<line class="MH-HUECOS" x1="313.94" y1="101.187" x2="313.94" y2="83.034"/>
+<line class="MH-HUECOS" x1="313.64" y1="101.187" x2="313.64" y2="83.034"/>
+<line class="MH-HUECOS" x1="313.34" y1="101.187" x2="313.34" y2="83.034"/>
+<line class="MH-ESCALERAS" x1="286.5" y1="88" x2="298.5" y2="88"/>
+<line class="MH-ESCALERAS" x1="298.5" y1="88" x2="298.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="298.5" y1="80.5" x2="286.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="286.5" y1="80.5" x2="286.5" y2="88"/>
+<line class="MH-ESCALERAS" x1="287.5" y1="88" x2="287.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="288.5" y1="88" x2="288.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="289.5" y1="88" x2="289.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="290.5" y1="88" x2="290.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="291.5" y1="88" x2="291.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="292.5" y1="88" x2="292.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="293.5" y1="88" x2="293.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="294.5" y1="88" x2="294.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="295.5" y1="88" x2="295.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="296.5" y1="88" x2="296.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="297.5" y1="88" x2="297.5" y2="80.5"/>
+<line class="MH-ESCALERAS" x1="287.3" y1="84.25" x2="297.7" y2="84.25"/>
+<line class="MH-ESCALERAS" x1="297.7" y1="84.25" x2="296.89" y2="83.859"/>
+<line class="MH-ESCALERAS" x1="297.7" y1="84.25" x2="296.89" y2="84.641"/>
+<line class="MH-ESCALERAS" x1="294.5" y1="118.4" x2="309.5" y2="118.4"/>
+<line class="MH-ESCALERAS" x1="309.5" y1="118.4" x2="309.5" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="309.5" y1="110.9" x2="294.5" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="294.5" y1="110.9" x2="294.5" y2="118.4"/>
+<line class="MH-ESCALERAS" x1="295.75" y1="118.4" x2="295.75" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="297" y1="118.4" x2="297" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="298.25" y1="118.4" x2="298.25" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="299.5" y1="118.4" x2="299.5" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="300.75" y1="118.4" x2="300.75" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="302" y1="118.4" x2="302" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="303.25" y1="118.4" x2="303.25" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="304.5" y1="118.4" x2="304.5" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="305.75" y1="118.4" x2="305.75" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="307" y1="118.4" x2="307" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="308.25" y1="118.4" x2="308.25" y2="110.9"/>
+<line class="MH-ESCALERAS" x1="295.3" y1="114.65" x2="308.7" y2="114.65"/>
+<line class="MH-ESCALERAS" x1="308.7" y1="114.65" x2="307.89" y2="114.259"/>
+<line class="MH-ESCALERAS" x1="308.7" y1="114.65" x2="307.89" y2="115.041"/>
+<line class="MH-COTAS" x1="256.6" y1="75.2" x2="314.94" y2="75.2"/>
+<line class="MH-COTAS" x1="257.6" y1="76.4" x2="257.6" y2="74"/>
+<line class="MH-COTAS" x1="257.05" y1="75.75" x2="258.15" y2="74.65"/>
+<line class="MH-COTAS" x1="258.2" y1="76.4" x2="258.2" y2="74"/>
+<line class="MH-COTAS" x1="257.65" y1="75.75" x2="258.75" y2="74.65"/>
+<line class="MH-COTAS" x1="313.34" y1="76.4" x2="313.34" y2="74"/>
+<line class="MH-COTAS" x1="312.79" y1="75.75" x2="313.89" y2="74.65"/>
+<line class="MH-COTAS" x1="313.94" y1="76.4" x2="313.94" y2="74"/>
+<line class="MH-COTAS" x1="313.39" y1="75.75" x2="314.49" y2="74.65"/>
+<line class="MH-COTAS" x1="256.6" y1="71.4" x2="314.94" y2="71.4"/>
+<line class="MH-COTAS" x1="257.6" y1="72.6" x2="257.6" y2="70.2"/>
+<line class="MH-COTAS" x1="257.05" y1="71.95" x2="258.15" y2="70.85"/>
+<line class="MH-COTAS" x1="313.94" y1="72.6" x2="313.94" y2="70.2"/>
+<line class="MH-COTAS" x1="313.39" y1="71.95" x2="314.49" y2="70.85"/>
+<line class="MH-COTAS" x1="317.74" y1="120.34" x2="317.74" y2="78"/>
+<line class="MH-COTAS" x1="316.54" y1="119.34" x2="318.94" y2="119.34"/>
+<line class="MH-COTAS" x1="317.19" y1="119.89" x2="318.29" y2="118.79"/>
+<line class="MH-COTAS" x1="316.54" y1="118.74" x2="318.94" y2="118.74"/>
+<line class="MH-COTAS" x1="317.19" y1="119.29" x2="318.29" y2="118.19"/>
+<line class="MH-COTAS" x1="316.54" y1="101.19" x2="318.94" y2="101.19"/>
+<line class="MH-COTAS" x1="317.19" y1="101.74" x2="318.29" y2="100.64"/>
+<line class="MH-COTAS" x1="316.54" y1="83.03" x2="318.94" y2="83.03"/>
+<line class="MH-COTAS" x1="317.19" y1="83.58" x2="318.29" y2="82.48"/>
+<line class="MH-COTAS" x1="316.54" y1="79.6" x2="318.94" y2="79.6"/>
+<line class="MH-COTAS" x1="317.19" y1="80.15" x2="318.29" y2="79.05"/>
+<line class="MH-COTAS" x1="316.54" y1="79" x2="318.94" y2="79"/>
+<line class="MH-COTAS" x1="317.19" y1="79.55" x2="318.29" y2="78.45"/>
+<line class="MH-COTAS" x1="321.54" y1="120.34" x2="321.54" y2="78"/>
+<line class="MH-COTAS" x1="320.34" y1="119.34" x2="322.74" y2="119.34"/>
+<line class="MH-COTAS" x1="320.99" y1="119.89" x2="322.09" y2="118.79"/>
+<line class="MH-COTAS" x1="320.34" y1="79" x2="322.74" y2="79"/>
+<line class="MH-COTAS" x1="320.99" y1="79.55" x2="322.09" y2="78.45"/>
+<line class="MH-MUROS" x1="210.8" y1="97.34" x2="227.487" y2="97.34"/>
+<line class="MH-MUROS" x1="238.713" y1="97.34" x2="241.14" y2="97.34"/>
+<line class="MH-MUROS" x1="211.4" y1="96.74" x2="227.487" y2="96.74"/>
+<line class="MH-MUROS" x1="238.713" y1="96.74" x2="240.54" y2="96.74"/>
+<line class="MH-MUROS" x1="227.487" y1="97.34" x2="227.487" y2="96.74"/>
+<line class="MH-MUROS" x1="238.713" y1="97.34" x2="238.713" y2="96.74"/>
+<line class="MH-HUECOS" x1="227.487" y1="97.34" x2="238.713" y2="97.34"/>
+<line class="MH-HUECOS" x1="227.487" y1="97.04" x2="238.713" y2="97.04"/>
+<line class="MH-HUECOS" x1="227.487" y1="96.74" x2="238.713" y2="96.74"/>
+<line class="MH-MUROS" x1="210.8" y1="79" x2="213.834" y2="79"/>
+<line class="MH-MUROS" x1="225.06" y1="79" x2="226.88" y2="79"/>
+<line class="MH-MUROS" x1="238.106" y1="79" x2="241.14" y2="79"/>
+<line class="MH-MUROS" x1="211.4" y1="79.6" x2="213.834" y2="79.6"/>
+<line class="MH-MUROS" x1="225.06" y1="79.6" x2="226.88" y2="79.6"/>
+<line class="MH-MUROS" x1="238.106" y1="79.6" x2="240.54" y2="79.6"/>
+<line class="MH-MUROS" x1="226.88" y1="79" x2="226.88" y2="79.6"/>
+<line class="MH-MUROS" x1="238.106" y1="79" x2="238.106" y2="79.6"/>
+<line class="MH-HUECOS" x1="226.88" y1="79" x2="238.106" y2="79"/>
+<line class="MH-HUECOS" x1="226.88" y1="79.3" x2="238.106" y2="79.3"/>
+<line class="MH-HUECOS" x1="226.88" y1="79.6" x2="238.106" y2="79.6"/>
+<line class="MH-MUROS" x1="213.834" y1="79" x2="213.834" y2="79.6"/>
+<line class="MH-MUROS" x1="225.06" y1="79" x2="225.06" y2="79.6"/>
+<line class="MH-HUECOS" x1="213.834" y1="79" x2="225.06" y2="79"/>
+<line class="MH-HUECOS" x1="213.834" y1="79.3" x2="225.06" y2="79.3"/>
+<line class="MH-HUECOS" x1="213.834" y1="79.6" x2="225.06" y2="79.6"/>
+<line class="MH-MUROS" x1="210.8" y1="97.34" x2="210.8" y2="79"/>
+<line class="MH-MUROS" x1="211.4" y1="96.74" x2="211.4" y2="79.6"/>
+<line class="MH-MUROS" x1="241.14" y1="97.34" x2="241.14" y2="79"/>
+<line class="MH-MUROS" x1="240.54" y1="96.74" x2="240.54" y2="79.6"/>
+<line class="MH-ESCALERAS" x1="237" y1="95.5" x2="240" y2="95.5"/>
+<line class="MH-ESCALERAS" x1="240" y1="95.5" x2="240" y2="86.5"/>
+<line class="MH-ESCALERAS" x1="240" y1="86.5" x2="237" y2="86.5"/>
+<line class="MH-ESCALERAS" x1="237" y1="86.5" x2="237" y2="95.5"/>
+<line class="MH-ESCALERAS" x1="237" y1="94.214" x2="240" y2="94.214"/>
+<line class="MH-ESCALERAS" x1="237" y1="92.929" x2="240" y2="92.929"/>
+<line class="MH-ESCALERAS" x1="237" y1="91.643" x2="240" y2="91.643"/>
+<line class="MH-ESCALERAS" x1="237" y1="90.357" x2="240" y2="90.357"/>
+<line class="MH-ESCALERAS" x1="237" y1="89.071" x2="240" y2="89.071"/>
+<line class="MH-ESCALERAS" x1="237" y1="87.786" x2="240" y2="87.786"/>
+<line class="MH-ESCALERAS" x1="238.5" y1="94.7" x2="238.5" y2="87.3"/>
+<line class="MH-ESCALERAS" x1="238.5" y1="87.3" x2="238.109" y2="88.11"/>
+<line class="MH-ESCALERAS" x1="238.5" y1="87.3" x2="238.891" y2="88.11"/>
+<line class="MH-COTAS" x1="209.8" y1="75.2" x2="242.14" y2="75.2"/>
+<line class="MH-COTAS" x1="210.8" y1="76.4" x2="210.8" y2="74"/>
+<line class="MH-COTAS" x1="210.25" y1="75.75" x2="211.35" y2="74.65"/>
+<line class="MH-COTAS" x1="211.4" y1="76.4" x2="211.4" y2="74"/>
+<line class="MH-COTAS" x1="210.85" y1="75.75" x2="211.95" y2="74.65"/>
+<line class="MH-COTAS" x1="213.83" y1="76.4" x2="213.83" y2="74"/>
+<line class="MH-COTAS" x1="213.28" y1="75.75" x2="214.38" y2="74.65"/>
+<line class="MH-COTAS" x1="225.06" y1="76.4" x2="225.06" y2="74"/>
+<line class="MH-COTAS" x1="224.51" y1="75.75" x2="225.61" y2="74.65"/>
+<line class="MH-COTAS" x1="226.88" y1="76.4" x2="226.88" y2="74"/>
+<line class="MH-COTAS" x1="226.33" y1="75.75" x2="227.43" y2="74.65"/>
+<line class="MH-COTAS" x1="238.11" y1="76.4" x2="238.11" y2="74"/>
+<line class="MH-COTAS" x1="237.56" y1="75.75" x2="238.66" y2="74.65"/>
+<line class="MH-COTAS" x1="240.54" y1="76.4" x2="240.54" y2="74"/>
+<line class="MH-COTAS" x1="239.99" y1="75.75" x2="241.09" y2="74.65"/>
+<line class="MH-COTAS" x1="241.14" y1="76.4" x2="241.14" y2="74"/>
+<line class="MH-COTAS" x1="240.59" y1="75.75" x2="241.69" y2="74.65"/>
+<line class="MH-COTAS" x1="209.8" y1="71.4" x2="242.14" y2="71.4"/>
+<line class="MH-COTAS" x1="210.8" y1="72.6" x2="210.8" y2="70.2"/>
+<line class="MH-COTAS" x1="210.25" y1="71.95" x2="211.35" y2="70.85"/>
+<line class="MH-COTAS" x1="241.14" y1="72.6" x2="241.14" y2="70.2"/>
+<line class="MH-COTAS" x1="240.59" y1="71.95" x2="241.69" y2="70.85"/>
+<line class="MH-COTAS" x1="207" y1="98.34" x2="207" y2="78"/>
+<line class="MH-COTAS" x1="205.8" y1="97.34" x2="208.2" y2="97.34"/>
+<line class="MH-COTAS" x1="206.45" y1="97.89" x2="207.55" y2="96.79"/>
+<line class="MH-COTAS" x1="205.8" y1="96.74" x2="208.2" y2="96.74"/>
+<line class="MH-COTAS" x1="206.45" y1="97.29" x2="207.55" y2="96.19"/>
+<line class="MH-COTAS" x1="205.8" y1="79.6" x2="208.2" y2="79.6"/>
+<line class="MH-COTAS" x1="206.45" y1="80.15" x2="207.55" y2="79.05"/>
+<line class="MH-COTAS" x1="205.8" y1="79" x2="208.2" y2="79"/>
+<line class="MH-COTAS" x1="206.45" y1="79.55" x2="207.55" y2="78.45"/>
+<line class="MH-COTAS" x1="203.2" y1="98.34" x2="203.2" y2="78"/>
+<line class="MH-COTAS" x1="202" y1="97.34" x2="204.4" y2="97.34"/>
+<line class="MH-COTAS" x1="202.65" y1="97.89" x2="203.75" y2="96.79"/>
+<line class="MH-COTAS" x1="202" y1="79" x2="204.4" y2="79"/>
+<line class="MH-COTAS" x1="202.65" y1="79.55" x2="203.75" y2="78.45"/>
+<line class="MH-CONTORNO" x1="166.1" y1="119.34" x2="193.44" y2="119.34"/>
+<line class="MH-CONTORNO" x1="193.44" y1="119.34" x2="193.44" y2="79"/>
+<line class="MH-CONTORNO" x1="193.44" y1="79" x2="166.1" y2="79"/>
+<line class="MH-CONTORNO" x1="166.1" y1="79" x2="166.1" y2="119.34"/>
+<line class="MH-PROYECCION" x1="166.7" y1="118.74" x2="192.84" y2="118.74"/>
+<line class="MH-PROYECCION" x1="192.84" y1="118.74" x2="192.84" y2="79.6"/>
+<line class="MH-PROYECCION" x1="192.84" y1="79.6" x2="166.7" y2="79.6"/>
+<line class="MH-PROYECCION" x1="166.7" y1="79.6" x2="166.7" y2="118.74"/>
+<line class="MH-CONTORNO" x1="230.3" y1="131.95" x2="248.41" y2="131.95"/>
+<line class="MH-CONTORNO" x1="248.41" y1="131.95" x2="248.41" y2="119.44"/>
+<line class="MH-CONTORNO" x1="248.41" y1="119.44" x2="230.3" y2="119.44"/>
+<line class="MH-CONTORNO" x1="230.3" y1="119.44" x2="230.3" y2="131.95"/>
+<line class="MH-PROYECCION" x1="230.9" y1="131.35" x2="247.81" y2="131.35"/>
+<line class="MH-PROYECCION" x1="247.81" y1="131.35" x2="247.81" y2="120.04"/>
+<line class="MH-PROYECCION" x1="247.81" y1="120.04" x2="230.9" y2="120.04"/>
+<line class="MH-PROYECCION" x1="230.9" y1="120.04" x2="230.9" y2="131.35"/>
+<line class="MH-MUROS" x1="111.5" y1="113.65" x2="122.326" y2="113.65"/>
+<line class="MH-MUROS" x1="141.43" y1="113.65" x2="143.34" y2="113.65"/>
+<line class="MH-MUROS" x1="112.1" y1="113.05" x2="122.326" y2="113.05"/>
+<line class="MH-MUROS" x1="141.43" y1="113.05" x2="142.74" y2="113.05"/>
+<line class="MH-MUROS" x1="122.326" y1="113.65" x2="122.326" y2="113.05"/>
+<line class="MH-MUROS" x1="141.43" y1="113.65" x2="141.43" y2="113.05"/>
+<line class="MH-HUECOS" x1="122.326" y1="113.65" x2="141.43" y2="113.65"/>
+<line class="MH-HUECOS" x1="122.326" y1="113.35" x2="141.43" y2="113.35"/>
+<line class="MH-HUECOS" x1="122.326" y1="113.05" x2="141.43" y2="113.05"/>
+<line class="MH-MUROS" x1="111.5" y1="86.31" x2="119.142" y2="86.31"/>
+<line class="MH-MUROS" x1="126.783" y1="86.31" x2="127.42" y2="86.31"/>
+<line class="MH-MUROS" x1="135.062" y1="86.31" x2="143.34" y2="86.31"/>
+<line class="MH-MUROS" x1="112.1" y1="86.91" x2="119.142" y2="86.91"/>
+<line class="MH-MUROS" x1="126.783" y1="86.91" x2="127.42" y2="86.91"/>
+<line class="MH-MUROS" x1="135.062" y1="86.91" x2="142.74" y2="86.91"/>
+<line class="MH-MUROS" x1="127.42" y1="86.31" x2="127.42" y2="86.91"/>
+<line class="MH-MUROS" x1="135.062" y1="86.31" x2="135.062" y2="86.91"/>
+<line class="MH-HUECOS" x1="127.42" y1="86.31" x2="135.062" y2="86.31"/>
+<line class="MH-HUECOS" x1="127.42" y1="86.61" x2="135.062" y2="86.61"/>
+<line class="MH-HUECOS" x1="127.42" y1="86.91" x2="135.062" y2="86.91"/>
+<line class="MH-MUROS" x1="119.142" y1="86.31" x2="119.142" y2="86.91"/>
+<line class="MH-MUROS" x1="126.783" y1="86.31" x2="126.783" y2="86.91"/>
+<line class="MH-HUECOS" x1="119.142" y1="86.31" x2="126.783" y2="86.31"/>
+<line class="MH-HUECOS" x1="119.142" y1="86.61" x2="126.783" y2="86.61"/>
+<line class="MH-HUECOS" x1="119.142" y1="86.91" x2="126.783" y2="86.91"/>
+<line class="MH-MUROS" x1="111.5" y1="113.65" x2="111.5" y2="86.31"/>
+<line class="MH-MUROS" x1="112.1" y1="113.05" x2="112.1" y2="86.91"/>
+<line class="MH-MUROS" x1="143.34" y1="113.65" x2="143.34" y2="86.31"/>
+<line class="MH-MUROS" x1="142.74" y1="113.05" x2="142.74" y2="86.91"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="112" x2="117.8" y2="112"/>
+<line class="MH-ESCALERAS" x1="117.8" y1="112" x2="117.8" y2="98.5"/>
+<line class="MH-ESCALERAS" x1="117.8" y1="98.5" x2="112.25" y2="98.5"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="98.5" x2="112.25" y2="112"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="110.875" x2="117.8" y2="110.875"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="109.75" x2="117.8" y2="109.75"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="108.625" x2="117.8" y2="108.625"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="107.5" x2="117.8" y2="107.5"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="106.375" x2="117.8" y2="106.375"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="105.25" x2="117.8" y2="105.25"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="104.125" x2="117.8" y2="104.125"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="103" x2="117.8" y2="103"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="101.875" x2="117.8" y2="101.875"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="100.75" x2="117.8" y2="100.75"/>
+<line class="MH-ESCALERAS" x1="112.25" y1="99.625" x2="117.8" y2="99.625"/>
+<line class="MH-ESCALERAS" x1="115.025" y1="111.2" x2="115.025" y2="99.3"/>
+<line class="MH-ESCALERAS" x1="115.025" y1="99.3" x2="114.634" y2="100.11"/>
+<line class="MH-ESCALERAS" x1="115.025" y1="99.3" x2="115.416" y2="100.11"/>
+<line class="MH-COTAS" x1="110.5" y1="82.51" x2="144.34" y2="82.51"/>
+<line class="MH-COTAS" x1="111.5" y1="83.71" x2="111.5" y2="81.31"/>
+<line class="MH-COTAS" x1="110.95" y1="83.06" x2="112.05" y2="81.96"/>
+<line class="MH-COTAS" x1="112.1" y1="83.71" x2="112.1" y2="81.31"/>
+<line class="MH-COTAS" x1="111.55" y1="83.06" x2="112.65" y2="81.96"/>
+<line class="MH-COTAS" x1="119.14" y1="83.71" x2="119.14" y2="81.31"/>
+<line class="MH-COTAS" x1="118.59" y1="83.06" x2="119.69" y2="81.96"/>
+<line class="MH-COTAS" x1="126.78" y1="83.71" x2="126.78" y2="81.31"/>
+<line class="MH-COTAS" x1="126.23" y1="83.06" x2="127.33" y2="81.96"/>
+<line class="MH-COTAS" x1="127.42" y1="83.71" x2="127.42" y2="81.31"/>
+<line class="MH-COTAS" x1="126.87" y1="83.06" x2="127.97" y2="81.96"/>
+<line class="MH-COTAS" x1="135.06" y1="83.71" x2="135.06" y2="81.31"/>
+<line class="MH-COTAS" x1="134.51" y1="83.06" x2="135.61" y2="81.96"/>
+<line class="MH-COTAS" x1="142.74" y1="83.71" x2="142.74" y2="81.31"/>
+<line class="MH-COTAS" x1="142.19" y1="83.06" x2="143.29" y2="81.96"/>
+<line class="MH-COTAS" x1="143.34" y1="83.71" x2="143.34" y2="81.31"/>
+<line class="MH-COTAS" x1="142.79" y1="83.06" x2="143.89" y2="81.96"/>
+<line class="MH-COTAS" x1="110.5" y1="78.71" x2="144.34" y2="78.71"/>
+<line class="MH-COTAS" x1="111.5" y1="79.91" x2="111.5" y2="77.51"/>
+<line class="MH-COTAS" x1="110.95" y1="79.26" x2="112.05" y2="78.16"/>
+<line class="MH-COTAS" x1="143.34" y1="79.91" x2="143.34" y2="77.51"/>
+<line class="MH-COTAS" x1="142.79" y1="79.26" x2="143.89" y2="78.16"/>
+<line class="MH-COTAS" x1="107.7" y1="114.65" x2="107.7" y2="85.31"/>
+<line class="MH-COTAS" x1="106.5" y1="113.65" x2="108.9" y2="113.65"/>
+<line class="MH-COTAS" x1="107.15" y1="114.2" x2="108.25" y2="113.1"/>
+<line class="MH-COTAS" x1="106.5" y1="113.05" x2="108.9" y2="113.05"/>
+<line class="MH-COTAS" x1="107.15" y1="113.6" x2="108.25" y2="112.5"/>
+<line class="MH-COTAS" x1="106.5" y1="86.91" x2="108.9" y2="86.91"/>
+<line class="MH-COTAS" x1="107.15" y1="87.46" x2="108.25" y2="86.36"/>
+<line class="MH-COTAS" x1="106.5" y1="86.31" x2="108.9" y2="86.31"/>
+<line class="MH-COTAS" x1="107.15" y1="86.86" x2="108.25" y2="85.76"/>
+<line class="MH-COTAS" x1="103.9" y1="114.65" x2="103.9" y2="85.31"/>
+<line class="MH-COTAS" x1="102.7" y1="113.65" x2="105.1" y2="113.65"/>
+<line class="MH-COTAS" x1="103.35" y1="114.2" x2="104.45" y2="113.1"/>
+<line class="MH-COTAS" x1="102.7" y1="86.31" x2="105.1" y2="86.31"/>
+<line class="MH-COTAS" x1="103.35" y1="86.86" x2="104.45" y2="85.76"/>
+<line class="MH-MUROS" x1="111.5" y1="191.95" x2="113.014" y2="191.95"/>
+<line class="MH-MUROS" x1="130.42" y1="191.95" x2="149.34" y2="191.95"/>
+<line class="MH-MUROS" x1="112.1" y1="191.35" x2="113.014" y2="191.35"/>
+<line class="MH-MUROS" x1="130.42" y1="191.35" x2="148.74" y2="191.35"/>
+<line class="MH-MUROS" x1="113.014" y1="191.95" x2="113.014" y2="191.35"/>
+<line class="MH-MUROS" x1="130.42" y1="191.95" x2="130.42" y2="191.35"/>
+<line class="MH-HUECOS" x1="113.014" y1="191.95" x2="130.42" y2="191.95"/>
+<line class="MH-HUECOS" x1="113.014" y1="191.65" x2="130.42" y2="191.65"/>
+<line class="MH-HUECOS" x1="113.014" y1="191.35" x2="130.42" y2="191.35"/>
+<line class="MH-MUROS" x1="111.5" y1="141.61" x2="149.34" y2="141.61"/>
+<line class="MH-MUROS" x1="112.1" y1="142.21" x2="148.74" y2="142.21"/>
+<line class="MH-MUROS" x1="111.5" y1="191.95" x2="111.5" y2="141.61"/>
+<line class="MH-MUROS" x1="112.1" y1="191.35" x2="112.1" y2="142.21"/>
+<line class="MH-MUROS" x1="149.34" y1="191.95" x2="149.34" y2="187.923"/>
+<line class="MH-MUROS" x1="149.34" y1="166.78" x2="149.34" y2="141.61"/>
+<line class="MH-MUROS" x1="148.74" y1="191.35" x2="148.74" y2="187.923"/>
+<line class="MH-MUROS" x1="148.74" y1="166.78" x2="148.74" y2="142.21"/>
+<line class="MH-MUROS" x1="149.34" y1="187.923" x2="148.74" y2="187.923"/>
+<line class="MH-MUROS" x1="149.34" y1="166.78" x2="148.74" y2="166.78"/>
+<line class="MH-HUECOS" x1="149.34" y1="187.923" x2="149.34" y2="166.78"/>
+<line class="MH-HUECOS" x1="149.04" y1="187.923" x2="149.04" y2="166.78"/>
+<line class="MH-HUECOS" x1="148.74" y1="187.923" x2="148.74" y2="166.78"/>
+<line class="MH-MOBILIARIO" x1="113" y1="155.5" x2="119.5" y2="155.5"/>
+<line class="MH-MOBILIARIO" x1="119.5" y1="155.5" x2="119.5" y2="142.5"/>
+<line class="MH-MOBILIARIO" x1="119.5" y1="142.5" x2="113" y2="142.5"/>
+<line class="MH-MOBILIARIO" x1="113" y1="142.5" x2="113" y2="155.5"/>
+<line class="MH-MOBILIARIO" x1="113.7" y1="154.8" x2="118.8" y2="154.8"/>
+<line class="MH-MOBILIARIO" x1="118.8" y1="154.8" x2="118.8" y2="143.2"/>
+<line class="MH-MOBILIARIO" x1="118.8" y1="143.2" x2="113.7" y2="143.2"/>
+<line class="MH-MOBILIARIO" x1="113.7" y1="143.2" x2="113.7" y2="154.8"/>
+<line class="MH-MOBILIARIO" x1="131.5" y1="149" x2="137" y2="149"/>
+<line class="MH-MOBILIARIO" x1="137" y1="149" x2="137" y2="142.4"/>
+<line class="MH-MOBILIARIO" x1="137" y1="142.4" x2="131.5" y2="142.4"/>
+<line class="MH-MOBILIARIO" x1="131.5" y1="142.4" x2="131.5" y2="149"/>
+<circle class="MH-MOBILIARIO" cx="134.25" cy="145.7" r="1.76"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="173.2" x2="147.05" y2="173.2"/>
+<line class="MH-ESCALERAS" x1="147.05" y1="173.2" x2="147.05" y2="161.2"/>
+<line class="MH-ESCALERAS" x1="147.05" y1="161.2" x2="140.3" y2="161.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="161.2" x2="140.3" y2="173.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="172.2" x2="147.05" y2="172.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="171.2" x2="147.05" y2="171.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="170.2" x2="147.05" y2="170.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="169.2" x2="147.05" y2="169.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="168.2" x2="147.05" y2="168.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="167.2" x2="147.05" y2="167.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="166.2" x2="147.05" y2="166.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="165.2" x2="147.05" y2="165.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="164.2" x2="147.05" y2="164.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="163.2" x2="147.05" y2="163.2"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="162.2" x2="147.05" y2="162.2"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="172.4" x2="143.675" y2="162"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="162" x2="143.284" y2="162.81"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="162" x2="144.066" y2="162.81"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="159" x2="147.05" y2="159"/>
+<line class="MH-ESCALERAS" x1="147.05" y1="159" x2="147.05" y2="147"/>
+<line class="MH-ESCALERAS" x1="147.05" y1="147" x2="140.3" y2="147"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="147" x2="140.3" y2="159"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="158" x2="147.05" y2="158"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="157" x2="147.05" y2="157"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="156" x2="147.05" y2="156"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="155" x2="147.05" y2="155"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="154" x2="147.05" y2="154"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="153" x2="147.05" y2="153"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="152" x2="147.05" y2="152"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="151" x2="147.05" y2="151"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="150" x2="147.05" y2="150"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="149" x2="147.05" y2="149"/>
+<line class="MH-ESCALERAS" x1="140.3" y1="148" x2="147.05" y2="148"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="158.2" x2="143.675" y2="147.8"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="147.8" x2="143.284" y2="148.61"/>
+<line class="MH-ESCALERAS" x1="143.675" y1="147.8" x2="144.066" y2="148.61"/>
+<line class="MH-COTAS" x1="110.5" y1="195.75" x2="150.34" y2="195.75"/>
+<line class="MH-COTAS" x1="111.5" y1="196.95" x2="111.5" y2="194.55"/>
+<line class="MH-COTAS" x1="110.95" y1="196.3" x2="112.05" y2="195.2"/>
+<line class="MH-COTAS" x1="112.1" y1="196.95" x2="112.1" y2="194.55"/>
+<line class="MH-COTAS" x1="111.55" y1="196.3" x2="112.65" y2="195.2"/>
+<line class="MH-COTAS" x1="113.01" y1="196.95" x2="113.01" y2="194.55"/>
+<line class="MH-COTAS" x1="112.46" y1="196.3" x2="113.56" y2="195.2"/>
+<line class="MH-COTAS" x1="130.42" y1="196.95" x2="130.42" y2="194.55"/>
+<line class="MH-COTAS" x1="129.87" y1="196.3" x2="130.97" y2="195.2"/>
+<line class="MH-COTAS" x1="148.74" y1="196.95" x2="148.74" y2="194.55"/>
+<line class="MH-COTAS" x1="148.19" y1="196.3" x2="149.29" y2="195.2"/>
+<line class="MH-COTAS" x1="149.34" y1="196.95" x2="149.34" y2="194.55"/>
+<line class="MH-COTAS" x1="148.79" y1="196.3" x2="149.89" y2="195.2"/>
+<line class="MH-COTAS" x1="110.5" y1="199.55" x2="150.34" y2="199.55"/>
+<line class="MH-COTAS" x1="111.5" y1="200.75" x2="111.5" y2="198.35"/>
+<line class="MH-COTAS" x1="110.95" y1="200.1" x2="112.05" y2="199"/>
+<line class="MH-COTAS" x1="149.34" y1="200.75" x2="149.34" y2="198.35"/>
+<line class="MH-COTAS" x1="148.79" y1="200.1" x2="149.89" y2="199"/>
+<line class="MH-COTAS" x1="107.7" y1="192.95" x2="107.7" y2="140.61"/>
+<line class="MH-COTAS" x1="106.5" y1="191.95" x2="108.9" y2="191.95"/>
+<line class="MH-COTAS" x1="107.15" y1="192.5" x2="108.25" y2="191.4"/>
+<line class="MH-COTAS" x1="106.5" y1="191.35" x2="108.9" y2="191.35"/>
+<line class="MH-COTAS" x1="107.15" y1="191.9" x2="108.25" y2="190.8"/>
+<line class="MH-COTAS" x1="106.5" y1="142.21" x2="108.9" y2="142.21"/>
+<line class="MH-COTAS" x1="107.15" y1="142.76" x2="108.25" y2="141.66"/>
+<line class="MH-COTAS" x1="106.5" y1="141.61" x2="108.9" y2="141.61"/>
+<line class="MH-COTAS" x1="107.15" y1="142.16" x2="108.25" y2="141.06"/>
+<line class="MH-COTAS" x1="103.9" y1="192.95" x2="103.9" y2="140.61"/>
+<line class="MH-COTAS" x1="102.7" y1="191.95" x2="105.1" y2="191.95"/>
+<line class="MH-COTAS" x1="103.35" y1="192.5" x2="104.45" y2="191.4"/>
+<line class="MH-COTAS" x1="102.7" y1="141.61" x2="105.1" y2="141.61"/>
+<line class="MH-COTAS" x1="103.35" y1="142.16" x2="104.45" y2="141.06"/>
+<line class="MH-CONTORNO" x1="173.3" y1="176.2" x2="217.64" y2="176.2"/>
+<line class="MH-CONTORNO" x1="217.64" y1="176.2" x2="217.64" y2="131.86"/>
+<line class="MH-CONTORNO" x1="217.64" y1="131.86" x2="173.3" y2="131.86"/>
+<line class="MH-CONTORNO" x1="173.3" y1="131.86" x2="173.3" y2="176.2"/>
+<line class="MH-PROYECCION" x1="173.9" y1="175.6" x2="217.04" y2="175.6"/>
+<line class="MH-PROYECCION" x1="217.04" y1="175.6" x2="217.04" y2="132.46"/>
+<line class="MH-PROYECCION" x1="217.04" y1="132.46" x2="173.9" y2="132.46"/>
+<line class="MH-PROYECCION" x1="173.9" y1="132.46" x2="173.9" y2="175.6"/>
+<line class="MH-MUROS" x1="173.3" y1="202" x2="196.64" y2="202"/>
+<line class="MH-MUROS" x1="173.9" y1="201.4" x2="196.04" y2="201.4"/>
+<line class="MH-MUROS" x1="173.3" y1="188.5" x2="196.64" y2="188.5"/>
+<line class="MH-MUROS" x1="173.9" y1="189.1" x2="196.04" y2="189.1"/>
+<line class="MH-MUROS" x1="173.3" y1="202" x2="173.3" y2="188.5"/>
+<line class="MH-MUROS" x1="173.9" y1="201.4" x2="173.9" y2="189.1"/>
+<line class="MH-MUROS" x1="196.64" y1="202" x2="196.64" y2="188.5"/>
+<line class="MH-MUROS" x1="196.04" y1="201.4" x2="196.04" y2="189.1"/>
+<line class="MH-COTAS" x1="172.3" y1="205.8" x2="197.64" y2="205.8"/>
+<line class="MH-COTAS" x1="173.3" y1="207" x2="173.3" y2="204.6"/>
+<line class="MH-COTAS" x1="172.75" y1="206.35" x2="173.85" y2="205.25"/>
+<line class="MH-COTAS" x1="173.9" y1="207" x2="173.9" y2="204.6"/>
+<line class="MH-COTAS" x1="173.35" y1="206.35" x2="174.45" y2="205.25"/>
+<line class="MH-COTAS" x1="196.04" y1="207" x2="196.04" y2="204.6"/>
+<line class="MH-COTAS" x1="195.49" y1="206.35" x2="196.59" y2="205.25"/>
+<line class="MH-COTAS" x1="196.64" y1="207" x2="196.64" y2="204.6"/>
+<line class="MH-COTAS" x1="196.09" y1="206.35" x2="197.19" y2="205.25"/>
+<line class="MH-COTAS" x1="172.3" y1="209.6" x2="197.64" y2="209.6"/>
+<line class="MH-COTAS" x1="173.3" y1="210.8" x2="173.3" y2="208.4"/>
+<line class="MH-COTAS" x1="172.75" y1="210.15" x2="173.85" y2="209.05"/>
+<line class="MH-COTAS" x1="196.64" y1="210.8" x2="196.64" y2="208.4"/>
+<line class="MH-COTAS" x1="196.09" y1="210.15" x2="197.19" y2="209.05"/>
+<line class="MH-COTAS" x1="169.5" y1="203" x2="169.5" y2="187.5"/>
+<line class="MH-COTAS" x1="168.3" y1="202" x2="170.7" y2="202"/>
+<line class="MH-COTAS" x1="168.95" y1="202.55" x2="170.05" y2="201.45"/>
+<line class="MH-COTAS" x1="168.3" y1="201.4" x2="170.7" y2="201.4"/>
+<line class="MH-COTAS" x1="168.95" y1="201.95" x2="170.05" y2="200.85"/>
+<line class="MH-COTAS" x1="168.3" y1="189.1" x2="170.7" y2="189.1"/>
+<line class="MH-COTAS" x1="168.95" y1="189.65" x2="170.05" y2="188.55"/>
+<line class="MH-COTAS" x1="168.3" y1="188.5" x2="170.7" y2="188.5"/>
+<line class="MH-COTAS" x1="168.95" y1="189.05" x2="170.05" y2="187.95"/>
+<line class="MH-COTAS" x1="165.7" y1="203" x2="165.7" y2="187.5"/>
+<line class="MH-COTAS" x1="164.5" y1="202" x2="166.9" y2="202"/>
+<line class="MH-COTAS" x1="165.15" y1="202.55" x2="166.25" y2="201.45"/>
+<line class="MH-COTAS" x1="164.5" y1="188.5" x2="166.9" y2="188.5"/>
+<line class="MH-COTAS" x1="165.15" y1="189.05" x2="166.25" y2="187.95"/>
+<line class="MH-MUROS" x1="230.3" y1="202" x2="278.08" y2="202"/>
+<line class="MH-MUROS" x1="230.9" y1="201.4" x2="277.48" y2="201.4"/>
+<line class="MH-MUROS" x1="230.3" y1="159.22" x2="232.689" y2="159.22"/>
+<line class="MH-MUROS" x1="254.19" y1="159.22" x2="278.08" y2="159.22"/>
+<line class="MH-MUROS" x1="230.9" y1="159.82" x2="232.689" y2="159.82"/>
+<line class="MH-MUROS" x1="254.19" y1="159.82" x2="277.48" y2="159.82"/>
+<line class="MH-MUROS" x1="232.689" y1="159.22" x2="232.689" y2="159.82"/>
+<line class="MH-MUROS" x1="254.19" y1="159.22" x2="254.19" y2="159.82"/>
+<line class="MH-HUECOS" x1="232.689" y1="159.22" x2="254.19" y2="159.22"/>
+<line class="MH-HUECOS" x1="232.689" y1="159.52" x2="254.19" y2="159.52"/>
+<line class="MH-HUECOS" x1="232.689" y1="159.82" x2="254.19" y2="159.82"/>
+<line class="MH-MUROS" x1="230.3" y1="202" x2="230.3" y2="159.22"/>
+<line class="MH-MUROS" x1="230.9" y1="201.4" x2="230.9" y2="159.82"/>
+<line class="MH-MUROS" x1="278.08" y1="202" x2="278.08" y2="199.433"/>
+<line class="MH-MUROS" x1="278.08" y1="176.332" x2="278.08" y2="159.22"/>
+<line class="MH-MUROS" x1="277.48" y1="201.4" x2="277.48" y2="199.433"/>
+<line class="MH-MUROS" x1="277.48" y1="176.332" x2="277.48" y2="159.82"/>
+<line class="MH-MUROS" x1="278.08" y1="199.433" x2="277.48" y2="199.433"/>
+<line class="MH-MUROS" x1="278.08" y1="176.332" x2="277.48" y2="176.332"/>
+<line class="MH-HUECOS" x1="278.08" y1="199.433" x2="278.08" y2="176.332"/>
+<line class="MH-HUECOS" x1="277.78" y1="199.433" x2="277.78" y2="176.332"/>
+<line class="MH-HUECOS" x1="277.48" y1="199.433" x2="277.48" y2="176.332"/>
+<line class="MH-COTAS" x1="229.3" y1="205.8" x2="279.08" y2="205.8"/>
+<line class="MH-COTAS" x1="230.3" y1="207" x2="230.3" y2="204.6"/>
+<line class="MH-COTAS" x1="229.75" y1="206.35" x2="230.85" y2="205.25"/>
+<line class="MH-COTAS" x1="230.9" y1="207" x2="230.9" y2="204.6"/>
+<line class="MH-COTAS" x1="230.35" y1="206.35" x2="231.45" y2="205.25"/>
+<line class="MH-COTAS" x1="277.48" y1="207" x2="277.48" y2="204.6"/>
+<line class="MH-COTAS" x1="276.93" y1="206.35" x2="278.03" y2="205.25"/>
+<line class="MH-COTAS" x1="278.08" y1="207" x2="278.08" y2="204.6"/>
+<line class="MH-COTAS" x1="277.53" y1="206.35" x2="278.63" y2="205.25"/>
+<line class="MH-COTAS" x1="229.3" y1="209.6" x2="279.08" y2="209.6"/>
+<line class="MH-COTAS" x1="230.3" y1="210.8" x2="230.3" y2="208.4"/>
+<line class="MH-COTAS" x1="229.75" y1="210.15" x2="230.85" y2="209.05"/>
+<line class="MH-COTAS" x1="278.08" y1="210.8" x2="278.08" y2="208.4"/>
+<line class="MH-COTAS" x1="277.53" y1="210.15" x2="278.63" y2="209.05"/>
+<line class="MH-COTAS" x1="281.88" y1="203" x2="281.88" y2="158.22"/>
+<line class="MH-COTAS" x1="280.68" y1="202" x2="283.08" y2="202"/>
+<line class="MH-COTAS" x1="281.33" y1="202.55" x2="282.43" y2="201.45"/>
+<line class="MH-COTAS" x1="280.68" y1="201.4" x2="283.08" y2="201.4"/>
+<line class="MH-COTAS" x1="281.33" y1="201.95" x2="282.43" y2="200.85"/>
+<line class="MH-COTAS" x1="280.68" y1="199.43" x2="283.08" y2="199.43"/>
+<line class="MH-COTAS" x1="281.33" y1="199.98" x2="282.43" y2="198.88"/>
+<line class="MH-COTAS" x1="280.68" y1="176.33" x2="283.08" y2="176.33"/>
+<line class="MH-COTAS" x1="281.33" y1="176.88" x2="282.43" y2="175.78"/>
+<line class="MH-COTAS" x1="280.68" y1="159.82" x2="283.08" y2="159.82"/>
+<line class="MH-COTAS" x1="281.33" y1="160.37" x2="282.43" y2="159.27"/>
+<line class="MH-COTAS" x1="280.68" y1="159.22" x2="283.08" y2="159.22"/>
+<line class="MH-COTAS" x1="281.33" y1="159.77" x2="282.43" y2="158.67"/>
+<line class="MH-COTAS" x1="285.68" y1="203" x2="285.68" y2="158.22"/>
+<line class="MH-COTAS" x1="284.48" y1="202" x2="286.88" y2="202"/>
+<line class="MH-COTAS" x1="285.13" y1="202.55" x2="286.23" y2="201.45"/>
+<line class="MH-COTAS" x1="284.48" y1="159.22" x2="286.88" y2="159.22"/>
+<line class="MH-COTAS" x1="285.13" y1="159.77" x2="286.23" y2="158.67"/>
+<line class="MH-CONTORNO" x1="292.55" y1="185.79" x2="321.39" y2="185.79"/>
+<line class="MH-CONTORNO" x1="321.39" y1="185.79" x2="321.39" y2="131.95"/>
+<line class="MH-CONTORNO" x1="321.39" y1="131.95" x2="292.55" y2="131.95"/>
+<line class="MH-CONTORNO" x1="292.55" y1="131.95" x2="292.55" y2="185.79"/>
+<line class="MH-PROYECCION" x1="293.15" y1="185.19" x2="320.79" y2="185.19"/>
+<line class="MH-PROYECCION" x1="320.79" y1="185.19" x2="320.79" y2="132.55"/>
+<line class="MH-PROYECCION" x1="320.79" y1="132.55" x2="293.15" y2="132.55"/>
+<line class="MH-PROYECCION" x1="293.15" y1="132.55" x2="293.15" y2="185.19"/>
+<line class="MH-CONTORNO" x1="241.14" y1="90" x2="257.6" y2="90"/>
+<line class="MH-CONTORNO" x1="257.6" y1="90" x2="257.6" y2="82"/>
+<line class="MH-CONTORNO" x1="257.6" y1="82" x2="241.14" y2="82"/>
+<line class="MH-CONTORNO" x1="241.14" y1="82" x2="241.14" y2="90"/>
+<line class="MH-CONTORNO" x1="187.25" y1="188.5" x2="195.05" y2="188.5"/>
+<line class="MH-CONTORNO" x1="195.05" y1="188.5" x2="195.05" y2="176.2"/>
+<line class="MH-CONTORNO" x1="195.05" y1="176.2" x2="187.25" y2="176.2"/>
+<line class="MH-CONTORNO" x1="187.25" y1="176.2" x2="187.25" y2="188.5"/>
+<line class="MH-CONTORNO" x1="257.3" y1="131.95" x2="278.3" y2="131.95"/>
+<line class="MH-CONTORNO" x1="278.3" y1="131.95" x2="278.3" y2="126.25"/>
+<line class="MH-CONTORNO" x1="278.3" y1="126.25" x2="257.3" y2="126.25"/>
+<line class="MH-CONTORNO" x1="257.3" y1="126.25" x2="257.3" y2="131.95"/>
+<line class="MH-CONTORNO" x1="155.3" y1="176.2" x2="161.3" y2="176.2"/>
+<line class="MH-CONTORNO" x1="161.3" y1="176.2" x2="161.3" y2="159.7"/>
+<line class="MH-CONTORNO" x1="161.3" y1="159.7" x2="155.3" y2="159.7"/>
+<line class="MH-CONTORNO" x1="155.3" y1="159.7" x2="155.3" y2="176.2"/>
+<line class="MH-CONTORNO" x1="111.5" y1="131.95" x2="120.05" y2="131.95"/>
+<line class="MH-CONTORNO" x1="120.05" y1="131.95" x2="120.05" y2="122.2"/>
+<line class="MH-CONTORNO" x1="120.05" y1="122.2" x2="111.5" y2="122.2"/>
+<line class="MH-CONTORNO" x1="111.5" y1="122.2" x2="111.5" y2="131.95"/>
+<circle class="MH-CONTORNO" cx="395" cy="35" r="6"/>
+<polygon points="395,29 392.8,39 395,37.5 397.2,39" fill="#000" stroke="#000" stroke-width="0.2" stroke-linejoin="round"/>
+<line class="MH-CONTORNO" x1="395" y1="29" x2="392.8" y2="39"/>
+<line class="MH-CONTORNO" x1="392.8" y1="39" x2="395" y2="37.5"/>
+<line class="MH-CONTORNO" x1="395" y1="37.5" x2="397.2" y2="39"/>
+<line class="MH-CONTORNO" x1="397.2" y1="39" x2="395" y2="29"/>
+<line class="MH-MARCO-FINO" x1="5" y1="292" x2="415" y2="292"/>
+<line class="MH-MARCO-FINO" x1="415" y1="292" x2="415" y2="5"/>
+<line class="MH-MARCO-FINO" x1="415" y1="5" x2="5" y2="5"/>
+<line class="MH-MARCO-FINO" x1="5" y1="5" x2="5" y2="292"/>
+<line class="MH-MARCO" x1="20" y1="287" x2="410" y2="287"/>
+<line class="MH-MARCO" x1="410" y1="287" x2="410" y2="10"/>
+<line class="MH-MARCO" x1="410" y1="10" x2="20" y2="10"/>
+<line class="MH-MARCO" x1="20" y1="10" x2="20" y2="287"/>
+<line class="MH-MARCO" x1="250" y1="287" x2="410" y2="287"/>
+<line class="MH-MARCO" x1="410" y1="287" x2="410" y2="253"/>
+<line class="MH-MARCO" x1="410" y1="253" x2="250" y2="253"/>
+<line class="MH-MARCO" x1="250" y1="253" x2="250" y2="287"/>
+<line class="MH-MARCO-FINO" x1="250" y1="265" x2="410" y2="265"/>
+<line class="MH-MARCO-FINO" x1="250" y1="276" x2="410" y2="276"/>
+<line class="MH-MARCO-FINO" x1="360" y1="287" x2="360" y2="265"/>
+<line class="MH-MARCO-FINO" x1="385" y1="287" x2="385" y2="276"/>
+<text x="285.3" y="84.95" font-size="2.07" text-anchor="end" fill="#000">B</text>
+<text x="293.3" y="115.35" font-size="2.07" text-anchor="end" fill="#000">S</text>
+<text x="285.77" y="95.67" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">A</text>
+<text x="285.77" y="99.87" font-size="2.76" text-anchor="middle" fill="#000">Estudio / almacén (techo bajo)</text>
+<text x="285.77" y="102.67" font-size="2.208" text-anchor="middle" fill="#000">h.l. 1,87 · FL +2,45</text>
+<text x="256.2" y="74.6" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="285.77" y="74.6" font-size="2.208" text-anchor="middle" fill="#000">5,51</text>
+<text x="315.34" y="74.6" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="285.77" y="70.8" font-size="2.208" text-anchor="middle" fill="#000">5,63</text>
+<text x="317.14" y="120.74" font-size="2.208" text-anchor="end" transform="rotate(-90 317.14 120.74)" fill="#000">0,06</text>
+<text x="317.14" y="109.965" font-size="2.208" text-anchor="middle" transform="rotate(-90 317.14 109.965)" fill="#000">1,75</text>
+<text x="317.14" y="92.11" font-size="2.208" text-anchor="middle" transform="rotate(-90 317.14 92.11)" fill="#000">1,82</text>
+<text x="314.94" y="81.315" font-size="2.208" text-anchor="middle" transform="rotate(-90 314.94 81.315)" fill="#000">0,34</text>
+<text x="317.14" y="77.6" font-size="2.208" text-anchor="start" transform="rotate(-90 317.14 77.6)" fill="#000">0,06</text>
+<text x="320.94" y="99.17" font-size="2.208" text-anchor="middle" transform="rotate(-90 320.94 99.17)" fill="#000">4,03</text>
+<text x="238.5" y="98.1" font-size="2.07" text-anchor="middle" fill="#000">B</text>
+<text x="225.97" y="84.67" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">B</text>
+<text x="225.97" y="88.87" font-size="2.76" text-anchor="middle" fill="#000">Dormitorio</text>
+<text x="225.97" y="91.67" font-size="2.208" text-anchor="middle" fill="#000">h.l. 2,42 · FL +2,30</text>
+<text x="209.4" y="74.6" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="212.615" y="72.4" font-size="2.208" text-anchor="middle" fill="#000">0,24</text>
+<text x="219.445" y="74.6" font-size="2.208" text-anchor="middle" fill="#000">1,12</text>
+<text x="225.97" y="72.4" font-size="2.208" text-anchor="middle" fill="#000">0,18</text>
+<text x="232.495" y="74.6" font-size="2.208" text-anchor="middle" fill="#000">1,12</text>
+<text x="239.325" y="72.4" font-size="2.208" text-anchor="middle" fill="#000">0,24</text>
+<text x="242.54" y="74.6" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="225.97" y="70.8" font-size="2.208" text-anchor="middle" fill="#000">3,03</text>
+<text x="206.4" y="98.74" font-size="2.208" text-anchor="end" transform="rotate(-90 206.4 98.74)" fill="#000">0,06</text>
+<text x="206.4" y="88.17" font-size="2.208" text-anchor="middle" transform="rotate(-90 206.4 88.17)" fill="#000">1,71</text>
+<text x="206.4" y="77.6" font-size="2.208" text-anchor="start" transform="rotate(-90 206.4 77.6)" fill="#000">0,06</text>
+<text x="202.6" y="88.17" font-size="2.208" text-anchor="middle" transform="rotate(-90 202.6 88.17)" fill="#000">1,83</text>
+<text x="179.77" y="97.17" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">C</text>
+<text x="179.77" y="102.97" font-size="2.622" text-anchor="middle" fill="#000">Cub. +3,64</text>
+<text x="239.355" y="125.195" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">D</text>
+<text x="239.355" y="128.295" font-size="1.932" text-anchor="middle" fill="#000">Cub. +2,07</text>
+<text x="115.025" y="114.6" font-size="2.07" text-anchor="middle" fill="#000">B</text>
+<text x="127.42" y="96.48" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">E</text>
+<text x="127.42" y="100.68" font-size="2.76" text-anchor="middle" fill="#000">Dormitorio</text>
+<text x="127.42" y="103.48" font-size="2.208" text-anchor="middle" fill="#000">h.l. 2,43 · FL +2,30</text>
+<text x="110.1" y="81.91" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="115.62" y="81.91" font-size="2.208" text-anchor="middle" fill="#000">0,70</text>
+<text x="122.96" y="81.91" font-size="2.208" text-anchor="middle" fill="#000">0,76</text>
+<text x="127.1" y="79.71" font-size="2.208" text-anchor="middle" fill="#000">0,06</text>
+<text x="131.24" y="81.91" font-size="2.208" text-anchor="middle" fill="#000">0,76</text>
+<text x="138.9" y="81.91" font-size="2.208" text-anchor="middle" fill="#000">0,77</text>
+<text x="144.74" y="81.91" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="127.42" y="78.11" font-size="2.208" text-anchor="middle" fill="#000">3,18</text>
+<text x="107.1" y="115.05" font-size="2.208" text-anchor="end" transform="rotate(-90 107.1 115.05)" fill="#000">0,06</text>
+<text x="107.1" y="99.98" font-size="2.208" text-anchor="middle" transform="rotate(-90 107.1 99.98)" fill="#000">2,61</text>
+<text x="107.1" y="84.91" font-size="2.208" text-anchor="start" transform="rotate(-90 107.1 84.91)" fill="#000">0,06</text>
+<text x="103.3" y="99.98" font-size="2.208" text-anchor="middle" transform="rotate(-90 103.3 99.98)" fill="#000">2,73</text>
+<text x="143.675" y="175.8" font-size="2.07" text-anchor="middle" fill="#000">B</text>
+<text x="143.675" y="161.6" font-size="2.07" text-anchor="middle" fill="#000">S</text>
+<text x="125.92" y="174.28" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">F</text>
+<text x="125.92" y="178.48" font-size="2.76" text-anchor="middle" fill="#000">Dormitorio + baño</text>
+<text x="125.92" y="181.28" font-size="2.208" text-anchor="middle" fill="#000">h.l. 2,30 · FL +2,70</text>
+<text x="110.1" y="195.15" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="112.555" y="192.95" font-size="2.208" text-anchor="middle" fill="#000">0,09</text>
+<text x="121.715" y="195.15" font-size="2.208" text-anchor="middle" fill="#000">1,74</text>
+<text x="139.58" y="195.15" font-size="2.208" text-anchor="middle" fill="#000">1,83</text>
+<text x="150.74" y="195.15" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="130.42" y="198.95" font-size="2.208" text-anchor="middle" fill="#000">3,78</text>
+<text x="107.1" y="193.35" font-size="2.208" text-anchor="end" transform="rotate(-90 107.1 193.35)" fill="#000">0,06</text>
+<text x="107.1" y="166.78" font-size="2.208" text-anchor="middle" transform="rotate(-90 107.1 166.78)" fill="#000">4,91</text>
+<text x="107.1" y="140.21" font-size="2.208" text-anchor="start" transform="rotate(-90 107.1 140.21)" fill="#000">0,06</text>
+<text x="103.3" y="166.78" font-size="2.208" text-anchor="middle" transform="rotate(-90 103.3 166.78)" fill="#000">5,03</text>
+<text x="195.47" y="152.03" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">G</text>
+<text x="195.47" y="157.83" font-size="2.622" text-anchor="middle" fill="#000">Terraza +2,09</text>
+<text x="179.97" y="189.95" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">H</text>
+<text x="179.97" y="192.45" font-size="1.932" text-anchor="middle" fill="#000">Doble altura</text>
+<text x="171.9" y="205.2" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="184.97" y="205.2" font-size="2.208" text-anchor="middle" fill="#000">2,21</text>
+<text x="198.04" y="205.2" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="184.97" y="209" font-size="2.208" text-anchor="middle" fill="#000">2,33</text>
+<text x="168.9" y="203.4" font-size="2.208" text-anchor="end" transform="rotate(-90 168.9 203.4)" fill="#000">0,06</text>
+<text x="168.9" y="195.25" font-size="2.208" text-anchor="middle" transform="rotate(-90 168.9 195.25)" fill="#000">1,23</text>
+<text x="168.9" y="187.1" font-size="2.208" text-anchor="start" transform="rotate(-90 168.9 187.1)" fill="#000">0,06</text>
+<text x="165.1" y="195.25" font-size="2.208" text-anchor="middle" transform="rotate(-90 165.1 195.25)" fill="#000">1,35</text>
+<text x="257.19" y="177.11" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">I</text>
+<text x="257.19" y="181.31" font-size="2.76" text-anchor="middle" fill="#000">Doble altura</text>
+<text x="257.19" y="184.11" font-size="2.208" text-anchor="middle" fill="#000">h.l. 4,35 · FL +0,10</text>
+<text x="228.9" y="205.2" font-size="2.208" text-anchor="end" fill="#000">0,06</text>
+<text x="254.19" y="205.2" font-size="2.208" text-anchor="middle" fill="#000">4,66</text>
+<text x="279.48" y="205.2" font-size="2.208" text-anchor="start" fill="#000">0,06</text>
+<text x="254.19" y="209" font-size="2.208" text-anchor="middle" fill="#000">4,78</text>
+<text x="281.28" y="203.4" font-size="2.208" text-anchor="end" transform="rotate(-90 281.28 203.4)" fill="#000">0,06</text>
+<text x="279.08" y="200.415" font-size="2.208" text-anchor="middle" transform="rotate(-90 279.08 200.415)" fill="#000">0,20</text>
+<text x="281.28" y="187.88" font-size="2.208" text-anchor="middle" transform="rotate(-90 281.28 187.88)" fill="#000">2,31</text>
+<text x="281.28" y="168.075" font-size="2.208" text-anchor="middle" transform="rotate(-90 281.28 168.075)" fill="#000">1,65</text>
+<text x="281.28" y="157.82" font-size="2.208" text-anchor="start" transform="rotate(-90 281.28 157.82)" fill="#000">0,06</text>
+<text x="285.08" y="180.61" font-size="2.208" text-anchor="middle" transform="rotate(-90 285.08 180.61)" fill="#000">4,28</text>
+<text x="306.97" y="156.87" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">J</text>
+<text x="306.97" y="162.67" font-size="2.622" text-anchor="middle" fill="#000">Cub. +3,34</text>
+<text x="249.37" y="86.6" font-size="1.656" text-anchor="middle" fill="#000">+2,05</text>
+<text x="191.15" y="182.95" font-size="1.656" text-anchor="middle" fill="#000">+2,05</text>
+<text x="267.8" y="129.7" font-size="1.656" text-anchor="middle" fill="#000">Lavadero / contadores</text>
+<text x="158.9" y="167.95" font-size="1.656" text-anchor="middle" transform="rotate(-90 158.9 167.95)" fill="#000">Contadores</text>
+<text x="116.375" y="127.075" font-size="1.656" text-anchor="middle" transform="rotate(-90 116.375 127.075)" fill="#000">Contadores</text>
+<text x="82.05" y="231.7" font-size="4.83" text-anchor="start" font-weight="bold" fill="#000">PLANTA PRIMERA</text>
+<text x="130.15" y="231.7" font-size="3.45" text-anchor="start" fill="#000">E 1:100</text>
+<text x="25" y="245" font-size="2.622" text-anchor="start" fill="#000">Muro: chapa de acero + aislamiento, e = 0,06 m</text>
+<text x="25" y="248.6" font-size="2.622" text-anchor="start" fill="#000">h.l. = altura libre · FL = nivel de suelo</text>
+<text x="25" y="252.2" font-size="2.622" text-anchor="start" fill="#000">Cotas en metros</text>
+<text x="25" y="255.8" font-size="2.622" text-anchor="start" fill="#000">Plano de corte +3,80 m · resto de cajas en cubierta</text>
+<text x="395" y="27.5" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">N</text>
+<text x="253" y="259" font-size="5.796" text-anchor="start" font-weight="bold" fill="#000">CASA MORIYAMA</text>
+<text x="253" y="263" font-size="2.76" text-anchor="start" fill="#000">Ryue Nishizawa (SANAA) · Ota-ku, Tokio · 2002-2005 · Levantamiento</text>
+<text x="253" y="269" font-size="2.208" text-anchor="start" fill="#000">PLANO</text>
+<text x="253" y="273.8" font-size="4.14" text-anchor="start" font-weight="bold" fill="#000">PLANTA PRIMERA</text>
+<text x="362" y="269" font-size="2.208" text-anchor="start" fill="#000">ESCALA</text>
+<text x="362" y="273.8" font-size="4.14" text-anchor="start" font-weight="bold" fill="#000">1:100</text>
+<text x="253" y="279.5" font-size="2.208" text-anchor="start" fill="#000">PROYECTO BASE · H2 · Grupo X</text>
+<text x="253" y="284" font-size="2.208" text-anchor="start" fill="#000">Fecha: octubre 2026 · Cotas en metros</text>
+<text x="362" y="279.5" font-size="2.208" text-anchor="start" fill="#000">Nº</text>
+<text x="368" y="284.4" font-size="6.21" text-anchor="start" font-weight="bold" fill="#000">03</text>
+<text x="387" y="279.5" font-size="2.208" text-anchor="start" fill="#000">A3</text>
+</svg>

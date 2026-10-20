@@ -93,7 +93,7 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
         </SectionHead>
         <div class="showcase">
           <div class="showcase__text">
-            <p class="label">Ejemplo · {sheetCode('P', projectIndex(showcase.slug))}</p>
+            <p class="label">Caso · {sheetCode('P', projectIndex(showcase.slug))}</p>
             <h3 class="showcase__title">
               <a href={url(`/proyectos/${showcase.slug}/`)}>{showcase.title}</a>
             </h3>

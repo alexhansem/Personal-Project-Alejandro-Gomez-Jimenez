@@ -1,0 +1,490 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="78.50 50.00 273.00 175.00" width="2184" height="1400" font-family="Arial, Helvetica, sans-serif" preserveAspectRatio="xMidYMid meet"><style>.MH-MUROS{stroke:#000;stroke-width:0.5;fill:none;stroke-linecap:round}.MH-RELLENO{stroke:#1d1d1d;stroke-width:0.1;fill:none;stroke-linecap:round}.MH-CONTORNO{stroke:#000;stroke-width:0.35;fill:none;stroke-linecap:round}.MH-PROYECCION{stroke:#555;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-HUECOS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-VIDRIO{stroke:#333;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-PUERTAS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-ESCALERAS{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round}.MH-MOBILIARIO{stroke:#444;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-OCULTO{stroke:#666;stroke-width:0.18;fill:none;stroke-linecap:round;stroke-dasharray:1.2 0.8}.MH-COTAS{stroke:#000;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-TEXTOS{stroke:#000;stroke-width:0.1;fill:none;stroke-linecap:round}.MH-PARCELA{stroke:#000;stroke-width:0.35;fill:none;stroke-linecap:round;stroke-dasharray:4 0.8 0.4 0.8}.MH-SECCION{stroke:#000;stroke-width:0.7;fill:none;stroke-linecap:round}.MH-TERRENO{stroke:#000;stroke-width:0.6;fill:none;stroke-linecap:round}.MH-TRAMA{stroke:#888;stroke-width:0.09;fill:none;stroke-linecap:round}.MH-VEGETACION{stroke:#4f6f4f;stroke-width:0.13;fill:none;stroke-linecap:round}.MH-MARCO{stroke:#000;stroke-width:0.5;fill:none;stroke-linecap:round}.MH-MARCO-FINO{stroke:#000;stroke-width:0.18;fill:none;stroke-linecap:round} text{font-family:Arial,Helvetica,sans-serif;stroke:none}</style>
+<line class="MH-PARCELA" x1="102.05" y1="210.7" x2="324.05" y2="210.7"/>
+<line class="MH-PARCELA" x1="324.05" y1="210.7" x2="324.05" y2="73"/>
+<line class="MH-PARCELA" x1="324.05" y1="73" x2="102.05" y2="73"/>
+<line class="MH-PARCELA" x1="102.05" y1="73" x2="102.05" y2="210.7"/>
+<circle class="MH-VEGETACION" cx="156.8" cy="85.45" r="6.75"/>
+<line class="MH-VEGETACION" x1="157.813" y1="85.45" x2="162.538" y2="85.45"/>
+<line class="MH-VEGETACION" x1="157.619" y1="84.855" x2="161.442" y2="82.078"/>
+<line class="MH-VEGETACION" x1="157.113" y1="84.487" x2="158.573" y2="79.993"/>
+<line class="MH-VEGETACION" x1="156.487" y1="84.487" x2="155.027" y2="79.993"/>
+<line class="MH-VEGETACION" x1="155.981" y1="84.855" x2="152.158" y2="82.078"/>
+<line class="MH-VEGETACION" x1="155.788" y1="85.45" x2="151.063" y2="85.45"/>
+<line class="MH-VEGETACION" x1="155.981" y1="86.045" x2="152.158" y2="88.822"/>
+<line class="MH-VEGETACION" x1="156.487" y1="86.413" x2="155.027" y2="90.907"/>
+<line class="MH-VEGETACION" x1="157.113" y1="86.413" x2="158.573" y2="90.907"/>
+<line class="MH-VEGETACION" x1="157.619" y1="86.045" x2="161.442" y2="88.822"/>
+<circle class="MH-VEGETACION" cx="144.05" cy="124.45" r="9"/>
+<line class="MH-VEGETACION" x1="145.4" y1="124.45" x2="151.7" y2="124.45"/>
+<line class="MH-VEGETACION" x1="145.142" y1="123.656" x2="150.239" y2="119.953"/>
+<line class="MH-VEGETACION" x1="144.467" y1="123.166" x2="146.414" y2="117.174"/>
+<line class="MH-VEGETACION" x1="143.633" y1="123.166" x2="141.686" y2="117.174"/>
+<line class="MH-VEGETACION" x1="142.958" y1="123.656" x2="137.861" y2="119.953"/>
+<line class="MH-VEGETACION" x1="142.7" y1="124.45" x2="136.4" y2="124.45"/>
+<line class="MH-VEGETACION" x1="142.958" y1="125.244" x2="137.861" y2="128.947"/>
+<line class="MH-VEGETACION" x1="143.633" y1="125.734" x2="141.686" y2="131.726"/>
+<line class="MH-VEGETACION" x1="144.467" y1="125.734" x2="146.414" y2="131.726"/>
+<line class="MH-VEGETACION" x1="145.142" y1="125.244" x2="150.239" y2="128.947"/>
+<circle class="MH-VEGETACION" cx="211.55" cy="119.95" r="7.2"/>
+<line class="MH-VEGETACION" x1="212.63" y1="119.95" x2="217.67" y2="119.95"/>
+<line class="MH-VEGETACION" x1="212.424" y1="119.315" x2="216.501" y2="116.353"/>
+<line class="MH-VEGETACION" x1="211.884" y1="118.923" x2="213.441" y2="114.13"/>
+<line class="MH-VEGETACION" x1="211.216" y1="118.923" x2="209.659" y2="114.13"/>
+<line class="MH-VEGETACION" x1="210.676" y1="119.315" x2="206.599" y2="116.353"/>
+<line class="MH-VEGETACION" x1="210.47" y1="119.95" x2="205.43" y2="119.95"/>
+<line class="MH-VEGETACION" x1="210.676" y1="120.585" x2="206.599" y2="123.547"/>
+<line class="MH-VEGETACION" x1="211.216" y1="120.977" x2="209.659" y2="125.77"/>
+<line class="MH-VEGETACION" x1="211.884" y1="120.977" x2="213.441" y2="125.77"/>
+<line class="MH-VEGETACION" x1="212.424" y1="120.585" x2="216.501" y2="123.547"/>
+<circle class="MH-VEGETACION" cx="247.55" cy="99.7" r="6.75"/>
+<line class="MH-VEGETACION" x1="248.563" y1="99.7" x2="253.288" y2="99.7"/>
+<line class="MH-VEGETACION" x1="248.369" y1="99.105" x2="252.192" y2="96.328"/>
+<line class="MH-VEGETACION" x1="247.863" y1="98.737" x2="249.323" y2="94.243"/>
+<line class="MH-VEGETACION" x1="247.237" y1="98.737" x2="245.777" y2="94.243"/>
+<line class="MH-VEGETACION" x1="246.731" y1="99.105" x2="242.908" y2="96.328"/>
+<line class="MH-VEGETACION" x1="246.538" y1="99.7" x2="241.813" y2="99.7"/>
+<line class="MH-VEGETACION" x1="246.731" y1="100.295" x2="242.908" y2="103.072"/>
+<line class="MH-VEGETACION" x1="247.237" y1="100.663" x2="245.777" y2="105.157"/>
+<line class="MH-VEGETACION" x1="247.863" y1="100.663" x2="249.323" y2="105.157"/>
+<line class="MH-VEGETACION" x1="248.369" y1="100.295" x2="252.192" y2="103.072"/>
+<circle class="MH-VEGETACION" cx="228.8" cy="145.45" r="9.75"/>
+<line class="MH-VEGETACION" x1="230.263" y1="145.45" x2="237.088" y2="145.45"/>
+<line class="MH-VEGETACION" x1="229.983" y1="144.59" x2="235.505" y2="140.579"/>
+<line class="MH-VEGETACION" x1="229.252" y1="144.059" x2="231.361" y2="137.568"/>
+<line class="MH-VEGETACION" x1="228.348" y1="144.059" x2="226.239" y2="137.568"/>
+<line class="MH-VEGETACION" x1="227.617" y1="144.59" x2="222.095" y2="140.579"/>
+<line class="MH-VEGETACION" x1="227.338" y1="145.45" x2="220.513" y2="145.45"/>
+<line class="MH-VEGETACION" x1="227.617" y1="146.31" x2="222.095" y2="150.321"/>
+<line class="MH-VEGETACION" x1="228.348" y1="146.841" x2="226.239" y2="153.332"/>
+<line class="MH-VEGETACION" x1="229.252" y1="146.841" x2="231.361" y2="153.332"/>
+<line class="MH-VEGETACION" x1="229.983" y1="146.31" x2="235.505" y2="150.321"/>
+<circle class="MH-VEGETACION" cx="165.05" cy="197.2" r="6.75"/>
+<line class="MH-VEGETACION" x1="166.063" y1="197.2" x2="170.788" y2="197.2"/>
+<line class="MH-VEGETACION" x1="165.869" y1="196.605" x2="169.692" y2="193.828"/>
+<line class="MH-VEGETACION" x1="165.363" y1="196.237" x2="166.823" y2="191.743"/>
+<line class="MH-VEGETACION" x1="164.737" y1="196.237" x2="163.277" y2="191.743"/>
+<line class="MH-VEGETACION" x1="164.231" y1="196.605" x2="160.408" y2="193.828"/>
+<line class="MH-VEGETACION" x1="164.038" y1="197.2" x2="159.313" y2="197.2"/>
+<line class="MH-VEGETACION" x1="164.231" y1="197.795" x2="160.408" y2="200.572"/>
+<line class="MH-VEGETACION" x1="164.737" y1="198.163" x2="163.277" y2="202.657"/>
+<line class="MH-VEGETACION" x1="165.363" y1="198.163" x2="166.823" y2="202.657"/>
+<line class="MH-VEGETACION" x1="165.869" y1="197.795" x2="169.692" y2="200.572"/>
+<circle class="MH-VEGETACION" cx="298.55" cy="195.7" r="6.75"/>
+<line class="MH-VEGETACION" x1="299.563" y1="195.7" x2="304.288" y2="195.7"/>
+<line class="MH-VEGETACION" x1="299.369" y1="195.105" x2="303.192" y2="192.328"/>
+<line class="MH-VEGETACION" x1="298.863" y1="194.737" x2="300.323" y2="190.243"/>
+<line class="MH-VEGETACION" x1="298.237" y1="194.737" x2="296.777" y2="190.243"/>
+<line class="MH-VEGETACION" x1="297.731" y1="195.105" x2="293.908" y2="192.328"/>
+<line class="MH-VEGETACION" x1="297.538" y1="195.7" x2="292.813" y2="195.7"/>
+<line class="MH-VEGETACION" x1="297.731" y1="196.295" x2="293.908" y2="199.072"/>
+<line class="MH-VEGETACION" x1="298.237" y1="196.663" x2="296.777" y2="201.157"/>
+<line class="MH-VEGETACION" x1="298.863" y1="196.663" x2="300.323" y2="201.157"/>
+<line class="MH-VEGETACION" x1="299.369" y1="196.295" x2="303.192" y2="199.072"/>
+<circle class="MH-VEGETACION" cx="115.55" cy="136.45" r="4.5"/>
+<line class="MH-VEGETACION" x1="116.225" y1="136.45" x2="119.375" y2="136.45"/>
+<line class="MH-VEGETACION" x1="116.096" y1="136.053" x2="118.644" y2="134.202"/>
+<line class="MH-VEGETACION" x1="115.759" y1="135.808" x2="116.732" y2="132.812"/>
+<line class="MH-VEGETACION" x1="115.341" y1="135.808" x2="114.368" y2="132.812"/>
+<line class="MH-VEGETACION" x1="115.004" y1="136.053" x2="112.456" y2="134.202"/>
+<line class="MH-VEGETACION" x1="114.875" y1="136.45" x2="111.725" y2="136.45"/>
+<line class="MH-VEGETACION" x1="115.004" y1="136.847" x2="112.456" y2="138.698"/>
+<line class="MH-VEGETACION" x1="115.341" y1="137.092" x2="114.368" y2="140.088"/>
+<line class="MH-VEGETACION" x1="115.759" y1="137.092" x2="116.732" y2="140.088"/>
+<line class="MH-VEGETACION" x1="116.096" y1="136.847" x2="118.644" y2="138.698"/>
+<circle class="MH-VEGETACION" cx="114.05" cy="201.4" r="2.7"/>
+<line class="MH-VEGETACION" x1="114.455" y1="201.4" x2="116.345" y2="201.4"/>
+<line class="MH-VEGETACION" x1="114.378" y1="201.162" x2="115.907" y2="200.051"/>
+<line class="MH-VEGETACION" x1="114.175" y1="201.015" x2="114.759" y2="199.217"/>
+<line class="MH-VEGETACION" x1="113.925" y1="201.015" x2="113.341" y2="199.217"/>
+<line class="MH-VEGETACION" x1="113.722" y1="201.162" x2="112.193" y2="200.051"/>
+<line class="MH-VEGETACION" x1="113.645" y1="201.4" x2="111.755" y2="201.4"/>
+<line class="MH-VEGETACION" x1="113.722" y1="201.638" x2="112.193" y2="202.749"/>
+<line class="MH-VEGETACION" x1="113.925" y1="201.785" x2="113.341" y2="203.583"/>
+<line class="MH-VEGETACION" x1="114.175" y1="201.785" x2="114.759" y2="203.583"/>
+<line class="MH-VEGETACION" x1="114.378" y1="201.638" x2="115.907" y2="202.749"/>
+<circle class="MH-VEGETACION" cx="120.8" cy="201.4" r="2.7"/>
+<line class="MH-VEGETACION" x1="121.205" y1="201.4" x2="123.095" y2="201.4"/>
+<line class="MH-VEGETACION" x1="121.128" y1="201.162" x2="122.657" y2="200.051"/>
+<line class="MH-VEGETACION" x1="120.925" y1="201.015" x2="121.509" y2="199.217"/>
+<line class="MH-VEGETACION" x1="120.675" y1="201.015" x2="120.091" y2="199.217"/>
+<line class="MH-VEGETACION" x1="120.472" y1="201.162" x2="118.943" y2="200.051"/>
+<line class="MH-VEGETACION" x1="120.395" y1="201.4" x2="118.505" y2="201.4"/>
+<line class="MH-VEGETACION" x1="120.472" y1="201.638" x2="118.943" y2="202.749"/>
+<line class="MH-VEGETACION" x1="120.675" y1="201.785" x2="120.091" y2="203.583"/>
+<line class="MH-VEGETACION" x1="120.925" y1="201.785" x2="121.509" y2="203.583"/>
+<line class="MH-VEGETACION" x1="121.128" y1="201.638" x2="122.657" y2="202.749"/>
+<circle class="MH-VEGETACION" cx="126.8" cy="201.4" r="2.7"/>
+<line class="MH-VEGETACION" x1="127.205" y1="201.4" x2="129.095" y2="201.4"/>
+<line class="MH-VEGETACION" x1="127.128" y1="201.162" x2="128.657" y2="200.051"/>
+<line class="MH-VEGETACION" x1="126.925" y1="201.015" x2="127.509" y2="199.217"/>
+<line class="MH-VEGETACION" x1="126.675" y1="201.015" x2="126.091" y2="199.217"/>
+<line class="MH-VEGETACION" x1="126.472" y1="201.162" x2="124.943" y2="200.051"/>
+<line class="MH-VEGETACION" x1="126.395" y1="201.4" x2="124.505" y2="201.4"/>
+<line class="MH-VEGETACION" x1="126.472" y1="201.638" x2="124.943" y2="202.749"/>
+<line class="MH-VEGETACION" x1="126.675" y1="201.785" x2="126.091" y2="203.583"/>
+<line class="MH-VEGETACION" x1="126.925" y1="201.785" x2="127.509" y2="203.583"/>
+<line class="MH-VEGETACION" x1="127.128" y1="201.638" x2="128.657" y2="202.749"/>
+<circle class="MH-VEGETACION" cx="133.55" cy="201.4" r="2.7"/>
+<line class="MH-VEGETACION" x1="133.955" y1="201.4" x2="135.845" y2="201.4"/>
+<line class="MH-VEGETACION" x1="133.878" y1="201.162" x2="135.407" y2="200.051"/>
+<line class="MH-VEGETACION" x1="133.675" y1="201.015" x2="134.259" y2="199.217"/>
+<line class="MH-VEGETACION" x1="133.425" y1="201.015" x2="132.841" y2="199.217"/>
+<line class="MH-VEGETACION" x1="133.222" y1="201.162" x2="131.693" y2="200.051"/>
+<line class="MH-VEGETACION" x1="133.145" y1="201.4" x2="131.255" y2="201.4"/>
+<line class="MH-VEGETACION" x1="133.222" y1="201.638" x2="131.693" y2="202.749"/>
+<line class="MH-VEGETACION" x1="133.425" y1="201.785" x2="132.841" y2="203.583"/>
+<line class="MH-VEGETACION" x1="133.675" y1="201.785" x2="134.259" y2="203.583"/>
+<line class="MH-VEGETACION" x1="133.878" y1="201.638" x2="135.407" y2="202.749"/>
+<circle class="MH-VEGETACION" cx="200.3" cy="179.2" r="2.7"/>
+<line class="MH-VEGETACION" x1="200.705" y1="179.2" x2="202.595" y2="179.2"/>
+<line class="MH-VEGETACION" x1="200.628" y1="178.962" x2="202.157" y2="177.851"/>
+<line class="MH-VEGETACION" x1="200.425" y1="178.815" x2="201.009" y2="177.017"/>
+<line class="MH-VEGETACION" x1="200.175" y1="178.815" x2="199.591" y2="177.017"/>
+<line class="MH-VEGETACION" x1="199.972" y1="178.962" x2="198.443" y2="177.851"/>
+<line class="MH-VEGETACION" x1="199.895" y1="179.2" x2="198.005" y2="179.2"/>
+<line class="MH-VEGETACION" x1="199.972" y1="179.438" x2="198.443" y2="180.549"/>
+<line class="MH-VEGETACION" x1="200.175" y1="179.585" x2="199.591" y2="181.383"/>
+<line class="MH-VEGETACION" x1="200.425" y1="179.585" x2="201.009" y2="181.383"/>
+<line class="MH-VEGETACION" x1="200.628" y1="179.438" x2="202.157" y2="180.549"/>
+<circle class="MH-VEGETACION" cx="200.3" cy="185.2" r="2.7"/>
+<line class="MH-VEGETACION" x1="200.705" y1="185.2" x2="202.595" y2="185.2"/>
+<line class="MH-VEGETACION" x1="200.628" y1="184.962" x2="202.157" y2="183.851"/>
+<line class="MH-VEGETACION" x1="200.425" y1="184.815" x2="201.009" y2="183.017"/>
+<line class="MH-VEGETACION" x1="200.175" y1="184.815" x2="199.591" y2="183.017"/>
+<line class="MH-VEGETACION" x1="199.972" y1="184.962" x2="198.443" y2="183.851"/>
+<line class="MH-VEGETACION" x1="199.895" y1="185.2" x2="198.005" y2="185.2"/>
+<line class="MH-VEGETACION" x1="199.972" y1="185.438" x2="198.443" y2="186.549"/>
+<line class="MH-VEGETACION" x1="200.175" y1="185.585" x2="199.591" y2="187.383"/>
+<line class="MH-VEGETACION" x1="200.425" y1="185.585" x2="201.009" y2="187.383"/>
+<line class="MH-VEGETACION" x1="200.628" y1="185.438" x2="202.157" y2="186.549"/>
+<circle class="MH-VEGETACION" cx="200.3" cy="191.2" r="2.7"/>
+<line class="MH-VEGETACION" x1="200.705" y1="191.2" x2="202.595" y2="191.2"/>
+<line class="MH-VEGETACION" x1="200.628" y1="190.962" x2="202.157" y2="189.851"/>
+<line class="MH-VEGETACION" x1="200.425" y1="190.815" x2="201.009" y2="189.017"/>
+<line class="MH-VEGETACION" x1="200.175" y1="190.815" x2="199.591" y2="189.017"/>
+<line class="MH-VEGETACION" x1="199.972" y1="190.962" x2="198.443" y2="189.851"/>
+<line class="MH-VEGETACION" x1="199.895" y1="191.2" x2="198.005" y2="191.2"/>
+<line class="MH-VEGETACION" x1="199.972" y1="191.438" x2="198.443" y2="192.549"/>
+<line class="MH-VEGETACION" x1="200.175" y1="191.585" x2="199.591" y2="193.383"/>
+<line class="MH-VEGETACION" x1="200.425" y1="191.585" x2="201.009" y2="193.383"/>
+<line class="MH-VEGETACION" x1="200.628" y1="191.438" x2="202.157" y2="192.549"/>
+<circle class="MH-VEGETACION" cx="200.3" cy="197.2" r="2.7"/>
+<line class="MH-VEGETACION" x1="200.705" y1="197.2" x2="202.595" y2="197.2"/>
+<line class="MH-VEGETACION" x1="200.628" y1="196.962" x2="202.157" y2="195.851"/>
+<line class="MH-VEGETACION" x1="200.425" y1="196.815" x2="201.009" y2="195.017"/>
+<line class="MH-VEGETACION" x1="200.175" y1="196.815" x2="199.591" y2="195.017"/>
+<line class="MH-VEGETACION" x1="199.972" y1="196.962" x2="198.443" y2="195.851"/>
+<line class="MH-VEGETACION" x1="199.895" y1="197.2" x2="198.005" y2="197.2"/>
+<line class="MH-VEGETACION" x1="199.972" y1="197.438" x2="198.443" y2="198.549"/>
+<line class="MH-VEGETACION" x1="200.175" y1="197.585" x2="199.591" y2="199.383"/>
+<line class="MH-VEGETACION" x1="200.425" y1="197.585" x2="201.009" y2="199.383"/>
+<line class="MH-VEGETACION" x1="200.628" y1="197.438" x2="202.157" y2="198.549"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="131.86" x2="201.35" y2="131.86"/>
+<line class="MH-ESCALERAS" x1="201.35" y1="131.86" x2="201.35" y2="124.45"/>
+<line class="MH-ESCALERAS" x1="201.35" y1="124.45" x2="193.55" y2="124.45"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="124.45" x2="193.55" y2="131.86"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="131.186" x2="201.35" y2="131.186"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="130.513" x2="201.35" y2="130.513"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="129.839" x2="201.35" y2="129.839"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="129.165" x2="201.35" y2="129.165"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="128.492" x2="201.35" y2="128.492"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="127.818" x2="201.35" y2="127.818"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="127.145" x2="201.35" y2="127.145"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="126.471" x2="201.35" y2="126.471"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="125.797" x2="201.35" y2="125.797"/>
+<line class="MH-ESCALERAS" x1="193.55" y1="125.124" x2="201.35" y2="125.124"/>
+<line class="MH-CONTORNO" x1="257.6" y1="119.34" x2="313.94" y2="119.34"/>
+<line class="MH-CONTORNO" x1="313.94" y1="119.34" x2="313.94" y2="79"/>
+<line class="MH-CONTORNO" x1="313.94" y1="79" x2="257.6" y2="79"/>
+<line class="MH-CONTORNO" x1="257.6" y1="79" x2="257.6" y2="119.34"/>
+<line class="MH-PROYECCION" x1="258.2" y1="118.74" x2="313.34" y2="118.74"/>
+<line class="MH-PROYECCION" x1="313.34" y1="118.74" x2="313.34" y2="79.6"/>
+<line class="MH-PROYECCION" x1="313.34" y1="79.6" x2="258.2" y2="79.6"/>
+<line class="MH-PROYECCION" x1="258.2" y1="79.6" x2="258.2" y2="118.74"/>
+<line class="MH-CONTORNO" x1="266.5" y1="92" x2="273.5" y2="92"/>
+<line class="MH-CONTORNO" x1="273.5" y1="92" x2="273.5" y2="85"/>
+<line class="MH-CONTORNO" x1="273.5" y1="85" x2="266.5" y2="85"/>
+<line class="MH-CONTORNO" x1="266.5" y1="85" x2="266.5" y2="92"/>
+<line class="MH-PROYECCION" x1="266.5" y1="92" x2="273.5" y2="85"/>
+<line class="MH-PROYECCION" x1="273.5" y1="92" x2="266.5" y2="85"/>
+<line class="MH-CONTORNO" x1="210.8" y1="97.34" x2="241.14" y2="97.34"/>
+<line class="MH-CONTORNO" x1="241.14" y1="97.34" x2="241.14" y2="79"/>
+<line class="MH-CONTORNO" x1="241.14" y1="79" x2="210.8" y2="79"/>
+<line class="MH-CONTORNO" x1="210.8" y1="79" x2="210.8" y2="97.34"/>
+<line class="MH-PROYECCION" x1="211.4" y1="96.74" x2="240.54" y2="96.74"/>
+<line class="MH-PROYECCION" x1="240.54" y1="96.74" x2="240.54" y2="79.6"/>
+<line class="MH-PROYECCION" x1="240.54" y1="79.6" x2="211.4" y2="79.6"/>
+<line class="MH-PROYECCION" x1="211.4" y1="79.6" x2="211.4" y2="96.74"/>
+<line class="MH-CONTORNO" x1="166.1" y1="119.34" x2="193.44" y2="119.34"/>
+<line class="MH-CONTORNO" x1="193.44" y1="119.34" x2="193.44" y2="79"/>
+<line class="MH-CONTORNO" x1="193.44" y1="79" x2="166.1" y2="79"/>
+<line class="MH-CONTORNO" x1="166.1" y1="79" x2="166.1" y2="119.34"/>
+<line class="MH-PROYECCION" x1="166.7" y1="118.74" x2="192.84" y2="118.74"/>
+<line class="MH-PROYECCION" x1="192.84" y1="118.74" x2="192.84" y2="79.6"/>
+<line class="MH-PROYECCION" x1="192.84" y1="79.6" x2="166.7" y2="79.6"/>
+<line class="MH-PROYECCION" x1="166.7" y1="79.6" x2="166.7" y2="118.74"/>
+<line class="MH-CONTORNO" x1="230.3" y1="131.95" x2="248.41" y2="131.95"/>
+<line class="MH-CONTORNO" x1="248.41" y1="131.95" x2="248.41" y2="119.44"/>
+<line class="MH-CONTORNO" x1="248.41" y1="119.44" x2="230.3" y2="119.44"/>
+<line class="MH-CONTORNO" x1="230.3" y1="119.44" x2="230.3" y2="131.95"/>
+<line class="MH-PROYECCION" x1="230.9" y1="131.35" x2="247.81" y2="131.35"/>
+<line class="MH-PROYECCION" x1="247.81" y1="131.35" x2="247.81" y2="120.04"/>
+<line class="MH-PROYECCION" x1="247.81" y1="120.04" x2="230.9" y2="120.04"/>
+<line class="MH-PROYECCION" x1="230.9" y1="120.04" x2="230.9" y2="131.35"/>
+<line class="MH-CONTORNO" x1="111.5" y1="113.65" x2="143.34" y2="113.65"/>
+<line class="MH-CONTORNO" x1="143.34" y1="113.65" x2="143.34" y2="86.31"/>
+<line class="MH-CONTORNO" x1="143.34" y1="86.31" x2="111.5" y2="86.31"/>
+<line class="MH-CONTORNO" x1="111.5" y1="86.31" x2="111.5" y2="113.65"/>
+<line class="MH-PROYECCION" x1="112.1" y1="113.05" x2="142.74" y2="113.05"/>
+<line class="MH-PROYECCION" x1="142.74" y1="113.05" x2="142.74" y2="86.91"/>
+<line class="MH-PROYECCION" x1="142.74" y1="86.91" x2="112.1" y2="86.91"/>
+<line class="MH-PROYECCION" x1="112.1" y1="86.91" x2="112.1" y2="113.05"/>
+<line class="MH-CONTORNO" x1="111.5" y1="191.95" x2="149.34" y2="191.95"/>
+<line class="MH-CONTORNO" x1="149.34" y1="191.95" x2="149.34" y2="141.61"/>
+<line class="MH-CONTORNO" x1="149.34" y1="141.61" x2="111.5" y2="141.61"/>
+<line class="MH-CONTORNO" x1="111.5" y1="141.61" x2="111.5" y2="191.95"/>
+<line class="MH-PROYECCION" x1="112.1" y1="191.35" x2="148.74" y2="191.35"/>
+<line class="MH-PROYECCION" x1="148.74" y1="191.35" x2="148.74" y2="142.21"/>
+<line class="MH-PROYECCION" x1="148.74" y1="142.21" x2="112.1" y2="142.21"/>
+<line class="MH-PROYECCION" x1="112.1" y1="142.21" x2="112.1" y2="191.35"/>
+<line class="MH-CONTORNO" x1="173.3" y1="176.2" x2="217.64" y2="176.2"/>
+<line class="MH-CONTORNO" x1="217.64" y1="176.2" x2="217.64" y2="131.86"/>
+<line class="MH-CONTORNO" x1="217.64" y1="131.86" x2="173.3" y2="131.86"/>
+<line class="MH-CONTORNO" x1="173.3" y1="131.86" x2="173.3" y2="176.2"/>
+<line class="MH-PROYECCION" x1="173.9" y1="175.6" x2="217.04" y2="175.6"/>
+<line class="MH-PROYECCION" x1="217.04" y1="175.6" x2="217.04" y2="132.46"/>
+<line class="MH-PROYECCION" x1="217.04" y1="132.46" x2="173.9" y2="132.46"/>
+<line class="MH-PROYECCION" x1="173.9" y1="132.46" x2="173.9" y2="175.6"/>
+<line class="MH-CONTORNO" x1="173.3" y1="202" x2="196.64" y2="202"/>
+<line class="MH-CONTORNO" x1="196.64" y1="202" x2="196.64" y2="188.5"/>
+<line class="MH-CONTORNO" x1="196.64" y1="188.5" x2="173.3" y2="188.5"/>
+<line class="MH-CONTORNO" x1="173.3" y1="188.5" x2="173.3" y2="202"/>
+<line class="MH-PROYECCION" x1="173.9" y1="201.4" x2="196.04" y2="201.4"/>
+<line class="MH-PROYECCION" x1="196.04" y1="201.4" x2="196.04" y2="189.1"/>
+<line class="MH-PROYECCION" x1="196.04" y1="189.1" x2="173.9" y2="189.1"/>
+<line class="MH-PROYECCION" x1="173.9" y1="189.1" x2="173.9" y2="201.4"/>
+<line class="MH-CONTORNO" x1="230.3" y1="202" x2="278.08" y2="202"/>
+<line class="MH-CONTORNO" x1="278.08" y1="202" x2="278.08" y2="159.22"/>
+<line class="MH-CONTORNO" x1="278.08" y1="159.22" x2="230.3" y2="159.22"/>
+<line class="MH-CONTORNO" x1="230.3" y1="159.22" x2="230.3" y2="202"/>
+<line class="MH-PROYECCION" x1="230.9" y1="201.4" x2="277.48" y2="201.4"/>
+<line class="MH-PROYECCION" x1="277.48" y1="201.4" x2="277.48" y2="159.82"/>
+<line class="MH-PROYECCION" x1="277.48" y1="159.82" x2="230.9" y2="159.82"/>
+<line class="MH-PROYECCION" x1="230.9" y1="159.82" x2="230.9" y2="201.4"/>
+<line class="MH-CONTORNO" x1="292.55" y1="185.79" x2="321.39" y2="185.79"/>
+<line class="MH-CONTORNO" x1="321.39" y1="185.79" x2="321.39" y2="131.95"/>
+<line class="MH-CONTORNO" x1="321.39" y1="131.95" x2="292.55" y2="131.95"/>
+<line class="MH-CONTORNO" x1="292.55" y1="131.95" x2="292.55" y2="185.79"/>
+<line class="MH-PROYECCION" x1="293.15" y1="185.19" x2="320.79" y2="185.19"/>
+<line class="MH-PROYECCION" x1="320.79" y1="185.19" x2="320.79" y2="132.55"/>
+<line class="MH-PROYECCION" x1="320.79" y1="132.55" x2="293.15" y2="132.55"/>
+<line class="MH-PROYECCION" x1="293.15" y1="132.55" x2="293.15" y2="185.19"/>
+<line class="MH-CONTORNO" x1="241.14" y1="90" x2="257.6" y2="90"/>
+<line class="MH-CONTORNO" x1="257.6" y1="90" x2="257.6" y2="82"/>
+<line class="MH-CONTORNO" x1="257.6" y1="82" x2="241.14" y2="82"/>
+<line class="MH-CONTORNO" x1="241.14" y1="82" x2="241.14" y2="90"/>
+<line class="MH-CONTORNO" x1="187.25" y1="188.5" x2="195.05" y2="188.5"/>
+<line class="MH-CONTORNO" x1="195.05" y1="188.5" x2="195.05" y2="176.2"/>
+<line class="MH-CONTORNO" x1="195.05" y1="176.2" x2="187.25" y2="176.2"/>
+<line class="MH-CONTORNO" x1="187.25" y1="176.2" x2="187.25" y2="188.5"/>
+<line class="MH-CONTORNO" x1="257.3" y1="131.95" x2="278.3" y2="131.95"/>
+<line class="MH-CONTORNO" x1="278.3" y1="131.95" x2="278.3" y2="126.25"/>
+<line class="MH-CONTORNO" x1="278.3" y1="126.25" x2="257.3" y2="126.25"/>
+<line class="MH-CONTORNO" x1="257.3" y1="126.25" x2="257.3" y2="131.95"/>
+<line class="MH-CONTORNO" x1="155.3" y1="176.2" x2="161.3" y2="176.2"/>
+<line class="MH-CONTORNO" x1="161.3" y1="176.2" x2="161.3" y2="159.7"/>
+<line class="MH-CONTORNO" x1="161.3" y1="159.7" x2="155.3" y2="159.7"/>
+<line class="MH-CONTORNO" x1="155.3" y1="159.7" x2="155.3" y2="176.2"/>
+<line class="MH-CONTORNO" x1="111.5" y1="131.95" x2="120.05" y2="131.95"/>
+<line class="MH-CONTORNO" x1="120.05" y1="131.95" x2="120.05" y2="122.2"/>
+<line class="MH-CONTORNO" x1="120.05" y1="122.2" x2="111.5" y2="122.2"/>
+<line class="MH-CONTORNO" x1="111.5" y1="122.2" x2="111.5" y2="131.95"/>
+<line class="MH-COTAS" x1="101.05" y1="215.7" x2="325.05" y2="215.7"/>
+<line class="MH-COTAS" x1="102.05" y1="216.9" x2="102.05" y2="214.5"/>
+<line class="MH-COTAS" x1="101.5" y1="216.25" x2="102.6" y2="215.15"/>
+<line class="MH-COTAS" x1="111.5" y1="216.9" x2="111.5" y2="214.5"/>
+<line class="MH-COTAS" x1="110.95" y1="216.25" x2="112.05" y2="215.15"/>
+<line class="MH-COTAS" x1="149.34" y1="216.9" x2="149.34" y2="214.5"/>
+<line class="MH-COTAS" x1="148.79" y1="216.25" x2="149.89" y2="215.15"/>
+<line class="MH-COTAS" x1="173.3" y1="216.9" x2="173.3" y2="214.5"/>
+<line class="MH-COTAS" x1="172.75" y1="216.25" x2="173.85" y2="215.15"/>
+<line class="MH-COTAS" x1="196.64" y1="216.9" x2="196.64" y2="214.5"/>
+<line class="MH-COTAS" x1="196.09" y1="216.25" x2="197.19" y2="215.15"/>
+<line class="MH-COTAS" x1="230.3" y1="216.9" x2="230.3" y2="214.5"/>
+<line class="MH-COTAS" x1="229.75" y1="216.25" x2="230.85" y2="215.15"/>
+<line class="MH-COTAS" x1="278.08" y1="216.9" x2="278.08" y2="214.5"/>
+<line class="MH-COTAS" x1="277.53" y1="216.25" x2="278.63" y2="215.15"/>
+<line class="MH-COTAS" x1="292.55" y1="216.9" x2="292.55" y2="214.5"/>
+<line class="MH-COTAS" x1="292" y1="216.25" x2="293.1" y2="215.15"/>
+<line class="MH-COTAS" x1="321.39" y1="216.9" x2="321.39" y2="214.5"/>
+<line class="MH-COTAS" x1="320.84" y1="216.25" x2="321.94" y2="215.15"/>
+<line class="MH-COTAS" x1="324.05" y1="216.9" x2="324.05" y2="214.5"/>
+<line class="MH-COTAS" x1="323.5" y1="216.25" x2="324.6" y2="215.15"/>
+<line class="MH-COTAS" x1="101.05" y1="220.2" x2="325.05" y2="220.2"/>
+<line class="MH-COTAS" x1="102.05" y1="221.4" x2="102.05" y2="219"/>
+<line class="MH-COTAS" x1="101.5" y1="220.75" x2="102.6" y2="219.65"/>
+<line class="MH-COTAS" x1="324.05" y1="221.4" x2="324.05" y2="219"/>
+<line class="MH-COTAS" x1="323.5" y1="220.75" x2="324.6" y2="219.65"/>
+<line class="MH-COTAS" x1="101.05" y1="66.5" x2="325.05" y2="66.5"/>
+<line class="MH-COTAS" x1="102.05" y1="67.7" x2="102.05" y2="65.3"/>
+<line class="MH-COTAS" x1="101.5" y1="67.05" x2="102.6" y2="65.95"/>
+<line class="MH-COTAS" x1="111.5" y1="67.7" x2="111.5" y2="65.3"/>
+<line class="MH-COTAS" x1="110.95" y1="67.05" x2="112.05" y2="65.95"/>
+<line class="MH-COTAS" x1="143.34" y1="67.7" x2="143.34" y2="65.3"/>
+<line class="MH-COTAS" x1="142.79" y1="67.05" x2="143.89" y2="65.95"/>
+<line class="MH-COTAS" x1="166.1" y1="67.7" x2="166.1" y2="65.3"/>
+<line class="MH-COTAS" x1="165.55" y1="67.05" x2="166.65" y2="65.95"/>
+<line class="MH-COTAS" x1="193.44" y1="67.7" x2="193.44" y2="65.3"/>
+<line class="MH-COTAS" x1="192.89" y1="67.05" x2="193.99" y2="65.95"/>
+<line class="MH-COTAS" x1="210.8" y1="67.7" x2="210.8" y2="65.3"/>
+<line class="MH-COTAS" x1="210.25" y1="67.05" x2="211.35" y2="65.95"/>
+<line class="MH-COTAS" x1="241.14" y1="67.7" x2="241.14" y2="65.3"/>
+<line class="MH-COTAS" x1="240.59" y1="67.05" x2="241.69" y2="65.95"/>
+<line class="MH-COTAS" x1="257.6" y1="67.7" x2="257.6" y2="65.3"/>
+<line class="MH-COTAS" x1="257.05" y1="67.05" x2="258.15" y2="65.95"/>
+<line class="MH-COTAS" x1="313.94" y1="67.7" x2="313.94" y2="65.3"/>
+<line class="MH-COTAS" x1="313.39" y1="67.05" x2="314.49" y2="65.95"/>
+<line class="MH-COTAS" x1="324.05" y1="67.7" x2="324.05" y2="65.3"/>
+<line class="MH-COTAS" x1="323.5" y1="67.05" x2="324.6" y2="65.95"/>
+<line class="MH-COTAS" x1="101.05" y1="62" x2="325.05" y2="62"/>
+<line class="MH-COTAS" x1="102.05" y1="63.2" x2="102.05" y2="60.8"/>
+<line class="MH-COTAS" x1="101.5" y1="62.55" x2="102.6" y2="61.45"/>
+<line class="MH-COTAS" x1="324.05" y1="63.2" x2="324.05" y2="60.8"/>
+<line class="MH-COTAS" x1="323.5" y1="62.55" x2="324.6" y2="61.45"/>
+<line class="MH-COTAS" x1="96.05" y1="211.7" x2="96.05" y2="72"/>
+<line class="MH-COTAS" x1="94.85" y1="210.7" x2="97.25" y2="210.7"/>
+<line class="MH-COTAS" x1="95.5" y1="211.25" x2="96.6" y2="210.15"/>
+<line class="MH-COTAS" x1="94.85" y1="191.95" x2="97.25" y2="191.95"/>
+<line class="MH-COTAS" x1="95.5" y1="192.5" x2="96.6" y2="191.4"/>
+<line class="MH-COTAS" x1="94.85" y1="141.61" x2="97.25" y2="141.61"/>
+<line class="MH-COTAS" x1="95.5" y1="142.16" x2="96.6" y2="141.06"/>
+<line class="MH-COTAS" x1="94.85" y1="113.65" x2="97.25" y2="113.65"/>
+<line class="MH-COTAS" x1="95.5" y1="114.2" x2="96.6" y2="113.1"/>
+<line class="MH-COTAS" x1="94.85" y1="86.31" x2="97.25" y2="86.31"/>
+<line class="MH-COTAS" x1="95.5" y1="86.86" x2="96.6" y2="85.76"/>
+<line class="MH-COTAS" x1="94.85" y1="73" x2="97.25" y2="73"/>
+<line class="MH-COTAS" x1="95.5" y1="73.55" x2="96.6" y2="72.45"/>
+<line class="MH-COTAS" x1="91.55" y1="211.7" x2="91.55" y2="72"/>
+<line class="MH-COTAS" x1="90.35" y1="210.7" x2="92.75" y2="210.7"/>
+<line class="MH-COTAS" x1="91" y1="211.25" x2="92.1" y2="210.15"/>
+<line class="MH-COTAS" x1="90.35" y1="73" x2="92.75" y2="73"/>
+<line class="MH-COTAS" x1="91" y1="73.55" x2="92.1" y2="72.45"/>
+<line class="MH-COTAS" x1="330.55" y1="211.7" x2="330.55" y2="72"/>
+<line class="MH-COTAS" x1="329.35" y1="210.7" x2="331.75" y2="210.7"/>
+<line class="MH-COTAS" x1="330" y1="211.25" x2="331.1" y2="210.15"/>
+<line class="MH-COTAS" x1="329.35" y1="185.79" x2="331.75" y2="185.79"/>
+<line class="MH-COTAS" x1="330" y1="186.34" x2="331.1" y2="185.24"/>
+<line class="MH-COTAS" x1="329.35" y1="131.95" x2="331.75" y2="131.95"/>
+<line class="MH-COTAS" x1="330" y1="132.5" x2="331.1" y2="131.4"/>
+<line class="MH-COTAS" x1="329.35" y1="119.34" x2="331.75" y2="119.34"/>
+<line class="MH-COTAS" x1="330" y1="119.89" x2="331.1" y2="118.79"/>
+<line class="MH-COTAS" x1="329.35" y1="79" x2="331.75" y2="79"/>
+<line class="MH-COTAS" x1="330" y1="79.55" x2="331.1" y2="78.45"/>
+<line class="MH-COTAS" x1="329.35" y1="73" x2="331.75" y2="73"/>
+<line class="MH-COTAS" x1="330" y1="73.55" x2="331.1" y2="72.45"/>
+<line class="MH-COTAS" x1="335.05" y1="211.7" x2="335.05" y2="72"/>
+<line class="MH-COTAS" x1="333.85" y1="210.7" x2="336.25" y2="210.7"/>
+<line class="MH-COTAS" x1="334.5" y1="211.25" x2="335.6" y2="210.15"/>
+<line class="MH-COTAS" x1="333.85" y1="73" x2="336.25" y2="73"/>
+<line class="MH-COTAS" x1="334.5" y1="73.55" x2="335.6" y2="72.45"/>
+<circle class="MH-CONTORNO" cx="395" cy="35" r="6"/>
+<polygon points="395,29 392.8,39 395,37.5 397.2,39" fill="#000" stroke="#000" stroke-width="0.2" stroke-linejoin="round"/>
+<line class="MH-CONTORNO" x1="395" y1="29" x2="392.8" y2="39"/>
+<line class="MH-CONTORNO" x1="392.8" y1="39" x2="395" y2="37.5"/>
+<line class="MH-CONTORNO" x1="395" y1="37.5" x2="397.2" y2="39"/>
+<line class="MH-CONTORNO" x1="397.2" y1="39" x2="395" y2="29"/>
+<line class="MH-MARCO-FINO" x1="5" y1="292" x2="415" y2="292"/>
+<line class="MH-MARCO-FINO" x1="415" y1="292" x2="415" y2="5"/>
+<line class="MH-MARCO-FINO" x1="415" y1="5" x2="5" y2="5"/>
+<line class="MH-MARCO-FINO" x1="5" y1="5" x2="5" y2="292"/>
+<line class="MH-MARCO" x1="20" y1="287" x2="410" y2="287"/>
+<line class="MH-MARCO" x1="410" y1="287" x2="410" y2="10"/>
+<line class="MH-MARCO" x1="410" y1="10" x2="20" y2="10"/>
+<line class="MH-MARCO" x1="20" y1="10" x2="20" y2="287"/>
+<line class="MH-MARCO" x1="250" y1="287" x2="410" y2="287"/>
+<line class="MH-MARCO" x1="410" y1="287" x2="410" y2="253"/>
+<line class="MH-MARCO" x1="410" y1="253" x2="250" y2="253"/>
+<line class="MH-MARCO" x1="250" y1="253" x2="250" y2="287"/>
+<line class="MH-MARCO-FINO" x1="250" y1="265" x2="410" y2="265"/>
+<line class="MH-MARCO-FINO" x1="250" y1="276" x2="410" y2="276"/>
+<line class="MH-MARCO-FINO" x1="360" y1="287" x2="360" y2="265"/>
+<line class="MH-MARCO-FINO" x1="385" y1="287" x2="385" y2="276"/>
+<text x="285.77" y="97.17" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">A</text>
+<text x="285.77" y="102.97" font-size="2.622" text-anchor="middle" fill="#000">Terraza +7,87</text>
+<text x="275" y="89.1" font-size="1.932" text-anchor="start" fill="#000">Escotilla</text>
+<text x="225.97" y="86.17" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">B</text>
+<text x="225.97" y="91.97" font-size="2.622" text-anchor="middle" fill="#000">Cub. +5,02</text>
+<text x="179.77" y="97.17" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">C</text>
+<text x="179.77" y="102.97" font-size="2.622" text-anchor="middle" fill="#000">Cub. +3,64</text>
+<text x="239.355" y="125.195" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">D</text>
+<text x="239.355" y="128.295" font-size="1.932" text-anchor="middle" fill="#000">Cub. +2,07</text>
+<text x="127.42" y="97.98" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">E</text>
+<text x="127.42" y="103.78" font-size="2.622" text-anchor="middle" fill="#000">Cub. +5,03</text>
+<text x="130.42" y="164.78" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">F</text>
+<text x="130.42" y="170.58" font-size="2.622" text-anchor="middle" fill="#000">Cub. +7,87</text>
+<text x="195.47" y="152.03" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">G</text>
+<text x="195.47" y="157.83" font-size="2.622" text-anchor="middle" fill="#000">Terraza +2,09</text>
+<text x="184.97" y="194.75" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">H</text>
+<text x="184.97" y="197.85" font-size="1.932" text-anchor="middle" fill="#000">Cub. +4,02</text>
+<text x="254.19" y="178.61" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">I</text>
+<text x="254.19" y="184.41" font-size="2.622" text-anchor="middle" fill="#000">Cub. +4,84</text>
+<text x="306.97" y="156.87" font-size="6.21" text-anchor="middle" font-weight="bold" fill="#000">J</text>
+<text x="306.97" y="162.67" font-size="2.622" text-anchor="middle" fill="#000">Cub. +3,34</text>
+<text x="249.37" y="86.6" font-size="1.656" text-anchor="middle" fill="#000">+2,05</text>
+<text x="191.15" y="182.95" font-size="1.656" text-anchor="middle" fill="#000">+2,05</text>
+<text x="267.8" y="129.7" font-size="1.656" text-anchor="middle" fill="#000">Lavadero / contadores</text>
+<text x="158.9" y="167.95" font-size="1.656" text-anchor="middle" transform="rotate(-90 158.9 167.95)" fill="#000">Contadores</text>
+<text x="116.375" y="127.075" font-size="1.656" text-anchor="middle" transform="rotate(-90 116.375 127.075)" fill="#000">Contadores</text>
+<text x="106.775" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">0,94</text>
+<text x="130.42" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">3,78</text>
+<text x="161.32" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">2,40</text>
+<text x="184.97" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">2,33</text>
+<text x="213.47" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">3,37</text>
+<text x="254.19" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">4,78</text>
+<text x="285.315" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">1,45</text>
+<text x="306.97" y="215.1" font-size="2.208" text-anchor="middle" fill="#000">2,88</text>
+<text x="325.45" y="215.1" font-size="2.208" text-anchor="start" fill="#000">0,27</text>
+<text x="213.05" y="219.6" font-size="2.208" text-anchor="middle" fill="#000">22,20</text>
+<text x="106.775" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">0,94</text>
+<text x="127.42" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">3,18</text>
+<text x="154.72" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">2,28</text>
+<text x="179.77" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">2,73</text>
+<text x="202.12" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">1,74</text>
+<text x="225.97" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">3,03</text>
+<text x="249.37" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">1,65</text>
+<text x="285.77" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">5,63</text>
+<text x="318.995" y="65.9" font-size="2.208" text-anchor="middle" fill="#000">1,01</text>
+<text x="213.05" y="61.4" font-size="2.208" text-anchor="middle" fill="#000">22,20</text>
+<text x="95.45" y="201.325" font-size="2.208" text-anchor="middle" transform="rotate(-90 95.45 201.325)" fill="#000">1,88</text>
+<text x="95.45" y="166.78" font-size="2.208" text-anchor="middle" transform="rotate(-90 95.45 166.78)" fill="#000">5,03</text>
+<text x="95.45" y="127.63" font-size="2.208" text-anchor="middle" transform="rotate(-90 95.45 127.63)" fill="#000">2,80</text>
+<text x="95.45" y="99.98" font-size="2.208" text-anchor="middle" transform="rotate(-90 95.45 99.98)" fill="#000">2,73</text>
+<text x="95.45" y="79.655" font-size="2.208" text-anchor="middle" transform="rotate(-90 95.45 79.655)" fill="#000">1,33</text>
+<text x="90.95" y="141.85" font-size="2.208" text-anchor="middle" transform="rotate(-90 90.95 141.85)" fill="#000">13,77</text>
+<text x="329.95" y="198.245" font-size="2.208" text-anchor="middle" transform="rotate(-90 329.95 198.245)" fill="#000">2,49</text>
+<text x="329.95" y="158.87" font-size="2.208" text-anchor="middle" transform="rotate(-90 329.95 158.87)" fill="#000">5,38</text>
+<text x="329.95" y="125.645" font-size="2.208" text-anchor="middle" transform="rotate(-90 329.95 125.645)" fill="#000">1,26</text>
+<text x="329.95" y="99.17" font-size="2.208" text-anchor="middle" transform="rotate(-90 329.95 99.17)" fill="#000">4,03</text>
+<text x="329.95" y="76" font-size="2.208" text-anchor="middle" transform="rotate(-90 329.95 76)" fill="#000">0,60</text>
+<text x="334.45" y="141.85" font-size="2.208" text-anchor="middle" transform="rotate(-90 334.45 141.85)" fill="#000">13,77</text>
+<text x="211.5" y="229.7" font-size="3.312" text-anchor="middle" fill="#000">VÍA PÚBLICA</text>
+<text x="343.05" y="142" font-size="3.312" text-anchor="middle" transform="rotate(-90 343.05 142)" fill="#000">VÍA PÚBLICA</text>
+<text x="82.05" y="231.7" font-size="4.83" text-anchor="start" font-weight="bold" fill="#000">EMPLAZAMIENTO Y CUBIERTAS</text>
+<text x="164.8" y="231.7" font-size="3.45" text-anchor="start" fill="#000">E 1:100</text>
+<text x="25" y="245" font-size="2.622" text-anchor="start" fill="#000">Muro: chapa de acero + aislamiento, e = 0,06 m</text>
+<text x="25" y="248.6" font-size="2.622" text-anchor="start" fill="#000">h.l. = altura libre · FL = nivel de suelo</text>
+<text x="25" y="252.2" font-size="2.622" text-anchor="start" fill="#000">Cotas en metros</text>
+<text x="25" y="255.8" font-size="2.622" text-anchor="start" fill="#000">Parcela aprox. 22,20 × 13,77 m (publicada 290 m²)</text>
+<text x="395" y="27.5" font-size="4.14" text-anchor="middle" font-weight="bold" fill="#000">N</text>
+<text x="253" y="259" font-size="5.796" text-anchor="start" font-weight="bold" fill="#000">CASA MORIYAMA</text>
+<text x="253" y="263" font-size="2.76" text-anchor="start" fill="#000">Ryue Nishizawa (SANAA) · Ota-ku, Tokio · 2002-2005 · Levantamiento</text>
+<text x="253" y="269" font-size="2.208" text-anchor="start" fill="#000">PLANO</text>
+<text x="253" y="273.8" font-size="4.14" text-anchor="start" font-weight="bold" fill="#000">EMPLAZAMIENTO Y CUBIERTAS</text>
+<text x="362" y="269" font-size="2.208" text-anchor="start" fill="#000">ESCALA</text>
+<text x="362" y="273.8" font-size="4.14" text-anchor="start" font-weight="bold" fill="#000">1:100</text>
+<text x="253" y="279.5" font-size="2.208" text-anchor="start" fill="#000">PROYECTO BASE · H2 · Grupo X</text>
+<text x="253" y="284" font-size="2.208" text-anchor="start" fill="#000">Fecha: octubre 2026 · Cotas en metros</text>
+<text x="362" y="279.5" font-size="2.208" text-anchor="start" fill="#000">Nº</text>
+<text x="368" y="284.4" font-size="6.21" text-anchor="start" font-weight="bold" fill="#000">01</text>
+<text x="387" y="279.5" font-size="2.208" text-anchor="start" fill="#000">A3</text>
+</svg>
