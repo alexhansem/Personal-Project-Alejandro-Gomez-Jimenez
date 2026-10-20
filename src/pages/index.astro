@@ -11,7 +11,12 @@ import { url } from '../lib/url';
 import { siteKicker } from '../config/site';
 
 const [lead, ...rest] = featuredProjects;
+const experience = profile.experience ?? [];
+const hasCareer = profile.education.length > 0 || experience.length > 0;
 const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.find((p) => p.workflow?.length);
+// numeración de las secciones finales según las que se muestran
+const careerCode = showcase?.workflow ? '04' : '03';
+const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2, '0');
 ---
 
 <BaseLayout>
@@ -136,8 +141,57 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
     </ol>
   </section>
 
+  {
+    hasCareer && (
+      <section class="section--tight container" aria-labelledby="trayectoria">
+        <SectionHead code={careerCode} title="Trayectoria" id="trayectoria" />
+        <div class="career">
+          {experience.length > 0 && (
+            <div>
+              <h3 class="label career__head">Experiencia</h3>
+              <ol class="career__list">
+                {experience.map((e) => (
+                  <li>
+                    <p class="mono muted career__period">{e.period}</p>
+                    <p class="career__title">{e.role}</p>
+                    <p class="muted career__org">{e.org}</p>
+                    {e.text && <p class="career__text">{e.text}</p>}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+          <div>
+            {profile.education.length > 0 && (
+              <>
+                <h3 class="label career__head">Formación</h3>
+                <ol class="career__list">
+                  {profile.education.map((e) => (
+                    <li>
+                      <p class="mono muted career__period">{e.period}</p>
+                      <p class="career__title">{e.title}</p>
+                      {e.center && <p class="muted career__org">{e.center}</p>}
+                    </li>
+                  ))}
+                </ol>
+              </>
+            )}
+            {profile.certifications && profile.certifications.length > 0 && (
+              <>
+                <h3 class="label career__head career__head--gap">Certificaciones</h3>
+                <ul class="career__certs">
+                  {profile.certifications.map((c) => <li>{c}</li>)}
+                </ul>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <section class="section--tight container" aria-labelledby="contacto">
-    <SectionHead code={showcase?.workflow ? '04' : '03'} title="Contacto" id="contacto" />
+    <SectionHead code={contactCode} title="Contacto" id="contacto" />
     <ContactLinks layout="inline" />
   </section>
 </BaseLayout>
@@ -181,6 +235,68 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
 
   .hero__intro {
     max-width: 58ch;
+  }
+
+  .career {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 96px);
+  }
+
+  .career__head {
+    margin: 0 0 8px;
+  }
+
+  .career__head--gap {
+    margin-top: 32px;
+  }
+
+  .career__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .career__list li {
+    display: grid;
+    gap: 2px;
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .career__list p {
+    margin: 0;
+  }
+
+  .career__period {
+    font-size: 0.75rem;
+  }
+
+  .career__title {
+    font-weight: 540;
+  }
+
+  .career__org {
+    font-size: 0.9375rem;
+  }
+
+  .career__text {
+    margin-top: 6px !important;
+    max-width: 62ch;
+    font-size: 0.9375rem;
+  }
+
+  .career__certs {
+    margin: 0;
+    padding-left: 1.1em;
+    display: grid;
+    gap: 4px;
+  }
+
+  @media (max-width: 860px) {
+    .career {
+      grid-template-columns: 1fr;
+    }
   }
 
   .hero__headline-part {
