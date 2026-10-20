@@ -1,0 +1,114 @@
+---
+import type { DataTable } from '../content/types';
+
+interface Props {
+  table: DataTable;
+  code?: string;
+}
+const { table: t, code } = Astro.props;
+const isNum = (i: number) => t.numeric?.includes(i);
+---
+
+<figure class="dt">
+  {
+    (t.title || code) && (
+      <figcaption class="dt__head">
+        {code && <span class="mono dt__code">{code}</span>}
+        {t.title && <span class="dt__title">{t.title}</span>}
+      </figcaption>
+    )
+  }
+  <div class="dt__scroll" tabindex="0" role="region" aria-label={t.title ?? 'Tabla'}>
+    <table>
+      <thead>
+        <tr>{t.columns.map((c, i) => <th scope="col" class:list={{ num: isNum(i) }}>{c}</th>)}</tr>
+      </thead>
+      <tbody>
+        {t.rows.map((r) => <tr>{r.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i) }}>{v}</td>))}</tr>)}
+      </tbody>
+      {
+        t.footer && (
+          <tfoot>
+            <tr>{t.footer.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i) }}>{v}</td>))}</tr>
+          </tfoot>
+        )
+      }
+    </table>
+  </div>
+  {t.caption && <p class="dt__caption muted">{t.caption}</p>}
+</figure>
+
+<style>
+  .dt {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .dt__head {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+
+  .dt__code {
+    color: var(--accent);
+    font-size: 0.75rem;
+  }
+
+  .dt__title {
+    font-weight: 560;
+  }
+
+  .dt__scroll {
+    overflow-x: auto;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th,
+  td {
+    padding: 9px 14px 9px 0;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  tbody th {
+    font-weight: 400;
+  }
+
+  tfoot th,
+  tfoot td {
+    font-weight: 600;
+    border-top: 1px solid var(--ink);
+    border-bottom: 0;
+  }
+
+  .num {
+    text-align: right;
+    padding-right: 0;
+    padding-left: 14px;
+  }
+
+  .dt__caption {
+    font-size: 0.8125rem;
+  }
+</style>

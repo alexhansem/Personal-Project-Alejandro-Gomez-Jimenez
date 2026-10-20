@@ -1,0 +1,84 @@
+---
+/** Leyenda de procedencia de los datos y de actores. */
+interface Props {
+  actors?: boolean;
+}
+const { actors = false } = Astro.props;
+---
+
+<dl class="legend mono">
+  <div><dt><span class="sw sw--medido" aria-hidden="true"></span>Medido</dt><dd>Cronometrado o registrado</dd></div>
+  <div><dt><span class="sw sw--estimado" aria-hidden="true"></span>Estimado</dt><dd>Aproximación, no medida</dd></div>
+  <div><dt><span class="sw sw--pendiente" aria-hidden="true"></span>Pendiente</dt><dd>Sin dato todavía</dd></div>
+  {
+    actors && (
+      <>
+        <div><dt><span class="sw sw--ia" aria-hidden="true" />IA</dt><dd>Generado por un modelo</dd></div>
+        <div><dt><span class="sw sw--humano" aria-hidden="true" />Criterio propio</dt><dd>Decisión, revisión, corrección</dd></div>
+        <div><dt><span class="sw sw--software" aria-hidden="true" />Software</dt><dd>CAD, BIM, scripts</dd></div>
+      </>
+    )
+  }
+</dl>
+
+<style>
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin: 0;
+    font-size: 0.6875rem;
+    letter-spacing: 0.03em;
+  }
+
+  .legend div {
+    display: grid;
+    gap: 1px;
+  }
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink);
+  }
+
+  dd {
+    margin: 0 0 0 20px;
+    color: var(--muted);
+  }
+
+  .sw {
+    width: 14px;
+    height: 10px;
+    border: 1px solid var(--ink);
+    flex: none;
+  }
+
+  .sw--medido {
+    background: var(--ink);
+  }
+
+  .sw--estimado {
+    background: repeating-linear-gradient(-45deg, var(--ink) 0 1.5px, transparent 1.5px 4px);
+  }
+
+  .sw--pendiente {
+    border-style: dashed;
+    background: transparent;
+  }
+
+  .sw--ia {
+    background: var(--actor-ia);
+    border-color: var(--actor-ia);
+  }
+
+  .sw--humano {
+    background: var(--actor-humano);
+  }
+
+  .sw--software {
+    background: var(--actor-software);
+    border-color: var(--actor-software);
+  }
+</style>

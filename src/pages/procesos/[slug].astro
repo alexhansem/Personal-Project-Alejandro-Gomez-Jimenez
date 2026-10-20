@@ -1,0 +1,327 @@
+---
+import type { GetStaticPaths } from 'astro';
+import type { ProcessEntry } from '../../content/types';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import MediaFigure from '../../components/MediaFigure.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+import WorkflowTimeline from '../../components/WorkflowTimeline.astro';
+import { processes, projects, sheetCode } from '../../lib/content';
+import { url } from '../../lib/url';
+
+export const getStaticPaths = (() =>
+  processes.map((entry, index) => ({ params: { slug: entry.slug }, props: { entry, index } }))) satisfies GetStaticPaths;
+
+interface Props {
+  entry: ProcessEntry;
+  index: number;
+}
+const { entry: x, index } = Astro.props;
+const code = sheetCode('H', index);
+const related = projects.filter((p) => x.relatedProjects?.includes(p.slug));
+
+const blocks = [
+  { id: 'problema', title: 'Problema original', text: x.problem },
+  { id: 'anterior', title: 'Proceso anterior', text: x.previousProcess },
+  { id: 'solucion', title: 'Solución propuesta', text: x.solution },
+].filter((b) => b.text);
+
+let n = 0;
+const next = () => String(++n).padStart(2, '0');
+---
+
+<BaseLayout title={x.title} description={x.summary} noindex={x.demo}>
+  <article>
+    <header class="container page-head">
+      <nav class="crumbs mono" aria-label="Ruta">
+        <a href={url('/procesos/')}>Procesos y herramientas</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{code}</span>
+      </nav>
+      <p class="label">{x.type}</p>
+      {x.demo && <span class="stamp stamp--demo">Entrada de demostración · contenido ficticio</span>}
+      <h1 class="ptitle">{x.title}</h1>
+      <p class="lead">{x.summary}</p>
+      {
+        !!x.tools?.length && (
+          <p class="mono tools">
+            <span class="muted">Herramientas</span> {x.tools.join(' · ')}
+          </p>
+        )
+      }
+    </header>
+
+    {
+      blocks.length > 0 && (
+        <section class="container section--tight" aria-labelledby="planteamiento">
+          <SectionHead code={next()} title="Planteamiento" id="planteamiento" />
+          <dl class="blocks">
+            {blocks.map((b) => (
+              <div>
+                <dt class="label">{b.title}</dt>
+                <dd>{b.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      !!(x.howItWorks?.length || x.example) && (
+        <section class="container section--tight" aria-labelledby="funcionamiento">
+          <SectionHead code={next()} title="Funcionamiento" id="funcionamiento" />
+          <div class="how">
+            {!!x.howItWorks?.length && (
+              <ol class="list-num how__steps">
+                {x.howItWorks.map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ol>
+            )}
+            {x.example && (
+              <div class="io">
+                <p class="label">Ejemplo de entrada y salida</p>
+                <div class="io__row">
+                  <div class="io__box">
+                    <span class="label">Entrada</span>
+                    <p class="mono">{x.example.input}</p>
+                  </div>
+                  <span class="io__arrow" aria-hidden="true">
+                    →
+                  </span>
+                  <div class="io__box io__box--out">
+                    <span class="label">Salida</span>
+                    <p class="mono">{x.example.output}</p>
+                  </div>
+                </div>
+                {x.example.note && <p class="mono muted io__note">{x.example.note}</p>}
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      !!x.workflow?.length && (
+        <section class="container section--tight" aria-labelledby="secuencia">
+          <SectionHead code={next()} title="Secuencia y tiempos" id="secuencia" />
+          <WorkflowTimeline steps={x.workflow} group={`${x.slug}-wf`} />
+        </section>
+      )
+    }
+
+    {
+      !!x.media?.length && (
+        <section class="container section--tight" aria-labelledby="esquemas">
+          <SectionHead code={next()} title="Capturas y esquemas" id="esquemas" />
+          <div class="media">
+            {x.media.map((m, i) => (
+              <MediaFigure item={m} group={x.slug} code={`E-${String(i + 1).padStart(2, '0')}`} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      !!x.code?.length && (
+        <section class="container section--tight" aria-labelledby="codigo">
+          <SectionHead code={next()} title="Código" id="codigo" />
+          <div class="stack">
+            {x.code.map((s) => (
+              <CodeBlock snippet={s} demo={x.demo} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      !!(x.limitations?.length || x.applications?.length) && (
+        <section class="container section--tight" aria-labelledby="limites">
+          <SectionHead code={next()} title="Límites y aplicaciones" id="limites" />
+          <div class="cols">
+            {!!x.limitations?.length && (
+              <div>
+                <h3 class="label col-h">Limitaciones</h3>
+                <ul class="list-dash">
+                  {x.limitations.map((l) => (
+                    <li>{l}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!!x.applications?.length && (
+              <div>
+                <h3 class="label col-h">Posibles aplicaciones</h3>
+                <ul class="list-dash">
+                  {x.applications.map((l) => (
+                    <li>{l}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <aside class="container section--tight" aria-labelledby="rel">
+          <h2 class="label" id="rel">
+            Proyectos donde se ha utilizado
+          </h2>
+          <ul class="related">
+            {related.map((p) => (
+              <li>
+                <a href={url(`/proyectos/${p.slug}/`)}>{p.title}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .crumbs a {
+    text-decoration: none;
+  }
+
+  .page-head {
+    justify-items: start;
+  }
+
+  .page-head .ptitle {
+    font-size: var(--step-3);
+    max-width: 24ch;
+  }
+
+  .tools {
+    font-size: 0.8125rem;
+  }
+
+  .blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px clamp(24px, 3vw, 48px);
+    margin: 0;
+  }
+
+  .blocks dd {
+    margin: 8px 0 0;
+    font-size: 1.0625rem;
+    color: var(--ink-2);
+  }
+
+  .how {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px clamp(24px, 4vw, 64px);
+    align-items: start;
+  }
+
+  .io {
+    display: grid;
+    gap: 12px;
+  }
+
+  .io__row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .io__box {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding: 14px;
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+  }
+
+  .io__box--out {
+    border-color: var(--accent);
+  }
+
+  .io__box p {
+    font-size: 0.8125rem;
+  }
+
+  .io__arrow {
+    align-self: center;
+    color: var(--accent);
+  }
+
+  .io__note {
+    font-size: 0.75rem;
+  }
+
+  .media {
+    display: grid;
+    gap: 32px;
+  }
+
+  .stack {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px clamp(24px, 3vw, 48px);
+  }
+
+  .col-h {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+  }
+
+  .related {
+    list-style: none;
+    margin-top: 12px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .related a {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+
+  @media (max-width: 960px) {
+    .how {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .io__row {
+      grid-template-columns: 1fr;
+    }
+
+    .io__arrow {
+      rotate: 90deg;
+      justify-self: center;
+    }
+  }
+</style>

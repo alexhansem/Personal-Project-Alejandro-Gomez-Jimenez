@@ -1,0 +1,402 @@
+---
+/**
+ * Visor a pantalla completa para planos, detalles y capturas.
+ * Se abre desde cualquier elemento con `data-viewer` (ver MediaFigure.astro).
+ */
+---
+
+<dialog class="viewer" id="viewer" aria-label="Visor de imágenes">
+  <div class="viewer__bar">
+    <p class="viewer__count mono" aria-live="polite"><span data-v-index>1</span> / <span data-v-total>1</span></p>
+    <p class="viewer__caption" data-v-caption></p>
+    <div class="viewer__tools" role="toolbar" aria-label="Controles del visor">
+      <button type="button" class="vbtn" data-v-action="out" aria-label="Reducir (tecla -)" title="Reducir (−)">−</button>
+      <span class="viewer__zoom mono" data-v-zoom aria-live="off">100 %</span>
+      <button type="button" class="vbtn" data-v-action="in" aria-label="Ampliar (tecla +)" title="Ampliar (+)">+</button>
+      <button type="button" class="vbtn vbtn--text" data-v-action="fit" title="Ajustar a pantalla (0)">Ajustar</button>
+      <button type="button" class="vbtn vbtn--text" data-v-action="actual" title="Tamaño real (1)">1:1</button>
+      <a class="vbtn vbtn--text" data-v-original href="#" target="_blank" rel="noopener">Original ↗</a>
+      <button type="button" class="vbtn" data-v-action="close" aria-label="Cerrar visor (Esc)" title="Cerrar (Esc)">✕</button>
+    </div>
+  </div>
+
+  <div class="viewer__stage" data-v-stage>
+    <img class="viewer__img" data-v-img alt="" draggable="false" />
+    <p class="viewer__status mono" data-v-status hidden></p>
+    <button type="button" class="vnav vnav--prev" data-v-action="prev" aria-label="Anterior">←</button>
+    <button type="button" class="vnav vnav--next" data-v-action="next" aria-label="Siguiente">→</button>
+  </div>
+
+  <div class="viewer__foot">
+    <ol class="viewer__thumbs" data-v-thumbs></ol>
+    <p class="viewer__hint mono">Rueda o pellizco: zoom · Arrastrar: desplazar · Doble clic: ampliar · ← →: cambiar</p>
+  </div>
+</dialog>
+
+<style is:global>
+  .viewer {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #e9e6dd;
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .viewer[open] {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .viewer::backdrop {
+    background: rgb(27 27 25 / 0.6);
+  }
+
+  .viewer__bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 12px 8px 20px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+  }
+
+  .viewer__caption {
+    font-size: 0.9375rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .viewer__tools {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .viewer__zoom {
+    min-width: 5ch;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .vbtn {
+    display: inline-grid;
+    place-items: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    background: var(--sheet);
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .vbtn--text {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .vbtn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .viewer__stage {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0 / 32px 32px,
+      #e9e6dd;
+    user-select: none;
+  }
+
+  .viewer__stage[data-zoomed='true'] {
+    cursor: grab;
+  }
+
+  .viewer__stage[data-dragging='true'] {
+    cursor: grabbing;
+  }
+
+  .viewer__img {
+    max-width: none;
+    background: #fff;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+
+  .viewer__status {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    color: var(--muted);
+    text-align: center;
+    padding: 24px;
+  }
+
+  .vnav {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 48px;
+    height: 72px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  .vnav:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .vnav--prev {
+    left: 12px;
+  }
+
+  .vnav--next {
+    right: 12px;
+  }
+
+  .vnav[hidden] {
+    display: none;
+  }
+
+  .viewer__foot {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 20px;
+    border-top: 1px solid var(--ink);
+    background: var(--paper);
+  }
+
+  .viewer__thumbs {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px;
+  }
+
+  .viewer__thumbs button {
+    display: block;
+    width: 72px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    opacity: 0.6;
+  }
+
+  .viewer__thumbs button[aria-current='true'] {
+    border-color: var(--accent);
+    outline: 1px solid var(--accent);
+    opacity: 1;
+  }
+
+  .viewer__thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .viewer__hint {
+    font-size: 0.6875rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 760px) {
+    .viewer__bar {
+      grid-template-columns: auto 1fr;
+      padding: 8px 8px 8px 14px;
+    }
+
+    .viewer__caption {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      white-space: normal;
+      font-size: 0.8125rem;
+    }
+
+    .viewer__tools {
+      justify-content: flex-end;
+    }
+
+    .viewer__tools [data-v-action='actual'],
+    .viewer__zoom,
+    .viewer__hint {
+      display: none;
+    }
+
+    .vbtn {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 8px;
+    }
+
+    .vnav {
+      width: 40px;
+      height: 56px;
+      top: auto;
+      bottom: 12px;
+      translate: none;
+    }
+
+    .viewer__foot {
+      grid-template-columns: 1fr;
+      padding: 8px 12px;
+    }
+  }
+</style>
+
+<script>
+  import { PanZoom } from '../scripts/panzoom';
+
+  interface Item {
+    src: string;
+    alt: string;
+    caption: string;
+    thumb: string;
+  }
+
+  const dialog = document.getElementById('viewer') as HTMLDialogElement | null;
+
+  if (dialog) {
+    const stage = dialog.querySelector<HTMLElement>('[data-v-stage]')!;
+    const img = dialog.querySelector<HTMLImageElement>('[data-v-img]')!;
+    const status = dialog.querySelector<HTMLElement>('[data-v-status]')!;
+    const caption = dialog.querySelector<HTMLElement>('[data-v-caption]')!;
+    const indexEl = dialog.querySelector<HTMLElement>('[data-v-index]')!;
+    const totalEl = dialog.querySelector<HTMLElement>('[data-v-total]')!;
+    const zoomEl = dialog.querySelector<HTMLElement>('[data-v-zoom]')!;
+    const original = dialog.querySelector<HTMLAnchorElement>('[data-v-original]')!;
+    const thumbs = dialog.querySelector<HTMLOListElement>('[data-v-thumbs]')!;
+    const prev = dialog.querySelector<HTMLButtonElement>('[data-v-action="prev"]')!;
+    const next = dialog.querySelector<HTMLButtonElement>('[data-v-action="next"]')!;
+
+    let items: Item[] = [];
+    let current = 0;
+    let opener: HTMLElement | null = null;
+    let pz: PanZoom | null = null;
+
+    const setStatus = (text: string | null) => {
+      status.hidden = !text;
+      status.textContent = text ?? '';
+    };
+
+    const show = (i: number) => {
+      current = (i + items.length) % items.length;
+      const item = items[current];
+      indexEl.textContent = String(current + 1);
+      totalEl.textContent = String(items.length);
+      caption.textContent = item.caption || item.alt;
+      original.href = item.src;
+      prev.hidden = next.hidden = items.length < 2;
+      thumbs.querySelectorAll('button').forEach((b, k) => b.setAttribute('aria-current', String(k === current)));
+      thumbs.querySelectorAll('button')[current]?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
+      img.style.visibility = 'hidden';
+      setStatus('Cargando…');
+      img.alt = item.alt;
+      img.onload = () => {
+        setStatus(null);
+        img.style.visibility = 'visible';
+        pz?.setContentSize(img.naturalWidth || 1600, img.naturalHeight || 1000);
+      };
+      img.onerror = () => {
+        img.style.visibility = 'hidden';
+        setStatus('No se ha podido cargar la imagen. Comprueba la ruta del archivo en los datos del proyecto.');
+      };
+      img.src = item.src;
+    };
+
+    const open = (group: string, src: string, trigger: HTMLElement) => {
+      const nodes = [...document.querySelectorAll<HTMLElement>(`[data-viewer][data-group="${CSS.escape(group)}"]`)];
+      // Una misma imagen puede aparecer dos veces (portada y galería): se deduplica.
+      const seen = new Set<string>();
+      items = [];
+      for (const n of nodes) {
+        const s = n.dataset.src!;
+        if (seen.has(s)) continue;
+        seen.add(s);
+        items.push({ src: s, alt: n.dataset.alt ?? '', caption: n.dataset.caption ?? '', thumb: n.dataset.thumb ?? s });
+      }
+      thumbs.innerHTML = '';
+      thumbs.hidden = items.length < 2;
+      items.forEach((it, k) => {
+        const li = document.createElement('li');
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', `Ver ${k + 1}: ${it.caption || it.alt}`);
+        const t = document.createElement('img');
+        t.src = it.thumb;
+        t.alt = '';
+        t.loading = 'lazy';
+        b.append(t);
+        b.addEventListener('click', () => show(k));
+        li.append(b);
+        thumbs.append(li);
+      });
+      opener = trigger;
+      dialog.showModal();
+      document.documentElement.style.overflow = 'hidden';
+      pz ??= new PanZoom(stage, img, {
+        maxScale: 6,
+        onChange: ({ scale }) => {
+          zoomEl.textContent = `${Math.round(scale * 100)} %`;
+        },
+      });
+      show(Math.max(0, items.findIndex((it) => it.src === src)));
+    };
+
+    document.addEventListener('click', (e) => {
+      const trigger = (e.target as HTMLElement).closest<HTMLElement>('[data-viewer]');
+      if (!trigger || trigger.dataset.broken === 'true') return;
+      e.preventDefault();
+      open(trigger.dataset.group ?? 'default', trigger.dataset.src!, trigger);
+    });
+
+    dialog.addEventListener('click', (e) => {
+      const action = (e.target as HTMLElement).closest<HTMLElement>('[data-v-action]')?.dataset.vAction;
+      if (!action || !pz) return;
+      if (action === 'close') dialog.close();
+      else if (action === 'prev') show(current - 1);
+      else if (action === 'next') show(current + 1);
+      else if (action === 'in') pz.zoomBy(1.25);
+      else if (action === 'out') pz.zoomBy(0.8);
+      else if (action === 'fit') pz.fit();
+      else if (action === 'actual') pz.actual();
+    });
+
+    dialog.addEventListener('keydown', (e) => {
+      if (!pz) return;
+      if (pz.handleKey(e)) {
+        e.preventDefault();
+        return;
+      }
+      if (e.key === 'ArrowLeft' && items.length > 1) show(current - 1);
+      else if (e.key === 'ArrowRight' && items.length > 1) show(current + 1);
+    });
+
+    dialog.addEventListener('close', () => {
+      document.documentElement.style.overflow = '';
+      img.removeAttribute('src');
+      opener?.focus();
+    });
+  }
+</script>

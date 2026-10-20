@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import WorkflowTimeline from '../components/WorkflowTimeline.astro';
+import EmptyState from '../components/EmptyState.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+import { profile } from '../config/profile';
+import { activeCategories, featuredProjects, projectIndex, projects, processes, sheetCode } from '../lib/content';
+import { url } from '../lib/url';
+
+const [lead, ...rest] = featuredProjects;
+const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.find((p) => p.workflow?.length);
+---
+
+<BaseLayout>
+  <section class="hero container">
+    <div class="hero__main">
+      <p class="label hero__kicker">Portfolio técnico · Edificación</p>
+      <h1 class="hero__name">
+        {profile.name}
+        {profile.isExample && <span class="stamp stamp--demo hero__stamp">Ejemplo</span>}
+      </h1>
+      <p class="hero__headline">{profile.headline}</p>
+      <p class="lead hero__intro">{profile.intro}</p>
+      <div class="hero__actions">
+        <a class="btn btn--solid" href={url('/proyectos/')}>Ver proyectos</a>
+        <a class="btn" href={url('/metodologia/')}>Cómo trabajo</a>
+      </div>
+    </div>
+
+    <aside class="hero__index" aria-labelledby="areas">
+      <div class="hero__index-head">
+        <h2 id="areas" class="label">Áreas de trabajo</h2>
+        <span class="mono muted">{projects.length} proy. · {processes.length} proc.</span>
+      </div>
+      {
+        activeCategories.length ? (
+          <ul class="areas">
+            {activeCategories.map((c) => (
+              <li>
+                <a href={url(`/proyectos/?categoria=${c.id}`)}>
+                  <span class="mono areas__code">{c.code}</span>
+                  <span class="areas__label">{c.label}</span>
+                  <span class="mono areas__count">{String(c.count).padStart(2, '0')}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="muted areas__empty">Las áreas aparecerán al publicar proyectos.</p>
+        )
+      }
+    </aside>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="destacados">
+    <SectionHead code="01" title="Proyectos destacados" id="destacados">
+      {projects.length > 0 && <a class="link-arrow" href={url('/proyectos/')}>Todos los proyectos</a>}
+    </SectionHead>
+    {
+      lead ? (
+        <div class="featured">
+          <div class="featured__lead">
+            <ProjectCard project={lead} code={sheetCode('P', projectIndex(lead.slug))} size="lg" />
+          </div>
+          {rest.length > 0 && (
+            <div class="featured__rest">
+              {rest.map((p) => (
+                <ProjectCard project={p} code={sheetCode('P', projectIndex(p.slug))} />
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        <EmptyState
+          title="Todavía no hay proyectos publicados."
+          hint="Añade un archivo en src/content/projects/ (copia _PLANTILLA.ts.txt) y marca published: true."
+        />
+      )
+    }
+  </section>
+
+  {
+    showcase?.workflow && (
+      <section class="section--tight container" aria-labelledby="proceso">
+        <SectionHead code="02" title="Cómo se desarrolla un trabajo" id="proceso">
+          <a class="link-arrow" href={url(`/proyectos/${showcase.slug}/#secuencia`)}>
+            Ver la secuencia completa
+          </a>
+        </SectionHead>
+        <div class="showcase">
+          <div class="showcase__text">
+            <p class="label">Ejemplo · {sheetCode('P', projectIndex(showcase.slug))}</p>
+            <h3 class="showcase__title">
+              <a href={url(`/proyectos/${showcase.slug}/`)}>{showcase.title}</a>
+            </h3>
+            {showcase.demo && <span class="stamp stamp--demo">Demo · tiempos ficticios</span>}
+            <p class="muted">
+              Cada proyecto documenta qué hace la IA, qué se decide y revisa con criterio propio y qué ejecuta el
+              software, con el tiempo de cada paso.
+            </p>
+          </div>
+          <div class="showcase__wf">
+            <WorkflowTimeline steps={showcase.workflow} group={`home-${showcase.slug}`} showSteps={false} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section--tight container" aria-labelledby="enfoque">
+    <SectionHead code={showcase?.workflow ? '03' : '02'} title="Enfoque de trabajo" id="enfoque">
+      <a class="link-arrow" href={url('/metodologia/')}>Metodología</a>
+    </SectionHead>
+    <ol class="approach">
+      {
+        profile.approach.map((a, i) => (
+          <li>
+            <span class="mono approach__n">{String(i + 1).padStart(2, '0')}</span>
+            <p>{a}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="section--tight container" aria-labelledby="contacto">
+    <SectionHead code={showcase?.workflow ? '04' : '03'} title="Contacto" id="contacto" />
+    <ContactLinks layout="inline" />
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 96px);
+    padding-block: clamp(40px, 6vw, 88px) clamp(40px, 5vw, 72px);
+    align-items: end;
+  }
+
+  .hero__main {
+    display: grid;
+    gap: 20px;
+    align-content: end;
+  }
+
+  .hero__name {
+    font-size: var(--step-4);
+    font-weight: 540;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+  }
+
+  .hero__stamp {
+    font-size: 0.75rem;
+  }
+
+  .hero__headline {
+    font-size: var(--step-2);
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+    max-width: 30ch;
+  }
+
+  .hero__intro {
+    max-width: 58ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .hero__index {
+    border-top: 1.5px solid var(--ink);
+    align-self: end;
+  }
+
+  .hero__index-head {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 10px;
+    border-bottom: 1px solid var(--ink);
+    font-size: 0.75rem;
+  }
+
+  .hero__index-head h2 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .areas {
+    list-style: none;
+  }
+
+  .areas a {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    transition: padding var(--t-fast) var(--ease);
+  }
+
+  .areas a:hover {
+    padding-left: 8px;
+  }
+
+  .areas__code {
+    color: var(--accent);
+  }
+
+  .areas__count {
+    color: var(--muted);
+  }
+
+  .areas__empty {
+    padding-block: 16px;
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(28px, 4vw, 64px);
+  }
+
+  .featured__rest {
+    display: grid;
+    gap: clamp(28px, 3vw, 48px);
+    align-content: start;
+  }
+
+  .showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: start;
+  }
+
+  .showcase__text {
+    display: grid;
+    gap: 12px;
+    justify-items: start;
+  }
+
+  .showcase__title {
+    font-size: var(--step-1);
+  }
+
+  .showcase__title a {
+    text-decoration: none;
+  }
+
+  .approach {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+  }
+
+  .approach li {
+    display: grid;
+    gap: 28px;
+    align-content: start;
+    padding: 18px 24px 24px 0;
+    border-right: 1px solid var(--line);
+    font-size: 1.0625rem;
+    line-height: 1.4;
+  }
+
+  .approach li + li {
+    padding-left: 24px;
+  }
+
+  .approach li:last-child {
+    border-right: 0;
+  }
+
+  .approach__n {
+    color: var(--accent);
+  }
+
+  @media (max-width: 960px) {
+    .hero,
+    .featured,
+    .showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .approach {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .approach li {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .approach li:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .approach li:nth-child(2n + 1) {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .approach {
+      grid-template-columns: 1fr;
+    }
+
+    .approach li {
+      border-right: 0;
+      padding-left: 0 !important;
+      gap: 10px;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+// PLANTILLA DE PROYECTO
+// 1. Copia este archivo en src/content/projects/<slug>.ts (cambia la extensión a .ts).
+// 2. Rellena solo los campos de los que tengas información real. Borra el resto.
+// 3. Copia imágenes y PDF a public/proyectos/<slug>/.
+// 4. Cuando esté listo, cambia `published` a true.
+
+import type { Project } from '../types';
+
+const project: Project = {
+  slug: 'mi-proyecto',
+  title: 'Título del proyecto',
+  demo: false,
+  published: false,
+  featured: false,
+  sortDate: '2026-10',
+  period: 'Octubre 2026',
+  status: 'en desarrollo',
+  categories: ['delineacion'],
+
+  summary: 'Una o dos líneas que expliquen qué es y qué se resolvió.',
+  context: '',
+  objective: '',
+  problem: '',
+  participation: [],
+  tools: [],
+  methodology: [],
+  deliverables: [],
+
+  // Secuencia de trabajo: qué hizo la IA, qué hiciste tú y qué hizo el software.
+  // provenance: 'medido' (cronometrado), 'estimado' o 'pendiente' (sin dato).
+  workflow: [
+    {
+      title: 'Paso',
+      actor: 'humano', // 'ia' | 'humano' | 'software'
+      tool: '',
+      input: '',
+      output: '',
+      phase: 'generacion', // o 'revision'
+      time: { minutes: 0, provenance: 'pendiente' },
+    },
+  ],
+
+  // Comparativa con el método convencional. Sin `reference` queda "pendiente de medir".
+  comparison: {
+    task: '',
+    used: {
+      label: 'Método utilizado',
+      generation: { provenance: 'pendiente' },
+      review: { provenance: 'pendiente' },
+    },
+  },
+
+  media: [
+    // { src: '/proyectos/mi-proyecto/planta.png', alt: 'Planta baja', caption: 'Planta baja · E 1:100', kind: 'plano', ratio: 1.414 },
+  ],
+  documents: [
+    // { id: 'planos', title: 'Juego de planos', src: '/proyectos/mi-proyecto/planos.pdf', sheet: 'A3', pages: 12 },
+  ],
+
+  results: [],
+  limitations: [],
+  checks: [],
+};
+
+export default project;

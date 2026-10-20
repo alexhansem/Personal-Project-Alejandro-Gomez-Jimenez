@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  /** Indicación para quien mantiene la web (solo en desarrollo). */
+  hint?: string;
+}
+const { title, hint } = Astro.props;
+const dev = import.meta.env.DEV;
+---
+
+<div class="empty">
+  <span class="mono empty__code" aria-hidden="true">—</span>
+  <p class="empty__title">{title}</p>
+  <slot />
+  {dev && hint && <p class="empty__hint mono">{hint}</p>}
+</div>
+
+<style>
+  .empty {
+    display: grid;
+    gap: 8px;
+    padding: clamp(32px, 6vw, 72px) 24px;
+    border: 1px dashed var(--line);
+    text-align: center;
+    justify-items: center;
+    background: var(--paper);
+  }
+
+  .empty__code {
+    color: var(--accent);
+  }
+
+  .empty__title {
+    font-size: var(--step-1);
+  }
+
+  .empty__hint {
+    font-size: 0.75rem;
+    color: var(--muted);
+    max-width: 60ch;
+  }
+</style>

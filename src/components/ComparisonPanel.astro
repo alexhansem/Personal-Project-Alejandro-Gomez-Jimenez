@@ -1,0 +1,480 @@
+---
+/**
+ * Comparativa reutilizable: método convencional frente a método utilizado.
+ * Separa generación, revisión y total. Solo calcula ahorro y porcentaje
+ * cuando los dos totales son medidos (ver evaluateComparison).
+ */
+import type { Comparison, MethodRecord, TimeValue } from '../content/types';
+import { evaluateComparison, formatMinutes, formatPct, hasValue, totalOf } from '../lib/time';
+import TimeTag from './TimeTag.astro';
+
+interface Props {
+  comparison: Comparison;
+  /** Encabezado opcional (ej. título del proyecto en la página de comparativas). */
+  heading?: string;
+  headingHref?: string;
+  compact?: boolean;
+}
+const { comparison: c, heading, headingHref, compact = false } = Astro.props;
+const result = evaluateComparison(c);
+
+const methods: { key: 'reference' | 'used'; tag: string; m?: MethodRecord }[] = [
+  { key: 'reference', tag: 'Referencia convencional', m: c.reference },
+  { key: 'used', tag: 'Método utilizado', m: c.used },
+];
+
+// Escala común: el mayor de los valores conocidos.
+const valueOf = (t: TimeValue) => (hasValue(t) ? t.minutes : 0);
+const scaleMax = Math.max(
+  1,
+  ...methods.flatMap(({ m }) =>
+    m ? [valueOf(totalOf(m)), valueOf(m.generation) + valueOf(m.review)] : [],
+  ),
+);
+// Si falta alguna fase, se reserva espacio para su marcador "pendiente".
+const anyMissing = methods.some(({ m }) => !m || !hasValue(m.generation) || !hasValue(m.review));
+const scale = scaleMax * (anyMissing ? 1.35 : 1);
+const pct = (t: TimeValue) => (valueOf(t) / scale) * 100;
+
+const statusText = {
+  valida: 'Comparación válida · totales medidos',
+  'no-comparable': 'Sin cálculo de ahorro · hay estimaciones',
+  pendiente: 'Comparación pendiente de medir',
+}[result.status];
+
+// Diferencias por fase, solo con datos medidos en ambos lados.
+const phaseDiff = (a?: TimeValue, b?: TimeValue) =>
+  hasValue(a) && hasValue(b) && a.provenance === 'medido' && b.provenance === 'medido' ? a.minutes - b.minutes : undefined;
+const genDiff = phaseDiff(c.reference?.generation, c.used.generation);
+const revDiff = phaseDiff(c.reference?.review, c.used.review);
+const signed = (n: number) => (n > 0 ? `−${formatMinutes(n)}` : n < 0 ? `+${formatMinutes(-n)}` : '0 min');
+
+const details: { k: string; ref?: string; used?: string }[] = [
+  { k: 'Correcciones', ref: c.reference?.corrections, used: c.used.corrections },
+  { k: 'Intervención humana', ref: c.reference?.humanIntervention, used: c.used.humanIntervention },
+].filter((d) => d.ref || d.used);
+---
+
+<article class:list={['cmpn', `cmpn--${result.status}`, { 'cmpn--compact': compact }]}>
+  <header class="cmpn__head">
+    <div>
+      {
+        heading && (
+          <p class="label">
+            {headingHref ? <a href={headingHref}>{heading}</a> : heading}
+          </p>
+        )
+      }
+      <h3 class="cmpn__task">{c.task}</h3>
+    </div>
+    <span class:list={['stamp', result.status === 'valida' ? 'stamp--ok' : 'stamp--muted']}>{statusText}</span>
+  </header>
+
+  <div class="cmpn__methods">
+    {
+      methods.map(({ key, tag, m }) =>
+        m ? (
+          <section class={`cmpn__method cmpn__method--${key}`}>
+            <div class="cmpn__mhead">
+              <p class="label">{tag}</p>
+              <h4>{m.label}</h4>
+              {m.description && !compact && <p class="muted cmpn__mdesc">{m.description}</p>}
+            </div>
+            <div class="cmpn__bar" role="img" aria-label={`Generación ${hasValue(m.generation) ? formatMinutes(m.generation.minutes) : 'pendiente'}, revisión ${hasValue(m.review) ? formatMinutes(m.review.minutes) : 'pendiente'}`}>
+              {hasValue(m.generation) ? (
+                <span class={`cmpn__seg cmpn__seg--gen cmpn__seg--${m.generation.provenance}`} style={`width: ${pct(m.generation)}%`} />
+              ) : (
+                <span class="cmpn__seg cmpn__seg--missing">generación pendiente</span>
+              )}
+              {hasValue(m.review) ? (
+                <span class={`cmpn__seg cmpn__seg--rev cmpn__seg--${m.review.provenance}`} style={`width: ${pct(m.review)}%`} />
+              ) : (
+                <span class="cmpn__seg cmpn__seg--missing">revisión pendiente</span>
+              )}
+            </div>
+            <dl class="cmpn__times">
+              <div>
+                <dt class="label">
+                  <span class="key key--gen" aria-hidden="true" />
+                  Generación
+                </dt>
+                <dd>
+                  <TimeTag time={m.generation} size="sm" />
+                </dd>
+              </div>
+              <div>
+                <dt class="label">
+                  <span class="key key--rev" aria-hidden="true" />
+                  Revisión
+                </dt>
+                <dd>
+                  <TimeTag time={m.review} size="sm" />
+                </dd>
+              </div>
+              <div>
+                <dt class="label">Total</dt>
+                <dd>
+                  <TimeTag time={totalOf(m)} />
+                </dd>
+              </div>
+            </dl>
+          </section>
+        ) : (
+          <section class="cmpn__method cmpn__method--empty">
+            <div class="cmpn__mhead">
+              <p class="label">{tag}</p>
+              <h4>Pendiente de medir</h4>
+            </div>
+            <div class="cmpn__bar">
+              <span class="cmpn__seg cmpn__seg--missing">sin referencia medida</span>
+            </div>
+            <p class="muted cmpn__mdesc">
+              Para comparar hace falta registrar el tiempo de la misma tarea con el método convencional.
+            </p>
+          </section>
+        ),
+      )
+    }
+  </div>
+
+  <div class="cmpn__result">
+    {
+      result.status === 'valida' && result.differenceMinutes !== undefined ? (
+        <>
+          <div class="cmpn__big">
+            <span class="label">Diferencia en tiempo total</span>
+            <p class="cmpn__num">{signed(result.differenceMinutes)}</p>
+            {result.differencePct !== undefined && (
+              <p class="cmpn__pct mono">
+                {result.differencePct >= 0 ? '−' : '+'}
+                {formatPct(result.differencePct)} respecto a la referencia
+              </p>
+            )}
+          </div>
+          <div class="cmpn__phases mono">
+            {genDiff !== undefined && <p>Generación: {signed(genDiff)}</p>}
+            {revDiff !== undefined && <p>Revisión: {signed(revDiff)}</p>}
+            <p class="muted">Calculado solo con tiempos totales medidos (generación + revisión).</p>
+          </div>
+        </>
+      ) : (
+        <p class="cmpn__reason mono">{result.reason}</p>
+      )
+    }
+  </div>
+
+  {
+    !compact && (details.length > 0 || c.deliverables || c.quality || c.observations || c.limitations) && (
+      <div class="cmpn__details">
+        {details.length > 0 && (
+          <table class="cmpn__table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <span class="visually-hidden">Aspecto</span>
+                </th>
+                <th scope="col" class="label">
+                  Referencia
+                </th>
+                <th scope="col" class="label">
+                  Método utilizado
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {details.map((d) => (
+                <tr>
+                  <th scope="row" class="label">
+                    {d.k}
+                  </th>
+                  <td>{d.ref ?? '—'}</td>
+                  <td>{d.used ?? '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        <dl class="cmpn__notes">
+          {c.deliverables && (
+            <div>
+              <dt class="label">Entregables</dt>
+              <dd>{c.deliverables.join(' · ')}</dd>
+            </div>
+          )}
+          {c.quality && (
+            <div>
+              <dt class="label">Calidad y utilidad</dt>
+              <dd>{c.quality}</dd>
+            </div>
+          )}
+          {c.observations && (
+            <div>
+              <dt class="label">Observaciones</dt>
+              <dd>{c.observations}</dd>
+            </div>
+          )}
+          {c.limitations && (
+            <div>
+              <dt class="label">Limitaciones</dt>
+              <dd>
+                <ul class="list-dash">
+                  {c.limitations.map((l) => (
+                    <li>{l}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          )}
+        </dl>
+      </div>
+    )
+  }
+</article>
+
+<style>
+  .cmpn {
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+  }
+
+  .cmpn__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .cmpn__head a {
+    text-decoration: none;
+  }
+
+  .cmpn__task {
+    font-size: var(--step-1);
+    margin-top: 4px;
+  }
+
+  .stamp--ok {
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .cmpn__methods {
+    display: grid;
+  }
+
+  .cmpn__method {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.9fr) 2fr minmax(260px, 1.1fr);
+    gap: 16px 28px;
+    align-items: center;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cmpn__method--empty {
+    grid-template-columns: minmax(180px, 0.9fr) 2fr minmax(260px, 1.1fr);
+  }
+
+  .cmpn__mhead h4 {
+    font-size: 1rem;
+    font-weight: 560;
+    margin-top: 2px;
+  }
+
+  .cmpn__mdesc {
+    font-size: 0.8125rem;
+    margin-top: 4px;
+  }
+
+  .cmpn__bar {
+    display: flex;
+    gap: 2px;
+    height: 28px;
+    background:
+      repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px 10%);
+    border-left: 1px solid var(--ink);
+  }
+
+  .cmpn__seg {
+    display: block;
+    height: 100%;
+  }
+
+  .cmpn__seg--gen {
+    --c: var(--ink);
+  }
+
+  .cmpn__seg--rev {
+    --c: var(--actor-software);
+  }
+
+  .cmpn__method--used .cmpn__seg--gen {
+    --c: var(--accent);
+  }
+
+  .cmpn__seg--medido {
+    background: var(--c);
+  }
+
+  .cmpn__seg--estimado {
+    background: repeating-linear-gradient(-45deg, var(--c) 0 2px, transparent 2px 6px);
+    box-shadow: inset 0 0 0 1.5px var(--c);
+  }
+
+  .cmpn__seg--missing {
+    flex: 1;
+    min-width: 6.5rem;
+    padding-inline: 6px;
+    white-space: nowrap;
+    display: grid;
+    place-items: center;
+    border: 1.5px dashed var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--muted);
+    background: var(--sheet);
+  }
+
+  .cmpn__times {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
+    gap: 12px 20px;
+    margin: 0;
+  }
+
+  .cmpn__times dd {
+    margin: 2px 0 0;
+  }
+
+  .cmpn__times dt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .key {
+    width: 10px;
+    height: 10px;
+    background: var(--ink);
+  }
+
+  .key--rev {
+    background: var(--actor-software);
+  }
+
+  .cmpn__method--used .key--gen {
+    background: var(--accent);
+  }
+
+  .cmpn__result {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    gap: 16px 48px;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cmpn__num {
+    font-size: var(--step-4);
+    font-weight: 520;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cmpn__pct {
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .cmpn__phases {
+    display: grid;
+    gap: 4px;
+    font-size: 0.8125rem;
+    padding-bottom: 6px;
+  }
+
+  .cmpn__reason {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
+    color: var(--ink-2);
+    padding-left: 12px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .cmpn__details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 48px;
+    padding: 22px 24px;
+  }
+
+  .cmpn__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    align-self: start;
+  }
+
+  .cmpn__table th,
+  .cmpn__table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .cmpn__notes {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+  }
+
+  .cmpn__notes dd {
+    margin: 2px 0 0;
+    color: var(--ink-2);
+  }
+
+  .cmpn--compact .cmpn__method {
+    padding-block: 16px;
+  }
+
+  @media (max-width: 1100px) {
+    .cmpn__method,
+    .cmpn__method--empty {
+      grid-template-columns: 1fr;
+    }
+
+    .cmpn__times {
+      justify-content: start;
+      gap: 12px 32px;
+    }
+
+    .cmpn__details {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .cmpn__head,
+    .cmpn__method,
+    .cmpn__result,
+    .cmpn__details {
+      padding-inline: 16px;
+    }
+
+    .cmpn__result {
+      grid-template-columns: 1fr;
+    }
+
+    .cmpn__times {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

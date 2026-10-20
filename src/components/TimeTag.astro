@@ -1,0 +1,70 @@
+---
+import type { TimeValue } from '../content/types';
+import { formatTime, provenanceLabel } from '../lib/time';
+
+interface Props {
+  time?: TimeValue;
+  size?: 'sm' | 'md' | 'lg';
+}
+const { time = { provenance: 'pendiente' as const }, size = 'md' } = Astro.props;
+const p = time.provenance;
+const symbol = p === 'medido' ? '●' : p === 'estimado' ? '≈' : '';
+---
+
+<span class:list={['tt', `tt--${p}`, `tt--${size}`]} title={time.note ? `${provenanceLabel[p]} · ${time.note}` : provenanceLabel[p]}>
+  <span class="tt__value">{formatTime(time)}</span>
+  {
+    p !== 'pendiente' && (
+      <span class="tt__prov">
+        <span aria-hidden="true">{symbol}</span> {provenanceLabel[p].toLowerCase()}
+      </span>
+    )
+  }
+</span>
+
+<style>
+  .tt {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    white-space: nowrap;
+  }
+
+  .tt__value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 560;
+  }
+
+  .tt--sm .tt__value {
+    font-size: 0.9375rem;
+  }
+
+  .tt--md .tt__value {
+    font-size: 1.0625rem;
+  }
+
+  .tt--lg .tt__value {
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+  }
+
+  .tt__prov {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .tt--estimado .tt__prov {
+    color: var(--ink-2);
+  }
+
+  .tt--pendiente .tt__value {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    border-bottom: 1px dashed var(--muted);
+  }
+</style>

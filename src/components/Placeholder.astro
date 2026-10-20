@@ -1,0 +1,72 @@
+---
+/** Marcador de posición neutro: deja claro que falta una imagen real. */
+interface Props {
+  label?: string;
+  ratio?: number;
+  kind?: string;
+}
+const { label = 'Imagen pendiente', ratio = 1.414, kind } = Astro.props;
+---
+
+<div class="ph" style={`aspect-ratio: ${ratio}`} role="img" aria-label={`Marcador de posición: ${label}`}>
+  <svg class="ph__lines" viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="0" y1="0" x2="100" y2="70"></line>
+    <line x1="100" y1="0" x2="0" y2="70"></line>
+  </svg>
+  <span class="ph__text mono">
+    {kind && <span class="ph__kind">{kind}</span>}
+    <span>{label}</span>
+    <span class="ph__note">Marcador de posición</span>
+  </span>
+</div>
+
+<style>
+  .ph {
+    position: relative;
+    width: 100%;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0 / 24px 24px,
+      var(--paper-2);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .ph__lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ph__lines line {
+    stroke: var(--line);
+    stroke-width: 0.3;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .ph__text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    display: grid;
+    gap: 2px;
+    padding: 10px 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    text-align: center;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .ph__kind {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .ph__note {
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import { profile } from '../config/profile';
+import { hasDemoContent } from '../lib/content';
+
+const show = profile.isExample || hasDemoContent;
+---
+
+{
+  show && (
+    <div class="demo-banner" role="note">
+      <div class="container demo-banner__inner">
+        <span class="stamp stamp--demo">Versión de prueba</span>
+        <p>
+          {hasDemoContent && <>Los proyectos marcados <strong>DEMO</strong> son ficticios. </>}
+          {profile.isExample && <>Los datos de perfil marcados <strong>EJEMPLO</strong> son provisionales.</>}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .demo-banner {
+    border-bottom: 1px solid var(--accent);
+    background: var(--sheet);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  .demo-banner__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding-block: 8px;
+  }
+
+  strong {
+    font-weight: 500;
+  }
+</style>

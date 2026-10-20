@@ -1,0 +1,73 @@
+---
+/**
+ * Datos de contacto. Mientras el perfil sea de EJEMPLO no se generan enlaces
+ * activos: se muestran como texto marcado, para no enlazar a direcciones falsas.
+ */
+import { profile } from '../config/profile';
+
+interface Props {
+  layout?: 'inline' | 'stack';
+}
+const { layout = 'stack' } = Astro.props;
+const live = !profile.isExample;
+---
+
+<ul class:list={['contact', `contact--${layout}`]}>
+  {
+    profile.email && (
+      <li>
+        <span class="label">Correo</span>
+        {live ? (
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        ) : (
+          <span>
+            {profile.email} <span class="stamp stamp--demo">Ejemplo</span>
+          </span>
+        )}
+      </li>
+    )
+  }
+  {
+    profile.links.map((l) => (
+      <li>
+        <span class="label">Enlace</span>
+        {live ? (
+          <a href={l.href} rel="me noopener" target="_blank">
+            {l.label}
+          </a>
+        ) : (
+          <span>
+            {l.label} <span class="stamp stamp--demo">Ejemplo</span>
+          </span>
+        )}
+      </li>
+    ))
+  }
+  {
+    profile.location && (
+      <li>
+        <span class="label">Ubicación</span>
+        <span>{profile.location}</span>
+      </li>
+    )
+  }
+</ul>
+
+<style>
+  .contact {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .contact li {
+    display: grid;
+    gap: 2px;
+  }
+
+  .contact--inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+  }
+</style>
