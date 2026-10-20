@@ -193,6 +193,31 @@ export interface ProjectMethod {
   steps: MethodStep[];
 }
 
+/** Una fase del encargo, de la toma de datos a la entrega. */
+export interface ScopeStage {
+  title: string;
+  text: string;
+  /** Qué produce la fase (formatos, láminas, documentos). */
+  outputs?: string[];
+}
+
+/** Para quién está pensado el resultado y qué recibe. */
+export interface ScopeAudience {
+  /** Destinatario, ej. "Inversor". */
+  audience: string;
+  title: string;
+  text: string;
+  items?: string[];
+}
+
+/** Alcance completo del proyecto: sus fases y a quién sirve. */
+export interface ProjectScope {
+  title: string;
+  intro?: string;
+  stages: ScopeStage[];
+  audiences?: ScopeAudience[];
+}
+
 export interface Project {
   /** Identificador para la URL. Solo minúsculas, números y guiones. */
   slug: string;
@@ -233,6 +258,11 @@ export interface Project {
    * destacada antes del encargo.
    */
   method?: ProjectMethod;
+  /**
+   * Alcance del encargo cuando va más allá de un ejercicio: fases cubiertas y
+   * destinatarios del resultado. Se muestra como primera sección.
+   */
+  scope?: ProjectScope;
   context?: string;
   objective?: string;
   problem?: string;

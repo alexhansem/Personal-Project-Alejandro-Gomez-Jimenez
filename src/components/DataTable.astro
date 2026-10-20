@@ -7,9 +7,11 @@ interface Props {
 }
 const { table: t, code } = Astro.props;
 const isNum = (i: number) => t.numeric?.includes(i);
+// Con tres columnas o más, en móvil cada fila pasa a ser una ficha apilada.
+const stack = t.columns.length >= 3;
 ---
 
-<figure class="dt">
+<figure class:list={['dt', { 'dt--stack': stack }]}>
   {
     (t.title || code) && (
       <figcaption class="dt__head">
@@ -24,12 +26,12 @@ const isNum = (i: number) => t.numeric?.includes(i);
         <tr>{t.columns.map((c, i) => <th scope="col" class:list={{ num: isNum(i) }}>{c}</th>)}</tr>
       </thead>
       <tbody>
-        {t.rows.map((r) => <tr>{r.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i) }}>{v}</td>))}</tr>)}
+        {t.rows.map((r) => <tr>{r.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i) }} data-label={t.columns[i]}>{v}</td>))}</tr>)}
       </tbody>
       {
         t.footer && (
           <tfoot>
-            <tr>{t.footer.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i) }}>{v}</td>))}</tr>
+            <tr>{t.footer.map((v, i) => (i === 0 ? <th scope="row">{v}</th> : <td class:list={{ num: isNum(i), 'dt__empty': v === '' }} data-label={t.columns[i]}>{v}</td>))}</tr>
           </tfoot>
         )
       }
@@ -78,7 +80,19 @@ const isNum = (i: number) => t.numeric?.includes(i);
     padding: 9px 14px 9px 0;
     text-align: left;
     border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+  }
+
+  /* Los números y las cabeceras no se parten; el texto largo sí, para que en
+     móvil la tabla no obligue a desplazar de lado. */
+  thead th,
+  .num {
     white-space: nowrap;
+  }
+
+  tbody th,
+  tbody td:not(.num) {
+    min-width: 8.5rem;
   }
 
   thead th {
@@ -118,5 +132,67 @@ const isNum = (i: number) => t.numeric?.includes(i);
 
   .dt__caption {
     font-size: 0.8125rem;
+  }
+
+  @media (max-width: 560px) {
+    .dt--stack thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .dt--stack table,
+    .dt--stack tbody,
+    .dt--stack tfoot,
+    .dt--stack tr,
+    .dt--stack th,
+    .dt--stack td {
+      display: block;
+    }
+
+    .dt--stack tr {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .dt--stack tfoot tr {
+      border-top: 1px solid var(--ink);
+      border-bottom: 0;
+    }
+
+    .dt--stack th,
+    .dt--stack td,
+    .dt--stack tfoot th,
+    .dt--stack tfoot td {
+      min-width: 0;
+      padding: 2px 0;
+      border: 0;
+      text-align: left;
+      white-space: normal;
+    }
+
+    .dt--stack tbody th,
+    .dt--stack tfoot th {
+      font-weight: 560;
+      margin-bottom: 4px;
+    }
+
+    .dt--stack td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .dt--stack .dt__empty {
+      display: none;
+    }
   }
 </style>
