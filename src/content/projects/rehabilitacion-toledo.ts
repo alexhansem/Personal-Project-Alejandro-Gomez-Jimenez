@@ -16,9 +16,13 @@ const project: Project = {
   categories: ['bim', 'edificacion', 'documentacion', 'ia', 'cad-automatizacion'],
 
   summary:
-    'Estudio previo para la rehabilitación integral de un edificio real de 1969 (sótano, PB + 3 y cubierta): estado actual en CAD y BIM a partir del plano existente, estructura oculta deducida por probabilidad, viabilidad normativa y propuesta de distribución.',
+    'Rehabilitación integral de un edificio real de 1969, desde el plano existente hasta el estudio de viabilidad y el preproyecto completo: estado actual en CAD y BIM, estructura oculta deducida por probabilidad, normativa, escenarios, distribución y presupuesto medido partida a partida. Preparado para presentarlo a inversores o para que lo firme un técnico competente.',
 
   highlights: [
+    {
+      title: 'Un proyecto completo, no un ejercicio',
+      text: 'Cubre todo el recorrido de una operación real: qué hay, qué se puede hacer, qué conviene hacer y cuánto cuesta. El mismo trabajo sirve para decidir una inversión y como base del proyecto que firma el arquitecto.',
+    },
     {
       title: 'Una estructura que no se ve, deducida',
       text: 'Los pilares y jácenas metálicos están ocultos tras los tabiques. Su posición se dedujo de pistas en el CAD y simulando 300 veces cómo habría calculado el constructor de 1969, para ordenar las catas en lugar de abrir a ciegas.',
@@ -31,18 +35,84 @@ const project: Project = {
       title: 'Cada dato, contrastado',
       text: 'El CAD se revisa antes de modelar y se superpone a la huella oficial del Catastro: la fachada confirma el CAD frente al croquis de obra y el fondo explica la diferencia de superficies.',
     },
-    {
-      title: 'Viabilidad antes de dibujar',
-      text: 'Ordenanza municipal, CTE y propiedad horizontal aplicados a tres escenarios de programa. El de más viviendas se descarta con números: no alcanza los mínimos legales sin bajar la calidad.',
-    },
   ],
 
   figures: [
     { value: '300', label: 'Escenarios simulados' },
     { value: '91 %', label: 'Esquema estructural más probable' },
     { value: '593', label: 'Muros en el modelo IFC' },
-    { value: '< 1 min', label: 'Regenerar toda la documentación' },
+    { value: '202', label: 'Partidas medidas con precios CYPE' },
   ],
+
+  scope: {
+    title: 'Del plano existente al proyecto para firma',
+    intro:
+      'El encargo no se quedó en levantar el edificio. Se llegó hasta el estudio de viabilidad completo y un preproyecto con presupuesto por mediciones, con dos salidas: un dosier para decidir la inversión y la documentación técnica para que un arquitecto la revise y la firme.',
+    stages: [
+      {
+        title: 'Estado actual',
+        text: 'El CAD de partida se revisa, se contrasta con el Catastro y se convierte en planos limpios y en un modelo BIM del edificio tal como está.',
+        outputs: ['DXF / DWG', 'IFC4', '8 láminas A3'],
+      },
+      {
+        title: 'Estructura supuesta',
+        text: 'Pilares y jácenas ocultos deducidos con criterios de 1969 y 300 simulaciones, con su probabilidad y un plan de catas para la visita de obra.',
+        outputs: ['ES-01', 'ES-02', '8 catas'],
+      },
+      {
+        title: 'Viabilidad urbanística y legal',
+        text: 'Ordenanza de zona, condiciones de vivienda mínima, patios, accesibilidad, aparcamiento y propiedad horizontal, aplicados al edificio concreto.',
+        outputs: ['Marco normativo', 'Riesgos legales'],
+      },
+      {
+        title: 'Escenarios de programa',
+        text: 'Tres alternativas medidas sobre la geometría real: mantener dos viviendas por planta, pasar a tres, o ganar el sótano y las casetas. Se recomienda la primera con argumentos.',
+        outputs: ['V-01', 'V-02', 'V-03'],
+      },
+      {
+        title: 'Proyecto básico: distribución',
+        text: 'Planta tipo amueblada en dos versiones, con ascensor en el patio, portal accesible y ventilación mecánica donde el patio no da luces suficientes.',
+        outputs: ['Variantes B1 y B2'],
+      },
+      {
+        title: 'Mediciones y presupuesto',
+        text: 'Cada partida medida desde las estancias del modelo y valorada con el generador de precios de CYPE para esta obra, en 15 capítulos y exportada a BC3.',
+        outputs: ['202 partidas', 'BC3', 'PEM por capítulos'],
+      },
+      {
+        title: 'Viabilidad económica',
+        text: 'Modelo de compra, obra, financiación, venta y ayudas, con su sensibilidad: qué precio de venta hace falta, qué precio de compra se sostiene y qué puede torcer la operación.',
+        outputs: ['Método residual', 'Sensibilidad', 'Ayudas'],
+      },
+      {
+        title: 'Dosier de presentación',
+        text: 'Toda la información anterior ordenada en una propuesta de 32 diapositivas, con una lectura para cada perfil: general, inversor y técnico.',
+        outputs: ['32 diapositivas', 'Anexo técnico'],
+      },
+    ],
+    audiences: [
+      {
+        audience: 'Para el inversor',
+        title: 'Una decisión con números que se pueden defender',
+        text: 'El dosier explica la operación en dos minutos y la desarrolla en quince: de dónde sale el resultado, con qué metros se cuenta, qué riesgos tiene y qué ayudas encajan. Cada cifra remite a una medición, no a un ratio.',
+        items: [
+          'Superficie vendible justificada frente al Catastro',
+          'Presupuesto medido, con ofertas reales comparables a ±10 %',
+          'Sensibilidad al precio de venta y riesgos con su cobertura',
+        ],
+      },
+      {
+        audience: 'Para el técnico que firma',
+        title: 'Documentación de trabajo lista para revisar',
+        text: 'El arquitecto recibe la documentación en sus formatos de trabajo y con cada hipótesis señalada. Solo con el título de Técnico Superior no se puede firmar: el objetivo es dejarle hecho el 80-90 % y que revise y firme.',
+        items: [
+          'DWG por capas, IFC4 y láminas A3 regenerables',
+          'Presupuesto en BC3 para abrir en CYPE o Presto',
+          'Sellos de hipótesis, pendiente de verificar en obra y a firmar',
+        ],
+      },
+    ],
+  },
 
   method: {
     title: 'Cómo se dedujo la estructura sin abrir catas',
@@ -89,9 +159,9 @@ const project: Project = {
   },
 
   context:
-    'Edificio residencial real de 1969 en esquina, con sótano, planta baja, tres plantas tipo de dos viviendas en torno a escalera y patio, y cubierta de teja con casetas. Trabajo propio como estudio previo, preparado para que un arquitecto lo revise y lo firme.',
+    'Edificio residencial real de 1969 en esquina, con sótano, planta baja, tres plantas tipo de dos viviendas en torno a escalera y patio, y cubierta de teja con casetas. Trabajo propio para una operación real: comprar el edificio, rehabilitar siete viviendas con ascensor y venderlas. La octava vivienda es de otro propietario y queda fuera del alcance.',
   objective:
-    'Llegar desde el plano existente hasta un proyecto básico revisable: estado actual en CAD y BIM, estructura supuesta, viabilidad urbanística, escenarios de programa, distribución y presupuesto por mediciones.',
+    'Comprobar hasta dónde se llega en un proyecto completo de reforma: desde el plano existente hasta un estudio de viabilidad y un preproyecto que sirvan a la vez para presentar la operación a inversores y para que un arquitecto lo revise y lo firme.',
   problem:
     'El plano de partida tenía tres versiones mezcladas de la planta tipo, no tenía cotas de altura y sus superficies no coincidían con las oficiales. La estructura interior no se veía y la normativa aplicable estaba repartida entre un plan de 1986 y sus modificaciones.',
 
@@ -209,8 +279,46 @@ const project: Project = {
       actor: 'software',
       tool: 'Generador de precios CYPE · BC3',
       description:
-        'Mediciones calculadas desde las estancias del escenario A y los huecos del CAD, con precios del generador de CYPE para esta obra, exportadas a BC3 para abrir en CYPE o Presto. La revisión encontró dos errores antes de cerrar: una partida contada dos veces y una red que faltaba.',
-      output: 'Presupuesto en BC3',
+        'Mediciones calculadas desde las estancias del escenario A y los huecos del CAD, con precios del generador de CYPE para esta obra, exportadas a BC3 para abrir en CYPE o Presto. Calidades elegidas con criterio propio: gama media, segura y sin derroche. La revisión encontró dos errores antes de cerrar: una partida contada dos veces y una red que faltaba.',
+      output: '202 partidas en 15 capítulos, en BC3',
+      media: {
+        src: `${base}/dosier/dosier-capitulos.png`,
+        alt: 'Gráfico de barras del presupuesto de ejecución material por capítulos, de instalaciones de las viviendas a gestión de residuos',
+        caption: 'Presupuesto por capítulos',
+        kind: 'esquema',
+        ratio: 1.778,
+      },
+    },
+    {
+      title: 'Viabilidad económica',
+      actor: 'ia',
+      tool: 'Python · modelo económico',
+      description:
+        'Método residual: del precio de venta se restan obra, impuestos, honorarios, financiación y beneficio para saber qué precio de compra se sostiene. Se cruza con el mercado del barrio, las ayudas públicas vigentes y la propiedad horizontal.',
+      output: 'Sensibilidad y estrategias de la operación',
+    },
+    {
+      title: 'Revisión de la cuenta',
+      actor: 'humano',
+      phase: 'revision',
+      description:
+        'Objeción propia a la primera versión, que salía a pérdidas en todos los escenarios. Se revisan partida a partida la obra y la cuenta del promotor, y más adelante el presupuesto pasa de ratios a mediciones.',
+      output: 'Presupuesto y cuenta corregidos',
+    },
+    {
+      title: 'Dosier de presentación',
+      actor: 'ia',
+      tool: 'Claude Code',
+      description:
+        'Propuesta de 32 diapositivas con tres lecturas: dos minutos para todos, quince para el inversor y un anexo técnico para el arquitecto. Cada diapositiva indica para quién es y todo lleva el sello de hipótesis.',
+      output: 'Propuesta de inversión con anexo técnico',
+      media: {
+        src: `${base}/dosier/dosier-lecturas.png`,
+        alt: 'Diapositiva con tres tarjetas: para todos, 2 minutos; inversor, 15 minutos; técnico, a fondo',
+        caption: 'Dosier · tres formas de leer la propuesta',
+        kind: 'esquema',
+        ratio: 1.778,
+      },
     },
   ],
 
@@ -223,10 +331,78 @@ const project: Project = {
     { src: `${base}/planos/es01-estructura-supuesta.png`, alt: 'Planta de estructura supuesta con viguetas, jácena por tramos con su perfil IPN, pilares y catas', caption: 'ES-01 · Estructura supuesta y catas · E 1:50', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/es02-probabilidad-pilares.png`, alt: 'Probabilidad de ubicación de pilares a lo largo de la línea de jácenas', caption: 'ES-02 · Probabilidad de pilares', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/v01-escenario-a.png`, alt: 'Escenario A: plantas con dos viviendas de tres dormitorios y ascensor en el patio', caption: 'V-01 · Escenario A, recomendado', kind: 'plano', ratio: 1.414 },
+    { src: `${base}/dosier/dosier-preproyecto.png`, alt: 'Diapositiva con ocho tarjetas: estado actual, estructura, urbanismo, riesgo legal, distribución, presupuesto, modelo económico y panel de control', caption: 'Dosier · qué hay detrás de las cifras', kind: 'esquema', ratio: 1.778 },
+    { src: `${base}/dosier/dosier-calidades.png`, alt: 'Diapositiva de calidades de gama media: puerta acorazada, ventanas de PVC, laminado, baños, aerotermia, clima, cocina y ascensor', caption: 'Dosier · calidades del presupuesto', kind: 'esquema', ratio: 1.778 },
+    { src: `${base}/dosier/dosier-metodo.png`, alt: 'Diapositiva del anexo técnico: cadena CAD, modelo, planos, mediciones, CYPE y BC3, cuenta', caption: 'Dosier · anexo técnico, todo sale del mismo modelo', kind: 'esquema', ratio: 1.778 },
     { src: `${base}/planos/ea08-vistas-3d.png`, alt: 'Lámina con dos vistas 3D del modelo', caption: 'EA-08 · Modelo BIM, vistas 3D', kind: 'modelo', ratio: 1.414 },
   ],
 
   tables: [
+    {
+      title: 'Viabilidad urbanística: Ordenanza 7A aplicada a la parcela',
+      caption: 'Lectura técnica de la norma de zona del plan de 1986 y sus condiciones generales. A confirmar con el Ayuntamiento.',
+      columns: ['Condición', 'Qué dice la norma', 'Resultado en el edificio'],
+      rows: [
+        ['Edificabilidad y altura', 'La de los planos de alineaciones', 'PB + 3 ya es la máxima: no se puede ganar volumen'],
+        ['Número de viviendas', 'No se fija límite', 'El tope lo ponen la vivienda mínima, la exterioridad y los patios'],
+        ['Ascensor en el patio', 'Permitido en edificios existentes sin otra ubicación (art. 94.2)', 'Cabe un hueco de 1,60 × 1,75 en el patio central'],
+        ['Luces del patio', 'Al menos 1/4 de la altura del muro de enfrente', 'Piezas habitables al patio solo en P2 y P3'],
+        ['Sótano', 'No se admiten viviendas en sótano', '2,04 m libres: trasteros y cuarto de instalaciones'],
+        ['Casetas de cubierta', 'Trasteros de hasta 10 m², sin huecos', 'Nunca vivienda; trasteros solo si son legales'],
+        ['Aparcamiento', '1 plaza por vivienda, salvo inviabilidad', 'Exención justificable: parcela 100 % construida'],
+        ['Propiedad horizontal', 'Dividir pisos exige 3/5 (LPH art. 10.3.b)', 'Hace falta el vecino de la PB: riesgo principal'],
+      ],
+    },
+    {
+      title: 'Escenarios de programa',
+      caption: 'Superficies medidas sobre la geometría real del CAD.',
+      columns: ['Escenario', 'Viviendas propias', 'Resultado'],
+      numeric: [1],
+      rows: [
+        ['A · 2 viviendas por planta, mejoradas, con ascensor en el patio', '7', 'Recomendado: cumple y mantiene 3 dormitorios'],
+        ['B · 3 viviendas por planta', '9 como máximo', 'No cabe: unidades de ≈ 19 y 34 m² útiles frente a un mínimo de ≈ 28 m²'],
+        ['C · sótano y casetas', '0', 'Complemento: trasteros y cuarto de instalaciones'],
+      ],
+    },
+    {
+      title: 'Presupuesto de ejecución material por capítulos',
+      caption: 'Generador de precios de CYPE para esta obra (Toledo, rehabilitación integral, octubre de 2026). Sin IVA ni gastos de empresa. Calidades de gama media. Equivale a ≈ 62.000 € por vivienda y ≈ 706 €/m² construido.',
+      columns: ['Capítulo', 'PEM (€)'],
+      numeric: [1],
+      rows: [
+        ['Medios auxiliares', '4.723'],
+        ['Demoliciones', '15.023'],
+        ['Albañilería y tabiquería', '28.503'],
+        ['Instalaciones de las viviendas', '87.967'],
+        ['Baños y cocina', '76.035'],
+        ['Revestimientos y pavimentos', '45.981'],
+        ['Carpintería interior', '27.115'],
+        ['Carpintería exterior', '27.161'],
+        ['Ascensor y accesibilidad', '45.140'],
+        ['Instalaciones comunes e ICT', '21.511'],
+        ['Fachada y cubierta', '16.028'],
+        ['Estructura (catas y reserva)', '10.460'],
+        ['Gestión de residuos', '2.982'],
+        ['Seguridad y salud', '10.585'],
+        ['Portal, escalera y sótano', '14.769'],
+      ],
+      footer: ['Total PEM', '433.982'],
+    },
+    {
+      title: 'Viabilidad económica · cifras de ejemplo',
+      caption:
+        'Cifras de ejemplo del modelo económico, no una oferta: compra supuesta de 600.000 €, 524,4 m² de venta, perfil de promotor profesional y obra total de ≈ 645.000 € sobre el PEM medido. Hipótesis a contrastar con cierres reales de venta.',
+      columns: ['Precio de venta', 'Sin ayudas', 'Con ayuda de accesibilidad', 'Compra máxima para un 15 %'],
+      numeric: [1, 2, 3],
+      rows: [
+        ['2.500 €/m²', '−48 k€', '−8 k€', '442 k€'],
+        ['2.700 €/m²', '+55 k€', '+95 k€ (7,1 %)', '520 k€'],
+        ['2.900 €/m²', '+157 k€', '+198 k€ (14,8 %)', '598 k€'],
+        ['3.100 €/m²', '+260 k€', '+300 k€ (22,4 %)', '675 k€'],
+        ['3.300 €/m²', '+363 k€', '+403 k€ (30,1 %)', '753 k€'],
+      ],
+      footer: ['Punto muerto con ayuda de accesibilidad', '', '≈ 2.515 €/m²', ''],
+    },
     {
       title: 'Superficies de la planta tipo',
       caption: 'Útil y construida medidas en el modelo; Catastro según consulta oficial (privativa + comunes).',
@@ -316,6 +492,7 @@ def coste_tramo(a, b, s):
     'Planteamiento del encargo, criterios (manda el CAD) y datos propios de la estructura.',
     'Correcciones sobre el modelo a partir del conocimiento del edificio (patio cerrado, dormitorio de esquina).',
     'Distribución propia de la planta tipo en AutoCAD y elección de calidades para el presupuesto.',
+    'Objeción a la primera cuenta económica, que obligó a revisarla partida a partida.',
     'Dirección de Claude Code por fases, con revisión de cada entrega antes de pasar a la siguiente.',
   ],
 
@@ -324,7 +501,9 @@ def coste_tramo(a, b, s):
     '8 láminas A3 de estado actual a 1:50 y 1:100',
     '2 láminas de estructura supuesta con catas',
     'Marco normativo, escenarios de programa y propuesta de distribución',
-    'Presupuesto por mediciones en BC3',
+    'Presupuesto por mediciones en BC3 y resumen de PEM por capítulos',
+    'Estudio de viabilidad económica con sensibilidad y ayudas',
+    'Dosier de presentación de 32 diapositivas con anexo técnico',
     'Lista de comprobaciones para la siguiente visita de obra',
   ],
 
@@ -332,6 +511,8 @@ def coste_tramo(a, b, s):
     'Estructura oculta acotada a un esquema muy probable y a 8 catas ordenadas, en lugar de abrir a ciegas.',
     'Toda la documentación se regenera desde el CAD en menos de un minuto: una corrección del modelo se propaga a planos, IFC y superficies.',
     'Escenario de más viviendas descartado con argumentos de normativa y superficies mínimas.',
+    'Presupuesto medido partida a partida en lugar de estimado por ratios, listo para comparar con ofertas de constructoras.',
+    'Una misma base de datos sirve para decidir la inversión y para el proyecto que revisa y firma el arquitecto.',
   ],
 
   checks: [
@@ -343,6 +524,7 @@ def coste_tramo(a, b, s):
   limitations: [
     'Estructura supuesta: los pilares deducidos están marcados para verificar con cata.',
     'El fondo del edificio difiere del Catastro; queda pendiente medir las diagonales en obra.',
+    'Precios de referencia de CYPE: hay que contrastarlos con ofertas reales de constructoras.',
     'Documento de trabajo: requiere revisión y firma de un técnico competente.',
   ],
 };

@@ -24,6 +24,8 @@ const project: Project = {
   figures: [{ value: '', label: '' }],
   // Método propio explicado con valores reales (opcional).
   // method: { title: '', intro: '', steps: [{ value: '', valueNote: '', title: '', text: '' }] },
+  // Alcance cuando el proyecto cubre varias fases y sirve a distintos destinatarios:
+  // scope: { title: '', intro: '', stages: [{ title: '', text: '', outputs: [] }], audiences: [{ audience: '', title: '', text: '', items: [] }] },
   context: '',
   objective: '',
   problem: '',

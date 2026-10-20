@@ -43,6 +43,7 @@ const next = index < projects.length - 1 ? projects[index + 1] : undefined;
 
 // Secciones presentes, numeradas en orden.
 const has = {
+  scope: !!p.scope?.stages.length,
   method: !!p.method?.steps.length,
   brief: !!(p.context || p.objective || p.problem),
   workflow: !!p.workflow?.length,
@@ -56,6 +57,7 @@ const has = {
   notes: !!p.notes,
 };
 const sectionDefs = [
+  { key: 'scope', id: 'alcance', title: p.scope?.title ?? 'Alcance' },
   { key: 'method', id: 'metodo', title: p.method?.title ?? 'Método' },
   { key: 'brief', id: 'encargo', title: 'Encargo' },
   { key: 'workflow', id: 'secuencia', title: 'Secuencia de trabajo' },
@@ -217,6 +219,49 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
             ))}
           </ol>
         </nav>
+      )
+    }
+
+    {
+      sec.scope && p.scope && (
+        <section class="container section--tight" aria-labelledby={sec.scope.id}>
+          <SectionHead code={sec.scope.n} title={sec.scope.title} id={sec.scope.id} />
+          {p.scope.intro && <p class="lead scope__intro">{p.scope.intro}</p>}
+          <ol class="scope">
+            {p.scope.stages.map((st, i) => (
+              <li class="scope__stage">
+                <span class="scope__n mono">Fase {i + 1}</span>
+                <h3 class="scope__title">{st.title}</h3>
+                <p class="scope__text">{st.text}</p>
+                {!!st.outputs?.length && (
+                  <ul class="scope__out mono">
+                    {st.outputs.map((o) => (
+                      <li>{o}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+          {!!p.scope.audiences?.length && (
+            <div class="aud">
+              {p.scope.audiences.map((a) => (
+                <div class="aud__card">
+                  <p class="label aud__who">{a.audience}</p>
+                  <h3 class="aud__title">{a.title}</h3>
+                  <p class="aud__text">{a.text}</p>
+                  {!!a.items?.length && (
+                    <ul class="list-dash aud__items">
+                      {a.items.map((x) => (
+                        <li>{x}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       )
     }
 
@@ -579,6 +624,91 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
   .hl__text {
     color: var(--ink-2);
     max-width: 46ch;
+  }
+
+  .scope__intro {
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .scope {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0 var(--col-gap);
+  }
+
+  .scope__stage {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 18px 0 24px;
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .scope__n {
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .scope__title {
+    font-size: var(--step-1);
+  }
+
+  .scope__text {
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .scope__out {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 0.6875rem;
+  }
+
+  .scope__out li {
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+
+  .aud {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--col-gap);
+    margin-top: clamp(28px, 3.5vw, 48px);
+  }
+
+  .aud__card {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: clamp(20px, 2.5vw, 32px);
+    background: var(--paper-2);
+    border-top: 3px solid var(--accent);
+  }
+
+  .aud__card + .aud__card {
+    border-top-color: var(--ink);
+  }
+
+  .aud__title {
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .aud__text {
+    color: var(--ink-2);
+    max-width: 58ch;
+  }
+
+  .aud__items {
+    margin-top: 4px;
   }
 
   .method__intro {
