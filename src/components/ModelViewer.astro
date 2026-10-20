@@ -1,0 +1,216 @@
+---
+/**
+ * Modelo 3D interactivo. Muestra primero una imagen fija del modelo; three.js y
+ * el GLB solo se descargan cuando se pulsa «Abrir modelo 3D».
+ */
+import type { ProjectModel } from '../content/types';
+import { url } from '../lib/url';
+
+interface Props {
+  model: ProjectModel;
+}
+const { model: m } = Astro.props;
+const storeys = m.storeys ?? [];
+---
+
+<figure class="mv" data-model-viewer data-src={url(m.src)} data-storeys={storeys.map((s) => s.key).join(',')} data-state="idle">
+  <div class="mv__stage" data-mv-stage>
+    {m.poster && <img class="mv__poster" src={url(m.poster)} alt={m.alt} loading="lazy" decoding="async" />}
+    <button type="button" class="mv__open" data-mv-open>
+      <span class="mv__open-label">Abrir modelo 3D</span>
+      <span class="mono mv__open-sub">{m.size ? `${m.size} · ` : ''}girar, acercar y ver por plantas</span>
+    </button>
+    <p class="mv__status mono" data-mv-status hidden>Cargando modelo…</p>
+  </div>
+  <div class="mv__bar">
+    {
+      storeys.length > 1 && (
+        <div class="mv__group" role="group" aria-label="Mostrar hasta la planta">
+          <span class="label">Hasta</span>
+          {storeys.map((s, i) => (
+            <button type="button" class="mv__btn" data-mv-storey={s.key} aria-pressed={i === storeys.length - 1 ? "true" : "false"} disabled>
+              {s.label}
+            </button>
+          ))}
+        </div>
+      )
+    }
+    <div class="mv__group" role="group" aria-label="Vista">
+      <span class="label">Vista</span>
+      <button type="button" class="mv__btn" data-mv-view="frontal" disabled>Frontal</button>
+      <button type="button" class="mv__btn" data-mv-view="trasera" disabled>Trasera</button>
+      <button type="button" class="mv__btn" data-mv-view="planta" disabled>Planta</button>
+    </div>
+    {
+      m.ifc && (
+        <a class="mv__btn mv__dl" href={url(m.ifc)} download>
+          Descargar IFC
+        </a>
+      )
+    }
+  </div>
+  {m.caption && <figcaption class="mv__cap muted">{m.caption}</figcaption>}
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-model-viewer]').forEach((root) => {
+    const open = root.querySelector<HTMLButtonElement>('[data-mv-open]')!;
+    const status = root.querySelector<HTMLElement>('[data-mv-status]')!;
+    open.addEventListener('click', async () => {
+      open.hidden = true;
+      status.hidden = false;
+      root.dataset.state = 'loading';
+      try {
+        const { mountModel } = await import('../scripts/model-viewer');
+        await mountModel(root);
+        root.querySelector('.mv__poster')?.remove();
+        root.querySelectorAll<HTMLButtonElement>('.mv__btn[disabled]').forEach((b) => (b.disabled = false));
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'No se pudo cargar el modelo 3D en este navegador.';
+        root.dataset.state = 'error';
+      }
+    });
+  });
+</script>
+
+<style>
+  .mv {
+    --mv-bg: #f3f1ea;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .mv__stage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--mv-bg);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .mv__stage :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    cursor: grab;
+  }
+
+  .mv__poster {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .mv__open {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    translate: -50% 0;
+    display: grid;
+    gap: 4px;
+    justify-items: center;
+    padding: 14px 22px;
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+  }
+
+  .mv__open[hidden],
+  .mv__status[hidden] {
+    display: none;
+  }
+
+  .mv__open:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .mv__open-label {
+    font-size: 1.0625rem;
+    font-weight: 560;
+  }
+
+  .mv__open-sub {
+    font-size: 0.6875rem;
+    opacity: 0.8;
+  }
+
+  .mv__status {
+    position: absolute;
+    inset: auto 0 24px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .mv__bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    align-items: center;
+  }
+
+  .mv__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .mv__group .label {
+    margin-right: 4px;
+  }
+
+  .mv__btn {
+    min-height: 36px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    background: transparent;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .mv__btn:hover:not([disabled]) {
+    border-color: var(--ink);
+  }
+
+  .mv__btn[aria-pressed='true'] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .mv__btn[disabled] {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .mv__dl {
+    margin-left: auto;
+  }
+
+  .mv__cap {
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 640px) {
+    .mv__stage {
+      aspect-ratio: 4 / 5;
+    }
+
+    .mv__dl {
+      margin-left: 0;
+    }
+
+    .mv__btn {
+      min-height: 34px;
+      padding: 5px 9px;
+      font-size: 0.8125rem;
+    }
+  }
+</style>

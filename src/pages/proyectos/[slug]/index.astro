@@ -10,6 +10,7 @@ import ComparisonPanel from '../../../components/ComparisonPanel.astro';
 import DocumentCard from '../../../components/DocumentCard.astro';
 import DataTable from '../../../components/DataTable.astro';
 import CodeBlock from '../../../components/CodeBlock.astro';
+import ModelViewer from '../../../components/ModelViewer.astro';
 import TimeTag from '../../../components/TimeTag.astro';
 import { getCategory } from '../../../content/categories';
 import { projects, processes, sheetCode } from '../../../lib/content';
@@ -44,6 +45,7 @@ const next = index < projects.length - 1 ? projects[index + 1] : undefined;
 // Secciones presentes, numeradas en orden.
 const has = {
   scope: !!p.scope?.stages.length,
+  model: !!p.model,
   method: !!p.method?.steps.length,
   brief: !!(p.context || p.objective || p.problem),
   workflow: !!p.workflow?.length,
@@ -58,6 +60,7 @@ const has = {
 };
 const sectionDefs = [
   { key: 'scope', id: 'alcance', title: p.scope?.title ?? 'Alcance' },
+  { key: 'model', id: 'modelo-3d', title: 'Modelo 3D' },
   { key: 'method', id: 'metodo', title: p.method?.title ?? 'Método' },
   { key: 'brief', id: 'encargo', title: 'Encargo' },
   { key: 'workflow', id: 'secuencia', title: 'Secuencia de trabajo' },
@@ -261,6 +264,17 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               ))}
             </div>
           )}
+        </section>
+      )
+    }
+
+    {
+      sec.model && p.model && (
+        <section class="container section--tight" aria-labelledby={sec.model.id}>
+          <SectionHead code={sec.model.n} title={sec.model.title} id={sec.model.id}>
+            <span class="mono muted">Arrastra para girar · rueda o pellizco para acercar</span>
+          </SectionHead>
+          <ModelViewer model={p.model} />
         </section>
       )
     }

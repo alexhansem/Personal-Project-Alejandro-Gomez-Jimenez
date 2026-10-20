@@ -218,6 +218,22 @@ export interface ProjectScope {
   audiences?: ScopeAudience[];
 }
 
+/** Modelo 3D navegable (GLB) con su IFC descargable opcional. */
+export interface ProjectModel {
+  /** Ruta del GLB dentro de `public/`. Los nodos se nombran `<planta>__<material>`. */
+  src: string;
+  /** IFC descargable, si existe. */
+  ifc?: string;
+  /** Imagen fija que se muestra antes de cargar el modelo. */
+  poster?: string;
+  alt: string;
+  caption?: string;
+  /** Peso aproximado para avisar antes de descargar, ej. "0,3 MB". */
+  size?: string;
+  /** Plantas en orden de abajo arriba, con la clave usada en los nodos del GLB. */
+  storeys?: { key: string; label: string }[];
+}
+
 export interface Project {
   /** Identificador para la URL. Solo minúsculas, números y guiones. */
   slug: string;
@@ -263,6 +279,8 @@ export interface Project {
    * destinatarios del resultado. Se muestra como primera sección.
    */
   scope?: ProjectScope;
+  /** Modelo 3D navegable. Se muestra como sección propia tras el alcance. */
+  model?: ProjectModel;
   context?: string;
   objective?: string;
   problem?: string;
