@@ -2,14 +2,22 @@
 /** Leyenda de procedencia de los datos y de actores. */
 interface Props {
   actors?: boolean;
+  /** Muestra medido / estimado / pendiente. */
+  provenance?: boolean;
 }
-const { actors = false } = Astro.props;
+const { actors = false, provenance = true } = Astro.props;
 ---
 
 <dl class="legend mono">
-  <div><dt><span class="sw sw--medido" aria-hidden="true"></span>Medido</dt><dd>Cronometrado o registrado</dd></div>
-  <div><dt><span class="sw sw--estimado" aria-hidden="true"></span>Estimado</dt><dd>Aproximación, no medida</dd></div>
-  <div><dt><span class="sw sw--pendiente" aria-hidden="true"></span>Pendiente</dt><dd>Sin dato todavía</dd></div>
+  {
+    provenance && (
+      <>
+        <div><dt><span class="sw sw--medido" aria-hidden="true" />Medido</dt><dd>Cronometrado o registrado</dd></div>
+        <div><dt><span class="sw sw--estimado" aria-hidden="true" />Estimado</dt><dd>Aproximación, no medida</dd></div>
+        <div><dt><span class="sw sw--pendiente" aria-hidden="true" />Pendiente</dt><dd>Sin dato todavía</dd></div>
+      </>
+    )
+  }
   {
     actors && (
       <>

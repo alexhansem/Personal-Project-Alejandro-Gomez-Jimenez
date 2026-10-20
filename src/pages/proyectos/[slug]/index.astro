@@ -13,7 +13,7 @@ import CodeBlock from '../../../components/CodeBlock.astro';
 import TimeTag from '../../../components/TimeTag.astro';
 import { getCategory } from '../../../content/categories';
 import { projects, processes, sheetCode } from '../../../lib/content';
-import { evaluateComparison, formatMinutes, formatPct, summarizeWorkflow } from '../../../lib/time';
+import { evaluateComparison, formatMinutes, formatPct, hasValue, summarizeWorkflow } from '../../../lib/time';
 import { url } from '../../../lib/url';
 
 export const getStaticPaths = (() =>
@@ -30,7 +30,12 @@ const hero = p.cover ?? media[0];
 const group = p.slug;
 
 const wf = p.workflow?.length ? summarizeWorkflow(p.workflow) : undefined;
-const cmp = p.comparison ? evaluateComparison(p.comparison) : undefined;
+// Una comparativa sin los dos totales no aporta nada a la ficha pública.
+const cmpAll = p.comparison ? evaluateComparison(p.comparison) : undefined;
+const cmp = cmpAll && cmpAll.status !== 'pendiente' ? cmpAll : undefined;
+const showGen = !!wf && hasValue(wf.generation);
+const showRev = !!wf && hasValue(wf.review);
+const figures = p.figures ?? [];
 const relatedProcesses = processes.filter((x) => x.relatedProjects?.includes(p.slug));
 
 const prev = index > 0 ? projects[index - 1] : undefined;
@@ -38,9 +43,10 @@ const next = index < projects.length - 1 ? projects[index + 1] : undefined;
 
 // Secciones presentes, numeradas en orden.
 const has = {
+  method: !!p.method?.steps.length,
   brief: !!(p.context || p.objective || p.problem),
   workflow: !!p.workflow?.length,
-  comparison: !!p.comparison,
+  comparison: !!cmp,
   media: media.length > 0,
   documents: !!p.documents?.length,
   tables: !!p.tables?.length,
@@ -50,6 +56,7 @@ const has = {
   notes: !!p.notes,
 };
 const sectionDefs = [
+  { key: 'method', id: 'metodo', title: p.method?.title ?? 'Método' },
   { key: 'brief', id: 'encargo', title: 'Encargo' },
   { key: 'workflow', id: 'secuencia', title: 'Secuencia de trabajo' },
   { key: 'comparison', id: 'comparativa', title: 'Comparativa de tiempos' },
@@ -114,43 +121,43 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
     }
 
     {
-      (wf || cmp) && (
+      (wf || cmp || figures.length > 0) && (
         <div class="container">
           <dl class="kpis">
-            {wf && (
-              <>
-                <div>
-                  <dt class="label">Pasos</dt>
-                  <dd class="kpis__v">
-                    {p.workflow!.length}
-                    <span class="kpis__sub mono">
-                      {['ia', 'humano', 'software']
-                        .map((a) => [a, p.workflow!.filter((s) => s.actor === a).length] as const)
-                        .filter(([, n]) => n > 0)
-                        .map(([a, n]) => `${n} ${a === 'ia' ? 'IA' : a === 'humano' ? 'propios' : 'software'}`)
-                        .join(' · ')}
-                    </span>
-                  </dd>
-                </div>
-                <div>
-                  <dt class="label">Generación</dt>
-                  <dd>
-                    <TimeTag time={wf.generation} size="lg" />
-                  </dd>
-                </div>
-                <div>
-                  <dt class="label">Revisión</dt>
-                  <dd>
-                    <TimeTag time={wf.review} size="lg" />
-                  </dd>
-                </div>
-              </>
-            )}
-            {cmp && !wf && (
+            {wf && !figures.length && (
               <div>
-                <dt class="label">Tiempo total</dt>
+                <dt class="label">Pasos</dt>
+                <dd class="kpis__v">
+                  {p.workflow!.length}
+                  <span class="kpis__sub mono">
+                    {['ia', 'humano', 'software']
+                      .map((a) => [a, p.workflow!.filter((s) => s.actor === a).length] as const)
+                      .filter(([, n]) => n > 0)
+                      .map(([a, n]) => `${n} ${a === 'ia' ? 'IA' : a === 'humano' ? 'propios' : 'software'}`)
+                      .join(' · ')}
+                  </span>
+                </dd>
+              </div>
+            )}
+            {figures.map((f) => (
+              <div>
+                <dt class="label">{f.label}</dt>
+                <dd class="kpis__v">{f.value}</dd>
+              </div>
+            ))}
+            {showGen && (
+              <div>
+                <dt class="label">Generación</dt>
                 <dd>
-                  <TimeTag time={cmp.usedTotal} size="lg" />
+                  <TimeTag time={wf!.generation} size="lg" />
+                </dd>
+              </div>
+            )}
+            {showRev && (
+              <div>
+                <dt class="label">Revisión</dt>
+                <dd>
+                  <TimeTag time={wf!.review} size="lg" />
                 </dd>
               </div>
             )}
@@ -170,14 +177,29 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
                       )}
                     </span>
                   ) : (
-                    <span class="kpis__pending mono">
-                      {cmp.status === 'pendiente' ? 'Pendiente de medir' : 'No calculado: hay estimaciones'}
-                    </span>
+                    <span class="kpis__pending mono">No calculado: hay estimaciones</span>
                   )}
                 </dd>
               </div>
             )}
           </dl>
+        </div>
+      )
+    }
+
+    {
+      !!p.highlights?.length && (
+        <div class="container hl">
+          <h2 class="label hl__h">Claves del proyecto</h2>
+          <ol class="hl__list">
+            {p.highlights.map((h, i) => (
+              <li>
+                <span class="hl__n mono">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="hl__title">{h.title}</h3>
+                <p class="hl__text">{h.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       )
     }
@@ -195,6 +217,30 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
             ))}
           </ol>
         </nav>
+      )
+    }
+
+    {
+      sec.method && p.method && (
+        <section class="container section--tight" aria-labelledby={sec.method.id}>
+          <SectionHead code={sec.method.n} title={sec.method.title} id={sec.method.id} />
+          {p.method.intro && <p class="lead method__intro">{p.method.intro}</p>}
+          <ol class="method">
+            {p.method.steps.map((st, i) => (
+              <li class="method__step">
+                <span class="method__n mono">{String(i + 1).padStart(2, '0')}</span>
+                {st.value && (
+                  <p class="method__value">
+                    {st.value}
+                    {st.valueNote && <span class="method__vnote mono">{st.valueNote}</span>}
+                  </p>
+                )}
+                <h3 class="method__title">{st.title}</h3>
+                <p class="method__text">{st.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
       )
     }
 
@@ -497,6 +543,111 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
 
   .ph__hero {
     margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .hl {
+    margin-top: clamp(40px, 5vw, 72px);
+  }
+
+  .hl__h {
+    margin-bottom: 16px;
+  }
+
+  .hl__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0 var(--col-gap);
+  }
+
+  .hl__list li {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 18px 0 8px;
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .hl__n {
+    color: var(--accent);
+  }
+
+  .hl__title {
+    font-size: var(--step-1);
+  }
+
+  .hl__text {
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .method__intro {
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .method {
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .method__step {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 15rem) minmax(0, 1fr);
+    grid-template-areas: 'n value title' 'n value text';
+    grid-template-rows: auto 1fr;
+    column-gap: var(--col-gap);
+    row-gap: 6px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .method__n {
+    grid-area: n;
+    color: var(--muted);
+    padding-top: 0.35em;
+  }
+
+  .method__value {
+    grid-area: value;
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    font-size: var(--step-2);
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--accent);
+  }
+
+  .method__vnote {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+
+  .method__title {
+    grid-area: title;
+    font-size: var(--step-1);
+  }
+
+  .method__text {
+    grid-area: text;
+    color: var(--ink-2);
+    max-width: 68ch;
+  }
+
+  @media (max-width: 720px) {
+    .method__step {
+      grid-template-columns: 2.4rem minmax(0, 1fr);
+      grid-template-areas: 'n value' 'n title' 'n text';
+      grid-template-rows: auto;
+    }
+
+    .method__value {
+      margin-bottom: 6px;
+    }
   }
 
   .kpis {

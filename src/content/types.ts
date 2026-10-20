@@ -173,6 +173,26 @@ export type ProjectStatus =
   | 'propuesta'
   | 'ejercicio académico';
 
+export interface Highlight {
+  title: string;
+  text: string;
+}
+
+export interface MethodStep {
+  title: string;
+  text: string;
+  /** Valor real que resume el paso (ej. "15 mm/px"). */
+  value?: string;
+  /** Aclaración del valor (fuente, tolerancia). */
+  valueNote?: string;
+}
+
+export interface ProjectMethod {
+  title: string;
+  intro?: string;
+  steps: MethodStep[];
+}
+
 export interface Project {
   /** Identificador para la URL. Solo minúsculas, números y guiones. */
   slug: string;
@@ -200,6 +220,19 @@ export interface Project {
 
   /** Resumen de una o dos líneas para tarjetas y metadatos. */
   summary: string;
+  /**
+   * Lo que hace especial al proyecto: 3 o 4 claves con título y explicación.
+   * Se muestran justo después de la imagen principal.
+   */
+  highlights?: Highlight[];
+  /** Cifras reales del proyecto (ej. "10" · "cajas"). Sustituyen a los tiempos mientras no haya. */
+  figures?: { value: string; label: string }[];
+  /**
+   * Método propio que da sentido al proyecto, explicado paso a paso con valores
+   * reales (ej. cómo se dedujeron las cotas sin medir). Se muestra como sección
+   * destacada antes del encargo.
+   */
+  method?: ProjectMethod;
   context?: string;
   objective?: string;
   problem?: string;

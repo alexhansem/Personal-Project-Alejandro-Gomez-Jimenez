@@ -130,6 +130,16 @@ export function summarizeWorkflow(steps: WorkflowStep[]): WorkflowSummary {
   };
 }
 
+/** Hay al menos un tiempo registrado (medido o estimado) en la secuencia. */
+export function hasAnyTime(steps: WorkflowStep[]): boolean {
+  return steps.some((s) => hasValue(s.time));
+}
+
+/** La comparativa tiene los dos totales y merece mostrarse. */
+export function isComparisonShown(c: Comparison): boolean {
+  return evaluateComparison(c).status !== 'pendiente';
+}
+
 export const actorLabel: Record<Actor, string> = {
   ia: 'IA',
   humano: 'Criterio propio',

@@ -18,12 +18,84 @@ const project: Project = {
   summary:
     'Reconstrucción documental de la Casa Moriyama de Ryue Nishizawa (SANAA) sin planos acotados de partida: cotas sacadas de imágenes y fuentes publicadas, planos CAD a 1:100 y modelo completo en Revit 2026 construido por Claude a través de un add-in propio.',
 
+  highlights: [
+    {
+      title: 'Medidas sin medir',
+      text: 'No había planos acotados completos ni forma de medir la obra. Las cotas se dedujeron comparando fuentes: una medida conocida fija la escala y el resto se lee y se contrasta, con su tolerancia declarada.',
+    },
+    {
+      title: 'CAD y BIM a la vez, desde una sola tabla',
+      text: 'Planos y modelo se desarrollaron en paralelo a partir de la misma tabla de datos. Si cambia una cota, se regeneran los planos, el modelo y la maquetación.',
+    },
+    {
+      title: 'Revit manejado por código',
+      text: 'Un add-in propio permite que Claude escriba scripts C# y Revit los ejecute: el modelo completo, los materiales, las cámaras y los renders salen así, sin modelado manual.',
+    },
+  ],
+
+  figures: [
+    { value: '10', label: 'Cajas reconstruidas' },
+    { value: '±100 mm', label: 'Tolerancia de posición' },
+    { value: '147', label: 'Elementos BIM, 0 fallos' },
+    { value: '34', label: 'Láminas y diapositivas' },
+  ],
+
+  method: {
+    title: 'Cómo se sacaron las medidas',
+    intro:
+      'Sin cotas completas ni acceso a la obra, cada dimensión se dedujo por comparación entre fuentes y se guardó con su procedencia. Con esa tabla se replicó después el edificio en CAD y en BIM.',
+    steps: [
+      {
+        value: '5',
+        valueNote: 'fuentes cruzadas',
+        title: 'Reunir fuentes',
+        text: 'Planta baja original con rotulación en japonés, secciones constructivas B-D-I y C-G-H, axonometría publicada, maqueta 1:50 del MoMA y un artículo de referencia (2018).',
+      },
+      {
+        value: '15 mm/px',
+        valueNote: 'AX1–AX2 = 5634 mm → 376 px',
+        title: 'Fijar la escala con una cota conocida',
+        text: 'Una distancia acotada entre ejes de la planta original da la escala de la imagen. A partir de ahí, todo lo que no está acotado se puede medir.',
+      },
+      {
+        value: '18 de 20',
+        valueNote: 'anchos y fondos del plano',
+        title: 'Leer cotas y medir el resto',
+        text: 'Los anchos y fondos de las cajas salen de las cotas del plano; solo el fondo de C y de H se mide a escala. Las posiciones de las cajas se miden a escala con ±100 mm.',
+      },
+      {
+        value: '8 + 2',
+        valueNote: 'secciones ±100 mm · axonometría ±200 mm',
+        title: 'Deducir las alturas',
+        text: 'La altura de ocho cajas se mide en las secciones constructivas; la de A y J, en la axonometría, con más tolerancia. Cotas de suelo y alturas libres por planta, de las secciones.',
+      },
+      {
+        value: '49 de 52',
+        valueNote: 'huecos con fuente',
+        title: 'Situar los huecos',
+        text: 'Huecos de fachada a partir de secciones, axonometría y la maqueta del MoMA para las caras norte y oeste. Los tres que no aparecen en ninguna fuente quedan como hipótesis marcadas.',
+      },
+      {
+        value: '306 / 290 m²',
+        valueNote: 'parcela medida / publicada',
+        title: 'Contrastar con datos publicados',
+        text: 'La parcela medida a escala (22,2 × 13,8 m) se compara con la superficie publicada: un 5 % de diferencia. Se conserva la medida y se anota la cifra publicada.',
+      },
+      {
+        value: '1 tabla',
+        valueNote: 'plano · a escala · supuesto',
+        title: 'Adoptar el valor y replicar',
+        text: 'Cada valor queda en una tabla única con su fuente. De ella salen, a la vez, los planos CAD y el modelo BIM, y después la maquetación.',
+      },
+    ],
+  },
+
   context:
     'Ejercicio académico de levantamiento. La obra no es propia: es la Casa Moriyama (Ryue Nishizawa / SANAA, Ota-ku, Tokio, 2002–2005), diez cajas independientes de chapa de acero repartidas en un solar de unos 290 m². Lo que se muestra aquí es la reconstrucción: datos, planos, modelo BIM, renders y maquetación.',
   objective:
     'Entregar plantas, alzados y secciones acotados y un modelo BIM completo de la casa, del que salgan las vistas y los renders finales, partiendo solo de imágenes de referencia y documentación publicada.',
   problem:
-    'No había cotas ni mediciones de partida. Cada dimensión se obtuvo de la planta baja original con rotulación en japonés, de secciones constructivas, de una axonometría y de la maqueta 1:50 del MoMA, midiendo a escala y contrastando entre fuentes. Cada dato guarda su procedencia: plano original, medido a escala (±100 mm o ±200 mm) o supuesto.',
+    'No había cotas ni mediciones de partida: había que deducirlas de documentos publicados y, con ellas, replicar el edificio completo en CAD y en BIM.',
 
   participation: [
     'Recopilación de fuentes de referencia y contraste de datos entre ellas.',
@@ -76,7 +148,7 @@ const project: Project = {
       time: { provenance: 'pendiente' },
     },
     {
-      title: 'Lectura de la planta original y tabla maestra',
+      title: 'Deducción de cotas y tabla maestra',
       actor: 'ia',
       tool: 'Claude Code',
       description:
@@ -179,17 +251,6 @@ const project: Project = {
       time: { provenance: 'pendiente' },
     },
   ],
-
-  comparison: {
-    task: 'Levantamiento documental, planos 1:100 y modelo BIM de la Casa Moriyama',
-    used: {
-      label: 'Claude Code + datos únicos + Revit por API',
-      generation: { provenance: 'pendiente' },
-      review: { provenance: 'pendiente' },
-    },
-    observations:
-      'Los archivos de la entrega tienen fecha del 13 de octubre de 2026, entre las 17:48 y las 20:07. Son fechas de última modificación, no un cronómetro: no cubren la búsqueda de fuentes ni las versiones anteriores, así que no se usan como tiempo de trabajo.',
-  },
 
   media: [
     { src: `${base}/renders/r1-calle-sur.jpg`, alt: 'Render a pie de calle sur entre dos cajas, con jardín y un hueco con tarima al fondo', caption: 'R1 · Calle sur', kind: 'modelo', ratio: 1.6 },

@@ -46,16 +46,10 @@ const total = cmp?.usedTotal ?? wf?.total;
       {p.categories.map((c) => <li>{getCategory(c).label}</li>)}
     </ul>
     {
-      total && (
+      hasValue(total) && (
         <p class="pc__time mono">
-          {hasValue(total) ? (
-            <>
-              <span>Total {formatMinutes(total.minutes)}</span>
-              <span class="muted">{total.provenance}</span>
-            </>
-          ) : (
-            <span class="muted">Tiempo pendiente</span>
-          )}
+          <span>Total {formatMinutes(total.minutes)}</span>
+          <span class="muted">{total.provenance}</span>
           {cmp?.status === 'valida' && cmp.differencePct !== undefined && (
             <span class="pc__delta">
               {cmp.differencePct >= 0 ? '−' : '+'}
