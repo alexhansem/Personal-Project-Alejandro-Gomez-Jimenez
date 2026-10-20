@@ -368,4 +368,8 @@ export interface Profile {
   software: string[];
   /** Formación, solo si es real. */
   education: { title: string; center?: string; period?: string }[];
+  /** Experiencia, solo la acreditable. Vacío = no se muestra. */
+  experience?: { role: string; org: string; period?: string; text?: string }[];
+  /** Certificaciones. */
+  certifications?: string[];
 }
