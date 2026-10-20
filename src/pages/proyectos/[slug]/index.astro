@@ -272,7 +272,7 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
       sec.model && p.model && (
         <section class="container section--tight" aria-labelledby={sec.model.id}>
           <SectionHead code={sec.model.n} title={sec.model.title} id={sec.model.id}>
-            <span class="mono muted">Arrastra para girar · rueda o pellizco para acercar</span>
+            <span class="mono muted">Arrastra para girar · rueda o pellizco para acercar · doble clic para volver</span>
           </SectionHead>
           <ModelViewer model={p.model} />
         </section>

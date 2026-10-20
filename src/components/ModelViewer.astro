@@ -18,32 +18,28 @@ const storeys = m.storeys ?? [];
     {m.poster && <img class="mv__poster" src={url(m.poster)} alt={m.alt} loading="lazy" decoding="async" />}
     <button type="button" class="mv__open" data-mv-open>
       <span class="mv__open-label">Abrir modelo 3D</span>
-      <span class="mono mv__open-sub">{m.size ? `${m.size} · ` : ''}girar, acercar y ver por plantas</span>
+      <span class="mono mv__open-sub">{m.size ? `${m.size} · ` : ''}arrastra para girar</span>
     </button>
     <p class="mv__status mono" data-mv-status hidden>Cargando modelo…</p>
   </div>
   <div class="mv__bar">
     {
       storeys.length > 1 && (
-        <div class="mv__group" role="group" aria-label="Mostrar hasta la planta">
-          <span class="label">Hasta</span>
-          {storeys.map((s, i) => (
-            <button type="button" class="mv__btn" data-mv-storey={s.key} aria-pressed={i === storeys.length - 1 ? "true" : "false"} disabled>
-              {s.label}
-            </button>
-          ))}
-        </div>
+        <label class="mv__floors">
+          <span class="label">Plantas</span>
+          <select class="mv__select" data-mv-storeys disabled>
+            {[...storeys].reverse().map((s, i) => (
+              <option value={s.key} selected={i === 0}>
+                {i === 0 ? 'Edificio completo' : `Hasta ${s.label.toLowerCase()}`}
+              </option>
+            ))}
+          </select>
+        </label>
       )
     }
-    <div class="mv__group" role="group" aria-label="Vista">
-      <span class="label">Vista</span>
-      <button type="button" class="mv__btn" data-mv-view="frontal" disabled>Frontal</button>
-      <button type="button" class="mv__btn" data-mv-view="trasera" disabled>Trasera</button>
-      <button type="button" class="mv__btn" data-mv-view="planta" disabled>Planta</button>
-    </div>
     {
       m.ifc && (
-        <a class="mv__btn mv__dl" href={url(m.ifc)} download>
+        <a class="mv__dl mono" href={url(m.ifc)} download>
           Descargar IFC
         </a>
       )
@@ -64,7 +60,7 @@ const storeys = m.storeys ?? [];
         const { mountModel } = await import('../scripts/model-viewer');
         await mountModel(root);
         root.querySelector('.mv__poster')?.remove();
-        root.querySelectorAll<HTMLButtonElement>('.mv__btn[disabled]').forEach((b) => (b.disabled = false));
+        root.querySelectorAll<HTMLSelectElement>('[data-mv-storeys]').forEach((el) => (el.disabled = false));
       } catch (err) {
         console.error(err);
         status.textContent = 'No se pudo cargar el modelo 3D en este navegador.';
@@ -78,13 +74,14 @@ const storeys = m.storeys ?? [];
   .mv {
     --mv-bg: #f3f1ea;
     margin: 0;
+    max-width: 760px;
     display: grid;
-    gap: 12px;
+    gap: 10px;
   }
 
   .mv__stage {
     position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     background: var(--mv-bg);
     border: 1px solid var(--line);
     overflow: hidden;
@@ -112,7 +109,7 @@ const storeys = m.storeys ?? [];
     display: grid;
     gap: 4px;
     justify-items: center;
-    padding: 14px 22px;
+    padding: 10px 18px;
     border: 1.5px solid var(--ink);
     background: var(--ink);
     color: var(--paper);
@@ -150,48 +147,38 @@ const storeys = m.storeys ?? [];
   .mv__bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 24px;
+    gap: 8px 20px;
     align-items: center;
+    justify-content: space-between;
   }
 
-  .mv__group {
+  .mv__floors {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    gap: 10px;
     align-items: center;
   }
 
-  .mv__group .label {
-    margin-right: 4px;
-  }
-
-  .mv__btn {
-    min-height: 36px;
-    padding: 6px 12px;
+  .mv__select {
+    min-height: 34px;
+    padding: 4px 8px;
     border: 1px solid var(--line);
     background: transparent;
+    color: inherit;
+    font: inherit;
     font-size: 0.875rem;
-    cursor: pointer;
-    text-decoration: none;
   }
 
-  .mv__btn:hover:not([disabled]) {
-    border-color: var(--ink);
-  }
-
-  .mv__btn[aria-pressed='true'] {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--paper);
-  }
-
-  .mv__btn[disabled] {
+  .mv__select[disabled] {
     opacity: 0.45;
-    cursor: default;
   }
 
   .mv__dl {
-    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .mv__dl:hover {
+    color: var(--ink);
   }
 
   .mv__cap {
@@ -200,17 +187,7 @@ const storeys = m.storeys ?? [];
 
   @media (max-width: 640px) {
     .mv__stage {
-      aspect-ratio: 4 / 5;
-    }
-
-    .mv__dl {
-      margin-left: 0;
-    }
-
-    .mv__btn {
-      min-height: 34px;
-      padding: 5px 9px;
-      font-size: 0.8125rem;
+      aspect-ratio: 4 / 3;
     }
   }
 </style>
