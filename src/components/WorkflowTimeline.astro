@@ -26,8 +26,11 @@ const minWidth = known.length ? Math.max(...known) * 0.12 : 1;
 const weights = steps.map((s) => (hasValue(s.time) ? Math.max(s.time.minutes, minWidth * 0.5) : minWidth));
 const totalWeight = weights.reduce((a, b) => a + b, 0) || 1;
 const firstReview = steps.findIndex((s) => s.phase === 'revision');
-const reviewOffset =
-  firstReview > 0 ? (weights.slice(0, firstReview).reduce((a, b) => a + b, 0) / totalWeight) * 100 : null;
+// Las marcas de fase solo tienen sentido si la revisión cierra la secuencia.
+const reviewAtEnd = firstReview > 0 && steps.slice(firstReview).every((s) => s.phase === 'revision');
+const reviewOffset = reviewAtEnd
+  ? (weights.slice(0, firstReview).reduce((a, b) => a + b, 0) / totalWeight) * 100
+  : null;
 const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary.byActor[a] > 0);
 // Sin ningún tiempo registrado la barra muestra solo quién hace cada paso, sin tiempos ni pendientes.
 const timed = known.length > 0;
@@ -43,7 +46,7 @@ const timed = known.length > 0;
               Revisión →
             </span>
           )}
-          <span class="wf__phase wf__phase--start mono">Generación →</span>
+          {(reviewOffset !== null || firstReview < 0) && <span class="wf__phase wf__phase--start mono">Generación →</span>}
           <ol class="wf__bar" aria-label={timed ? 'Duración relativa de cada paso' : 'Quién ejecuta cada paso'}>
             {steps.map((s, i) => (
               <li
