@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProvenanceLegend from '../components/ProvenanceLegend.astro';
+
+const steps = [
+  {
+    title: 'Comprender el encargo y sus requisitos',
+    text: 'Qué se entrega, para quién, en qué formato y con qué normativa o criterios del estudio.',
+  },
+  {
+    title: 'Desarrollar una estrategia de trabajo',
+    text: 'Dividir la tarea en pasos y decidir cuáles se resuelven a mano, con software o con ayuda de IA.',
+  },
+  {
+    title: 'Utilizar el software y las herramientas adecuadas',
+    text: 'CAD, BIM, scripts o modelos de IA según lo que pida cada paso, no por defecto.',
+  },
+  {
+    title: 'Producir y revisar los entregables',
+    text: 'Todo lo generado se revisa contra los datos de partida antes de darlo por bueno.',
+  },
+  {
+    title: 'Comprobar los resultados y documentar las limitaciones',
+    text: 'Qué se ha comprobado, cómo, y qué queda fuera del alcance o necesita otra revisión.',
+  },
+  {
+    title: 'Incorporar feedback y mejorar el proceso',
+    text: 'Las correcciones recibidas se convierten en ajustes del proceso para el siguiente encargo.',
+  },
+];
+---
+
+<BaseLayout title="Metodología" description="Cómo se aborda un trabajo: del encargo a la entrega, con revisión y registro de tiempos.">
+  <div class="container page-head">
+    <p class="label">04 · Metodología</p>
+    <h1>Metodología</h1>
+    <p class="lead">Seis pasos que se repiten en cada trabajo, con independencia de la herramienta.</p>
+  </div>
+
+  <section class="container" aria-label="Pasos">
+    <ol class="steps">
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step__n mono">{String(i + 1).padStart(2, '0')}</span>
+            <h2 class="step__title">{s.title}</h2>
+            <p class="step__text">{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="container section" aria-labelledby="datos">
+    <SectionHead code="—" title="Cómo se registran los tiempos" id="datos" />
+    <div class="rules">
+      <div class="prose">
+        <p>
+          Cada proceso separa el <strong>tiempo de generación</strong> (producir el entregable, con o sin IA), el
+          <strong>tiempo de comprobación y corrección</strong> y el <strong>tiempo total</strong>. Generar rápido no
+          equivale a terminar antes: lo que cuenta es el total.
+        </p>
+        <p>
+          Cada dato indica su procedencia. El ahorro y el porcentaje solo se calculan cuando los dos métodos tienen un
+          tiempo total medido. Si la referencia es una estimación o falta, se muestra el tiempo registrado y la comparación
+          queda pendiente.
+        </p>
+      </div>
+      <ProvenanceLegend actors />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1.5px solid var(--ink);
+    border-left: 1px solid var(--line);
+  }
+
+  .step {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 14px;
+    padding: 22px 24px 36px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    min-height: 240px;
+  }
+
+  .step__n {
+    color: var(--accent);
+    font-size: 0.875rem;
+  }
+
+  .step__title {
+    font-size: var(--step-1);
+    font-weight: 560;
+    max-width: 22ch;
+  }
+
+  .step__text {
+    color: var(--ink-2);
+    align-self: end;
+    max-width: 40ch;
+  }
+
+  .rules {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 32px clamp(24px, 4vw, 64px);
+    align-items: start;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  @media (max-width: 960px) {
+    .steps {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .rules {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+
+    .step {
+      min-height: 0;
+    }
+  }
+</style>

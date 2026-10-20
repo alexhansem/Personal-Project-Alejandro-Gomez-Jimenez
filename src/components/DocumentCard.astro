@@ -1,0 +1,108 @@
+---
+import type { DocumentItem } from '../content/types';
+import { url } from '../lib/url';
+
+interface Props {
+  doc: DocumentItem;
+  projectSlug: string;
+  code: string;
+}
+const { doc, projectSlug, code } = Astro.props;
+---
+
+<article class="doc">
+  <div class="doc__icon" aria-hidden="true">
+    <span class="mono">PDF</span>
+  </div>
+  <div class="doc__body">
+    <p class="mono doc__meta">
+      <span class="doc__code">{code}</span>
+      {doc.sheet && <span>{doc.sheet}</span>}
+      {doc.pages && <span>{doc.pages} {doc.pages === 1 ? 'página' : 'páginas'}</span>}
+    </p>
+    <h3 class="doc__title">{doc.title}</h3>
+    {doc.description && <p class="muted doc__desc">{doc.description}</p>}
+  </div>
+  <div class="doc__actions">
+    <a class="btn btn--solid" href={url(`/proyectos/${projectSlug}/documentos/${doc.id}/`)}>Abrir en el visor</a>
+    <a class="btn" href={url(doc.src)} download>Descargar</a>
+  </div>
+</article>
+
+<style>
+  .doc {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .doc__icon {
+    width: 64px;
+    aspect-ratio: 1 / 1.414;
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+    display: grid;
+    place-items: end start;
+    padding: 6px;
+    position: relative;
+  }
+
+  .doc__icon::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(225deg, var(--paper) 50%, var(--ink) 50% calc(50% + 1px), var(--sheet) calc(50% + 1px));
+  }
+
+  .doc__icon .mono {
+    font-size: 0.625rem;
+    color: var(--accent);
+  }
+
+  .doc__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .doc__code {
+    color: var(--accent);
+  }
+
+  .doc__title {
+    font-size: 1.0625rem;
+    margin-top: 4px;
+  }
+
+  .doc__desc {
+    font-size: 0.875rem;
+    margin-top: 4px;
+  }
+
+  .doc__actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 720px) {
+    .doc {
+      grid-template-columns: 48px 1fr;
+    }
+
+    .doc__icon {
+      width: 48px;
+    }
+
+    .doc__actions {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

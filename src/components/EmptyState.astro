@@ -1,0 +1,137 @@
+---
+/**
+ * Estado vacío con forma de lámina en blanco: deja claro que la sección está
+ * preparada y a la espera de contenido, sin simular trabajos.
+ */
+interface Props {
+  title: string;
+  /** Texto secundario visible para cualquier visitante. */
+  text?: string;
+  /** Indicación para quien mantiene la web (solo en desarrollo). */
+  hint?: string;
+  /** Referencia de hoja para el cajetín. */
+  sheet?: string;
+}
+const { title, text, hint, sheet = '—' } = Astro.props;
+const dev = import.meta.env.DEV;
+---
+
+<div class="empty">
+  <div class="empty__sheet">
+    <span class="empty__axis empty__axis--h" aria-hidden="true"></span>
+    <span class="empty__axis empty__axis--v" aria-hidden="true"></span>
+    <div class="empty__body">
+      <p class="label">Hoja en preparación</p>
+      <p class="empty__title">{title}</p>
+      {text && <p class="empty__text muted">{text}</p>}
+      <slot />
+      {dev && hint && <p class="empty__hint mono">{hint}</p>}
+    </div>
+    <dl class="empty__block mono" aria-hidden="true">
+      <div><dt>Hoja</dt><dd>{sheet}</dd></div>
+      <div><dt>Estado</dt><dd>Pendiente</dd></div>
+      <div><dt>Rev.</dt><dd>0</dd></div>
+    </dl>
+  </div>
+</div>
+
+<style>
+  .empty {
+    padding: 10px;
+    border: 1.5px solid var(--ink);
+    background: var(--sheet);
+  }
+
+  .empty__sheet {
+    position: relative;
+    display: grid;
+    min-height: clamp(220px, 28vw, 340px);
+    border: 0.5px solid var(--ink);
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0 / 40px 40px;
+    overflow: hidden;
+  }
+
+  .empty__axis {
+    position: absolute;
+    border: 0 dashed var(--line);
+  }
+
+  .empty__axis--h {
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top-width: 1px;
+  }
+
+  .empty__axis--v {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left-width: 1px;
+  }
+
+  .empty__body {
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    max-width: 46ch;
+    margin: 32px 16px 80px;
+    padding: 20px 24px;
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .empty__title {
+    font-size: var(--step-1);
+    font-weight: 560;
+  }
+
+  .empty__text {
+    font-size: 0.9375rem;
+  }
+
+  .empty__hint {
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .empty__block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    margin: 0;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+    background: var(--sheet);
+    font-size: 0.6875rem;
+  }
+
+  .empty__block div {
+    display: grid;
+    gap: 2px;
+    padding: 6px 12px;
+    border-left: 1px solid var(--line);
+  }
+
+  .empty__block div:first-child {
+    border-left: 0;
+  }
+
+  .empty__block dt {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .empty__block dd {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { activeCategories, projects, sheetCode } from '../../lib/content';
+---
+
+<BaseLayout title="Proyectos" description="Proyectos de delineación, documentación técnica y flujos de trabajo asistidos por IA.">
+  <div class="container page-head">
+    <p class="label">01 · Índice de proyectos</p>
+    <h1>Proyectos</h1>
+    <p class="lead">
+      Planos, documentación y herramientas. Cada ficha explica el encargo, la participación concreta, cómo se usó la IA y
+      cuánto tiempo llevó.
+    </p>
+  </div>
+
+  <div class="container">
+    {
+      projects.length === 0 ? (
+        <EmptyState title="Todavía no hay proyectos publicados." text="Planos, documentación y herramientas, cada uno con su secuencia de trabajo y sus tiempos." sheet="P-01" hint="Añade proyectos en src/content/projects/." />
+      ) : (
+        <>
+          {activeCategories.length > 1 && (
+            <div class="filters" role="group" aria-label="Filtrar por categoría" data-filters>
+              <button type="button" class="filter" aria-pressed="true" data-filter="">
+                Todos <span class="mono">{String(projects.length).padStart(2, '0')}</span>
+              </button>
+              {activeCategories.map((c) => (
+                <button type="button" class="filter" aria-pressed="false" data-filter={c.id}>
+                  {c.label} <span class="mono">{String(c.count).padStart(2, '0')}</span>
+                </button>
+              ))}
+            </div>
+          )}
+          <p class="mono muted results" aria-live="polite" data-results>
+            {projects.length} {projects.length === 1 ? 'proyecto' : 'proyectos'}
+          </p>
+          <div class="grid-projects" data-grid>
+            {projects.map((p, i) => (
+              <ProjectCard project={p} code={sheetCode('P', i)} headingLevel="h2" />
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--line);
+  }
+
+  .filter {
+    display: inline-flex;
+    gap: 10px;
+    align-items: baseline;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .filter .mono {
+    color: var(--muted);
+    font-size: 0.6875rem;
+  }
+
+  .filter:hover {
+    background: var(--paper-2);
+  }
+
+  .filter[aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .filter[aria-pressed='true'] .mono {
+    color: var(--paper-3);
+  }
+
+  .results {
+    padding-block: 20px 28px;
+    font-size: 0.75rem;
+  }
+
+  .grid-projects {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(36px, 4vw, 64px) clamp(20px, 2.5vw, 40px);
+  }
+
+  .grid-projects :global(.pc[hidden]) {
+    display: none;
+  }
+
+  @media (max-width: 1100px) {
+    .grid-projects {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .grid-projects {
+      grid-template-columns: 1fr;
+    }
+
+    .filter {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-filters]');
+  const grid = document.querySelector<HTMLElement>('[data-grid]');
+  const results = document.querySelector<HTMLElement>('[data-results]');
+
+  if (root && grid && results) {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const cards = [...grid.querySelectorAll<HTMLElement>('.pc')];
+    const valid = new Set(buttons.map((b) => b.dataset.filter));
+
+    const apply = (cat: string, push: boolean) => {
+      if (!valid.has(cat)) cat = '';
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
+      let n = 0;
+      cards.forEach((c) => {
+        const show = !cat || (c.dataset.categories ?? '').split(' ').includes(cat);
+        c.hidden = !show;
+        if (show) n++;
+      });
+      const label = buttons.find((b) => b.dataset.filter === cat)?.firstChild?.textContent?.trim();
+      results.textContent = `${n} ${n === 1 ? 'proyecto' : 'proyectos'}${cat && label ? ` · ${label}` : ''}`;
+      if (push) {
+        const u = new URL(location.href);
+        if (cat) u.searchParams.set('categoria', cat);
+        else u.searchParams.delete('categoria');
+        history.replaceState(null, '', u);
+      }
+    };
+
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.filter ?? '', true)));
+    apply(new URLSearchParams(location.search).get('categoria') ?? '', false);
+  }
+</script>

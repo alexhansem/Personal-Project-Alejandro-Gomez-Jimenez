@@ -1,0 +1,12 @@
+/* Cabecera de página compartida */
+.page-head {
+  display: grid;
+  gap: 16px;
+  padding-block: clamp(40px, 6vw, 88px) clamp(28px, 3vw, 48px);
+}
+
+.page-head h1 {
+  font-size: var(--step-4);
+  font-weight: 540;
+  letter-spacing: -0.035em;
+}

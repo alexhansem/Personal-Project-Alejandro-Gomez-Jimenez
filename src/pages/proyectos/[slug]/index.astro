@@ -1,0 +1,686 @@
+---
+import type { GetStaticPaths } from 'astro';
+import type { MediaItem, Project } from '../../../content/types';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import MediaFigure from '../../../components/MediaFigure.astro';
+import CompareSlider from '../../../components/CompareSlider.astro';
+import WorkflowTimeline from '../../../components/WorkflowTimeline.astro';
+import ComparisonPanel from '../../../components/ComparisonPanel.astro';
+import DocumentCard from '../../../components/DocumentCard.astro';
+import DataTable from '../../../components/DataTable.astro';
+import CodeBlock from '../../../components/CodeBlock.astro';
+import TimeTag from '../../../components/TimeTag.astro';
+import { getCategory } from '../../../content/categories';
+import { projects, processes, sheetCode } from '../../../lib/content';
+import { evaluateComparison, formatMinutes, formatPct, summarizeWorkflow } from '../../../lib/time';
+import { url } from '../../../lib/url';
+
+export const getStaticPaths = (() =>
+  projects.map((project, index) => ({ params: { slug: project.slug }, props: { project, index } }))) satisfies GetStaticPaths;
+
+interface Props {
+  project: Project;
+  index: number;
+}
+const { project: p, index } = Astro.props;
+const code = sheetCode('P', index);
+const media = p.media ?? [];
+const hero = p.cover ?? media[0];
+const group = p.slug;
+
+const wf = p.workflow?.length ? summarizeWorkflow(p.workflow) : undefined;
+const cmp = p.comparison ? evaluateComparison(p.comparison) : undefined;
+const relatedProcesses = processes.filter((x) => x.relatedProjects?.includes(p.slug));
+
+const prev = index > 0 ? projects[index - 1] : undefined;
+const next = index < projects.length - 1 ? projects[index + 1] : undefined;
+
+// Secciones presentes, numeradas en orden.
+const has = {
+  brief: !!(p.context || p.objective || p.problem),
+  workflow: !!p.workflow?.length,
+  comparison: !!p.comparison,
+  media: media.length > 0,
+  documents: !!p.documents?.length,
+  tables: !!p.tables?.length,
+  code: !!p.code?.length,
+  work: !!(p.participation?.length || p.methodology?.length || p.deliverables?.length),
+  results: !!(p.results?.length || p.checks?.length || p.limitations?.length),
+  notes: !!p.notes,
+};
+const sectionDefs = [
+  { key: 'brief', id: 'encargo', title: 'Encargo' },
+  { key: 'workflow', id: 'secuencia', title: 'Secuencia de trabajo' },
+  { key: 'comparison', id: 'comparativa', title: 'Comparativa de tiempos' },
+  { key: 'media', id: 'documentacion-grafica', title: 'Documentación gráfica' },
+  { key: 'documents', id: 'documentos', title: 'Documentos' },
+  { key: 'tables', id: 'tablas', title: 'Tablas' },
+  { key: 'code', id: 'codigo', title: 'Código' },
+  { key: 'work', id: 'participacion', title: 'Participación y metodología' },
+  { key: 'results', id: 'resultados', title: 'Resultados y comprobaciones' },
+  { key: 'notes', id: 'observaciones', title: 'Observaciones' },
+] as const;
+const sections = sectionDefs.filter((s) => has[s.key]).map((s, i) => ({ ...s, n: String(i + 1).padStart(2, '0') }));
+const sec = Object.fromEntries(sections.map((s) => [s.key, s])) as Record<string, (typeof sections)[number]>;
+
+const ficha: { k: string; v: string }[] = [
+  { k: 'Referencia', v: code },
+  ...(p.period ? [{ k: 'Periodo', v: p.period }] : []),
+  ...(p.status ? [{ k: 'Estado', v: p.status }] : []),
+  ...(p.location ? [{ k: 'Ubicación', v: p.location }] : []),
+  { k: p.categories.length > 1 ? 'Categorías' : 'Categoría', v: p.categories.map((c) => getCategory(c).label).join(' · ') },
+  ...(p.tools?.length ? [{ k: 'Herramientas', v: p.tools.join(' · ') }] : []),
+];
+
+const galleryItems: MediaItem[] = media;
+const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
+---
+
+<BaseLayout title={p.title} description={p.summary} image={hero?.src} noindex={p.demo}>
+  <article>
+    <header class="container ph">
+      <nav class="ph__crumbs mono" aria-label="Ruta">
+        <a href={url('/proyectos/')}>Proyectos</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{code}</span>
+      </nav>
+
+      <div class="ph__grid">
+        <div class="ph__title">
+          {p.demo && <span class="stamp stamp--demo">Proyecto de demostración · contenido ficticio</span>}
+          <h1>{p.title}</h1>
+          <p class="lead">{p.summary}</p>
+        </div>
+        <dl class="ph__ficha">
+          {
+            ficha.map((f) => (
+              <div>
+                <dt class="label">{f.k}</dt>
+                <dd>{f.v}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </header>
+
+    {
+      hero && (
+        <div class="container ph__hero">
+          <MediaFigure item={hero} group={group} code={media.includes(hero) ? mediaCode(0) : undefined} loading="eager" />
+        </div>
+      )
+    }
+
+    {
+      (wf || cmp) && (
+        <div class="container">
+          <dl class="kpis">
+            {wf && (
+              <>
+                <div>
+                  <dt class="label">Pasos</dt>
+                  <dd class="kpis__v">
+                    {p.workflow!.length}
+                    <span class="kpis__sub mono">
+                      {['ia', 'humano', 'software']
+                        .map((a) => [a, p.workflow!.filter((s) => s.actor === a).length] as const)
+                        .filter(([, n]) => n > 0)
+                        .map(([a, n]) => `${n} ${a === 'ia' ? 'IA' : a === 'humano' ? 'propios' : 'software'}`)
+                        .join(' · ')}
+                    </span>
+                  </dd>
+                </div>
+                <div>
+                  <dt class="label">Generación</dt>
+                  <dd>
+                    <TimeTag time={wf.generation} size="lg" />
+                  </dd>
+                </div>
+                <div>
+                  <dt class="label">Revisión</dt>
+                  <dd>
+                    <TimeTag time={wf.review} size="lg" />
+                  </dd>
+                </div>
+              </>
+            )}
+            {cmp && !wf && (
+              <div>
+                <dt class="label">Tiempo total</dt>
+                <dd>
+                  <TimeTag time={cmp.usedTotal} size="lg" />
+                </dd>
+              </div>
+            )}
+            {cmp && (
+              <div class="kpis__delta">
+                <dt class="label">Frente al método convencional</dt>
+                <dd>
+                  {cmp.status === 'valida' && cmp.differenceMinutes !== undefined ? (
+                    <span class="kpis__v kpis__v--accent">
+                      {cmp.differenceMinutes >= 0 ? '−' : '+'}
+                      {formatMinutes(Math.abs(cmp.differenceMinutes))}
+                      {cmp.differencePct !== undefined && (
+                        <span class="kpis__sub mono">
+                          {cmp.differencePct >= 0 ? '−' : '+'}
+                          {formatPct(cmp.differencePct)} total medido
+                        </span>
+                      )}
+                    </span>
+                  ) : (
+                    <span class="kpis__pending mono">
+                      {cmp.status === 'pendiente' ? 'Pendiente de medir' : 'No calculado: hay estimaciones'}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            )}
+          </dl>
+        </div>
+      )
+    }
+
+    {
+      sections.length > 1 && (
+        <nav class="container toc" aria-label="Contenido del proyecto">
+          <ol>
+            {sections.map((s) => (
+              <li>
+                <a href={`#${s.id}`}>
+                  <span class="mono">{s.n}</span> {s.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    {
+      sec.brief && (
+        <section class="container section--tight" aria-labelledby={sec.brief.id}>
+          <SectionHead code={sec.brief.n} title={sec.brief.title} id={sec.brief.id} />
+          <dl class="brief">
+            {p.context && (
+              <div>
+                <dt class="label">Contexto</dt>
+                <dd>{p.context}</dd>
+              </div>
+            )}
+            {p.objective && (
+              <div>
+                <dt class="label">Objetivo</dt>
+                <dd>{p.objective}</dd>
+              </div>
+            )}
+            {p.problem && (
+              <div>
+                <dt class="label">Problema a resolver</dt>
+                <dd>{p.problem}</dd>
+              </div>
+            )}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      sec.workflow && p.workflow && (
+        <section class="container section--tight" aria-labelledby={sec.workflow.id}>
+          <SectionHead code={sec.workflow.n} title={sec.workflow.title} id={sec.workflow.id}>
+            <span class="mono muted">Qué hace la IA, qué se decide y qué ejecuta el software</span>
+          </SectionHead>
+          <WorkflowTimeline steps={p.workflow} group={`${group}-wf`} />
+        </section>
+      )
+    }
+
+    {
+      sec.comparison && p.comparison && (
+        <section class="container section--tight" aria-labelledby={sec.comparison.id}>
+          <SectionHead code={sec.comparison.n} title={sec.comparison.title} id={sec.comparison.id} />
+          <ComparisonPanel comparison={p.comparison} />
+        </section>
+      )
+    }
+
+    {
+      sec.media && (
+        <section class="container section--tight" aria-labelledby={sec.media.id}>
+          <SectionHead code={sec.media.n} title={sec.media.title} id={sec.media.id}>
+            <span class="mono muted">Pulsa una lámina para ampliarla</span>
+          </SectionHead>
+          <div class="gallery">
+            {galleryItems.map((m, i) =>
+              m.compareWith && m.src ? (
+                <div class="gallery__item gallery__item--wide">
+                  <CompareSlider item={m as MediaItem & { compareWith: NonNullable<MediaItem['compareWith']> }} code={`${mediaCode(i)} · comparación`} />
+                </div>
+              ) : (
+                <div class:list={['gallery__item', { 'gallery__item--wide': (m.ratio ?? 1.414) > 1.9 }]}>
+                  <MediaFigure item={m} group={group} code={mediaCode(i)} />
+                </div>
+              ),
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.documents && p.documents && (
+        <section class="container section--tight" aria-labelledby={sec.documents.id}>
+          <SectionHead code={sec.documents.n} title={sec.documents.title} id={sec.documents.id} />
+          <div class="docs">
+            {p.documents.map((d, i) => (
+              <DocumentCard doc={d} projectSlug={p.slug} code={`DOC-${String(i + 1).padStart(2, '0')}`} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.tables && p.tables && (
+        <section class="container section--tight" aria-labelledby={sec.tables.id}>
+          <SectionHead code={sec.tables.n} title={sec.tables.title} id={sec.tables.id} />
+          <div class="stack">
+            {p.tables.map((t, i) => (
+              <DataTable table={t} code={`T-${String(i + 1).padStart(2, '0')}`} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.code && p.code && (
+        <section class="container section--tight" aria-labelledby={sec.code.id}>
+          <SectionHead code={sec.code.n} title={sec.code.title} id={sec.code.id} />
+          <div class="stack">
+            {p.code.map((s) => (
+              <CodeBlock snippet={s} demo={p.demo} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.work && (
+        <section class="container section--tight" aria-labelledby={sec.work.id}>
+          <SectionHead code={sec.work.n} title={sec.work.title} id={sec.work.id} />
+          <div class="cols">
+            {!!p.participation?.length && (
+              <div>
+                <h3 class="label col-h">Participación concreta</h3>
+                <ul class="list-dash">
+                  {p.participation.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!!p.methodology?.length && (
+              <div>
+                <h3 class="label col-h">Metodología</h3>
+                <ol class="list-num">
+                  {p.methodology.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+            {!!p.deliverables?.length && (
+              <div>
+                <h3 class="label col-h">Entregables</h3>
+                <ul class="list-dash">
+                  {p.deliverables.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.results && (
+        <section class="container section--tight" aria-labelledby={sec.results.id}>
+          <SectionHead code={sec.results.n} title={sec.results.title} id={sec.results.id} />
+          <div class="cols">
+            {!!p.results?.length && (
+              <div>
+                <h3 class="label col-h">Resultados</h3>
+                <ul class="list-dash">
+                  {p.results.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!!p.checks?.length && (
+              <div>
+                <h3 class="label col-h">Comprobaciones realizadas</h3>
+                <ul class="list-dash">
+                  {p.checks.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {!!p.limitations?.length && (
+              <div>
+                <h3 class="label col-h">Limitaciones</h3>
+                <ul class="list-dash">
+                  {p.limitations.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      sec.notes && (
+        <section class="container section--tight" aria-labelledby={sec.notes.id}>
+          <SectionHead code={sec.notes.n} title={sec.notes.title} id={sec.notes.id} />
+          <p class="prose">{p.notes}</p>
+        </section>
+      )
+    }
+
+    {
+      relatedProcesses.length > 0 && (
+        <aside class="container section--tight" aria-labelledby="relacionados">
+          <h2 class="label" id="relacionados">
+            Procesos y herramientas relacionados
+          </h2>
+          <ul class="related">
+            {relatedProcesses.map((r) => (
+              <li>
+                <a href={url(`/procesos/${r.slug}/`)}>
+                  <span class="mono muted">{r.type}</span>
+                  <span>{r.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
+
+    <nav class="container pager" aria-label="Otros proyectos">
+      {
+        prev ? (
+          <a class="pager__link" href={url(`/proyectos/${prev.slug}/`)} rel="prev">
+            <span class="mono muted">← {sheetCode('P', index - 1)}</span>
+            <span>{prev.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        next && (
+          <a class="pager__link pager__link--next" href={url(`/proyectos/${next.slug}/`)} rel="next">
+            <span class="mono muted">{sheetCode('P', index + 1)} →</span>
+            <span>{next.title}</span>
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .ph {
+    padding-block: clamp(28px, 4vw, 56px) clamp(24px, 3vw, 40px);
+  }
+
+  .ph__crumbs {
+    display: flex;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: clamp(20px, 3vw, 40px);
+  }
+
+  .ph__crumbs a {
+    text-decoration: none;
+  }
+
+  .ph__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: clamp(28px, 5vw, 80px);
+    align-items: end;
+  }
+
+  .ph__title {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+
+  .ph__title h1 {
+    font-size: var(--step-3);
+    font-weight: 540;
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+  }
+
+  .ph__ficha {
+    margin: 0;
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .ph__ficha div {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9375rem;
+  }
+
+  .ph__ficha dd {
+    margin: 0;
+  }
+
+  .ph__hero {
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin: 0;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .kpis > div {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding: 16px 20px 20px;
+    border-left: 1px solid var(--line);
+  }
+
+  .kpis > div:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .kpis dd {
+    margin: 0;
+  }
+
+  .kpis__v {
+    display: grid;
+    font-size: var(--step-2);
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .kpis__v--accent {
+    color: var(--accent);
+  }
+
+  .kpis__sub {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .kpis__pending {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    border-bottom: 1px dashed var(--muted);
+  }
+
+  .toc {
+    padding-block: 18px 0;
+  }
+
+  .toc ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 0.875rem;
+  }
+
+  .toc a {
+    text-decoration: none;
+  }
+
+  .toc .mono {
+    color: var(--accent);
+    font-size: 0.6875rem;
+  }
+
+  .brief {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px clamp(24px, 3vw, 48px);
+    margin: 0;
+  }
+
+  .brief dd {
+    margin: 8px 0 0;
+    color: var(--ink-2);
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(28px, 3vw, 48px) clamp(20px, 2.5vw, 40px);
+  }
+
+  .gallery__item--wide {
+    grid-column: 1 / -1;
+  }
+
+  .stack {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px clamp(24px, 3vw, 48px);
+  }
+
+  .col-h {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 400;
+  }
+
+  .related {
+    list-style: none;
+    margin-top: 12px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .related a {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+
+  .pager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: clamp(40px, 6vw, 80px);
+    padding-top: 20px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .pager__link {
+    display: grid;
+    gap: 4px;
+    text-decoration: none;
+    font-size: 1.0625rem;
+  }
+
+  .pager__link--next {
+    text-align: right;
+  }
+
+  @media (max-width: 960px) {
+    .ph__grid,
+    .brief {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .kpis > div:first-child {
+      padding-left: 20px;
+    }
+
+    .kpis > div {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .related a {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+
+    .pager {
+      grid-template-columns: 1fr;
+    }
+
+    .pager__link--next {
+      text-align: left;
+    }
+  }
+</style>

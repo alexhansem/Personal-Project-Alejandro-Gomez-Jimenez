@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+import '../styles/page.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import DemoBanner from '../components/DemoBanner.astro';
+import Viewer from '../components/Viewer.astro';
+import { profile } from '../config/profile';
+import { siteTitle } from '../config/site';
+import { url } from '../lib/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Imagen para redes (ruta en public/). */
+  image?: string;
+  noindex?: boolean;
+}
+
+const { title, description = profile.intro, image, noindex = false } = Astro.props;
+const brand = profile.isExample ? siteTitle : `${profile.name} · ${siteTitle}`;
+const fullTitle = title ? `${title} — ${brand}` : brand;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage = image && Astro.site ? new URL(image, Astro.site).href : undefined;
+// Mientras haya datos de ejemplo o demo, se evita la indexación.
+const robots = noindex || profile.isExample ? 'noindex, nofollow' : 'index, follow';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#f3f1ea" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <DemoBanner />
+    <SiteHeader />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter />
+    <Viewer />
+  </body>
+</html>

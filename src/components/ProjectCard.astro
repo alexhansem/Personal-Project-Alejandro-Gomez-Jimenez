@@ -1,0 +1,188 @@
+---
+import type { Project } from '../content/types';
+import { getCategory } from '../content/categories';
+import { url } from '../lib/url';
+import { summarizeWorkflow, evaluateComparison, formatMinutes, formatPct, hasValue } from '../lib/time';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  project: Project;
+  code: string;
+  size?: 'lg' | 'md';
+  headingLevel?: 'h2' | 'h3';
+}
+const { project: p, code, size = 'md', headingLevel = 'h3' } = Astro.props;
+const Tag = headingLevel;
+const cover = p.cover ?? p.media?.[0];
+const href = url(`/proyectos/${p.slug}/`);
+
+const wf = p.workflow ? summarizeWorkflow(p.workflow) : undefined;
+const cmp = p.comparison ? evaluateComparison(p.comparison) : undefined;
+const total = cmp?.usedTotal ?? wf?.total;
+---
+
+<article class:list={['pc', `pc--${size}`]} data-categories={p.categories.join(' ')}>
+  <a class="pc__link" href={href}>
+    <div class="pc__media">
+      {
+        cover?.src ? (
+          <img src={url(cover.src)} alt="" loading="lazy" decoding="async" />
+        ) : (
+          <Placeholder ratio={size === 'lg' ? 1.5 : 1.414} label="Imagen pendiente" />
+        )
+      }
+      {p.demo && <span class="stamp stamp--demo pc__demo">Demo · ficticio</span>}
+    </div>
+    <div class="pc__meta mono">
+      <span class="pc__code">{code}</span>
+      {p.period && <span>{p.period}</span>}
+      {p.status && <span>{p.status}</span>}
+    </div>
+    <Tag class="pc__title">{p.title}</Tag>
+    <p class="pc__summary">{p.summary}</p>
+  </a>
+  <footer class="pc__foot">
+    <ul class="pc__cats mono" aria-label="Categorías">
+      {p.categories.map((c) => <li>{getCategory(c).label}</li>)}
+    </ul>
+    {
+      total && (
+        <p class="pc__time mono">
+          {hasValue(total) ? (
+            <>
+              <span>Total {formatMinutes(total.minutes)}</span>
+              <span class="muted">{total.provenance}</span>
+            </>
+          ) : (
+            <span class="muted">Tiempo pendiente</span>
+          )}
+          {cmp?.status === 'valida' && cmp.differencePct !== undefined && (
+            <span class="pc__delta">
+              {cmp.differencePct >= 0 ? '−' : '+'}
+              {formatPct(cmp.differencePct)}
+            </span>
+          )}
+        </p>
+      )
+    }
+  </footer>
+</article>
+
+<style>
+  .pc {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .pc__link {
+    display: grid;
+    gap: 12px;
+    text-decoration: none;
+    align-content: start;
+  }
+
+  .pc__link:hover {
+    color: inherit;
+  }
+
+  .pc__media {
+    position: relative;
+    aspect-ratio: 1.414;
+    border: 1px solid var(--line);
+    background: var(--sheet);
+    overflow: hidden;
+  }
+
+  .pc--lg .pc__media {
+    aspect-ratio: 1.5;
+  }
+
+  .pc__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6px;
+    transition: transform var(--t) var(--ease);
+  }
+
+  .pc__link:hover .pc__media img {
+    transform: scale(1.02);
+  }
+
+  .pc__link:hover .pc__title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+
+  .pc__demo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .pc__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .pc__code {
+    color: var(--accent);
+  }
+
+  .pc__title {
+    font-size: var(--step-1);
+    font-weight: 560;
+  }
+
+  .pc--lg .pc__title {
+    font-size: var(--step-2);
+  }
+
+  .pc__summary {
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+    max-width: 60ch;
+  }
+
+  .pc__foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 8px 16px;
+    align-self: end;
+  }
+
+  .pc__cats {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 0.6875rem;
+    color: var(--muted);
+  }
+
+  .pc__cats li + li::before {
+    content: '/';
+    margin-right: 12px;
+    color: var(--line);
+  }
+
+  .pc__time {
+    display: flex;
+    gap: 10px;
+    font-size: 0.75rem;
+  }
+
+  .pc__delta {
+    color: var(--accent);
+  }
+</style>

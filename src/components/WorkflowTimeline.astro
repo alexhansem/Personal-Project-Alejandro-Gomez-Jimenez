@@ -1,0 +1,442 @@
+---
+/**
+ * Secuencia de trabajo: cómo se desarrolla el proyecto paso a paso, quién
+ * ejecuta cada paso (IA, criterio propio o software) y cuánto tiempo lleva.
+ */
+import type { WorkflowStep } from '../content/types';
+import { actorLabel, formatMinutes, hasValue, summarizeWorkflow } from '../lib/time';
+import TimeTag from './TimeTag.astro';
+import MediaFigure from './MediaFigure.astro';
+import ProvenanceLegend from './ProvenanceLegend.astro';
+
+interface Props {
+  steps: WorkflowStep[];
+  group: string;
+  /** Muestra la barra de tiempos proporcional. */
+  showBar?: boolean;
+  /** Muestra la lista detallada de pasos. */
+  showSteps?: boolean;
+}
+const { steps, group, showBar = true, showSteps = true } = Astro.props;
+const summary = summarizeWorkflow(steps);
+
+// Los pasos sin tiempo se dibujan con un ancho mínimo y borde discontinuo.
+const known = steps.filter((s) => hasValue(s.time)).map((s) => s.time!.minutes!);
+const minWidth = known.length ? Math.max(...known) * 0.12 : 1;
+const weights = steps.map((s) => (hasValue(s.time) ? Math.max(s.time.minutes, minWidth * 0.5) : minWidth));
+const totalWeight = weights.reduce((a, b) => a + b, 0) || 1;
+const firstReview = steps.findIndex((s) => s.phase === 'revision');
+const reviewOffset =
+  firstReview > 0 ? (weights.slice(0, firstReview).reduce((a, b) => a + b, 0) / totalWeight) * 100 : null;
+const actorTotal = (['ia', 'humano', 'software'] as const).filter((a) => summary.byActor[a] > 0);
+---
+
+<div class="wf">
+  {
+    showBar && (
+      <div class="wf__overview">
+        <div class="wf__bar-wrap">
+          {reviewOffset !== null && (
+            <span class="wf__phase mono" style={`left: ${reviewOffset}%`}>
+              Revisión →
+            </span>
+          )}
+          <span class="wf__phase wf__phase--start mono">Generación →</span>
+          <ol class="wf__bar" aria-label="Duración relativa de cada paso">
+            {steps.map((s, i) => (
+              <li
+                class:list={['wf__seg', `wf__seg--${s.actor}`, `wf__seg--${s.time?.provenance ?? 'pendiente'}`]}
+                style={`flex-grow: ${weights[i]}`}
+                title={`${String(i + 1).padStart(2, '0')} · ${s.title} · ${hasValue(s.time) ? formatMinutes(s.time.minutes) : 'sin tiempo'}`}
+              >
+                <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <dl class="wf__totals">
+          <div>
+            <dt class="label">Generación</dt>
+            <dd>
+              <TimeTag time={summary.generation} />
+            </dd>
+          </div>
+          <div>
+            <dt class="label">Revisión y corrección</dt>
+            <dd>
+              <TimeTag time={summary.review} />
+            </dd>
+          </div>
+          <div class="wf__total">
+            <dt class="label">Total del proceso</dt>
+            <dd>
+              <TimeTag time={summary.total} size="lg" />
+            </dd>
+          </div>
+          {actorTotal.length > 0 && (
+            <div class="wf__actors">
+              <dt class="label">Por actor{summary.missing > 0 && ' (pasos con tiempo)'}</dt>
+              <dd>
+                {actorTotal.map((a) => (
+                  <span class={`wf__actor wf__actor--${a}`}>
+                    <span class="wf__dot" aria-hidden="true" />
+                    {actorLabel[a]} {formatMinutes(summary.byActor[a])}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          )}
+        </dl>
+        {summary.missing > 0 && (
+          <p class="wf__missing mono">
+            {summary.missing === 1 ? '1 paso sin tiempo registrado' : `${summary.missing} pasos sin tiempo registrado`}: el total queda
+            pendiente.
+          </p>
+        )}
+        <ProvenanceLegend actors />
+      </div>
+    )
+  }
+
+  {showSteps && (
+  <ol class="wf__steps">
+    {
+      steps.map((s, i) => (
+        <li class:list={['wf__step', `wf__step--${s.actor}`, { 'wf__step--review': s.phase === 'revision' }]}>
+          <div class="wf__num mono">{String(i + 1).padStart(2, '0')}</div>
+          <div class="wf__actor-col">
+            <span class={`wf__badge wf__badge--${s.actor}`}>{actorLabel[s.actor]}</span>
+            {s.tool && <span class="wf__tool mono">{s.tool}</span>}
+          </div>
+          <div class="wf__body">
+            <h4 class="wf__title">{s.title}</h4>
+            {s.description && <p class="wf__desc">{s.description}</p>}
+            {(s.input || s.output) && (
+              <p class="wf__io mono">
+                {s.input && (
+                  <span>
+                    <span class="wf__io-k">Entrada</span> {s.input}
+                  </span>
+                )}
+                {s.input && s.output && (
+                  <span class="wf__arrow" aria-hidden="true">
+                    →
+                  </span>
+                )}
+                {s.output && (
+                  <span>
+                    <span class="wf__io-k">Salida</span> {s.output}
+                  </span>
+                )}
+              </p>
+            )}
+            {s.media && (
+              <div class="wf__media">
+                <MediaFigure item={s.media} group={group} />
+              </div>
+            )}
+          </div>
+          <div class="wf__time">
+            <TimeTag time={s.time} size="sm" />
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  )}
+</div>
+
+<style>
+  .wf {
+    display: grid;
+    gap: 40px;
+  }
+
+  .wf__overview {
+    display: grid;
+    gap: 24px;
+  }
+
+  .wf__bar-wrap {
+    position: relative;
+    padding-top: 22px;
+    overflow: hidden;
+  }
+
+  .wf__phase {
+    position: absolute;
+    top: 0;
+    font-size: 0.6875rem;
+    color: var(--muted);
+    padding-left: 6px;
+    border-left: 1px solid var(--ink);
+    height: 100%;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .wf__phase--start {
+    left: 0;
+  }
+
+  .wf__bar {
+    list-style: none;
+    display: flex;
+    gap: 3px;
+    height: 44px;
+  }
+
+  .wf__seg {
+    flex-basis: 0;
+    min-width: 22px;
+    display: flex;
+    align-items: flex-end;
+    padding: 4px 5px;
+    color: var(--paper);
+    font-size: 0.625rem;
+  }
+
+  .wf__seg--ia {
+    --c: var(--actor-ia);
+  }
+
+  .wf__seg--humano {
+    --c: var(--actor-humano);
+  }
+
+  .wf__seg--software {
+    --c: var(--actor-software);
+  }
+
+  .wf__seg--medido {
+    background: var(--c);
+  }
+
+  .wf__seg--estimado {
+    background: repeating-linear-gradient(-45deg, var(--c) 0 2px, transparent 2px 6px);
+    box-shadow: inset 0 0 0 1.5px var(--c);
+    color: var(--ink);
+  }
+
+  .wf__seg--estimado span {
+    background: var(--paper);
+    padding: 0 2px;
+  }
+
+  .wf__seg--pendiente {
+    background: transparent;
+    border: 1.5px dashed var(--c);
+    color: var(--ink);
+  }
+
+  .wf__totals {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr;
+    gap: 16px 48px;
+    margin: 0;
+    align-items: end;
+  }
+
+  .wf__totals dd {
+    margin: 4px 0 0;
+  }
+
+  .wf__actors {
+    justify-self: end;
+    text-align: right;
+  }
+
+  .wf__actors dd {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 18px;
+    font-size: 0.875rem;
+  }
+
+  .wf__actor {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .wf__dot {
+    width: 9px;
+    height: 9px;
+    background: var(--c);
+  }
+
+  .wf__actor--ia {
+    --c: var(--actor-ia);
+  }
+
+  .wf__actor--humano {
+    --c: var(--actor-humano);
+  }
+
+  .wf__actor--software {
+    --c: var(--actor-software);
+  }
+
+  .wf__missing {
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .wf__steps {
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .wf__step {
+    display: grid;
+    grid-template-columns: 3.2rem 10rem minmax(0, 1fr) 11rem;
+    gap: 16px 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  .wf__step--review .wf__num {
+    color: var(--ink);
+  }
+
+  .wf__num {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+
+  .wf__actor-col {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 6px;
+  }
+
+  .wf__badge {
+    display: inline-block;
+    padding: 3px 8px 2px;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+  }
+
+  .wf__badge--ia {
+    color: var(--paper);
+    background: var(--actor-ia);
+    border-color: var(--actor-ia);
+  }
+
+  .wf__badge--humano {
+    color: var(--ink);
+  }
+
+  .wf__badge--software {
+    color: var(--actor-software);
+  }
+
+  .wf__tool {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .wf__body {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .wf__title {
+    font-size: 1.0625rem;
+    font-weight: 560;
+  }
+
+  .wf__desc {
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+
+  .wf__io {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 12px;
+    font-size: 0.75rem;
+    color: var(--ink-2);
+  }
+
+  .wf__io-k {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 4px;
+  }
+
+  .wf__arrow {
+    color: var(--accent);
+  }
+
+  .wf__media {
+    max-width: 520px;
+    margin-top: 8px;
+  }
+
+  .wf__time {
+    text-align: right;
+    padding-top: 2px;
+  }
+
+  @media (max-width: 960px) {
+    .wf__totals {
+      grid-template-columns: repeat(3, auto);
+    }
+
+    .wf__actors {
+      grid-column: 1 / -1;
+      justify-self: start;
+      text-align: left;
+    }
+
+    .wf__actors dd {
+      justify-content: flex-start;
+    }
+
+    .wf__step {
+      grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+    }
+
+    .wf__actor-col {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .wf__body {
+      grid-column: 2 / -1;
+      grid-row: 2;
+    }
+
+    .wf__time {
+      grid-column: 3;
+      grid-row: 1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .wf__totals {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .wf__total {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+  }
+</style>

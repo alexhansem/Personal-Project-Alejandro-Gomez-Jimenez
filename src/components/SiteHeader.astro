@@ -1,0 +1,173 @@
+---
+import { nav, siteTitle } from '../config/site';
+import { profile } from '../config/profile';
+import { url } from '../lib/url';
+
+const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const isActive = (href: string) => path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href={url('/')} aria-label={`${profile.name}, inicio`}>
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__text">
+        <span class="brand__name">
+          {profile.name}
+          {profile.isExample && <span class="stamp stamp--demo">Ejemplo</span>}
+        </span>
+        <span class="brand__sub">{siteTitle}</span>
+      </span>
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="nav">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={url(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>
+                <span class="nav__code" aria-hidden="true">{item.code}</span>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 64px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding-block: 10px;
+  }
+
+  .brand:hover {
+    color: inherit;
+  }
+
+  .brand__mark {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid var(--ink);
+    background:
+      linear-gradient(var(--accent), var(--accent)) center / 1.5px 100% no-repeat,
+      linear-gradient(var(--ink), var(--ink)) center / 100% 1px no-repeat;
+    flex: none;
+  }
+
+  .brand__text {
+    display: grid;
+    line-height: 1.15;
+  }
+
+  .brand__name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .brand__sub {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav {
+    list-style: none;
+    display: flex;
+    height: 100%;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding-inline: 16px;
+    border-left: 1px solid var(--line);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    position: relative;
+  }
+
+  .nav__code {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--muted);
+  }
+
+  .nav a[aria-current='page']::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  @media (max-width: 960px) {
+    .site-header {
+      position: static;
+    }
+
+    .site-header__inner {
+      flex-direction: column;
+      gap: 0;
+      padding-inline: 0;
+    }
+
+    .brand {
+      padding-inline: var(--gutter);
+    }
+
+    nav {
+      border-top: 1px solid var(--line);
+    }
+
+    .nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .nav a {
+      padding: 11px var(--gutter);
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.875rem;
+    }
+
+    .nav li:nth-child(odd) a {
+      border-right: 1px solid var(--line);
+    }
+
+    .nav li:nth-last-child(-n + 2) a {
+      border-bottom: 0;
+    }
+  }
+</style>

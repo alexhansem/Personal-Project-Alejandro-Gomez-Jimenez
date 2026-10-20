@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ComparisonPanel from '../components/ComparisonPanel.astro';
+import ProvenanceLegend from '../components/ProvenanceLegend.astro';
+import TimeTag from '../components/TimeTag.astro';
+import EmptyState from '../components/EmptyState.astro';
+import { projects, sheetCode } from '../lib/content';
+import { evaluateComparison, formatPct } from '../lib/time';
+import { url } from '../lib/url';
+
+const rows = projects
+  .map((p, i) => ({ p, i }))
+  .filter(({ p }) => p.comparison)
+  .map(({ p, i }) => ({ p, code: sheetCode('P', i), c: p.comparison!, r: evaluateComparison(p.comparison!) }));
+---
+
+<BaseLayout title="Comparativas" description="Tiempos de generación, revisión y total de cada proceso, con su procedencia.">
+  <div class="container page-head">
+    <p class="label">03 · Comparativas de productividad</p>
+    <h1>Comparativas</h1>
+    <p class="lead">
+      Tiempo de generación, de revisión y total de cada tarea, frente al método convencional cuando existe una referencia
+      medida. Sin referencia medida no se calcula ningún ahorro.
+    </p>
+    <ProvenanceLegend />
+  </div>
+
+  <div class="container">
+    {
+      rows.length === 0 ? (
+        <EmptyState
+          title="Todavía no hay comparativas registradas."
+          text="Cada proyecto con tiempos medidos aparecerá aquí con su desglose de generación, revisión y total."
+          sheet="C-01"
+          hint="Añade el campo comparison a un proyecto en src/content/projects/."
+        />
+      ) : (
+        <>
+          <div class="summary" tabindex="0" role="region" aria-label="Resumen de comparativas">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Ref.</th>
+                  <th scope="col">Tarea</th>
+                  <th scope="col">Referencia</th>
+                  <th scope="col">Método utilizado</th>
+                  <th scope="col">Diferencia</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map(({ p, code, c, r }) => (
+                  <tr>
+                    <td class="mono code">
+                      <a href={`#cmp-${p.slug}`}>{code}</a>
+                    </td>
+                    <th scope="row">
+                      {c.task}
+                      {p.demo && <span class="stamp stamp--demo">Demo</span>}
+                    </th>
+                    <td>{r.referenceTotal ? <TimeTag time={r.referenceTotal} size="sm" /> : <span class="mono muted">Sin referencia</span>}</td>
+                    <td>
+                      <TimeTag time={r.usedTotal} size="sm" />
+                    </td>
+                    <td class="mono">
+                      {r.status === 'valida' && r.differencePct !== undefined ? (
+                        <span class="delta">
+                          {r.differencePct >= 0 ? '−' : '+'}
+                          {formatPct(r.differencePct)}
+                        </span>
+                      ) : (
+                        <span class="muted">{r.status === 'pendiente' ? 'Pendiente' : 'No calculada'}</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="list">
+            {rows.map(({ p, code, c }) => (
+              <div id={`cmp-${p.slug}`} class="item">
+                <ComparisonPanel comparison={c} heading={`${code} · ${p.title}`} headingHref={url(`/proyectos/${p.slug}/#comparativa`)} />
+              </div>
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .summary {
+    overflow-x: auto;
+    border-top: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: clamp(40px, 5vw, 72px);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 12px 16px 12px 0;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: baseline;
+  }
+
+  thead th {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--ink);
+    white-space: nowrap;
+  }
+
+  tbody th {
+    font-weight: 500;
+    min-width: 16rem;
+  }
+
+  tbody th .stamp {
+    margin-left: 8px;
+  }
+
+  .code a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .delta {
+    color: var(--accent);
+  }
+
+  .list {
+    display: grid;
+    gap: clamp(32px, 4vw, 56px);
+  }
+
+  .item {
+    scroll-margin-top: 90px;
+  }
+</style>

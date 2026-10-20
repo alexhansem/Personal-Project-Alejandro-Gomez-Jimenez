@@ -1,0 +1,163 @@
+---
+import { profile } from '../config/profile';
+import { nav } from '../config/site';
+import { url } from '../lib/url';
+import ContactLinks from './ContactLinks.astro';
+
+const revision = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="titleblock">
+      <div class="tb-cell tb-name">
+        <span class="label">Autor</span>
+        <p class="tb-big">
+          {profile.name}
+          {profile.isExample && <span class="stamp stamp--demo">Ejemplo</span>}
+        </p>
+        <p class="muted tb-headline">{profile.headline}</p>
+      </div>
+      <div class="tb-cell">
+        <span class="label">Contacto</span>
+        <ContactLinks />
+      </div>
+      <nav class="tb-cell" aria-label="Pie">
+        <span class="label">Índice</span>
+        <ul class="tb-index">
+          <li><a href={url('/')}>00 Inicio</a></li>
+          {
+            nav.map((n) => (
+              <li>
+                <a href={url(n.href)}>
+                  {n.code} {n.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="tb-cell tb-meta">
+        <div><span class="label">Revisión</span><span class="mono">{revision}</span></div>
+        <div><span class="label">Escala</span><span class="mono">S/E</span></div>
+        <div><span class="label">Hoja</span><span class="mono">—</span></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: clamp(64px, 8vw, 128px);
+    padding-bottom: var(--gutter);
+  }
+
+  .titleblock {
+    display: grid;
+    grid-template-columns: 2fr 1.4fr 1.2fr 0.8fr;
+    border: 1.5px solid var(--ink);
+    background: var(--sheet);
+  }
+
+  .tb-cell {
+    padding: 18px 20px 22px;
+    border-left: 1px solid var(--ink);
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .tb-cell:first-child {
+    border-left: 0;
+  }
+
+  .tb-big {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--step-2);
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .tb-headline {
+    font-size: 0.875rem;
+    max-width: 46ch;
+  }
+
+  .tb-index {
+    list-style: none;
+    display: grid;
+    gap: 4px;
+    font-size: 0.9375rem;
+  }
+
+  .tb-index a {
+    text-decoration: none;
+  }
+
+  .tb-meta {
+    padding: 0;
+    gap: 0;
+  }
+
+  .tb-meta > div {
+    display: grid;
+    gap: 2px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tb-meta > div:last-child {
+    border-bottom: 0;
+  }
+
+  @media (max-width: 960px) {
+    .titleblock {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .tb-name {
+      grid-column: 1 / -1;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .tb-cell:nth-child(2) {
+      border-left: 0;
+    }
+
+    .tb-meta {
+      grid-column: 1 / -1;
+      border-left: 0;
+      border-top: 1px solid var(--ink);
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .tb-meta > div {
+      border-bottom: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .tb-meta > div:first-child {
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .titleblock {
+      grid-template-columns: 1fr;
+    }
+
+    .tb-cell {
+      border-left: 0;
+      border-top: 1px solid var(--ink);
+    }
+
+    .tb-name {
+      border-top: 0;
+      border-bottom: 0;
+    }
+  }
+</style>

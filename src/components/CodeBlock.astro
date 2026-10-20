@@ -1,0 +1,102 @@
+---
+import { Code } from 'astro:components';
+import type { CodeSnippet } from '../content/types';
+
+interface Props {
+  snippet: CodeSnippet;
+  demo?: boolean;
+}
+const { snippet: s, demo = false } = Astro.props;
+---
+
+<figure class="cb" data-codeblock>
+  <figcaption class="cb__head">
+    <div>
+      {s.title && <p class="cb__title">{s.title}</p>}
+      {s.description && <p class="cb__desc muted">{s.description}</p>}
+    </div>
+    <div class="cb__tools">
+      {demo && <span class="stamp stamp--demo">Código de ejemplo</span>}
+      <span class="mono cb__lang">{s.lang}</span>
+      <button type="button" class="btn cb__copy" data-copy>Copiar</button>
+    </div>
+  </figcaption>
+  <div class="cb__code" data-code-src>
+    <Code code={s.code.trimEnd()} lang={s.lang as never} theme="github-light" />
+  </div>
+</figure>
+
+<style>
+  .cb {
+    margin: 0;
+    min-width: 0;
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+  }
+
+  .cb__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cb__title {
+    font-weight: 560;
+  }
+
+  .cb__desc {
+    font-size: 0.875rem;
+    margin-top: 2px;
+  }
+
+  .cb__tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cb__lang {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .cb__copy {
+    min-height: 34px;
+    padding: 0.3em 0.8em;
+  }
+
+  .cb__code :global(pre) {
+    margin: 0;
+    padding: 18px 16px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    background: var(--sheet) !important;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-codeblock]').forEach((block) => {
+    const btn = block.querySelector<HTMLButtonElement>('[data-copy]');
+    const pre = block.querySelector('pre');
+    if (!btn || !pre) return;
+    if (!navigator.clipboard) {
+      btn.hidden = true;
+      return;
+    }
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.textContent ?? '');
+        btn.textContent = 'Copiado';
+      } catch {
+        btn.textContent = 'No se pudo copiar';
+      }
+      setTimeout(() => (btn.textContent = 'Copiar'), 1800);
+    });
+  });
+</script>

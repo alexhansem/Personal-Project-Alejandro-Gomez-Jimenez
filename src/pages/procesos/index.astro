@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EmptyState from '../../components/EmptyState.astro';
+import { processes, sheetCode } from '../../lib/content';
+import { summarizeWorkflow, formatMinutes, hasValue } from '../../lib/time';
+import { url } from '../../lib/url';
+---
+
+<BaseLayout title="Procesos y herramientas" description="Scripts, plantillas y métodos de trabajo: qué problema resuelven, cómo funcionan y sus límites.">
+  <div class="container page-head">
+    <p class="label">02 · Procesos y herramientas</p>
+    <h1>Procesos y herramientas</h1>
+    <p class="lead">
+      Scripts, plantillas y métodos de trabajo. Cada entrada explica el problema de partida, cómo era el proceso anterior,
+      cómo funciona la solución y dónde están sus límites.
+    </p>
+  </div>
+
+  <div class="container">
+    {
+      processes.length === 0 ? (
+        <EmptyState title="Todavía no hay procesos documentados." text="Scripts, plantillas y métodos de trabajo, con su problema de partida y sus límites." sheet="H-01" hint="Añade entradas en src/content/processes/." />
+      ) : (
+        <ol class="plist">
+          {processes.map((x, i) => {
+            const wf = x.workflow ? summarizeWorkflow(x.workflow) : undefined;
+            return (
+              <li>
+                <a href={url(`/procesos/${x.slug}/`)} class="prow">
+                  <span class="mono prow__code">{sheetCode('H', i)}</span>
+                  <span class="prow__main">
+                    <span class="prow__title">{x.title}</span>
+                    <span class="prow__summary muted">{x.summary}</span>
+                  </span>
+                  <span class="mono prow__type">
+                    {x.type}
+                    {x.demo && <span class="stamp stamp--demo">Demo</span>}
+                  </span>
+                  <span class="mono prow__time muted">
+                    {wf && hasValue(wf.total) ? `${formatMinutes(wf.total.minutes)} · ${wf.total.provenance}` : x.tools?.join(' · ')}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .plist {
+    list-style: none;
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .prow {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr) 14rem 12rem;
+    gap: 16px 28px;
+    align-items: baseline;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    transition: background var(--t-fast) var(--ease);
+  }
+
+  .prow:hover {
+    color: inherit;
+    background: var(--paper-2);
+  }
+
+  .prow__code {
+    color: var(--accent);
+    padding-left: 4px;
+  }
+
+  .prow__main {
+    display: grid;
+    gap: 6px;
+  }
+
+  .prow__title {
+    font-size: var(--step-1);
+    font-weight: 560;
+  }
+
+  .prow__type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.75rem;
+  }
+
+  .prow__time {
+    font-size: 0.75rem;
+    text-align: right;
+    padding-right: 4px;
+  }
+
+  @media (max-width: 960px) {
+    .prow {
+      grid-template-columns: 3rem minmax(0, 1fr);
+    }
+
+    .prow__type,
+    .prow__time {
+      grid-column: 2;
+      text-align: left;
+    }
+  }
+</style>
