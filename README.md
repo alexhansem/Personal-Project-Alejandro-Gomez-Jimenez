@@ -2,7 +2,20 @@
 
 Web estática de portfolio, hecha con [Astro](https://astro.build) y TypeScript. No tiene backend, base de datos ni CMS: todo el contenido son archivos de datos tipados dentro de `src/content/`.
 
-> **Estado actual:** todo el contenido es de **demostración** (proyectos marcados *DEMO*) y los datos personales son de **EJEMPLO**. Nada de ello debe leerse como experiencia real.
+**Web publicada:** https://alexhansem.github.io/Personal-Project-Alejandro-Gomez-Jimenez/ (se actualiza sola cada vez que cambia la rama `main`).
+
+> **Estado actual:** todavía no hay proyectos publicados (la web muestra sus secciones vacías, preparadas para recibirlos) y los datos personales son de **EJEMPLO**.
+
+## Añadir proyectos sin tocar código
+
+No hace falta usar GitHub. Envía en el chat del proyecto de Claude, por cada trabajo:
+
+1. Los archivos: PDF de láminas, imágenes o capturas (los DWG, exportados a PDF vectorial).
+2. Un texto breve: qué era el encargo, qué hiciste tú y con qué herramientas.
+3. Los pasos y tiempos: qué hizo la IA, qué hiciste tú y qué hizo el software, y cuánto tardó cada paso. Indica si cada tiempo está cronometrado o es aproximado.
+4. Si lo tienes, cuánto tardarías haciéndolo sin IA, y si ese dato está medido.
+
+Claude lo convierte en una ficha, lo publica y te pasa el enlace. Una interfaz de edición dentro de la propia web necesitaría servidor, almacenamiento de archivos y contraseñas, así que por ahora no compensa.
 
 ## Ejecutar en local
 
@@ -10,18 +23,16 @@ Requiere Node.js 22 o superior.
 
 ```bash
 npm install
-npm run dev          # http://localhost:4321, con contenido demo y borradores visibles
+npm run dev          # http://localhost:4321, con los borradores visibles
 ```
 
 | Comando | Qué hace |
 | --- | --- |
-| `npm run dev` | Servidor de desarrollo. Muestra demos y borradores. |
-| `npm run build` | Comprueba tipos y genera la web final en `dist/`. **Excluye** el contenido demo y los borradores. |
-| `npm run build:demo` | Igual que `build`, pero incluyendo el contenido demo (para enseñar la interfaz). |
+| `npm run dev` | Servidor de desarrollo. Muestra también los borradores. |
+| `npm run build` | Comprueba tipos y genera la web final en `dist/`. Excluye borradores y contenido marcado como demo. |
 | `npm run preview` | Sirve `dist/` para revisar la build. |
 | `npm run check` | Comprobación de TypeScript y plantillas Astro. |
 | `npm run lint` | ESLint. |
-| `npm run demo-assets` | Regenera las láminas SVG y el PDF de demostración (`public/demo/`). Requiere Python con `reportlab`. |
 
 ## Estructura
 
@@ -37,7 +48,6 @@ src/
   pages/                   ← rutas de la web
 public/
   proyectos/<slug>/        ← imágenes y PDF de cada proyecto (crear al añadir uno)
-  demo/                    ← recursos ficticios de demostración
 ```
 
 Páginas: `/` portada · `/proyectos/` índice con filtros (`?categoria=bim`) · `/proyectos/<slug>/` ficha · `/proyectos/<slug>/documentos/<id>/` visor de PDF · `/procesos/` y `/procesos/<slug>/` · `/comparativas/` · `/metodologia/`.
@@ -54,7 +64,7 @@ Edita `src/config/profile.ts`. Cuando estén tus datos reales, cambia `isExample
 4. Indica sus categorías en `categories` (puede tener varias). Una categoría solo aparece como filtro si algún proyecto la usa.
 5. Deja `published: false` mientras sea un borrador (solo se ve con `npm run dev`). Cámbialo a `true` para publicarlo.
 
-`demo: true` marca contenido ficticio. Ese contenido nunca entra en `npm run build`. Cuando tengas proyectos reales, borra los archivos `demo-*.ts` de `src/content/projects/` y `src/content/processes/` y la carpeta `public/demo/`.
+`demo: true` marca contenido ficticio de prueba: nunca entra en `npm run build`. Los procesos y herramientas siguen el mismo sistema, con su plantilla en `src/content/processes/_PLANTILLA.ts.txt`.
 
 ## Imágenes, planos y PDF
 
@@ -87,9 +97,8 @@ Todas las comparativas aparecen también en `/comparativas/`.
 
 ## Publicar
 
-`npm run build` genera una web estática en `dist/` que se puede subir a cualquier alojamiento estático:
+La web se publica sola en GitHub Pages con `.github/workflows/deploy.yml` cada vez que cambia `main`: comprueba lint y tipos, construye con la ruta base del repositorio y despliega.
 
-- **Netlify / Vercel / Cloudflare Pages**: conectar el repositorio, comando `npm run build` y carpeta `dist`.
-- **GitHub Pages**: si se publica en `https://usuario.github.io/<repo>/`, construir con `BASE_PATH=/<repo>/` (y `SITE_URL=https://usuario.github.io`). Con un dominio propio no hace falta `BASE_PATH`.
+Para llevarla a otro alojamiento estático (Netlify, Vercel, Cloudflare Pages), basta con el comando `npm run build` y la carpeta `dist`. Con un dominio propio no hace falta `BASE_PATH` (ver `.env.example`).
 
-Ver `.env.example`. Antes de publicar, revisa que `profile.isExample` sea `false` y que no queden proyectos demo que quieras retirar.
+Antes de enseñarla, cambia `profile.isExample` a `false` con tus datos reales: mientras sea `true`, la web pide a los buscadores que no la indexen.

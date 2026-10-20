@@ -75,6 +75,8 @@ const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.fi
       ) : (
         <EmptyState
           title="Todavía no hay proyectos publicados."
+          text="Los primeros trabajos se están preparando. Cada uno mostrará planos, documentos y cómo se desarrolló."
+          sheet="P-01"
           hint="Añade un archivo en src/content/projects/ (copia _PLANTILLA.ts.txt) y marca published: true."
         />
       )

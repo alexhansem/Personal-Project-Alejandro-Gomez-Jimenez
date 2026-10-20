@@ -18,7 +18,7 @@ import { activeCategories, projects, sheetCode } from '../../lib/content';
   <div class="container">
     {
       projects.length === 0 ? (
-        <EmptyState title="Todavía no hay proyectos publicados." hint="Añade proyectos en src/content/projects/." />
+        <EmptyState title="Todavía no hay proyectos publicados." text="Planos, documentación y herramientas, cada uno con su secuencia de trabajo y sus tiempos." sheet="P-01" hint="Añade proyectos en src/content/projects/." />
       ) : (
         <>
           {activeCategories.length > 1 && (

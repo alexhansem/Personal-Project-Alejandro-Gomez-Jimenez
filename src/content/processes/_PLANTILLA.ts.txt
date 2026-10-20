@@ -1,0 +1,25 @@
+// PLANTILLA DE PROCESO O HERRAMIENTA
+// Copia este archivo como src/content/processes/<slug>.ts y rellena solo lo que sea real.
+
+import type { ProcessEntry } from '../types';
+
+const entry: ProcessEntry = {
+  slug: 'mi-herramienta',
+  title: 'Nombre de la herramienta o proceso',
+  demo: false,
+  published: false,
+  type: 'Script',
+  summary: 'Qué problema resuelve, en una o dos líneas.',
+  problem: '',
+  previousProcess: '',
+  solution: '',
+  tools: [],
+  howItWorks: [],
+  // example: { input: '', output: '' },
+  // code: [{ lang: 'python', title: '', description: '', code: `` }],
+  limitations: [],
+  applications: [],
+  relatedProjects: [],
+};
+
+export default entry;

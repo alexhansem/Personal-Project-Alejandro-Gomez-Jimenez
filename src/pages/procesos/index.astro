@@ -19,7 +19,7 @@ import { url } from '../../lib/url';
   <div class="container">
     {
       processes.length === 0 ? (
-        <EmptyState title="Todavía no hay procesos documentados." hint="Añade entradas en src/content/processes/." />
+        <EmptyState title="Todavía no hay procesos documentados." text="Scripts, plantillas y métodos de trabajo, con su problema de partida y sus límites." sheet="H-01" hint="Añade entradas en src/content/processes/." />
       ) : (
         <ol class="plist">
           {processes.map((x, i) => {
