@@ -192,6 +192,7 @@ const project: Project = {
 
   budget: {
     ...budgetData,
+    example: { code: 'RSL010', scope: '3 × IZQ 3 dormitorios (1º-3º)' },
     note: 'Precios del generador de CYPE para esta obra (Toledo, rehabilitación integral, octubre de 2026). Presupuesto de ejecución material: sin IVA, gastos generales ni beneficio industrial.',
     downloads: [
       { label: 'Excel (CSV)', src: `${base}/presupuesto/presupuesto-partidas.csv`, hint: 'Se abre con Excel' },

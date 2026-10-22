@@ -284,6 +284,13 @@ export interface BudgetLine {
   amount: number;
   /** Clave del ámbito (ver `scopes`). */
   scope: string;
+  /** Cómo se obtiene la medición, en lenguaje llano. */
+  how?: string;
+  /** Origen del precio: generador de CYPE, mercado (hipótesis) o porcentaje. */
+  source?: 'cype' | 'mercado' | 'porcentaje';
+  /** Partidas por vivienda: número de viviendas iguales y medición de cada una. */
+  dwellings?: number;
+  each?: number;
 }
 
 /** Presupuesto por mediciones navegable, partida a partida. */
@@ -295,6 +302,8 @@ export interface ProjectBudget {
   lines: BudgetLine[];
   /** Origen de los precios y lo que no incluye. */
   note?: string;
+  /** Partida que se explica paso a paso como ejemplo (código y ámbito). */
+  example?: { code: string; scope: string };
   /** Descargas (BC3, CSV…). */
   downloads?: { label: string; src: string; hint?: string }[];
 }
