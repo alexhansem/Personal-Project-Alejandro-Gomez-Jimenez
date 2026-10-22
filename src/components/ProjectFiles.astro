@@ -7,6 +7,7 @@ import type { Project } from '../content/types';
 import { projectFiles, fileCount } from '../lib/files';
 import { url } from '../lib/url';
 import ModelViewer from './ModelViewer.astro';
+import BudgetExplorer from './BudgetExplorer.astro';
 
 interface Props {
   project: Project;
@@ -37,10 +38,13 @@ const sections = projectFiles(p);
             {s.kind === 'media' && 'Pulsa para ver a pantalla completa con zoom'}
             {s.kind === 'documentos' && 'Se abren en el navegador, sin instalar nada'}
             {s.kind === 'modelo' && 'Gíralo con el ratón o el dedo'}
+            {s.kind === 'presupuesto' && 'Abre un capítulo para ver sus partidas, o busca una'}
           </span>
         </header>
 
         {s.kind === 'modelo' && <ModelViewer model={s.model} />}
+
+        {s.kind === 'presupuesto' && <BudgetExplorer budget={s.budget} />}
 
         {s.kind === 'media' && (
           <ul class:list={['pf__grid', `pf__grid--${s.id}`]}>

@@ -1,0 +1,203 @@
+﻿Capítulo;Código CYPE;Descripción;Ámbito;Ud;Medición;Precio (€);Importe (€)
+02 Demoliciones;DPT020;Demolición de partición interior de fábrica revestida, ladrillo hueco sencillo, medios manuales;Viviendas izquierda · 3 dormitorios (×3);m²;179,02;5,31;950,59
+02 Demoliciones;DRS020;Demolición de pavimento interior de baldosas cerámicas, medios manuales;Viviendas izquierda · 3 dormitorios (×3);m²;153,06;12,15;1859,74
+02 Demoliciones;DRC005;Demolición de revestimiento con piezas cerámicas (alicatado), medios manuales;Viviendas izquierda · 3 dormitorios (×3);m²;54,29;10,08;547,28
+02 Demoliciones;DSM010;Desmontaje de aparato sanitario;Viviendas izquierda · 3 dormitorios (×3);Ud;12,00;23,58;282,96
+02 Demoliciones;DIE060;Desmontaje de red de instalación eléctrica interior de vivienda;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;157,11;471,33
+02 Demoliciones;DIF105;Desmontaje de red de instalación interior de agua de vivienda;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;244,86;734,58
+02 Demoliciones;DSC020;Desmontaje de conjunto de mobiliario de cocina;Viviendas izquierda · 3 dormitorios (×3);m;10,50;52,62;552,51
+02 Demoliciones;DLP210;Levantado de puerta interior de madera;Viviendas izquierda · 3 dormitorios (×3);m²;34,10;4,79;163,36
+03 Albañilería y tabiquería;FBY010;Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2;Viviendas izquierda · 3 dormitorios (×3);m²;198,91;32,96;6556,06
+03 Albañilería y tabiquería;HUECO_PEND;"Apertura de hueco de 1,00 m en muro de fábrica de 0,30 con cargadero metálico y apeo (PENDIENTE CYPE; provisional)";Viviendas izquierda · 3 dormitorios (×3);Ud;0,00;1200,00;0,00
+03 Albañilería y tabiquería;HYA010;Ayudas de albañilería para instalaciones, por m² construido;Viviendas izquierda · 3 dormitorios (×3);m²;186,39;5,18;965,50
+03 Albañilería y tabiquería;NAO020;Aislamiento térmico en trasdosado autoportante: panel de lana mineral de alta densidad 40 mm;Viviendas izquierda · 3 dormitorios (×3);m²;158,67;22,47;3565,31
+04 Instalaciones;IEI010;Red eléctrica de distribución interior de vivienda plurifamiliar, electrificación elevada;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;2892,63;8677,89
+04 Instalaciones;IFI011;Instalación interior de fontanería para cuarto de baño (PE-X);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;554,34;1663,02
+04 Instalaciones;IFI012;Instalación interior de fontanería para cocina (PE-X);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;332,86;998,58
+04 Instalaciones;ISD021;Red interior de evacuación para cuarto de baño (PVC serie B);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;386,87;1160,61
+04 Instalaciones;ISD022;Red interior de evacuación para cocina (PVC serie B);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;173,47;520,41
+04 Instalaciones;ICN040;Equipo de aire acondicionado aire-aire split 1x1 por conducto rectangular, bomba de calor, R-32, 3,5 kW frigoríficos (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;1679,95;5039,85
+04 Instalaciones;ICA050;Bomba de calor aerotérmica para ACS con acumulador de 202 l, COP 3,4;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;3089,58;9268,74
+04 Instalaciones;ICR021;Conducto rectangular de panel rígido de lana de vidrio de 25 mm, revestido por las dos caras (CYPE);Viviendas izquierda · 3 dormitorios (×3);m²;42,00;50,61;2125,62
+04 Instalaciones;ICR030;Rejilla de impulsión de aluminio extruido con lamas regulables, 525x125 mm (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;12,00;93,26;1119,12
+04 Instalaciones;ICR050;Rejilla de retorno de aluminio extruido, 625x125 mm, montada en pared (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;57,79;173,37
+04 Instalaciones;ICN015;"Línea frigorífica doble de cobre 3/8"" + 5/8"" aislada (CYPE)";Viviendas izquierda · 3 dormitorios (×3);m;30,00;21,07;632,10
+04 Instalaciones;ICN018;Red de evacuación de condensados con tubo flexible de PVC de 16 mm (CYPE);Viviendas izquierda · 3 dormitorios (×3);m;12,00;5,11;61,32
+04 Instalaciones;ICR014;Extractor para baño, ventilador helicoidal extraplano 80 m³/h;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;69,98;209,94
+04 Instalaciones;IVA030;Boca de extracción autorregulable para ventilación;Viviendas izquierda · 3 dormitorios (×3);Ud;6,00;27,32;163,92
+04 Instalaciones;III101;Luminaria tipo Downlight LED 18 W empotrada;Viviendas izquierda · 3 dormitorios (×3);Ud;24,00;171,05;4105,20
+05 Baños y cocina;SAD020;Plato de ducha extraplano de porcelana sanitaria Roca Malta 1200x800, antideslizante;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;494,01;1482,03
+05 Baños y cocina;SAI005;Inodoro de porcelana sanitaria con tanque bajo, gama media, descarga 3/6 l;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;440,23;1320,69
+05 Baños y cocina;SAL005;Lavabo de porcelana sanitaria sobre encimera, gama media;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;242,36;727,08
+05 Baños y cocina;SMN010;Mueble de baño base para lavabo, MDF hidrófugo 22 mm polilaminado, 650 mm;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;329,33;987,99
+05 Baños y cocina;SMM020;Mampara frontal para ducha, puerta corredera + panel fijo, 1151-1300 mm x 1950 mm, vidrio transparente, perfiles de aluminio blanco (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;822,28;2466,84
+05 Baños y cocina;SGL020;Grifería monomando para lavabo, gama media;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;146,49;439,47
+05 Baños y cocina;RVE010;Espejo incoloro 900x900 mm;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;42,10;126,30
+05 Baños y cocina;SNA010;Encimera de aglomerado de cuarzo blanco, 350x60 cm;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;507,94;1523,82
+05 Baños y cocina;SCF010;Fregadero de acero inoxidable de 1 cubeta para encimera;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;326,41;979,23
+05 Baños y cocina;SGF020;Grifería monomando para fregadero;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;96,16;288,48
+05 Baños y cocina;IVK015;Campana extractora convencional con conexión a conducto de salida de humos;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;76,67;230,01
+05 Baños y cocina;MERCADO_COCINA;Muebles de cocina de gama media de marca fiable, 3,5 m lineales + columna (mercado, HIPÓTESIS);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;3600,00;10800,00
+05 Baños y cocina;MERCADO_ELECTRO;Electrodomésticos de gama media (placa de inducción, horno, frigorífico combi, lavavajillas) (mercado, HIPÓTESIS);Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;2300,00;6900,00
+06 Revestimientos y pavimentos;RSL010;Pavimento laminado AC4 clase 32 (comercial general), lamas 1200x190;Viviendas izquierda · 3 dormitorios (×3);m²;130,49;35,78;4668,99
+06 Revestimientos y pavimentos;RSG120;Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina;Viviendas izquierda · 3 dormitorios (×3);m²;22,57;55,55;1253,94
+06 Revestimientos y pavimentos;RAC010;Revestimiento interior con piezas de gres porcelánico esmaltado, gama media;Viviendas izquierda · 3 dormitorios (×3);m²;54,29;55,00;2986,17
+06 Revestimientos y pavimentos;RSG020;Rodapié de gres esmaltado 80 mm;Viviendas izquierda · 3 dormitorios (×3);m;175,61;7,40;1299,50
+06 Revestimientos y pavimentos;RTC015;Falso techo continuo suspendido de placas de yeso laminado, Q2;Viviendas izquierda · 3 dormitorios (×3);m²;33,23;24,55;815,90
+06 Revestimientos y pavimentos;RIP030;Pintura plástica mate lisa sobre paramento interior de yeso, dos manos;Viviendas izquierda · 3 dormitorios (×3);m²;622,49;6,91;4301,41
+06 Revestimientos y pavimentos;RIP035;Pintura plástica sobre placas de yeso laminado, dos manos;Viviendas izquierda · 3 dormitorios (×3);m²;33,23;7,60;252,58
+07 Carpintería interior;LPM010;Puerta interior abatible ciega de una hoja, gama estándar (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;6,00;253,24;1519,44
+07 Carpintería interior;LPM021;Puerta interior corredera para doble tabique con hueco, una hoja 203x82,5 (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;6,00;254,66;1527,96
+10 Instalaciones comunes;ISB010;Bajante interior de PVC serie B, 110 mm;Viviendas izquierda · 3 dormitorios (×3);m;0,00;14,79;0,00
+07 Carpintería interior;LEM140;Block de puerta de entrada a vivienda acorazada normalizada, de madera, 85x203x7 cm;Viviendas izquierda · 3 dormitorios (×3);Ud;3,00;968,42;2905,26
+07 Carpintería interior;MERCADO_ARMARIOS;Frente de armario empotrado con interior vestido, gama media (mercado, HIPÓTESIS);Viviendas izquierda · 3 dormitorios (×3);Ud;6,00;800,00;4800,00
+08 Carpintería exterior;LCP060;Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio);Viviendas izquierda · 3 dormitorios (×3);Ud;21,00;455,52;9565,92
+08 Carpintería exterior;LCP060;Puerta balconera de PVC, 1 hoja practicable, 700x2000 mm, con cajón monoblock y persiana enrollable de lamas de PVC (sin vidrio) (CYPE);Viviendas izquierda · 3 dormitorios (×3);Ud;0,00;543,29;0,00
+08 Carpintería exterior;DLC020;Levantado de carpintería acristalada en fachada;Viviendas izquierda · 3 dormitorios (×3);m²;25,41;5,45;138,48
+08 Carpintería exterior;LVC011;Doble acristalamiento templado de baja emisividad 4/6/6;Viviendas izquierda · 3 dormitorios (×3);m²;20,37;133,99;2729,38
+02 Demoliciones;DPT020;Demolición de partición interior de fábrica revestida, ladrillo hueco sencillo, medios manuales;Viviendas derecha · salón y suite (×3);m²;236,54;5,31;1256,04
+02 Demoliciones;DRS020;Demolición de pavimento interior de baldosas cerámicas, medios manuales;Viviendas derecha · salón y suite (×3);m²;181,19;12,15;2201,40
+02 Demoliciones;DRC005;Demolición de revestimiento con piezas cerámicas (alicatado), medios manuales;Viviendas derecha · salón y suite (×3);m²;128,17;10,08;1291,91
+02 Demoliciones;DSM010;Desmontaje de aparato sanitario;Viviendas derecha · salón y suite (×3);Ud;18,00;23,58;424,44
+02 Demoliciones;DIE060;Desmontaje de red de instalación eléctrica interior de vivienda;Viviendas derecha · salón y suite (×3);Ud;3,00;157,11;471,33
+02 Demoliciones;DIF105;Desmontaje de red de instalación interior de agua de vivienda;Viviendas derecha · salón y suite (×3);Ud;3,00;244,86;734,58
+02 Demoliciones;DSC020;Desmontaje de conjunto de mobiliario de cocina;Viviendas derecha · salón y suite (×3);m;10,50;52,62;552,51
+02 Demoliciones;DLP210;Levantado de puerta interior de madera;Viviendas derecha · salón y suite (×3);m²;34,10;4,79;163,36
+03 Albañilería y tabiquería;FBY010;Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2;Viviendas derecha · salón y suite (×3);m²;262,83;32,96;8662,73
+03 Albañilería y tabiquería;HUECO_PEND;"Apertura de hueco de 1,00 m en muro de fábrica de 0,30 con cargadero metálico y apeo (PENDIENTE CYPE; provisional)";Viviendas derecha · salón y suite (×3);Ud;0,00;1200,00;0,00
+03 Albañilería y tabiquería;HYA010;Ayudas de albañilería para instalaciones, por m² construido;Viviendas derecha · salón y suite (×3);m²;219,69;5,18;1137,99
+03 Albañilería y tabiquería;NAO020;Aislamiento térmico en trasdosado autoportante: panel de lana mineral de alta densidad 40 mm;Viviendas derecha · salón y suite (×3);m²;145,14;22,47;3261,30
+04 Instalaciones;IEI010;Red eléctrica de distribución interior de vivienda plurifamiliar, electrificación elevada;Viviendas derecha · salón y suite (×3);Ud;3,00;2892,63;8677,89
+04 Instalaciones;IFI011;Instalación interior de fontanería para cuarto de baño (PE-X);Viviendas derecha · salón y suite (×3);Ud;6,00;554,34;3326,04
+04 Instalaciones;IFI012;Instalación interior de fontanería para cocina (PE-X);Viviendas derecha · salón y suite (×3);Ud;3,00;332,86;998,58
+04 Instalaciones;ISD021;Red interior de evacuación para cuarto de baño (PVC serie B);Viviendas derecha · salón y suite (×3);Ud;6,00;386,87;2321,22
+04 Instalaciones;ISD022;Red interior de evacuación para cocina (PVC serie B);Viviendas derecha · salón y suite (×3);Ud;3,00;173,47;520,41
+04 Instalaciones;ICN040;Equipo de aire acondicionado aire-aire split 1x1 por conducto rectangular, bomba de calor, R-32, 3,5 kW frigoríficos (CYPE);Viviendas derecha · salón y suite (×3);Ud;3,00;1679,95;5039,85
+04 Instalaciones;ICA050;Bomba de calor aerotérmica para ACS con acumulador de 202 l, COP 3,4;Viviendas derecha · salón y suite (×3);Ud;3,00;3089,58;9268,74
+04 Instalaciones;ICR021;Conducto rectangular de panel rígido de lana de vidrio de 25 mm, revestido por las dos caras (CYPE);Viviendas derecha · salón y suite (×3);m²;42,00;50,61;2125,62
+04 Instalaciones;ICR030;Rejilla de impulsión de aluminio extruido con lamas regulables, 525x125 mm (CYPE);Viviendas derecha · salón y suite (×3);Ud;12,00;93,26;1119,12
+04 Instalaciones;ICR050;Rejilla de retorno de aluminio extruido, 625x125 mm, montada en pared (CYPE);Viviendas derecha · salón y suite (×3);Ud;3,00;57,79;173,37
+04 Instalaciones;ICN015;"Línea frigorífica doble de cobre 3/8"" + 5/8"" aislada (CYPE)";Viviendas derecha · salón y suite (×3);m;30,00;21,07;632,10
+04 Instalaciones;ICN018;Red de evacuación de condensados con tubo flexible de PVC de 16 mm (CYPE);Viviendas derecha · salón y suite (×3);m;12,00;5,11;61,32
+04 Instalaciones;ICR014;Extractor para baño, ventilador helicoidal extraplano 80 m³/h;Viviendas derecha · salón y suite (×3);Ud;6,00;69,98;419,88
+04 Instalaciones;IVA030;Boca de extracción autorregulable para ventilación;Viviendas derecha · salón y suite (×3);Ud;9,00;27,32;245,88
+04 Instalaciones;III101;Luminaria tipo Downlight LED 18 W empotrada;Viviendas derecha · salón y suite (×3);Ud;24,00;171,05;4105,20
+05 Baños y cocina;SAD020;Plato de ducha extraplano de porcelana sanitaria Roca Malta 1200x800, antideslizante;Viviendas derecha · salón y suite (×3);Ud;6,00;494,01;2964,06
+05 Baños y cocina;SAI005;Inodoro de porcelana sanitaria con tanque bajo, gama media, descarga 3/6 l;Viviendas derecha · salón y suite (×3);Ud;6,00;440,23;2641,38
+05 Baños y cocina;SAL005;Lavabo de porcelana sanitaria sobre encimera, gama media;Viviendas derecha · salón y suite (×3);Ud;6,00;242,36;1454,16
+05 Baños y cocina;SMN010;Mueble de baño base para lavabo, MDF hidrófugo 22 mm polilaminado, 650 mm;Viviendas derecha · salón y suite (×3);Ud;6,00;329,33;1975,98
+05 Baños y cocina;SMM020;Mampara frontal para ducha, puerta corredera + panel fijo, 1151-1300 mm x 1950 mm, vidrio transparente, perfiles de aluminio blanco (CYPE);Viviendas derecha · salón y suite (×3);Ud;6,00;822,28;4933,68
+05 Baños y cocina;SGL020;Grifería monomando para lavabo, gama media;Viviendas derecha · salón y suite (×3);Ud;6,00;146,49;878,94
+05 Baños y cocina;RVE010;Espejo incoloro 900x900 mm;Viviendas derecha · salón y suite (×3);Ud;6,00;42,10;252,60
+05 Baños y cocina;SNA010;Encimera de aglomerado de cuarzo blanco, 350x60 cm;Viviendas derecha · salón y suite (×3);Ud;3,00;507,94;1523,82
+05 Baños y cocina;SCF010;Fregadero de acero inoxidable de 1 cubeta para encimera;Viviendas derecha · salón y suite (×3);Ud;3,00;326,41;979,23
+05 Baños y cocina;SGF020;Grifería monomando para fregadero;Viviendas derecha · salón y suite (×3);Ud;3,00;96,16;288,48
+05 Baños y cocina;IVK015;Campana extractora convencional con conexión a conducto de salida de humos;Viviendas derecha · salón y suite (×3);Ud;3,00;76,67;230,01
+05 Baños y cocina;MERCADO_COCINA;Muebles de cocina de gama media de marca fiable, 3,5 m lineales + columna (mercado, HIPÓTESIS);Viviendas derecha · salón y suite (×3);Ud;3,00;3600,00;10800,00
+05 Baños y cocina;MERCADO_ELECTRO;Electrodomésticos de gama media (placa de inducción, horno, frigorífico combi, lavavajillas) (mercado, HIPÓTESIS);Viviendas derecha · salón y suite (×3);Ud;3,00;2300,00;6900,00
+06 Revestimientos y pavimentos;RSL010;Pavimento laminado AC4 clase 32 (comercial general), lamas 1200x190;Viviendas derecha · salón y suite (×3);m²;129,92;35,78;4648,67
+06 Revestimientos y pavimentos;RSG120;Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina;Viviendas derecha · salón y suite (×3);m²;51,26;55,55;2847,59
+06 Revestimientos y pavimentos;RAC010;Revestimiento interior con piezas de gres porcelánico esmaltado, gama media;Viviendas derecha · salón y suite (×3);m²;128,17;55,00;7049,13
+06 Revestimientos y pavimentos;RSG020;Rodapié de gres esmaltado 80 mm;Viviendas derecha · salón y suite (×3);m;191,57;7,40;1417,59
+06 Revestimientos y pavimentos;RTC015;Falso techo continuo suspendido de placas de yeso laminado, Q2;Viviendas derecha · salón y suite (×3);m²;67,97;24,55;1668,63
+06 Revestimientos y pavimentos;RIP030;Pintura plástica mate lisa sobre paramento interior de yeso, dos manos;Viviendas derecha · salón y suite (×3);m²;673,46;6,91;4653,60
+06 Revestimientos y pavimentos;RIP035;Pintura plástica sobre placas de yeso laminado, dos manos;Viviendas derecha · salón y suite (×3);m²;67,97;7,60;516,56
+07 Carpintería interior;LPM010;Puerta interior abatible ciega de una hoja, gama estándar (CYPE);Viviendas derecha · salón y suite (×3);Ud;12,00;253,24;3038,88
+07 Carpintería interior;LPM021;Puerta interior corredera para doble tabique con hueco, una hoja 203x82,5 (CYPE);Viviendas derecha · salón y suite (×3);Ud;6,00;254,66;1527,96
+10 Instalaciones comunes;ISB010;Bajante interior de PVC serie B, 110 mm;Viviendas derecha · salón y suite (×3);m;9,75;14,79;144,20
+07 Carpintería interior;LEM140;Block de puerta de entrada a vivienda acorazada normalizada, de madera, 85x203x7 cm;Viviendas derecha · salón y suite (×3);Ud;3,00;968,42;2905,26
+07 Carpintería interior;MERCADO_ARMARIOS;Frente de armario empotrado con interior vestido, gama media (mercado, HIPÓTESIS);Viviendas derecha · salón y suite (×3);Ud;6,00;800,00;4800,00
+08 Carpintería exterior;LCP060;Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio);Viviendas derecha · salón y suite (×3);Ud;12,00;455,52;5466,24
+08 Carpintería exterior;LCP060;Puerta balconera de PVC, 1 hoja practicable, 700x2000 mm, con cajón monoblock y persiana enrollable de lamas de PVC (sin vidrio) (CYPE);Viviendas derecha · salón y suite (×3);Ud;6,00;543,29;3259,74
+08 Carpintería exterior;DLC020;Levantado de carpintería acristalada en fachada;Viviendas derecha · salón y suite (×3);m²;22,92;5,45;124,91
+08 Carpintería exterior;LVC011;Doble acristalamiento templado de baja emisividad 4/6/6;Viviendas derecha · salón y suite (×3);m²;17,34;133,99;2323,39
+02 Demoliciones;DPT020;Demolición de partición interior de fábrica revestida, ladrillo hueco sencillo, medios manuales;Vivienda en planta baja (×1);m²;78,85;5,31;418,68
+02 Demoliciones;DRS020;Demolición de pavimento interior de baldosas cerámicas, medios manuales;Vivienda en planta baja (×1);m²;60,40;12,15;733,80
+02 Demoliciones;DRC005;Demolición de revestimiento con piezas cerámicas (alicatado), medios manuales;Vivienda en planta baja (×1);m²;42,72;10,08;430,64
+02 Demoliciones;DSM010;Desmontaje de aparato sanitario;Vivienda en planta baja (×1);Ud;6,00;23,58;141,48
+02 Demoliciones;DIE060;Desmontaje de red de instalación eléctrica interior de vivienda;Vivienda en planta baja (×1);Ud;1,00;157,11;157,11
+02 Demoliciones;DIF105;Desmontaje de red de instalación interior de agua de vivienda;Vivienda en planta baja (×1);Ud;1,00;244,86;244,86
+02 Demoliciones;DSC020;Desmontaje de conjunto de mobiliario de cocina;Vivienda en planta baja (×1);m;3,50;52,62;184,17
+02 Demoliciones;DLP210;Levantado de puerta interior de madera;Vivienda en planta baja (×1);m²;11,37;4,79;54,45
+03 Albañilería y tabiquería;FBY010;Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2;Vivienda en planta baja (×1);m²;87,61;32,96;2887,58
+03 Albañilería y tabiquería;HUECO_PEND;"Apertura de hueco de 1,00 m en muro de fábrica de 0,30 con cargadero metálico y apeo (PENDIENTE CYPE; provisional)";Vivienda en planta baja (×1);Ud;0,00;1200,00;0,00
+03 Albañilería y tabiquería;HYA010;Ayudas de albañilería para instalaciones, por m² construido;Vivienda en planta baja (×1);m²;73,23;5,18;379,33
+03 Albañilería y tabiquería;NAO020;Aislamiento térmico en trasdosado autoportante: panel de lana mineral de alta densidad 40 mm;Vivienda en planta baja (×1);m²;48,38;22,47;1087,10
+04 Instalaciones;IEI010;Red eléctrica de distribución interior de vivienda plurifamiliar, electrificación elevada;Vivienda en planta baja (×1);Ud;1,00;2892,63;2892,63
+04 Instalaciones;IFI011;Instalación interior de fontanería para cuarto de baño (PE-X);Vivienda en planta baja (×1);Ud;2,00;554,34;1108,68
+04 Instalaciones;IFI012;Instalación interior de fontanería para cocina (PE-X);Vivienda en planta baja (×1);Ud;1,00;332,86;332,86
+04 Instalaciones;ISD021;Red interior de evacuación para cuarto de baño (PVC serie B);Vivienda en planta baja (×1);Ud;2,00;386,87;773,74
+04 Instalaciones;ISD022;Red interior de evacuación para cocina (PVC serie B);Vivienda en planta baja (×1);Ud;1,00;173,47;173,47
+04 Instalaciones;ICN040;Equipo de aire acondicionado aire-aire split 1x1 por conducto rectangular, bomba de calor, R-32, 3,5 kW frigoríficos (CYPE);Vivienda en planta baja (×1);Ud;1,00;1679,95;1679,95
+04 Instalaciones;ICA050;Bomba de calor aerotérmica para ACS con acumulador de 202 l, COP 3,4;Vivienda en planta baja (×1);Ud;1,00;3089,58;3089,58
+04 Instalaciones;ICR021;Conducto rectangular de panel rígido de lana de vidrio de 25 mm, revestido por las dos caras (CYPE);Vivienda en planta baja (×1);m²;14,00;50,61;708,54
+04 Instalaciones;ICR030;Rejilla de impulsión de aluminio extruido con lamas regulables, 525x125 mm (CYPE);Vivienda en planta baja (×1);Ud;4,00;93,26;373,04
+04 Instalaciones;ICR050;Rejilla de retorno de aluminio extruido, 625x125 mm, montada en pared (CYPE);Vivienda en planta baja (×1);Ud;1,00;57,79;57,79
+04 Instalaciones;ICN015;"Línea frigorífica doble de cobre 3/8"" + 5/8"" aislada (CYPE)";Vivienda en planta baja (×1);m;10,00;21,07;210,70
+04 Instalaciones;ICN018;Red de evacuación de condensados con tubo flexible de PVC de 16 mm (CYPE);Vivienda en planta baja (×1);m;4,00;5,11;20,44
+04 Instalaciones;ICR014;Extractor para baño, ventilador helicoidal extraplano 80 m³/h;Vivienda en planta baja (×1);Ud;2,00;69,98;139,96
+04 Instalaciones;IVA030;Boca de extracción autorregulable para ventilación;Vivienda en planta baja (×1);Ud;3,00;27,32;81,96
+04 Instalaciones;III101;Luminaria tipo Downlight LED 18 W empotrada;Vivienda en planta baja (×1);Ud;8,00;171,05;1368,40
+05 Baños y cocina;SAD020;Plato de ducha extraplano de porcelana sanitaria Roca Malta 1200x800, antideslizante;Vivienda en planta baja (×1);Ud;2,00;494,01;988,02
+05 Baños y cocina;SAI005;Inodoro de porcelana sanitaria con tanque bajo, gama media, descarga 3/6 l;Vivienda en planta baja (×1);Ud;2,00;440,23;880,46
+05 Baños y cocina;SAL005;Lavabo de porcelana sanitaria sobre encimera, gama media;Vivienda en planta baja (×1);Ud;2,00;242,36;484,72
+05 Baños y cocina;SMN010;Mueble de baño base para lavabo, MDF hidrófugo 22 mm polilaminado, 650 mm;Vivienda en planta baja (×1);Ud;2,00;329,33;658,66
+05 Baños y cocina;SMM020;Mampara frontal para ducha, puerta corredera + panel fijo, 1151-1300 mm x 1950 mm, vidrio transparente, perfiles de aluminio blanco (CYPE);Vivienda en planta baja (×1);Ud;2,00;822,28;1644,56
+05 Baños y cocina;SGL020;Grifería monomando para lavabo, gama media;Vivienda en planta baja (×1);Ud;2,00;146,49;292,98
+05 Baños y cocina;RVE010;Espejo incoloro 900x900 mm;Vivienda en planta baja (×1);Ud;2,00;42,10;84,20
+05 Baños y cocina;SNA010;Encimera de aglomerado de cuarzo blanco, 350x60 cm;Vivienda en planta baja (×1);Ud;1,00;507,94;507,94
+05 Baños y cocina;SCF010;Fregadero de acero inoxidable de 1 cubeta para encimera;Vivienda en planta baja (×1);Ud;1,00;326,41;326,41
+05 Baños y cocina;SGF020;Grifería monomando para fregadero;Vivienda en planta baja (×1);Ud;1,00;96,16;96,16
+05 Baños y cocina;IVK015;Campana extractora convencional con conexión a conducto de salida de humos;Vivienda en planta baja (×1);Ud;1,00;76,67;76,67
+05 Baños y cocina;MERCADO_COCINA;Muebles de cocina de gama media de marca fiable, 3,5 m lineales + columna (mercado, HIPÓTESIS);Vivienda en planta baja (×1);Ud;1,00;3600,00;3600,00
+05 Baños y cocina;MERCADO_ELECTRO;Electrodomésticos de gama media (placa de inducción, horno, frigorífico combi, lavavajillas) (mercado, HIPÓTESIS);Vivienda en planta baja (×1);Ud;1,00;2300,00;2300,00
+06 Revestimientos y pavimentos;RSL010;Pavimento laminado AC4 clase 32 (comercial general), lamas 1200x190;Vivienda en planta baja (×1);m²;43,31;35,78;1549,56
+06 Revestimientos y pavimentos;RSG120;Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina;Vivienda en planta baja (×1);m²;17,09;55,55;949,20
+06 Revestimientos y pavimentos;RAC010;Revestimiento interior con piezas de gres porcelánico esmaltado, gama media;Vivienda en planta baja (×1);m²;42,72;55,00;2349,71
+06 Revestimientos y pavimentos;RSG020;Rodapié de gres esmaltado 80 mm;Vivienda en planta baja (×1);m;63,86;7,40;472,53
+06 Revestimientos y pavimentos;RTC015;Falso techo continuo suspendido de placas de yeso laminado, Q2;Vivienda en planta baja (×1);m²;22,66;24,55;556,21
+06 Revestimientos y pavimentos;RIP030;Pintura plástica mate lisa sobre paramento interior de yeso, dos manos;Vivienda en planta baja (×1);m²;224,49;6,91;1551,20
+06 Revestimientos y pavimentos;RIP035;Pintura plástica sobre placas de yeso laminado, dos manos;Vivienda en planta baja (×1);m²;22,66;7,60;172,19
+07 Carpintería interior;LPM010;Puerta interior abatible ciega de una hoja, gama estándar (CYPE);Vivienda en planta baja (×1);Ud;4,00;253,24;1012,96
+07 Carpintería interior;LPM021;Puerta interior corredera para doble tabique con hueco, una hoja 203x82,5 (CYPE);Vivienda en planta baja (×1);Ud;2,00;254,66;509,32
+10 Instalaciones comunes;ISB010;Bajante interior de PVC serie B, 110 mm;Vivienda en planta baja (×1);m;3,25;14,79;48,07
+07 Carpintería interior;LEM140;Block de puerta de entrada a vivienda acorazada normalizada, de madera, 85x203x7 cm;Vivienda en planta baja (×1);Ud;1,00;968,42;968,42
+07 Carpintería interior;MERCADO_ARMARIOS;Frente de armario empotrado con interior vestido, gama media (mercado, HIPÓTESIS);Vivienda en planta baja (×1);Ud;2,00;800,00;1600,00
+08 Carpintería exterior;LCP060;Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio);Vivienda en planta baja (×1);Ud;6,00;455,52;2733,12
+08 Carpintería exterior;LCP060;Puerta balconera de PVC, 1 hoja practicable, 700x2000 mm, con cajón monoblock y persiana enrollable de lamas de PVC (sin vidrio) (CYPE);Vivienda en planta baja (×1);Ud;0,00;543,29;0,00
+08 Carpintería exterior;DLC020;Levantado de carpintería acristalada en fachada;Vivienda en planta baja (×1);m²;7,26;5,45;39,57
+08 Carpintería exterior;LVC011;Doble acristalamiento templado de baja emisividad 4/6/6;Vivienda en planta baja (×1);m²;5,82;133,99;779,82
+09 Ascensor y accesibilidad;ITA010;Ascensor eléctrico sin cuarto de máquinas 1 m/s, 4 paradas, 450 kg (6 personas), cabina 1000x1250 acabado medio;Zonas comunes y edificio;Ud;1,00;18359,53;18359,53
+09 Ascensor y accesibilidad;ITS010;Plataforma salvaescaleras 750x800 mm, uso interior;Zonas comunes y edificio;Ud;1,00;8116,31;8116,31
+09 Ascensor y accesibilidad;MERCADO_HUECO_ASC;Obra del hueco del ascensor en el patio: foso, estructura metálica, cerramiento y desembarcos (mercado, HIPÓTESIS);Zonas comunes y edificio;Ud;1,00;18000,00;18000,00
+09 Ascensor y accesibilidad;LCY015;Puerta de aluminio con rotura de puente térmico, una hoja practicable;Zonas comunes y edificio;Ud;1,00;663,69;663,69
+10 Instalaciones comunes;IAV011;Videoportero digital colectivo (10 viviendas por defecto);Zonas comunes y edificio;Ud;1,00;4677,09;4677,09
+10 Instalaciones comunes;IEG010;Centralización de contadores eléctricos;Zonas comunes y edificio;Ud;1,00;860,45;860,45
+10 Instalaciones comunes;IED010;Derivación individual monofásica para vivienda;Zonas comunes y edificio;m;84,00;13,57;1139,88
+10 Instalaciones comunes;IEI030;Red eléctrica de servicios generales (incluye cuadro del ascensor);Zonas comunes y edificio;Ud;1,00;4901,21;4901,21
+11 Fachada y cubierta;FZB030;Limpieza mecánica de fachada con agua atomizada;Zonas comunes y edificio;m²;270,00;12,94;3493,80
+11 Fachada y cubierta;RFS010;Pintura al silicato sobre paramento exterior, dos manos;Zonas comunes y edificio;m²;270,00;9,13;2465,10
+11 Fachada y cubierta;ZHB010;Rehabilitación energética de cubierta inclinada sobre espacio no habitable, aislamiento por el interior;Zonas comunes y edificio;m²;154,00;14,59;2246,86
+11 Fachada y cubierta;LCP060;Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio);Zonas comunes y edificio;Ud;4,00;455,52;1822,08
+12 Estructura;0ED050;Ensayo de forjado: diámetro de barras con pachómetro;Zonas comunes y edificio;Ud;4,00;70,76;283,04
+12 Estructura;0ED100;Informe técnico de resultados de ensayos;Zonas comunes y edificio;Ud;1,00;176,88;176,88
+13 Gestión de residuos;GRA010;Transporte de residuos inertes con contenedor de 7 m³ a gestor autorizado;Zonas comunes y edificio;Ud;20,00;99,82;1996,40
+13 Gestión de residuos;GRB010;Canon de vertido por entrega de contenedor de 7 m³ con residuos inertes;Zonas comunes y edificio;Ud;20,00;49,26;985,20
+01 Medios auxiliares;0XA130;Montaje y desmontaje de andamio tubular de fachada;Zonas comunes y edificio;Ud;1,00;1899,75;1899,75
+01 Medios auxiliares;0XA110;Alquiler de andamio tubular de fachada, 15 días naturales;Zonas comunes y edificio;Ud;6,00;382,50;2295,00
+01 Medios auxiliares;0XA120;Transporte y retirada de andamio tubular de fachada;Zonas comunes y edificio;Ud;1,00;527,85;527,85
+10 Instalaciones comunes;ISB010;Bajante interior de PVC serie B, 110 mm;Zonas comunes y edificio;m;39,00;14,79;576,81
+10 Instalaciones comunes;IFM006;Tubería para montante de fontanería empotrada;Zonas comunes y edificio;m;56,00;23,42;1311,52
+10 Instalaciones comunes;IOA021;Luminaria de emergencia LED en zonas comunes;Zonas comunes y edificio;Ud;8,00;47,76;382,08
+10 Instalaciones comunes;IL_ICT;Infraestructura ICT de 7 viviendas con precios CYPE: RITI ILR010 481,53 + RITS ILR020 559,42 + canalización principal ILP010 14 m x 30,17 + 4 registros secundarios ILP021 x 122,45 + canalización secundaria ILS010 42 m x 9,74 + 7 registros de terminación ILI001 x 53,57 + canalización interior ILI010 245 m x 5,19 + 42 registros de toma ILI020 x 10,98;Zonas comunes y edificio;Ud;1,00;4469,91;4469,91
+10 Instalaciones comunes;PA_ICT;Partida alzada a justificar: equipos de cabecera, cableado y proyecto y boletín de ICT (ingeniero de telecomunicación);Zonas comunes y edificio;PA;1,00;3000,00;3000,00
+15 Portal, escalera y sótano;REG110;Revestimiento de peldaño de escalera interior con gres porcelánico;Zonas comunes y edificio;m;68,40;49,79;3405,64
+15 Portal, escalera y sótano;RSG120;Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina;Zonas comunes y edificio;m²;20,00;55,55;1111,00
+15 Portal, escalera y sótano;RIP030;Pintura plástica mate lisa sobre paramento interior de yeso, dos manos;Zonas comunes y edificio;m²;160,00;6,91;1105,60
+15 Portal, escalera y sótano;FBY010;Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2;Zonas comunes y edificio;m²;22,00;32,96;725,12
+15 Portal, escalera y sótano;LPM010;Puerta interior abatible ciega de una hoja, gama estándar (CYPE);Zonas comunes y edificio;Ud;2,00;253,24;506,48
+15 Portal, escalera y sótano;HYL020;Limpieza final de obra (vivienda de ≈ 90 m²);Zonas comunes y edificio;Ud;8,00;489,45;3915,60
+12 Estructura;PA_ESTRUCT;Partida alzada a justificar: refuerzos puntuales de viguetas/forjado y tratamiento de cabezas de vigas según el resultado de las catas;Zonas comunes y edificio;PA;1,00;10000,00;10000,00
+11 Fachada y cubierta;PA_CUBIERTA;Partida alzada a justificar: retejado parcial, limahoyas, canalones y bajantes de pluviales tras la revisión de la cubierta;Zonas comunes y edificio;PA;1,00;6000,00;6000,00
+15 Portal, escalera y sótano;PA_SOTANO;Partida alzada a justificar: saneado de humedades y ventilación del sótano;Zonas comunes y edificio;PA;1,00;4000,00;4000,00
+14 Seguridad y salud;YSS;Seguridad y salud (2,5 % estimado, hasta el ESS);Zonas comunes y edificio;%;1,00;10584,92;10584,92

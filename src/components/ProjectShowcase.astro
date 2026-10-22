@@ -23,7 +23,14 @@ const files = projectFiles(p).map((s) => ({
   id: s.id,
   label: s.label,
   count: fileCount(s),
-  thumb: s.kind === 'modelo' ? s.model.poster : s.kind === 'documentos' ? s.items.find((d) => d.thumb)?.thumb : s.items[0]?.src,
+  thumb:
+    s.kind === 'modelo'
+      ? s.model.poster
+      : s.kind === 'presupuesto'
+        ? p.skills?.find((k) => k.area === 'presupuesto')?.sample.src
+        : s.kind === 'documentos'
+          ? s.items.find((d) => d.thumb)?.thumb
+          : s.items[0]?.src,
   contain: s.id === 'planos',
 }));
 ---

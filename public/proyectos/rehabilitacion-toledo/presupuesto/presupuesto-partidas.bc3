@@ -1,0 +1,210 @@
+~V|PORTFOLIO|FIEBDC-3/2016|presupuesto.py|19102026|ANSI|
+~K|\2\2\3\2\2\2\2\EUR\|
+~C|REH##||Rehabilitación de edificio de viviendas de 1969 (HIPÓTESIS)|433983.00|19102026|0|
+~D|REH##|C01#\1\1\C02#\1\1\C03#\1\1\C04#\1\1\C05#\1\1\C06#\1\1\C07#\1\1\C08#\1\1\C09#\1\1\C10#\1\1\C11#\1\1\C12#\1\1\C13#\1\1\C14#\1\1\C15#\1\1\|
+~C|C01#||01 Medios auxiliares|4723.00|19102026|0|
+~C|0XA130|Ud|Montaje y desmontaje de andamio tubular de fachada|1899.75|19102026|0|
+~M|C01#\0XA130|||1.00|\edificio\1\1.00\\\|
+~C|0XA110|Ud|Alquiler de andamio tubular de fachada, 15 días naturales|382.50|19102026|0|
+~M|C01#\0XA110|||6.00|\edificio\1\6.00\\\|
+~C|0XA120|Ud|Transporte y retirada de andamio tubular de fachada|527.85|19102026|0|
+~M|C01#\0XA120|||1.00|\edificio\1\1.00\\\|
+~D|C01#|0XA130\1\1.00\0XA110\1\6.00\0XA120\1\1.00\|
+~C|C02#||02 Demoliciones|15023.00|19102026|0|
+~C|DPT020|m²|Demolición de partición interior de fábrica revestida, ladrillo hueco sencillo, medios manuales|5.31|19102026|0|
+~M|C02#\DPT020|||494.41|\3 × IZQ 3 dormitorios (1º-3º)\1\179.02\\\\3 × DRC salón + suite (1º-3º)\1\236.54\\\\1 × Bajo DRC salón + suite\1\78.85\\\|
+~C|DRS020|m²|Demolición de pavimento interior de baldosas cerámicas, medios manuales|12.15|19102026|0|
+~M|C02#\DRS020|||394.65|\3 × IZQ 3 dormitorios (1º-3º)\1\153.06\\\\3 × DRC salón + suite (1º-3º)\1\181.19\\\\1 × Bajo DRC salón + suite\1\60.40\\\|
+~C|DRC005|m²|Demolición de revestimiento con piezas cerámicas (alicatado), medios manuales|10.08|19102026|0|
+~M|C02#\DRC005|||225.18|\3 × IZQ 3 dormitorios (1º-3º)\1\54.29\\\\3 × DRC salón + suite (1º-3º)\1\128.17\\\\1 × Bajo DRC salón + suite\1\42.72\\\|
+~C|DSM010|Ud|Desmontaje de aparato sanitario|23.58|19102026|0|
+~M|C02#\DSM010|||36.00|\3 × IZQ 3 dormitorios (1º-3º)\1\12.00\\\\3 × DRC salón + suite (1º-3º)\1\18.00\\\\1 × Bajo DRC salón + suite\1\6.00\\\|
+~C|DIE060|Ud|Desmontaje de red de instalación eléctrica interior de vivienda|157.11|19102026|0|
+~M|C02#\DIE060|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|DIF105|Ud|Desmontaje de red de instalación interior de agua de vivienda|244.86|19102026|0|
+~M|C02#\DIF105|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|DSC020|m|Desmontaje de conjunto de mobiliario de cocina|52.62|19102026|0|
+~M|C02#\DSC020|||24.50|\3 × IZQ 3 dormitorios (1º-3º)\1\10.50\\\\3 × DRC salón + suite (1º-3º)\1\10.50\\\\1 × Bajo DRC salón + suite\1\3.50\\\|
+~C|DLP210|m²|Levantado de puerta interior de madera|4.79|19102026|0|
+~M|C02#\DLP210|||79.57|\3 × IZQ 3 dormitorios (1º-3º)\1\34.10\\\\3 × DRC salón + suite (1º-3º)\1\34.10\\\\1 × Bajo DRC salón + suite\1\11.37\\\|
+~D|C02#|DPT020\1\494.41\DRS020\1\394.65\DRC005\1\225.18\DSM010\1\36.00\DIE060\1\7.00\DIF105\1\7.00\DSC020\1\24.50\DLP210\1\79.57\|
+~C|C03#||03 Albañilería y tabiquería|28503.00|19102026|0|
+~C|FBY010|m²|Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2|32.96|19102026|0|
+~M|C03#\FBY010|||549.35|\3 × IZQ 3 dormitorios (1º-3º)\1\198.91\\\\3 × DRC salón + suite (1º-3º)\1\262.83\\\\1 × Bajo DRC salón + suite\1\87.61\\\|
+~C|HUECO_PEND|Ud|Apertura de hueco de 1,00 m en muro de fábrica de 0,30 con cargadero metálico y apeo (PENDIENTE CYPE; provisional)|1200.00|19102026|0|
+~M|C03#\HUECO_PEND|||0.00|\3 × IZQ 3 dormitorios (1º-3º)\1\0.00\\\\3 × DRC salón + suite (1º-3º)\1\0.00\\\\1 × Bajo DRC salón + suite\1\0.00\\\|
+~C|HYA010|m²|Ayudas de albañilería para instalaciones, por m² construido|5.18|19102026|0|
+~M|C03#\HYA010|||479.31|\3 × IZQ 3 dormitorios (1º-3º)\1\186.39\\\\3 × DRC salón + suite (1º-3º)\1\219.69\\\\1 × Bajo DRC salón + suite\1\73.23\\\|
+~C|NAO020|m²|Aislamiento térmico en trasdosado autoportante: panel de lana mineral de alta densidad 40 mm|22.47|19102026|0|
+~M|C03#\NAO020|||352.19|\3 × IZQ 3 dormitorios (1º-3º)\1\158.67\\\\3 × DRC salón + suite (1º-3º)\1\145.14\\\\1 × Bajo DRC salón + suite\1\48.38\\\|
+~D|C03#|FBY010\1\549.35\HUECO_PEND\1\0.00\HYA010\1\479.31\NAO020\1\352.19\|
+~C|C04#||04 Instalaciones|87967.00|19102026|0|
+~C|IEI010|Ud|Red eléctrica de distribución interior de vivienda plurifamiliar, electrificación elevada|2892.63|19102026|0|
+~M|C04#\IEI010|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|IFI011|Ud|Instalación interior de fontanería para cuarto de baño (PE-X)|554.34|19102026|0|
+~M|C04#\IFI011|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|IFI012|Ud|Instalación interior de fontanería para cocina (PE-X)|332.86|19102026|0|
+~M|C04#\IFI012|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|ISD021|Ud|Red interior de evacuación para cuarto de baño (PVC serie B)|386.87|19102026|0|
+~M|C04#\ISD021|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|ISD022|Ud|Red interior de evacuación para cocina (PVC serie B)|173.47|19102026|0|
+~M|C04#\ISD022|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|ICN040|Ud|Equipo de aire acondicionado aire-aire split 1x1 por conducto rectangular, bomba de calor, R-32, 3,5 kW frigoríficos (CY|1679.95|19102026|0|
+~M|C04#\ICN040|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|ICA050|Ud|Bomba de calor aerotérmica para ACS con acumulador de 202 l, COP 3,4|3089.58|19102026|0|
+~M|C04#\ICA050|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|ICR021|m²|Conducto rectangular de panel rígido de lana de vidrio de 25 mm, revestido por las dos caras (CYPE)|50.61|19102026|0|
+~M|C04#\ICR021|||98.00|\3 × IZQ 3 dormitorios (1º-3º)\1\42.00\\\\3 × DRC salón + suite (1º-3º)\1\42.00\\\\1 × Bajo DRC salón + suite\1\14.00\\\|
+~C|ICR030|Ud|Rejilla de impulsión de aluminio extruido con lamas regulables, 525x125 mm (CYPE)|93.26|19102026|0|
+~M|C04#\ICR030|||28.00|\3 × IZQ 3 dormitorios (1º-3º)\1\12.00\\\\3 × DRC salón + suite (1º-3º)\1\12.00\\\\1 × Bajo DRC salón + suite\1\4.00\\\|
+~C|ICR050|Ud|Rejilla de retorno de aluminio extruido, 625x125 mm, montada en pared (CYPE)|57.79|19102026|0|
+~M|C04#\ICR050|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|ICN015|m|Línea frigorífica doble de cobre 3/8" + 5/8" aislada (CYPE)|21.07|19102026|0|
+~M|C04#\ICN015|||70.00|\3 × IZQ 3 dormitorios (1º-3º)\1\30.00\\\\3 × DRC salón + suite (1º-3º)\1\30.00\\\\1 × Bajo DRC salón + suite\1\10.00\\\|
+~C|ICN018|m|Red de evacuación de condensados con tubo flexible de PVC de 16 mm (CYPE)|5.11|19102026|0|
+~M|C04#\ICN018|||28.00|\3 × IZQ 3 dormitorios (1º-3º)\1\12.00\\\\3 × DRC salón + suite (1º-3º)\1\12.00\\\\1 × Bajo DRC salón + suite\1\4.00\\\|
+~C|ICR014|Ud|Extractor para baño, ventilador helicoidal extraplano 80 m³/h|69.98|19102026|0|
+~M|C04#\ICR014|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|IVA030|Ud|Boca de extracción autorregulable para ventilación|27.32|19102026|0|
+~M|C04#\IVA030|||18.00|\3 × IZQ 3 dormitorios (1º-3º)\1\6.00\\\\3 × DRC salón + suite (1º-3º)\1\9.00\\\\1 × Bajo DRC salón + suite\1\3.00\\\|
+~C|III101|Ud|Luminaria tipo Downlight LED 18 W empotrada|171.05|19102026|0|
+~M|C04#\III101|||56.00|\3 × IZQ 3 dormitorios (1º-3º)\1\24.00\\\\3 × DRC salón + suite (1º-3º)\1\24.00\\\\1 × Bajo DRC salón + suite\1\8.00\\\|
+~D|C04#|IEI010\1\7.00\IFI011\1\11.00\IFI012\1\7.00\ISD021\1\11.00\ISD022\1\7.00\ICN040\1\7.00\ICA050\1\7.00\ICR021\1\98.00\ICR030\1\28.00\ICR050\1\7.00\ICN015\1\70.00\ICN018\1\28.00\ICR014\1\11.00\IVA030\1\18.00\III101\1\56.00\|
+~C|C05#||05 Baños y cocina|76035.00|19102026|0|
+~C|SAD020|Ud|Plato de ducha extraplano de porcelana sanitaria Roca Malta 1200x800, antideslizante|494.01|19102026|0|
+~M|C05#\SAD020|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SAI005|Ud|Inodoro de porcelana sanitaria con tanque bajo, gama media, descarga 3/6 l|440.23|19102026|0|
+~M|C05#\SAI005|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SAL005|Ud|Lavabo de porcelana sanitaria sobre encimera, gama media|242.36|19102026|0|
+~M|C05#\SAL005|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SMN010|Ud|Mueble de baño base para lavabo, MDF hidrófugo 22 mm polilaminado, 650 mm|329.33|19102026|0|
+~M|C05#\SMN010|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SMM020|Ud|Mampara frontal para ducha, puerta corredera + panel fijo, 1151-1300 mm x 1950 mm, vidrio transparente, perfiles de alum|822.28|19102026|0|
+~M|C05#\SMM020|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SGL020|Ud|Grifería monomando para lavabo, gama media|146.49|19102026|0|
+~M|C05#\SGL020|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|RVE010|Ud|Espejo incoloro 900x900 mm|42.10|19102026|0|
+~M|C05#\RVE010|||11.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|SNA010|Ud|Encimera de aglomerado de cuarzo blanco, 350x60 cm|507.94|19102026|0|
+~M|C05#\SNA010|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|SCF010|Ud|Fregadero de acero inoxidable de 1 cubeta para encimera|326.41|19102026|0|
+~M|C05#\SCF010|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|SGF020|Ud|Grifería monomando para fregadero|96.16|19102026|0|
+~M|C05#\SGF020|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|IVK015|Ud|Campana extractora convencional con conexión a conducto de salida de humos|76.67|19102026|0|
+~M|C05#\IVK015|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|MERCADO_COCINA|Ud|Muebles de cocina de gama media de marca fiable, 3,5 m lineales + columna (mercado, HIPÓTESIS)|3600.00|19102026|0|
+~M|C05#\MERCADO_COCINA|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|MERCADO_ELECTRO|Ud|Electrodomésticos de gama media (placa de inducción, horno, frigorífico combi, lavavajillas) (mercado, HIPÓTESIS)|2300.00|19102026|0|
+~M|C05#\MERCADO_ELECTRO|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~D|C05#|SAD020\1\11.00\SAI005\1\11.00\SAL005\1\11.00\SMN010\1\11.00\SMM020\1\11.00\SGL020\1\11.00\RVE010\1\11.00\SNA010\1\7.00\SCF010\1\7.00\SGF020\1\7.00\IVK015\1\7.00\MERCADO_COCINA\1\7.00\MERCADO_ELECTRO\1\7.00\|
+~C|C06#||06 Revestimientos y pavimentos|45981.00|19102026|0|
+~C|RSL010|m²|Pavimento laminado AC4 clase 32 (comercial general), lamas 1200x190|35.78|19102026|0|
+~M|C06#\RSL010|||303.72|\3 × IZQ 3 dormitorios (1º-3º)\1\130.49\\\\3 × DRC salón + suite (1º-3º)\1\129.92\\\\1 × Bajo DRC salón + suite\1\43.31\\\|
+~C|RSG120|m²|Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina|55.55|19102026|0|
+~M|C06#\RSG120|||90.92|\3 × IZQ 3 dormitorios (1º-3º)\1\22.57\\\\3 × DRC salón + suite (1º-3º)\1\51.26\\\\1 × Bajo DRC salón + suite\1\17.09\\\|
+~C|RAC010|m²|Revestimiento interior con piezas de gres porcelánico esmaltado, gama media|55.00|19102026|0|
+~M|C06#\RAC010|||225.18|\3 × IZQ 3 dormitorios (1º-3º)\1\54.29\\\\3 × DRC salón + suite (1º-3º)\1\128.17\\\\1 × Bajo DRC salón + suite\1\42.72\\\|
+~C|RSG020|m|Rodapié de gres esmaltado 80 mm|7.40|19102026|0|
+~M|C06#\RSG020|||431.04|\3 × IZQ 3 dormitorios (1º-3º)\1\175.61\\\\3 × DRC salón + suite (1º-3º)\1\191.57\\\\1 × Bajo DRC salón + suite\1\63.86\\\|
+~C|RTC015|m²|Falso techo continuo suspendido de placas de yeso laminado, Q2|24.55|19102026|0|
+~M|C06#\RTC015|||123.86|\3 × IZQ 3 dormitorios (1º-3º)\1\33.23\\\\3 × DRC salón + suite (1º-3º)\1\67.97\\\\1 × Bajo DRC salón + suite\1\22.66\\\|
+~C|RIP030|m²|Pintura plástica mate lisa sobre paramento interior de yeso, dos manos|6.91|19102026|0|
+~M|C06#\RIP030|||1520.44|\3 × IZQ 3 dormitorios (1º-3º)\1\622.49\\\\3 × DRC salón + suite (1º-3º)\1\673.46\\\\1 × Bajo DRC salón + suite\1\224.49\\\|
+~C|RIP035|m²|Pintura plástica sobre placas de yeso laminado, dos manos|7.60|19102026|0|
+~M|C06#\RIP035|||123.86|\3 × IZQ 3 dormitorios (1º-3º)\1\33.23\\\\3 × DRC salón + suite (1º-3º)\1\67.97\\\\1 × Bajo DRC salón + suite\1\22.66\\\|
+~D|C06#|RSL010\1\303.72\RSG120\1\90.92\RAC010\1\225.18\RSG020\1\431.04\RTC015\1\123.86\RIP030\1\1520.44\RIP035\1\123.86\|
+~C|C07#||07 Carpintería interior|27115.00|19102026|0|
+~C|LPM010|Ud|Puerta interior abatible ciega de una hoja, gama estándar (CYPE)|253.24|19102026|0|
+~M|C07#\LPM010|||22.00|\3 × IZQ 3 dormitorios (1º-3º)\1\6.00\\\\3 × DRC salón + suite (1º-3º)\1\12.00\\\\1 × Bajo DRC salón + suite\1\4.00\\\|
+~C|LPM021|Ud|Puerta interior corredera para doble tabique con hueco, una hoja 203x82,5 (CYPE)|254.66|19102026|0|
+~M|C07#\LPM021|||14.00|\3 × IZQ 3 dormitorios (1º-3º)\1\6.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~C|LEM140|Ud|Block de puerta de entrada a vivienda acorazada normalizada, de madera, 85x203x7 cm|968.42|19102026|0|
+~M|C07#\LEM140|||7.00|\3 × IZQ 3 dormitorios (1º-3º)\1\3.00\\\\3 × DRC salón + suite (1º-3º)\1\3.00\\\\1 × Bajo DRC salón + suite\1\1.00\\\|
+~C|MERCADO_ARMARIOS|Ud|Frente de armario empotrado con interior vestido, gama media (mercado, HIPÓTESIS)|800.00|19102026|0|
+~M|C07#\MERCADO_ARMARIOS|||14.00|\3 × IZQ 3 dormitorios (1º-3º)\1\6.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\2.00\\\|
+~D|C07#|LPM010\1\22.00\LPM021\1\14.00\LEM140\1\7.00\MERCADO_ARMARIOS\1\14.00\|
+~C|C08#||08 Carpintería exterior|27161.00|19102026|0|
+~C|LCP060|Ud|Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio)|455.52|19102026|0|
+~M|C08#\LCP060|||45.00|\3 × IZQ 3 dormitorios (1º-3º)\1\21.00\\\\3 × IZQ 3 dormitorios (1º-3º)\1\0.00\\\\3 × DRC salón + suite (1º-3º)\1\12.00\\\\3 × DRC salón + suite (1º-3º)\1\6.00\\\\1 × Bajo DRC salón + suite\1\6.00\\\\1 × Bajo DRC salón + suite\1\0.00\\\|
+~C|DLC020|m²|Levantado de carpintería acristalada en fachada|5.45|19102026|0|
+~M|C08#\DLC020|||55.59|\3 × IZQ 3 dormitorios (1º-3º)\1\25.41\\\\3 × DRC salón + suite (1º-3º)\1\22.92\\\\1 × Bajo DRC salón + suite\1\7.26\\\|
+~C|LVC011|m²|Doble acristalamiento templado de baja emisividad 4/6/6|133.99|19102026|0|
+~M|C08#\LVC011|||43.53|\3 × IZQ 3 dormitorios (1º-3º)\1\20.37\\\\3 × DRC salón + suite (1º-3º)\1\17.34\\\\1 × Bajo DRC salón + suite\1\5.82\\\|
+~D|C08#|LCP060\1\45.00\DLC020\1\55.59\LVC011\1\43.53\|
+~C|C09#||09 Ascensor y accesibilidad|45140.00|19102026|0|
+~C|ITA010|Ud|Ascensor eléctrico sin cuarto de máquinas 1 m/s, 4 paradas, 450 kg (6 personas), cabina 1000x1250 acabado medio|18359.53|19102026|0|
+~M|C09#\ITA010|||1.00|\edificio\1\1.00\\\|
+~C|ITS010|Ud|Plataforma salvaescaleras 750x800 mm, uso interior|8116.31|19102026|0|
+~M|C09#\ITS010|||1.00|\edificio\1\1.00\\\|
+~C|MERCADO_HUECO_ASC|Ud|Obra del hueco del ascensor en el patio: foso, estructura metálica, cerramiento y desembarcos (mercado, HIPÓTESIS)|18000.00|19102026|0|
+~M|C09#\MERCADO_HUECO_ASC|||1.00|\edificio\1\1.00\\\|
+~C|LCY015|Ud|Puerta de aluminio con rotura de puente térmico, una hoja practicable|663.69|19102026|0|
+~M|C09#\LCY015|||1.00|\edificio\1\1.00\\\|
+~D|C09#|ITA010\1\1.00\ITS010\1\1.00\MERCADO_HUECO_ASC\1\1.00\LCY015\1\1.00\|
+~C|C10#||10 Instalaciones comunes|21511.00|19102026|0|
+~C|ISB010|m|Bajante interior de PVC serie B, 110 mm|14.79|19102026|0|
+~M|C10#\ISB010|||52.00|\3 × IZQ 3 dormitorios (1º-3º)\1\0.00\\\\3 × DRC salón + suite (1º-3º)\1\9.75\\\\1 × Bajo DRC salón + suite\1\3.25\\\\edificio\1\39.00\\\|
+~C|IAV011|Ud|Videoportero digital colectivo (10 viviendas por defecto)|4677.09|19102026|0|
+~M|C10#\IAV011|||1.00|\edificio\1\1.00\\\|
+~C|IEG010|Ud|Centralización de contadores eléctricos|860.45|19102026|0|
+~M|C10#\IEG010|||1.00|\edificio\1\1.00\\\|
+~C|IED010|m|Derivación individual monofásica para vivienda|13.57|19102026|0|
+~M|C10#\IED010|||84.00|\edificio\1\84.00\\\|
+~C|IEI030|Ud|Red eléctrica de servicios generales (incluye cuadro del ascensor)|4901.21|19102026|0|
+~M|C10#\IEI030|||1.00|\edificio\1\1.00\\\|
+~C|IFM006|m|Tubería para montante de fontanería empotrada|23.42|19102026|0|
+~M|C10#\IFM006|||56.00|\edificio\1\56.00\\\|
+~C|IOA021|Ud|Luminaria de emergencia LED en zonas comunes|47.76|19102026|0|
+~M|C10#\IOA021|||8.00|\edificio\1\8.00\\\|
+~C|IL_ICT|Ud|Infraestructura ICT de 7 viviendas con precios CYPE: RITI ILR010 481,53 + RITS ILR020 559,42 + canalización principal IL|4469.91|19102026|0|
+~M|C10#\IL_ICT|||1.00|\edificio\1\1.00\\\|
+~C|PA_ICT|PA|Partida alzada a justificar: equipos de cabecera, cableado y proyecto y boletín de ICT (ingeniero de telecomunicación)|3000.00|19102026|0|
+~M|C10#\PA_ICT|||1.00|\edificio\1\1.00\\\|
+~D|C10#|ISB010\1\52.00\IAV011\1\1.00\IEG010\1\1.00\IED010\1\84.00\IEI030\1\1.00\IFM006\1\56.00\IOA021\1\8.00\IL_ICT\1\1.00\PA_ICT\1\1.00\|
+~C|C11#||11 Fachada y cubierta|16028.00|19102026|0|
+~C|FZB030|m²|Limpieza mecánica de fachada con agua atomizada|12.94|19102026|0|
+~M|C11#\FZB030|||270.00|\edificio\1\270.00\\\|
+~C|RFS010|m²|Pintura al silicato sobre paramento exterior, dos manos|9.13|19102026|0|
+~M|C11#\RFS010|||270.00|\edificio\1\270.00\\\|
+~C|ZHB010|m²|Rehabilitación energética de cubierta inclinada sobre espacio no habitable, aislamiento por el interior|14.59|19102026|0|
+~M|C11#\ZHB010|||154.00|\edificio\1\154.00\\\|
+~C|LCP060|Ud|Ventana de PVC 1000x1200 mm, dos hojas practicables (sin vidrio)|455.52|19102026|0|
+~M|C11#\LCP060|||4.00|\edificio\1\4.00\\\|
+~C|PA_CUBIERTA|PA|Partida alzada a justificar: retejado parcial, limahoyas, canalones y bajantes de pluviales tras la revisión de la cubie|6000.00|19102026|0|
+~M|C11#\PA_CUBIERTA|||1.00|\edificio\1\1.00\\\|
+~D|C11#|FZB030\1\270.00\RFS010\1\270.00\ZHB010\1\154.00\LCP060\1\4.00\PA_CUBIERTA\1\1.00\|
+~C|C12#||12 Estructura|10460.00|19102026|0|
+~C|0ED050|Ud|Ensayo de forjado: diámetro de barras con pachómetro|70.76|19102026|0|
+~M|C12#\0ED050|||4.00|\edificio\1\4.00\\\|
+~C|0ED100|Ud|Informe técnico de resultados de ensayos|176.88|19102026|0|
+~M|C12#\0ED100|||1.00|\edificio\1\1.00\\\|
+~C|PA_ESTRUCT|PA|Partida alzada a justificar: refuerzos puntuales de viguetas/forjado y tratamiento de cabezas de vigas según el resultad|10000.00|19102026|0|
+~M|C12#\PA_ESTRUCT|||1.00|\edificio\1\1.00\\\|
+~D|C12#|0ED050\1\4.00\0ED100\1\1.00\PA_ESTRUCT\1\1.00\|
+~C|C13#||13 Gestión de residuos|2982.00|19102026|0|
+~C|GRA010|Ud|Transporte de residuos inertes con contenedor de 7 m³ a gestor autorizado|99.82|19102026|0|
+~M|C13#\GRA010|||20.00|\edificio\1\20.00\\\|
+~C|GRB010|Ud|Canon de vertido por entrega de contenedor de 7 m³ con residuos inertes|49.26|19102026|0|
+~M|C13#\GRB010|||20.00|\edificio\1\20.00\\\|
+~D|C13#|GRA010\1\20.00\GRB010\1\20.00\|
+~C|C14#||14 Seguridad y salud|10585.00|19102026|0|
+~C|YSS|%|Seguridad y salud (2,5 % estimado, hasta el ESS)|10584.92|19102026|0|
+~M|C14#\YSS|||1.00|\edificio\1\1.00\\\|
+~D|C14#|YSS\1\1.00\|
+~C|C15#||15 Portal, escalera y sótano|14769.00|19102026|0|
+~C|REG110|m|Revestimiento de peldaño de escalera interior con gres porcelánico|49.79|19102026|0|
+~M|C15#\REG110|||68.40|\edificio\1\68.40\\\|
+~C|RSG120|m²|Pavimento interior de gres porcelánico esmaltado, gama media, colocación en capa fina|55.55|19102026|0|
+~M|C15#\RSG120|||20.00|\edificio\1\20.00\\\|
+~C|RIP030|m²|Pintura plástica mate lisa sobre paramento interior de yeso, dos manos|6.91|19102026|0|
+~M|C15#\RIP030|||160.00|\edificio\1\160.00\\\|
+~C|FBY010|m²|Tabique sencillo de placas de yeso laminado (15+48+15), 78 mm, acabado Q2|32.96|19102026|0|
+~M|C15#\FBY010|||22.00|\edificio\1\22.00\\\|
+~C|LPM010|Ud|Puerta interior abatible ciega de una hoja, gama estándar (CYPE)|253.24|19102026|0|
+~M|C15#\LPM010|||2.00|\edificio\1\2.00\\\|
+~C|HYL020|Ud|Limpieza final de obra (vivienda de ? 90 m²)|489.45|19102026|0|
+~M|C15#\HYL020|||8.00|\edificio\1\8.00\\\|
+~C|PA_SOTANO|PA|Partida alzada a justificar: saneado de humedades y ventilación del sótano|4000.00|19102026|0|
+~M|C15#\PA_SOTANO|||1.00|\edificio\1\1.00\\\|
+~D|C15#|REG110\1\68.40\RSG120\1\20.00\RIP030\1\160.00\FBY010\1\22.00\LPM010\1\2.00\HYL020\1\8.00\PA_SOTANO\1\1.00\|

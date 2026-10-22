@@ -269,6 +269,36 @@ export interface ProjectSkill {
   lead?: boolean;
 }
 
+/** Una partida del presupuesto por mediciones. */
+export interface BudgetLine {
+  /** Capítulo con su número, ej. "02 Demoliciones". */
+  chapter: string;
+  /** Código del generador de precios (CYPE). */
+  code: string;
+  desc: string;
+  unit: string;
+  qty: number;
+  /** Precio unitario en euros. */
+  price: number;
+  /** Importe en euros (medición × precio). */
+  amount: number;
+  /** Clave del ámbito (ver `scopes`). */
+  scope: string;
+}
+
+/** Presupuesto por mediciones navegable, partida a partida. */
+export interface ProjectBudget {
+  /** Clave de ámbito → nombre legible. */
+  scopes: Record<string, string>;
+  /** Número de viviendas, para el importe por vivienda. */
+  dwellings?: number;
+  lines: BudgetLine[];
+  /** Origen de los precios y lo que no incluye. */
+  note?: string;
+  /** Descargas (BC3, CSV…). */
+  downloads?: { label: string; src: string; hint?: string }[];
+}
+
 export interface Project {
   /** Identificador para la URL. Solo minúsculas, números y guiones. */
   slug: string;
@@ -322,6 +352,8 @@ export interface Project {
    * destinatarios del resultado. Se muestra como primera sección.
    */
   scope?: ProjectScope;
+  /** Presupuesto por mediciones, navegable en «Archivos del proyecto». */
+  budget?: ProjectBudget;
   /** Modelo 3D navegable. Se muestra como sección propia tras el alcance. */
   model?: ProjectModel;
   context?: string;
