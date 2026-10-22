@@ -1,4 +1,4 @@
-import type { DocumentItem, FileGroup, MediaItem, Project, ProjectModel } from '../content/types';
+import type { DocumentItem, FileGroup, MediaItem, Project, ProjectBudget, ProjectModel } from '../content/types';
 import { areas, type Area } from '../content/areas';
 import { projects } from './content';
 
@@ -7,12 +7,13 @@ import { projects } from './content';
  * documentos PDF y modelo 3D. Solo se devuelven los grupos con contenido.
  */
 
-export const fileGroupLabels: Record<FileGroup | 'documentos' | 'modelo', string> = {
+export const fileGroupLabels: Record<FileGroup | 'documentos' | 'modelo' | 'presupuesto', string> = {
   imagenes: 'Imágenes 3D',
   planos: 'Planos',
   presentacion: 'Dosier',
   documentos: 'Documentos PDF',
   modelo: 'Modelo 3D',
+  presupuesto: 'Presupuesto',
 };
 
 function groupOf(m: MediaItem): FileGroup {
@@ -23,7 +24,8 @@ function groupOf(m: MediaItem): FileGroup {
 export type FileSection =
   | { id: FileGroup; label: string; kind: 'media'; items: MediaItem[] }
   | { id: 'documentos'; label: string; kind: 'documentos'; items: DocumentItem[] }
-  | { id: 'modelo'; label: string; kind: 'modelo'; model: ProjectModel };
+  | { id: 'modelo'; label: string; kind: 'modelo'; model: ProjectModel }
+  | { id: 'presupuesto'; label: string; kind: 'presupuesto'; budget: ProjectBudget };
 
 /** Todas las imágenes publicables del proyecto, portada incluida, sin repetir. */
 export function projectImages(p: Project): MediaItem[] {
@@ -48,6 +50,9 @@ export function projectFiles(p: Project): FileSection[] {
     if (g === 'imagenes' && p.documents?.length) {
       sections.push({ id: 'documentos', label: fileGroupLabels.documentos, kind: 'documentos', items: p.documents });
     }
+    if (g === 'planos' && p.budget) {
+      sections.push({ id: 'presupuesto', label: fileGroupLabels.presupuesto, kind: 'presupuesto', budget: p.budget });
+    }
   }
   return sections;
 }
@@ -55,6 +60,7 @@ export function projectFiles(p: Project): FileSection[] {
 /** Recuento legible de un grupo, ej. "12 planos". */
 export function fileCount(s: FileSection): string {
   if (s.kind === 'modelo') return s.model.ifc ? 'navegable + IFC' : 'navegable';
+  if (s.kind === 'presupuesto') return `${s.budget.lines.length} partidas`;
   const n = s.items.length;
   const unit: Record<string, [string, string]> = {
     imagenes: ['imagen', 'imágenes'],

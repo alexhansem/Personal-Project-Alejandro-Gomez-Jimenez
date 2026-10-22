@@ -1,4 +1,5 @@
 import type { Project } from '../types';
+import budgetData from './data/rehabilitacion-toledo-presupuesto';
 
 const base = '/proyectos/rehabilitacion-toledo';
 
@@ -71,7 +72,7 @@ const project: Project = {
     },
     {
       area: 'presupuesto',
-      text: '202 partidas medidas desde el modelo y valoradas con precios de CYPE, agrupadas en 15 capítulos.',
+      text: '202 partidas medidas desde el modelo y valoradas con precios de CYPE, en 15 capítulos. Se pueden consultar una a una en «Archivos del proyecto».',
       sample: {
         src: `${base}/dosier/dosier-capitulos.png`,
         alt: 'Gráfico de barras del presupuesto de ejecución material por capítulos, de instalaciones de las viviendas a gestión de residuos',
@@ -186,6 +187,15 @@ const project: Project = {
           'Sellos de hipótesis, pendiente de verificar en obra y a firmar',
         ],
       },
+    ],
+  },
+
+  budget: {
+    ...budgetData,
+    note: 'Precios del generador de CYPE para esta obra (Toledo, rehabilitación integral, octubre de 2026). Presupuesto de ejecución material: sin IVA, gastos generales ni beneficio industrial.',
+    downloads: [
+      { label: 'Excel (CSV)', src: `${base}/presupuesto/presupuesto-partidas.csv`, hint: 'Se abre con Excel' },
+      { label: 'BC3', src: `${base}/presupuesto/presupuesto-partidas.bc3`, hint: 'Para CYPE o Presto' },
     ],
   },
 
