@@ -1,0 +1,61 @@
+---
+/**
+ * Tiempo total del proyecto en grande, para la vista general.
+ * Siempre muestra de dónde sale el dato.
+ */
+import type { ProjectSpeed } from '../content/types';
+
+interface Props {
+  speed: ProjectSpeed;
+  size?: 'lg' | 'md';
+  /** Oculta la nota de procedencia (solo si se muestra cerca, en la misma vista). */
+  showSource?: boolean;
+}
+const { speed, size = 'md', showSource = true } = Astro.props;
+---
+
+<div class:list={['sb', `sb--${size}`]}>
+  <p class="sb__kicker label">Hecho en</p>
+  <p class="sb__value">{speed.value}</p>
+  <p class="sb__label">{speed.label}</p>
+  {showSource && <p class="sb__source mono">{speed.source}</p>}
+</div>
+
+<style>
+  .sb {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+  }
+
+  .sb__kicker {
+    color: var(--accent);
+  }
+
+  .sb__value {
+    font-size: var(--step-3);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sb--lg .sb__value {
+    font-size: clamp(3rem, 2rem + 4.5vw, 6rem);
+  }
+
+  .sb__label {
+    font-size: 1.0625rem;
+    line-height: 1.35;
+    max-width: 28ch;
+  }
+
+  .sb__source {
+    margin-top: 4px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    max-width: 40ch;
+  }
+</style>

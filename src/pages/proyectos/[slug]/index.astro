@@ -1,16 +1,15 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import type { MediaItem, Project } from '../../../content/types';
+import type { Project } from '../../../content/types';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import SectionHead from '../../../components/SectionHead.astro';
 import MediaFigure from '../../../components/MediaFigure.astro';
-import CompareSlider from '../../../components/CompareSlider.astro';
 import WorkflowTimeline from '../../../components/WorkflowTimeline.astro';
 import ComparisonPanel from '../../../components/ComparisonPanel.astro';
-import DocumentCard from '../../../components/DocumentCard.astro';
 import DataTable from '../../../components/DataTable.astro';
 import CodeBlock from '../../../components/CodeBlock.astro';
-import ModelViewer from '../../../components/ModelViewer.astro';
+import ProjectFiles from '../../../components/ProjectFiles.astro';
+import SpeedBadge from '../../../components/SpeedBadge.astro';
+import { getArea } from '../../../content/areas';
 import TimeTag from '../../../components/TimeTag.astro';
 import { getCategory } from '../../../content/categories';
 import { projects, processes, sheetCode } from '../../../lib/content';
@@ -45,13 +44,10 @@ const next = index < projects.length - 1 ? projects[index + 1] : undefined;
 // Secciones presentes, numeradas en orden.
 const has = {
   scope: !!p.scope?.stages.length,
-  model: !!p.model,
   method: !!p.method?.steps.length,
   brief: !!(p.context || p.objective || p.problem),
   workflow: !!p.workflow?.length,
   comparison: !!cmp,
-  media: media.length > 0,
-  documents: !!p.documents?.length,
   tables: !!p.tables?.length,
   code: !!p.code?.length,
   work: !!(p.participation?.length || p.methodology?.length || p.deliverables?.length),
@@ -60,13 +56,10 @@ const has = {
 };
 const sectionDefs = [
   { key: 'scope', id: 'alcance', title: p.scope?.title ?? 'Alcance' },
-  { key: 'model', id: 'modelo-3d', title: 'Modelo 3D' },
   { key: 'method', id: 'metodo', title: p.method?.title ?? 'Método' },
   { key: 'brief', id: 'encargo', title: 'Encargo' },
   { key: 'workflow', id: 'secuencia', title: 'Secuencia de trabajo' },
   { key: 'comparison', id: 'comparativa', title: 'Comparativa de tiempos' },
-  { key: 'media', id: 'documentacion-grafica', title: 'Documentación gráfica' },
-  { key: 'documents', id: 'documentos', title: 'Documentos' },
   { key: 'tables', id: 'tablas', title: 'Tablas' },
   { key: 'code', id: 'codigo', title: 'Código' },
   { key: 'work', id: 'participacion', title: 'Participación y metodología' },
@@ -85,11 +78,11 @@ const ficha: { k: string; v: string }[] = [
   ...(p.tools?.length ? [{ k: 'Herramientas', v: p.tools.join(' · ') }] : []),
 ];
 
-const galleryItems: MediaItem[] = media;
-const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
+const skills = p.skills ?? [];
+const delivered = p.delivered ?? [];
 ---
 
-<BaseLayout title={p.title} description={p.summary} image={hero?.src} noindex={p.demo}>
+<BaseLayout title={p.title} description={p.tagline ?? p.summary} image={hero?.src} noindex={p.demo}>
   <article>
     <header class="container ph">
       <nav class="ph__crumbs mono" aria-label="Ruta">
@@ -102,8 +95,99 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
         <div class="ph__title">
           {p.demo && <span class="stamp stamp--demo">Proyecto de demostración · contenido ficticio</span>}
           <h1>{p.title}</h1>
-          <p class="lead">{p.summary}</p>
+          <p class="lead">{p.tagline ?? p.summary}</p>
+          <div class="ph__actions">
+            <a class="btn btn--solid" href="#archivos">Ver los archivos</a>
+            <a class="btn" href="#profesionales">Detalle técnico</a>
+          </div>
         </div>
+        {p.speed && (
+          <div class="ph__speed">
+            <SpeedBadge speed={p.speed} size="lg" />
+          </div>
+        )}
+      </div>
+    </header>
+
+    {
+      hero?.src && (
+        <div class="container ph__hero">
+          <MediaFigure item={hero} group={group} loading="eager" />
+        </div>
+      )
+    }
+
+    {
+      delivered.length > 0 && (
+        <section class="container dl" aria-labelledby="entregado">
+          <h2 class="label dl__h" id="entregado">
+            {p.speed ? `Lo que se entregó en ${p.speed.value.replace(/^<\s*/, 'menos de ')}` : 'Lo que se entregó'}
+          </h2>
+          <ul class="dl__list">
+            {delivered.map((x) => (
+              <li>
+                <span class="dl__v">{x.value}</span>
+                <span class="dl__l">{x.label}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <section class="container section--tight" aria-labelledby="archivos-h">
+      <div class="gv__head" id="archivos">
+        <h2 class="gv__title" id="archivos-h">Archivos del proyecto</h2>
+        <p class="muted gv__sub">Los originales, tal como se entregaron. Ábrelos, amplía y descarga.</p>
+      </div>
+      <ProjectFiles project={p} />
+    </section>
+
+    {
+      skills.length > 0 && (
+        <section class="container section--tight" aria-labelledby="demuestra">
+          <div class="gv__head">
+            <h2 class="gv__title" id="demuestra">Qué demuestra este proyecto</h2>
+          </div>
+          <ul class="sk">
+            {skills.map((s) => (
+              <li class="sk__item">
+                <MediaFigure item={s.sample} group={group} crop={1.5} showCaption={false} />
+                <p class="label sk__area">{getArea(s.area).title}</p>
+                <p class="sk__text">{s.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      !!p.highlights?.length && (
+        <section class="container hl" aria-labelledby="claves">
+          <h2 class="gv__h" id="claves">Lo que lo hace especial</h2>
+          <ol class="hl__list">
+            {p.highlights.map((h, i) => (
+              <li>
+                <span class="hl__n mono">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="hl__title">{h.title}</h3>
+                <p class="hl__text">{h.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
+
+    <section class="pro" aria-labelledby="profesionales-h">
+      <div class="container">
+        <div class="pro__head" id="profesionales">
+          <p class="label pro__kicker">Para profesionales</p>
+          <h2 class="pro__title" id="profesionales-h">Cómo se hizo, con detalle técnico</h2>
+          <p class="pro__intro">{p.summary}</p>
+        </div>
+
         <dl class="ph__ficha">
           {
             ficha.map((f) => (
@@ -114,20 +198,10 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
             ))
           }
         </dl>
-      </div>
-    </header>
-
-    {
-      hero && (
-        <div class="container ph__hero">
-          <MediaFigure item={hero} group={group} code={media.includes(hero) ? mediaCode(0) : undefined} loading="eager" />
-        </div>
-      )
-    }
 
     {
       (wf || cmp || figures.length > 0) && (
-        <div class="container">
+        <div class="pro__kpis">
           <dl class="kpis">
             {wf && !figures.length && (
               <div>
@@ -192,43 +266,24 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
       )
     }
 
-    {
-      !!p.highlights?.length && (
-        <div class="container hl">
-          <h2 class="label hl__h">Claves del proyecto</h2>
-          <ol class="hl__list">
-            {p.highlights.map((h, i) => (
-              <li>
-                <span class="hl__n mono">{String(i + 1).padStart(2, '0')}</span>
-                <h3 class="hl__title">{h.title}</h3>
-                <p class="hl__text">{h.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      )
-    }
 
-    {
-      sections.length > 1 && (
-        <nav class="container toc" aria-label="Contenido del proyecto">
-          <ol>
-            {sections.map((s) => (
-              <li>
-                <a href={`#${s.id}`}>
-                  <span class="mono">{s.n}</span> {s.title}
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-      )
-    }
+        {
+          sections.length > 0 && (
+            <div class="pro__actions">
+              <button type="button" class="btn" data-pro-toggle>Desplegar todo</button>
+            </div>
+          )
+        }
 
+        <div class="pro__list">
     {
       sec.scope && p.scope && (
-        <section class="container section--tight" aria-labelledby={sec.scope.id}>
-          <SectionHead code={sec.scope.n} title={sec.scope.title} id={sec.scope.id} />
+        <details class="pro__item" id={sec.scope.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.scope.n}</span>
+            <span class="pro__t">{sec.scope.title}</span>
+          </summary>
+          <div class="pro__body">
           {p.scope.intro && <p class="lead scope__intro">{p.scope.intro}</p>}
           <ol class="scope">
             {p.scope.stages.map((st, i) => (
@@ -264,25 +319,19 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               ))}
             </div>
           )}
-        </section>
-      )
-    }
-
-    {
-      sec.model && p.model && (
-        <section class="container section--tight" aria-labelledby={sec.model.id}>
-          <SectionHead code={sec.model.n} title={sec.model.title} id={sec.model.id}>
-            <span class="mono muted">Arrastra para girar · rueda o pellizco para acercar · doble clic para volver</span>
-          </SectionHead>
-          <ModelViewer model={p.model} />
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.method && p.method && (
-        <section class="container section--tight" aria-labelledby={sec.method.id}>
-          <SectionHead code={sec.method.n} title={sec.method.title} id={sec.method.id} />
+        <details class="pro__item" id={sec.method.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.method.n}</span>
+            <span class="pro__t">{sec.method.title}</span>
+          </summary>
+          <div class="pro__body">
           {p.method.intro && <p class="lead method__intro">{p.method.intro}</p>}
           <ol class="method">
             {p.method.steps.map((st, i) => (
@@ -299,14 +348,19 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               </li>
             ))}
           </ol>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.brief && (
-        <section class="container section--tight" aria-labelledby={sec.brief.id}>
-          <SectionHead code={sec.brief.n} title={sec.brief.title} id={sec.brief.id} />
+        <details class="pro__item" id={sec.brief.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.brief.n}</span>
+            <span class="pro__t">{sec.brief.title}</span>
+          </summary>
+          <div class="pro__body">
           <dl class="brief">
             {p.context && (
               <div>
@@ -327,96 +381,83 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               </div>
             )}
           </dl>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.workflow && p.workflow && (
-        <section class="container section--tight" aria-labelledby={sec.workflow.id}>
-          <SectionHead code={sec.workflow.n} title={sec.workflow.title} id={sec.workflow.id}>
-            <span class="mono muted">Qué hace la IA, qué se decide y qué ejecuta el software</span>
-          </SectionHead>
+        <details class="pro__item" id={sec.workflow.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.workflow.n}</span>
+            <span class="pro__t">{sec.workflow.title}</span>
+          </summary>
+          <div class="pro__body">
           <WorkflowTimeline steps={p.workflow} group={`${group}-wf`} />
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.comparison && p.comparison && (
-        <section class="container section--tight" aria-labelledby={sec.comparison.id}>
-          <SectionHead code={sec.comparison.n} title={sec.comparison.title} id={sec.comparison.id} />
+        <details class="pro__item" id={sec.comparison.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.comparison.n}</span>
+            <span class="pro__t">{sec.comparison.title}</span>
+          </summary>
+          <div class="pro__body">
           <ComparisonPanel comparison={p.comparison} />
-        </section>
-      )
-    }
-
-    {
-      sec.media && (
-        <section class="container section--tight" aria-labelledby={sec.media.id}>
-          <SectionHead code={sec.media.n} title={sec.media.title} id={sec.media.id}>
-            <span class="mono muted">Pulsa una lámina para ampliarla</span>
-          </SectionHead>
-          <div class="gallery">
-            {galleryItems.map((m, i) =>
-              m.compareWith && m.src ? (
-                <div class="gallery__item gallery__item--wide">
-                  <CompareSlider item={m as MediaItem & { compareWith: NonNullable<MediaItem['compareWith']> }} code={`${mediaCode(i)} · comparación`} />
-                </div>
-              ) : (
-                <div class:list={['gallery__item', { 'gallery__item--wide': (m.ratio ?? 1.414) > 1.9 }]}>
-                  <MediaFigure item={m} group={group} code={mediaCode(i)} />
-                </div>
-              ),
-            )}
           </div>
-        </section>
-      )
-    }
-
-    {
-      sec.documents && p.documents && (
-        <section class="container section--tight" aria-labelledby={sec.documents.id}>
-          <SectionHead code={sec.documents.n} title={sec.documents.title} id={sec.documents.id} />
-          <div class="docs">
-            {p.documents.map((d, i) => (
-              <DocumentCard doc={d} projectSlug={p.slug} code={`DOC-${String(i + 1).padStart(2, '0')}`} />
-            ))}
-          </div>
-        </section>
+        </details>
       )
     }
 
     {
       sec.tables && p.tables && (
-        <section class="container section--tight" aria-labelledby={sec.tables.id}>
-          <SectionHead code={sec.tables.n} title={sec.tables.title} id={sec.tables.id} />
+        <details class="pro__item" id={sec.tables.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.tables.n}</span>
+            <span class="pro__t">{sec.tables.title}</span>
+          </summary>
+          <div class="pro__body">
           <div class="stack">
             {p.tables.map((t, i) => (
               <DataTable table={t} code={`T-${String(i + 1).padStart(2, '0')}`} />
             ))}
           </div>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.code && p.code && (
-        <section class="container section--tight" aria-labelledby={sec.code.id}>
-          <SectionHead code={sec.code.n} title={sec.code.title} id={sec.code.id} />
+        <details class="pro__item" id={sec.code.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.code.n}</span>
+            <span class="pro__t">{sec.code.title}</span>
+          </summary>
+          <div class="pro__body">
           <div class="stack">
             {p.code.map((s) => (
               <CodeBlock snippet={s} demo={p.demo} />
             ))}
           </div>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.work && (
-        <section class="container section--tight" aria-labelledby={sec.work.id}>
-          <SectionHead code={sec.work.n} title={sec.work.title} id={sec.work.id} />
+        <details class="pro__item" id={sec.work.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.work.n}</span>
+            <span class="pro__t">{sec.work.title}</span>
+          </summary>
+          <div class="pro__body">
           <div class="cols">
             {!!p.participation?.length && (
               <div>
@@ -449,14 +490,19 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               </div>
             )}
           </div>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.results && (
-        <section class="container section--tight" aria-labelledby={sec.results.id}>
-          <SectionHead code={sec.results.n} title={sec.results.title} id={sec.results.id} />
+        <details class="pro__item" id={sec.results.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.results.n}</span>
+            <span class="pro__t">{sec.results.title}</span>
+          </summary>
+          <div class="pro__body">
           <div class="cols">
             {!!p.results?.length && (
               <div>
@@ -489,22 +535,29 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
               </div>
             )}
           </div>
-        </section>
+          </div>
+        </details>
       )
     }
 
     {
       sec.notes && (
-        <section class="container section--tight" aria-labelledby={sec.notes.id}>
-          <SectionHead code={sec.notes.n} title={sec.notes.title} id={sec.notes.id} />
+        <details class="pro__item" id={sec.notes.id}>
+          <summary class="pro__sum">
+            <span class="mono pro__n">{sec.notes.n}</span>
+            <span class="pro__t">{sec.notes.title}</span>
+          </summary>
+          <div class="pro__body">
           <p class="prose">{p.notes}</p>
-        </section>
+          </div>
+        </details>
       )
     }
+        </div>
 
     {
       relatedProcesses.length > 0 && (
-        <aside class="container section--tight" aria-labelledby="relacionados">
+        <aside class="pro__related" aria-labelledby="relacionados">
           <h2 class="label" id="relacionados">
             Procesos y herramientas relacionados
           </h2>
@@ -521,6 +574,8 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
         </aside>
       )
     }
+      </div>
+    </section>
 
     <nav class="container pager" aria-label="Otros proyectos">
       {
@@ -544,6 +599,34 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
     </nav>
   </article>
 </BaseLayout>
+
+<script>
+  // Las secciones técnicas van plegadas. Un enlace con #ancla las abre, y el
+  // botón «Desplegar todo» las abre o cierra a la vez.
+  const openFromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const target = id ? document.getElementById(id) : null;
+    const details = target?.closest('details');
+    if (details && !details.open) {
+      details.open = true;
+      target!.scrollIntoView();
+    }
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
+  const toggle = document.querySelector<HTMLButtonElement>('[data-pro-toggle]');
+  const items = [...document.querySelectorAll<HTMLDetailsElement>('.pro__item')];
+  const sync = () => {
+    if (toggle) toggle.textContent = items.every((d) => d.open) ? 'Plegar todo' : 'Desplegar todo';
+  };
+  items.forEach((d) => d.addEventListener('toggle', sync));
+  toggle?.addEventListener('click', () => {
+    const open = !items.every((d) => d.open);
+    items.forEach((d) => (d.open = open));
+    sync();
+  });
+</script>
 
 <style>
   .ph {
@@ -582,9 +665,24 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
     max-width: 22ch;
   }
 
+  .ph__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .ph__speed {
+    padding-top: 16px;
+    border-top: 1.5px solid var(--accent);
+  }
+
   .ph__ficha {
-    margin: 0;
+    margin: 0 0 clamp(24px, 3vw, 40px);
     border-top: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    column-gap: var(--col-gap);
   }
 
   .ph__ficha div {
@@ -604,12 +702,187 @@ const mediaCode = (i: number) => `D-${String(i + 1).padStart(2, '0')}`;
     margin-bottom: clamp(24px, 3vw, 40px);
   }
 
-  .hl {
-    margin-top: clamp(40px, 5vw, 72px);
+  .dl {
+    margin-bottom: clamp(8px, 2vw, 24px);
   }
 
-  .hl__h {
-    margin-bottom: 16px;
+  .dl__h {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .dl__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .dl__list {
+    column-gap: 20px;
+  }
+
+  .dl__list li {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    padding: 16px 0 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .dl__v {
+    font-size: var(--step-3);
+    font-weight: 560;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .dl__l {
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+  }
+
+  .gv__head {
+    display: grid;
+    gap: 6px;
+    margin-bottom: clamp(20px, 2.5vw, 32px);
+  }
+
+  .gv__title,
+  .gv__h {
+    font-size: var(--step-3);
+    font-weight: 540;
+    letter-spacing: -0.03em;
+  }
+
+  .gv__h {
+    margin-bottom: clamp(16px, 2vw, 24px);
+  }
+
+  .gv__sub {
+    font-size: 1.0625rem;
+  }
+
+  .sk {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: clamp(28px, 3vw, 44px) var(--col-gap);
+  }
+
+  .sk__item {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  .sk__area {
+    margin-top: 4px;
+    color: var(--accent);
+  }
+
+  .sk__text {
+    color: var(--ink-2);
+    max-width: 44ch;
+  }
+
+  .hl {
+    margin-top: clamp(16px, 3vw, 40px);
+  }
+
+  .pro {
+    margin-top: clamp(56px, 7vw, 112px);
+    padding-block: clamp(40px, 5vw, 72px);
+    background: var(--paper-2);
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .pro__head {
+    display: grid;
+    gap: 10px;
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .pro__kicker {
+    color: var(--accent);
+  }
+
+  .pro__title {
+    font-size: var(--step-3);
+    font-weight: 540;
+    letter-spacing: -0.03em;
+  }
+
+  .pro__intro {
+    max-width: 72ch;
+    color: var(--ink-2);
+    font-size: 1.0625rem;
+  }
+
+  .pro__kpis {
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .pro__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }
+
+  .pro__list {
+    border-top: 1.5px solid var(--ink);
+  }
+
+  .pro__item {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .pro__sum {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    align-items: baseline;
+    gap: 12px;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .pro__sum::-webkit-details-marker {
+    display: none;
+  }
+
+  .pro__sum::after {
+    content: '+';
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .pro__item[open] > .pro__sum::after {
+    content: '−';
+  }
+
+  .pro__sum:hover .pro__t {
+    color: var(--accent);
+  }
+
+  .pro__n {
+    color: var(--accent);
+    font-size: 0.8125rem;
+  }
+
+  .pro__t {
+    font-size: var(--step-1);
+    font-weight: 560;
+  }
+
+  .pro__body {
+    padding: 4px 0 clamp(28px, 3.5vw, 48px);
+  }
+
+  .pro__related {
+    margin-top: clamp(32px, 4vw, 56px);
   }
 
   .hl__list {

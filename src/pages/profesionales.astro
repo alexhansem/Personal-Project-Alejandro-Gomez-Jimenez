@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { proNav } from '../config/site';
+import { projects, sheetCode } from '../lib/content';
+import { url } from '../lib/url';
+---
+
+<BaseLayout
+  title="Para profesionales"
+  description="El detalle técnico de cada proyecto: secuencia de trabajo con IA, método, tablas, código, metodología y registro de tiempos."
+>
+  <div class="container page-head">
+    <p class="label">04 · Para profesionales</p>
+    <h1>Para profesionales</h1>
+    <p class="lead">
+      La vista general enseña los archivos y los tiempos. Aquí está el porqué: cómo se reparte el trabajo entre la IA, el
+      software y la revisión propia, con qué método, qué datos y qué limitaciones.
+    </p>
+  </div>
+
+  <section class="container section--tight" aria-labelledby="fichas">
+    <SectionHead code="01" title="Detalle técnico de cada proyecto" id="fichas" />
+    <ul class="hub">
+      {
+        projects.map((p, i) => (
+          <li>
+            <a href={url(`/proyectos/${p.slug}/#profesionales`)}>
+              <span class="mono hub__code">{sheetCode('P', i)}</span>
+              <span class="hub__title">{p.title}</span>
+              <span class="muted hub__text">{p.summary}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="container section--tight" aria-labelledby="metodo">
+    <SectionHead code="02" title="Método y datos" id="metodo" />
+    <ul class="hub">
+      {
+        proNav.map((n) => (
+          <li>
+            <a href={url(n.href)}>
+              <span class="mono hub__code">{n.code}</span>
+              <span class="hub__title">{n.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub {
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .hub a {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 18rem) minmax(0, 1fr);
+    gap: 6px 20px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+
+  .hub__code {
+    color: var(--accent);
+    font-size: 0.8125rem;
+  }
+
+  .hub__title {
+    font-weight: 560;
+    font-size: 1.0625rem;
+  }
+
+  .hub__text {
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 720px) {
+    .hub a {
+      grid-template-columns: 3rem minmax(0, 1fr);
+    }
+
+    .hub__text {
+      grid-column: 2;
+    }
+  }
+</style>
