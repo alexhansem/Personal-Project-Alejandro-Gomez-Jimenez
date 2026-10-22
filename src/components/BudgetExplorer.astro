@@ -24,6 +24,16 @@ const chapters = [...new Set(b.lines.map((l) => l.chapter))]
   .sort((x, y) => y.amount - x.amount);
 const max = Math.max(...chapters.map((c) => c.amount));
 const scopes = Object.entries(b.scopes);
+const example = b.example ? b.lines.find((l) => l.code === b.example!.code && l.scope === b.example!.scope) : undefined;
+// Las mediciones salen sin redondear: si viviendas × medición redondeada no da exacto, se indica con ≈.
+const eq = (l: (typeof b.lines)[number]) =>
+  l.dwellings && l.each !== undefined && Math.abs(l.dwellings * l.each - l.qty) < 0.005 ? '=' : '≈';
+const sourceLabel = (l: (typeof b.lines)[number]) =>
+  l.source === 'mercado'
+    ? 'Precio de mercado (hipótesis)'
+    : l.source === 'porcentaje'
+      ? 'Porcentaje estimado'
+      : `Precio CYPE ${l.code}`;
 ---
 
 <div class="bx" data-budget>
@@ -50,6 +60,49 @@ const scopes = Object.entries(b.scopes);
     }
   </dl>
 
+  {
+    example && (
+      <section class="bx__ex" aria-labelledby="bx-ejemplo">
+        <h4 class="bx__ex-h" id="bx-ejemplo">
+          Así sale una partida: <span>{example.desc.toLowerCase()}</span>
+        </h4>
+        <ol class="bx__ex-steps">
+          <li>
+            <span class="mono bx__ex-n">01 · Medir en el plano</span>
+            <span class="bx__ex-v">
+              {num(example.each ?? example.qty)} {example.unit}
+            </span>
+            <span class="bx__ex-t">{example.how} Por vivienda.</span>
+          </li>
+          {example.dwellings && (
+            <li>
+              <span class="mono bx__ex-n">02 · Por las viviendas iguales</span>
+              <span class="bx__ex-v">
+                × {example.dwellings} {eq(example)} {num(example.qty)} {example.unit}
+              </span>
+              <span class="bx__ex-t">{b.scopes[example.scope]}: la misma distribución en las plantas 1ª, 2ª y 3ª.</span>
+            </li>
+          )}
+          <li>
+            <span class="mono bx__ex-n">{example.dwellings ? '03' : '02'} · Precio para esta obra</span>
+            <span class="bx__ex-v">
+              {eur(example.price, 2)} €/{example.unit}
+            </span>
+            <span class="bx__ex-t">Generador de precios de CYPE, partida {example.code}, ajustado a esta obra.</span>
+          </li>
+          <li>
+            <span class="mono bx__ex-n">{example.dwellings ? '04' : '03'} · Importe</span>
+            <span class="bx__ex-v bx__ex-v--accent">{eur(example.amount, 2)} €</span>
+            <span class="bx__ex-t">
+              {num(example.qty)} {example.unit} × {eur(example.price, 2)} €. Lo mismo, partida a partida, hasta las{' '}
+              {b.lines.length}.
+            </span>
+          </li>
+        </ol>
+      </section>
+    )
+  }
+
   <div class="bx__tools">
     <div class="bx__scopes" role="group" aria-label="Filtrar por ámbito">
       <button type="button" class="bx__scope" aria-pressed="true" data-scope="">Todo</button>
@@ -73,9 +126,9 @@ const scopes = Object.entries(b.scopes);
 
   <ol class="bx__chapters">
     {
-      chapters.map((c) => (
+      chapters.map((c, i) => (
         <li data-chapter>
-          <details class="bx__ch">
+          <details class="bx__ch" open={i === 0}>
             <summary class="bx__ch-sum">
               <span class="bx__ch-name">{c.name}</span>
               <span class="bx__bar" aria-hidden="true">
@@ -105,6 +158,21 @@ const scopes = Object.entries(b.scopes);
                       <td>
                         <span class="mono bx__code">{l.code}</span>
                         <span class="bx__desc">{l.desc}</span>
+                        {l.how && (
+                          <span class="bx__how">
+                            <span class="bx__how-k">Cómo se mide:</span> {l.how}
+                            {l.dwellings && l.each !== undefined && (
+                              <span class="mono bx__calc">
+                                {l.dwellings} viv. × {num(l.each)} {l.unit} {eq(l)} {num(l.qty)} {l.unit}
+                              </span>
+                            )}
+                          </span>
+                        )}
+                        {l.source && (
+                          <span class:list={['mono', 'bx__src', { 'bx__src--mkt': l.source !== 'cype' }]}>
+                            {sourceLabel(l)}
+                          </span>
+                        )}
                       </td>
                       <td class="bx__where">{b.scopes[l.scope] ?? l.scope}</td>
                       <td class="n" data-label="Medición">
@@ -345,6 +413,93 @@ const scopes = Object.entries(b.scopes);
   .bx__desc {
     display: block;
     max-width: 60ch;
+  }
+
+  .bx__how {
+    display: block;
+    margin-top: 4px;
+    max-width: 64ch;
+    font-size: 0.8125rem;
+    color: var(--ink-2);
+  }
+
+  .bx__how-k {
+    font-weight: 560;
+  }
+
+  .bx__calc {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.75rem;
+    color: var(--ink);
+  }
+
+  .bx__src {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 1px 6px;
+    border: 1px solid var(--line);
+    font-size: 0.6875rem;
+    color: var(--muted);
+  }
+
+  .bx__src--mkt {
+    border-style: dashed;
+  }
+
+  .bx__ex {
+    padding: clamp(18px, 2.5vw, 28px);
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+  }
+
+  .bx__ex-h {
+    font-size: var(--step-1);
+    margin-bottom: 16px;
+  }
+
+  .bx__ex-h span {
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+
+  .bx__ex-steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px 24px;
+  }
+
+  .bx__ex-steps li {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+  }
+
+  .bx__ex-n {
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+
+  .bx__ex-v {
+    font-size: var(--step-2);
+    font-weight: 560;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bx__ex-v--accent {
+    color: var(--accent);
+  }
+
+  .bx__ex-t {
+    font-size: 0.875rem;
+    color: var(--ink-2);
   }
 
   .bx__where {
