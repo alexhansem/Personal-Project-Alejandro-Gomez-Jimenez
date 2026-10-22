@@ -18,6 +18,11 @@ export const profile: Profile = {
 
   headline: 'Técnico en Proyectos de Edificación · IA y Automatización',
 
+  plainHeadline: 'Hago planos, modelos 3D y documentación de edificios. Con inteligencia artificial, un proyecto completo en uno o dos días.',
+
+  plainIntro:
+    'Técnico en proyectos de edificación en Toledo. La IA dibuja, modela y maqueta siguiendo mis instrucciones; yo decido, reviso y respondo de cada resultado. Abajo puedes abrir los archivos originales de cada trabajo.',
+
   intro:
     'Estudio el Grado Superior en Proyectos de Edificación en el IES Azarquiel y he trabajado como ayudante de oficina técnica en un estudio de arquitectura, con delineación y modelado BIM en Revit y planos en AutoCAD. Vengo del sector inmobiliario, donde llevo la optimización de procesos y la integración de soluciones tecnológicas. Cada trabajo de esta web muestra cómo se hizo, cuánto tiempo llevó y qué se comprobó.',
 

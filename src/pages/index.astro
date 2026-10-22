@@ -1,22 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHead from '../components/SectionHead.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import WorkflowTimeline from '../components/WorkflowTimeline.astro';
+import ProjectShowcase from '../components/ProjectShowcase.astro';
+import MediaFigure from '../components/MediaFigure.astro';
 import EmptyState from '../components/EmptyState.astro';
 import ContactLinks from '../components/ContactLinks.astro';
 import { profile } from '../config/profile';
-import { activeCategories, featuredProjects, projectIndex, projects, processes, sheetCode } from '../lib/content';
+import { featuredProjects, projectIndex, projects, sheetCode } from '../lib/content';
+import { areaShowcase } from '../lib/files';
 import { url } from '../lib/url';
 import { siteKicker } from '../config/site';
 
-const [lead, ...rest] = featuredProjects;
 const experience = profile.experience ?? [];
 const hasCareer = profile.education.length > 0 || experience.length > 0;
-const showcase = featuredProjects.find((p) => p.workflow?.length) ?? projects.find((p) => p.workflow?.length);
-// numeración de las secciones finales según las que se muestran
-const careerCode = showcase?.workflow ? '04' : '03';
-const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2, '0');
+const timed = projects.filter((p) => p.speed);
+// numeración de las secciones según las que se muestran
+const codes = (() => {
+  let n = 0;
+  const next = () => String(++n).padStart(2, '0');
+  return {
+    projects: next(),
+    areas: areaShowcase.length ? next() : '',
+    career: hasCareer ? next() : '',
+    pro: next(),
+    contact: next(),
+  };
+})();
 ---
 
 <BaseLayout>
@@ -27,8 +36,8 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
         {profile.name}
         {profile.isExample && <span class="stamp stamp--demo hero__stamp">Ejemplo</span>}
       </h1>
-      <p class="hero__headline">{profile.headline.split(' · ').map((part) => <span class="hero__headline-part">{part}</span>)}</p>
-      <p class="lead hero__intro">{profile.intro}</p>
+      <p class="hero__headline">{profile.plainHeadline ?? profile.headline}</p>
+      <p class="lead hero__intro">{profile.plainIntro ?? profile.intro}</p>
       {
         profile.software.length > 0 && (
           <p class="hero__tools">
@@ -38,53 +47,47 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
         )
       }
       <div class="hero__actions">
-        <a class="btn btn--solid" href={url('/proyectos/')}>Ver proyectos</a>
-        <a class="btn" href={url('/metodologia/')}>Cómo trabajo</a>
+        <a class="btn btn--solid" href="#proyectos">Ver los proyectos</a>
+        <a class="btn" href="#que-hago">Qué sé hacer</a>
       </div>
     </div>
 
-    <aside class="hero__index" aria-labelledby="areas">
-      <div class="hero__index-head">
-        <h2 id="areas" class="label">Áreas de trabajo</h2>
-        <span class="mono muted">{projects.length} proy. · {processes.length} proc.</span>
-      </div>
-      {
-        activeCategories.length ? (
-          <ul class="areas">
-            {activeCategories.map((c) => (
+    {
+      timed.length > 0 && (
+        <aside class="hero__index" aria-labelledby="tiempos">
+          <div class="hero__index-head">
+            <h2 id="tiempos" class="label">Tiempo de cada proyecto</h2>
+            <span class="mono muted">del inicio a la entrega</span>
+          </div>
+          <ul class="speeds">
+            {timed.map((p) => (
               <li>
-                <a href={url(`/proyectos/?categoria=${c.id}`)}>
-                  <span class="mono areas__code">{c.code}</span>
-                  <span class="areas__label">{c.label}</span>
-                  <span class="mono areas__count">{String(c.count).padStart(2, '0')}</span>
+                <a href={url(`/proyectos/${p.slug}/`)}>
+                  <span class="speeds__v">{p.speed!.value}</span>
+                  <span class="speeds__t">
+                    <span class="speeds__title">{p.title}</span>
+                    <span class="speeds__label muted">{p.speed!.label}</span>
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
-        ) : (
-          <p class="muted areas__empty">Las áreas aparecerán al publicar proyectos.</p>
-        )
-      }
-    </aside>
+          <p class="mono muted speeds__src">Tiempos totales indicados por el autor, sin desglose por fases.</p>
+        </aside>
+      )
+    }
   </section>
 
-  <section class="section--tight container" aria-labelledby="destacados">
-    <SectionHead code="01" title="Proyectos destacados" id="destacados">
-      {projects.length > 0 && <a class="link-arrow" href={url('/proyectos/')}>Todos los proyectos</a>}
+  <section class="section--tight container" aria-labelledby="proyectos">
+    <SectionHead code={codes.projects} title="Proyectos" id="proyectos">
+      {projects.length > featuredProjects.length && <a class="link-arrow" href={url('/proyectos/')}>Todos los proyectos</a>}
     </SectionHead>
     {
-      lead ? (
-        <div class="featured">
-          <div class="featured__lead">
-            <ProjectCard project={lead} code={sheetCode('P', projectIndex(lead.slug))} size="lg" />
-          </div>
-          {rest.length > 0 && (
-            <div class="featured__rest">
-              {rest.map((p) => (
-                <ProjectCard project={p} code={sheetCode('P', projectIndex(p.slug))} />
-              ))}
-            </div>
-          )}
+      featuredProjects.length ? (
+        <div class="showcases">
+          {featuredProjects.map((p, i) => (
+            <ProjectShowcase project={p} code={sheetCode('P', projectIndex(p.slug))} flip={i % 2 === 1} />
+          ))}
         </div>
       ) : (
         <EmptyState
@@ -98,53 +101,35 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
   </section>
 
   {
-    showcase?.workflow && (
-      <section class="section--tight container" aria-labelledby="proceso">
-        <SectionHead code="02" title="Cómo se desarrolla un trabajo" id="proceso">
-          <a class="link-arrow" href={url(`/proyectos/${showcase.slug}/#secuencia`)}>
-            Ver la secuencia completa
-          </a>
+    areaShowcase.length > 0 && (
+      <section class="section--tight container" aria-labelledby="que-hago">
+        <SectionHead code={codes.areas} title="Qué sé hacer" id="que-hago">
+          <span class="mono muted">Cada área, con una muestra real</span>
         </SectionHead>
-        <div class="showcase">
-          <div class="showcase__text">
-            <p class="label">Caso · {sheetCode('P', projectIndex(showcase.slug))}</p>
-            <h3 class="showcase__title">
-              <a href={url(`/proyectos/${showcase.slug}/`)}>{showcase.title}</a>
-            </h3>
-            {showcase.demo && <span class="stamp stamp--demo">Demo · tiempos ficticios</span>}
-            <p class="muted">
-              Cada proyecto documenta qué hace la IA, qué se decide y revisa con criterio propio y qué ejecuta el
-              software, paso a paso.
-            </p>
-          </div>
-          <div class="showcase__wf">
-            <WorkflowTimeline steps={showcase.workflow} group={`home-${showcase.slug}`} showSteps={false} />
-          </div>
-        </div>
+        <ol class="areas">
+          {areaShowcase.map(({ area, samples }, i) => (
+            <li class="areas__item">
+              <MediaFigure item={samples[0].sample} group="areas" crop={1.5} showCaption={false} />
+              <p class="mono areas__n">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="areas__title">{area.title}</h3>
+              <p class="areas__text">{area.text}</p>
+              <p class="areas__in">
+                <span class="label">Muestras en</span>
+                {samples.map((s) => (
+                  <a href={url(`/proyectos/${s.project.slug}/#demuestra`)}>{s.project.title}</a>
+                ))}
+              </p>
+            </li>
+          ))}
+        </ol>
       </section>
     )
   }
 
-  <section class="section--tight container" aria-labelledby="enfoque">
-    <SectionHead code={showcase?.workflow ? '03' : '02'} title="Enfoque de trabajo" id="enfoque">
-      <a class="link-arrow" href={url('/metodologia/')}>Metodología</a>
-    </SectionHead>
-    <ol class="approach">
-      {
-        profile.approach.map((a, i) => (
-          <li>
-            <span class="mono approach__n">{String(i + 1).padStart(2, '0')}</span>
-            <p>{a}</p>
-          </li>
-        ))
-      }
-    </ol>
-  </section>
-
   {
     hasCareer && (
       <section class="section--tight container" aria-labelledby="trayectoria">
-        <SectionHead code={careerCode} title="Trayectoria" id="trayectoria" />
+        <SectionHead code={codes.career} title="Trayectoria" id="trayectoria" />
         <div class="career">
           {experience.length > 0 && (
             <div>
@@ -190,8 +175,32 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
     )
   }
 
+  <section class="section--tight container" aria-labelledby="para-profesionales">
+    <SectionHead code={codes.pro} title="Para profesionales" id="para-profesionales" />
+    <div class="pro">
+      <p class="pro__text">
+        Cada proyecto guarda también su lado técnico: la secuencia de trabajo entre la IA, el software y la revisión
+        propia, el método, las tablas de datos, el código y las limitaciones. Está al final de cada ficha, plegado.
+      </p>
+      <ul class="pro__links">
+        {projects.map((p) => (
+          <li>
+            <a href={url(`/proyectos/${p.slug}/#profesionales`)}>
+              <span class="mono">{sheetCode('P', projectIndex(p.slug))}</span> Detalle técnico · {p.title}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={url('/metodologia/')}>
+            <span class="mono">—</span> Metodología y registro de tiempos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section--tight container" aria-labelledby="contacto">
-    <SectionHead code={contactCode} title="Contacto" id="contacto" />
+    <SectionHead code={codes.contact} title="Contacto" id="contacto" />
     <ContactLinks layout="inline" />
   </section>
 </BaseLayout>
@@ -230,7 +239,7 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
     font-size: var(--step-2);
     line-height: 1.22;
     letter-spacing: -0.015em;
-    max-width: 30ch;
+    max-width: 34ch;
   }
 
   .hero__intro {
@@ -299,10 +308,6 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
     }
   }
 
-  .hero__headline-part {
-    display: block;
-  }
-
   .hero__tools {
     display: flex;
     flex-wrap: wrap;
@@ -347,132 +352,143 @@ const contactCode = String(Number(careerCode) + (hasCareer ? 1 : 0)).padStart(2,
     color: var(--ink);
   }
 
-  .areas {
+  .speeds {
     list-style: none;
   }
 
-  .areas a {
+  .speeds a {
     display: grid;
-    grid-template-columns: 3rem 1fr auto;
-    gap: 12px;
-    align-items: baseline;
-    padding: 12px 0;
+    grid-template-columns: minmax(6.5rem, auto) 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 18px 0;
     border-bottom: 1px solid var(--line);
     text-decoration: none;
     transition: padding var(--t-fast) var(--ease);
   }
 
-  .areas a:hover {
+  .speeds a:hover {
     padding-left: 8px;
   }
 
-  .areas__code {
+  .speeds__v {
+    font-size: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
     color: var(--accent);
+    white-space: nowrap;
   }
 
-  .areas__count {
-    color: var(--muted);
-  }
-
-  .areas__empty {
-    padding-block: 16px;
-  }
-
-  .featured {
+  .speeds__t {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: clamp(28px, 4vw, 64px);
+    gap: 2px;
   }
 
-  .featured__rest {
+  .speeds__title {
+    font-weight: 560;
+    line-height: 1.25;
+  }
+
+  .speeds__label {
+    font-size: 0.875rem;
+    line-height: 1.35;
+  }
+
+  .speeds__src {
+    padding-top: 10px;
+    font-size: 0.6875rem;
+  }
+
+  .showcases {
     display: grid;
-    gap: clamp(28px, 3vw, 48px);
+    gap: clamp(56px, 7vw, 112px);
+  }
+
+  .areas {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(32px, 4vw, 56px) var(--col-gap);
+  }
+
+  .areas__item {
+    display: grid;
+    gap: 8px;
     align-content: start;
   }
 
-  .showcase {
-    display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-    gap: clamp(28px, 4vw, 64px);
-    align-items: start;
+  .areas__n {
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: var(--accent);
   }
 
-  .showcase__text {
+  .areas__title {
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+  }
+
+  .areas__text {
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .areas__in {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    align-items: baseline;
+    font-size: 0.875rem;
+    margin-top: 2px;
+  }
+
+  .pro {
     display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: clamp(24px, 4vw, 64px);
+  }
+
+  .pro__text {
+    font-size: 1.0625rem;
+    color: var(--ink-2);
+    max-width: 58ch;
+  }
+
+  .pro__links {
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .pro__links a {
+    display: flex;
     gap: 12px;
-    justify-items: start;
-  }
-
-  .showcase__title {
-    font-size: var(--step-1);
-  }
-
-  .showcase__title a {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
     text-decoration: none;
   }
 
-  .approach {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line);
-  }
-
-  .approach li {
-    display: grid;
-    gap: 28px;
-    align-content: start;
-    padding: 18px 24px 24px 0;
-    border-right: 1px solid var(--line);
-    font-size: 1.0625rem;
-    line-height: 1.4;
-  }
-
-  .approach li + li {
-    padding-left: 24px;
-  }
-
-  .approach li:last-child {
-    border-right: 0;
-  }
-
-  .approach__n {
+  .pro__links .mono {
+    min-width: 3rem;
+    font-size: 0.75rem;
     color: var(--accent);
+    padding-top: 0.2em;
   }
 
   @media (max-width: 960px) {
     .hero,
-    .featured,
-    .showcase {
+    .pro {
       grid-template-columns: 1fr;
     }
 
-    .approach {
+    .areas {
       grid-template-columns: 1fr 1fr;
-    }
-
-    .approach li {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .approach li:nth-child(2n) {
-      border-right: 0;
-    }
-
-    .approach li:nth-child(2n + 1) {
-      padding-left: 0;
     }
   }
 
-  @media (max-width: 560px) {
-    .approach {
+  @media (max-width: 600px) {
+    .areas {
       grid-template-columns: 1fr;
-    }
-
-    .approach li {
-      border-right: 0;
-      padding-left: 0 !important;
-      gap: 10px;
     }
   }
 </style>

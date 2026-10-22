@@ -18,6 +18,82 @@ const project: Project = {
   summary:
     'Reconstrucción documental de la Casa Moriyama de Ryue Nishizawa (SANAA) sin planos acotados de partida: cotas sacadas de imágenes y fuentes publicadas, planos CAD a 1:100 y modelo completo en Revit 2026 construido por Claude a través de un add-in propio.',
 
+  tagline:
+    'Una casa conocida de Tokio redibujada entera sin tener sus medidas: planos, modelo 3D, imágenes realistas y láminas de presentación, a partir de fotos y documentos publicados.',
+
+  speed: {
+    value: '< 24 h',
+    label: 'de las imágenes de referencia a la entrega completa',
+    source: 'Tiempo total indicado por el autor, sin desglose por fases.',
+  },
+
+  delivered: [
+    { value: '13', label: 'planos A3 a escala' },
+    { value: '3', label: 'láminas A1' },
+    { value: '18', label: 'diapositivas' },
+    { value: '6', label: 'imágenes realistas' },
+    { value: '1', label: 'modelo BIM de 147 elementos' },
+  ],
+
+  skills: [
+    {
+      area: 'planos',
+      text: 'Plantas, alzados y secciones de las diez cajas a 1:100 y 1:50, también en DWG.',
+      sample: {
+        src: `${base}/planos/planta-baja.svg`,
+        alt: 'Planta baja acotada de las diez cajas A a J con usos, cotas de nivel y mobiliario',
+        caption: 'Planta baja · E 1:100',
+        kind: 'plano',
+        ratio: 1.56,
+      },
+    },
+    {
+      area: 'modelo-3d',
+      text: 'Modelo completo en Revit construido por la IA desde una tabla de datos, sin modelado a mano.',
+      sample: {
+        src: `${base}/renders/revit-3d-sureste.jpg`,
+        alt: 'Vista 3D del modelo Revit desde el sureste: cajas blancas con huecos sobre la parcela',
+        caption: 'Modelo Revit · vista 3D sureste',
+        kind: 'modelo',
+        ratio: 1.446,
+      },
+    },
+    {
+      area: 'imagenes',
+      text: 'Seis vistas realistas de la casa entre sus vecinas, con sol, vegetación y personas.',
+      sample: {
+        src: `${base}/renders/r1-calle-sur.jpg`,
+        alt: 'Render a pie de calle sur entre dos cajas, con jardín y un hueco con tarima al fondo',
+        caption: 'R1 · Calle sur',
+        kind: 'modelo',
+        ratio: 1.6,
+      },
+    },
+    {
+      area: 'laminas',
+      text: 'Tres láminas A1, un documento de planos A3 y una presentación de 18 diapositivas.',
+      lead: true,
+      sample: {
+        src: `${base}/miniaturas/laminas-a1.jpg`,
+        alt: 'Lámina A1 con un render de la casa, el programa de las diez cajas, el emplazamiento y las alturas',
+        caption: 'Lámina A1 · 1 de 3',
+        kind: 'esquema',
+        ratio: 1.414,
+      },
+    },
+    {
+      area: 'analisis',
+      text: 'Las medidas no existían: se dedujeron comparando cinco fuentes, con su margen de error.',
+      sample: {
+        src: `${base}/planos/secciones-AB.svg`,
+        alt: 'Secciones A-A y B-B',
+        caption: 'Secciones A-A y B-B · E 1:100',
+        kind: 'plano',
+        ratio: 2.946,
+      },
+    },
+  ],
+
   highlights: [
     {
       title: 'Medidas sin medir',
@@ -258,6 +334,7 @@ const project: Project = {
     { src: `${base}/renders/r4-jardin.jpg`, alt: 'Vista desde el jardín entre cajas, con un gran hueco y vegetación en primer plano', caption: 'R4 · Jardín', kind: 'modelo', ratio: 1.6 },
     { src: `${base}/renders/r5-aerea-noroeste.jpg`, alt: 'Vista aérea desde el noroeste con las cubiertas de las casas vecinas', caption: 'R5 · Aérea noroeste', kind: 'modelo', ratio: 1.6 },
     { src: `${base}/renders/r6-terraza-g.jpg`, alt: 'Vista desde la cubierta de la caja G con lucernario y árbol', caption: 'R6 · Terraza de G', kind: 'modelo', ratio: 1.6 },
+    { src: `${base}/renders/revit-3d-sureste.jpg`, alt: 'Vista 3D del modelo Revit desde el sureste: cajas blancas con huecos sobre la parcela', caption: 'Modelo Revit · vista 3D sureste', kind: 'modelo', ratio: 1.446 },
     { src: `${base}/renders/revit-3d-noroeste.jpg`, alt: 'Vista 3D del modelo Revit desde el noroeste', caption: 'Modelo Revit · vista 3D noroeste', kind: 'modelo', ratio: 1.446 },
     { src: `${base}/planos/emplazamiento.svg`, alt: 'Emplazamiento y cubiertas de las diez cajas en la parcela', caption: 'Emplazamiento y cubiertas · E 1:100', kind: 'plano', ratio: 1.56 },
     { src: `${base}/planos/planta-baja.svg`, alt: 'Planta baja acotada con usos, niveles y mobiliario', caption: 'Planta baja · E 1:100', kind: 'plano', ratio: 1.56 },
@@ -280,6 +357,7 @@ const project: Project = {
       id: 'documento-a3',
       title: 'Documento de planos',
       src: `${base}/documentos/moriyama-documento-a3.pdf`,
+      thumb: `${base}/miniaturas/documento-a3.jpg`,
       description: 'Datos, emplazamiento, plantas, alzados, secciones 1:100 y 1:50, axonometrías e imágenes, con cuadro de rótulo.',
       pages: 13,
       sheet: 'A3',
@@ -288,6 +366,7 @@ const project: Project = {
       id: 'laminas-a1',
       title: 'Láminas de presentación',
       src: `${base}/documentos/moriyama-laminas-a1.pdf`,
+      thumb: `${base}/miniaturas/laminas-a1.jpg`,
       description: 'Programa, plantas, secciones y alzados, y renders. Maquetación pendiente de revisión.',
       pages: 3,
       sheet: 'A1',
@@ -296,6 +375,7 @@ const project: Project = {
       id: 'presentacion',
       title: 'Presentación',
       src: `${base}/documentos/moriyama-presentacion.pdf`,
+      thumb: `${base}/miniaturas/presentacion.jpg`,
       description: 'Exposición en clase: la casa, las diez cajas, planos, modelo Revit, renders y cómo se hizo el levantamiento.',
       pages: 18,
       sheet: '16:9',

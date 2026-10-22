@@ -10,6 +10,7 @@
  */
 
 import type { CategoryId } from './categories';
+import type { AreaId } from './areas';
 
 /* ------------------------------------------------------------------ */
 /* Procedencia de un dato                                              */
@@ -60,7 +61,15 @@ export interface MediaItem {
   compareWith?: { src: string; alt: string; label?: string };
   /** Etiqueta de la versión actual en el comparador. */
   label?: string;
+  /**
+   * Grupo en el que aparece en «Archivos del proyecto». Por defecto se deduce de
+   * `kind`: modelo, foto y captura → Imágenes; plano, detalle y esquema → Planos.
+   */
+  group?: FileGroup;
 }
+
+/** Grupos de archivos de la vista general, en el orden en que se muestran. */
+export type FileGroup = 'imagenes' | 'planos' | 'presentacion';
 
 export interface DocumentItem {
   /** Identificador usado en la URL del visor: `/proyectos/<slug>/documentos/<id>/`. */
@@ -72,6 +81,8 @@ export interface DocumentItem {
   pages?: number;
   /** Formato de hoja, ej. "A3", "A1". */
   sheet?: string;
+  /** Miniatura de la primera página (JPG dentro de `public/`). */
+  thumb?: string;
 }
 
 export interface DataTable {
@@ -234,6 +245,30 @@ export interface ProjectModel {
   storeys?: { key: string; label: string }[];
 }
 
+/**
+ * Velocidad del proyecto contada en lenguaje llano para la vista general.
+ * Es un tiempo total: no separa generación y revisión.
+ */
+export interface ProjectSpeed {
+  /** Cifra destacada, ej. "< 24 h". */
+  value: string;
+  /** Qué abarca ese tiempo, ej. "de las fotos de referencia a la entrega completa". */
+  label: string;
+  /** Procedencia del dato, visible junto a la cifra. */
+  source: string;
+}
+
+/** Un área de trabajo demostrada en el proyecto, con su muestra real. */
+export interface ProjectSkill {
+  area: AreaId;
+  /** Qué demuestra este proyecto en esa área, en lenguaje llano. */
+  text: string;
+  /** Imagen real del proyecto que lo enseña. */
+  sample: MediaItem;
+  /** Usar esta muestra como imagen del área en la portada. */
+  lead?: boolean;
+}
+
 export interface Project {
   /** Identificador para la URL. Solo minúsculas, números y guiones. */
   slug: string;
@@ -261,6 +296,14 @@ export interface Project {
 
   /** Resumen de una o dos líneas para tarjetas y metadatos. */
   summary: string;
+  /** Frase en lenguaje llano para cualquier visitante: qué es y qué se hizo. */
+  tagline?: string;
+  /** Tiempo total del proyecto, destacado en la vista general. */
+  speed?: ProjectSpeed;
+  /** Qué se entregó en ese tiempo (ej. "13" · "planos A3"). */
+  delivered?: { value: string; label: string }[];
+  /** Áreas que demuestra el proyecto, con su muestra. Alimentan «Qué sé hacer». */
+  skills?: ProjectSkill[];
   /**
    * Lo que hace especial al proyecto: 3 o 4 claves con título y explicación.
    * Se muestran justo después de la imagen principal.
@@ -357,6 +400,10 @@ export interface Profile {
   name: string;
   /** Titular profesional breve. */
   headline: string;
+  /** Qué hace, en una frase que entienda cualquiera. Titular de la portada. */
+  plainHeadline?: string;
+  /** Presentación corta en lenguaje llano para la portada. */
+  plainIntro?: string;
   /** Introducción de dos o tres líneas. */
   intro: string;
   /** Enfoque de trabajo para la portada. */

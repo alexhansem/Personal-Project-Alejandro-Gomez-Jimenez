@@ -1,0 +1,315 @@
+---
+/**
+ * «Archivos del proyecto»: los originales a la vista, agrupados por tipo y
+ * listos para abrir (visor de imágenes, visor de PDF o modelo 3D) o descargar.
+ */
+import type { Project } from '../content/types';
+import { projectFiles, fileCount } from '../lib/files';
+import { url } from '../lib/url';
+import ModelViewer from './ModelViewer.astro';
+
+interface Props {
+  project: Project;
+}
+const { project: p } = Astro.props;
+const sections = projectFiles(p);
+---
+
+<div class="pf">
+  <nav class="pf__jump" aria-label="Tipos de archivo">
+    {
+      sections.map((s) => (
+        <a href={`#${s.id}`} class="pf__chip">
+          <span class="pf__chip-label">{s.label}</span>
+          <span class="mono pf__chip-n">{fileCount(s)}</span>
+        </a>
+      ))
+    }
+  </nav>
+
+  {
+    sections.map((s) => (
+      <section class="pf__group" aria-labelledby={s.id}>
+        <header class="pf__head">
+          <h3 id={s.id} class="pf__title">{s.label}</h3>
+          <span class="mono muted pf__n">{fileCount(s)}</span>
+          <span class="pf__hint muted">
+            {s.kind === 'media' && 'Pulsa para ver a pantalla completa con zoom'}
+            {s.kind === 'documentos' && 'Se abren en el navegador, sin instalar nada'}
+            {s.kind === 'modelo' && 'Gíralo con el ratón o el dedo'}
+          </span>
+        </header>
+
+        {s.kind === 'modelo' && <ModelViewer model={s.model} />}
+
+        {s.kind === 'media' && (
+          <ul class:list={['pf__grid', `pf__grid--${s.id}`]}>
+            {s.items.map((m) => (
+              <li>
+                <button
+                  type="button"
+                  class="pf__tile"
+                  data-viewer
+                  data-group={p.slug}
+                  data-src={url(m.src!)}
+                  data-alt={m.alt}
+                  data-caption={m.caption ?? ''}
+                  aria-label={`Abrir: ${m.caption ?? m.alt}`}
+                >
+                  <span class="pf__img">
+                    <img src={url(m.src!)} alt={m.alt} loading="lazy" decoding="async" />
+                  </span>
+                  <span class="pf__cap">{m.caption ?? m.alt}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {s.kind === 'documentos' && (
+          <ul class="pf__docs">
+            {s.items.map((d) => (
+              <li class="pf__doc">
+                <a class="pf__doc-thumb" href={url(`/proyectos/${p.slug}/documentos/${d.id}/`)} aria-label={`Abrir ${d.title}`}>
+                  {d.thumb ? (
+                    <img src={url(d.thumb)} alt="" loading="lazy" decoding="async" />
+                  ) : (
+                    <span class="mono pf__doc-pdf">PDF</span>
+                  )}
+                  <span class="mono pf__doc-open">Abrir ⤢</span>
+                </a>
+                <div class="pf__doc-body">
+                  <h4 class="pf__doc-title">{d.title}</h4>
+                  <p class="mono muted pf__doc-meta">
+                    {[d.sheet, d.pages && `${d.pages} ${d.pages === 1 ? 'página' : 'páginas'}`].filter(Boolean).join(' · ')}
+                  </p>
+                  <div class="pf__doc-actions">
+                    <a class="btn btn--solid" href={url(`/proyectos/${p.slug}/documentos/${d.id}/`)}>Abrir</a>
+                    <a class="btn" href={url(d.src)} download>Descargar</a>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ))
+  }
+</div>
+
+<style>
+  .pf {
+    display: grid;
+    gap: clamp(36px, 4.5vw, 64px);
+  }
+
+  .pf__jump {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--line);
+  }
+
+  .pf__chip {
+    display: grid;
+    gap: 2px;
+    padding: 12px 20px 14px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    min-width: 9.5rem;
+    transition: background var(--t-fast) var(--ease);
+  }
+
+  .pf__chip:hover {
+    background: var(--sheet);
+  }
+
+  .pf__chip-label {
+    font-weight: 560;
+  }
+
+  .pf__chip-n {
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .pf__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .pf__title {
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+  }
+
+  .pf__n {
+    font-size: 0.8125rem;
+  }
+
+  .pf__hint {
+    margin-left: auto;
+    font-size: 0.875rem;
+  }
+
+  .pf__grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .pf__grid--imagenes {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  }
+
+  .pf__tile {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    cursor: zoom-in;
+  }
+
+  .pf__img {
+    display: block;
+    aspect-ratio: 1.414;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--sheet);
+  }
+
+  .pf__grid--imagenes .pf__img {
+    aspect-ratio: 1.6;
+  }
+
+  .pf__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--t) var(--ease);
+  }
+
+  .pf__grid--imagenes .pf__img img {
+    object-fit: cover;
+  }
+
+  .pf__grid--planos .pf__img img {
+    padding: 6px;
+  }
+
+  .pf__tile:hover .pf__img,
+  .pf__tile:focus-visible .pf__img {
+    border-color: var(--ink);
+  }
+
+  .pf__tile:hover img {
+    transform: scale(1.025);
+  }
+
+  .pf__cap {
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  .pf__docs {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: clamp(20px, 2.5vw, 36px);
+  }
+
+  .pf__doc {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+
+  .pf__doc-thumb {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1.414;
+    border: 1px solid var(--line);
+    background: var(--sheet);
+    overflow: hidden;
+    box-shadow: 6px 6px 0 -1px var(--paper-2), 6px 6px 0 0 var(--line);
+  }
+
+  .pf__doc-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .pf__doc-thumb:hover {
+    border-color: var(--ink);
+  }
+
+  .pf__doc-pdf {
+    color: var(--accent);
+  }
+
+  .pf__doc-open {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 6px 10px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+  }
+
+  .pf__doc-body {
+    display: grid;
+    gap: 4px;
+  }
+
+  .pf__doc-title {
+    font-size: 1.0625rem;
+  }
+
+  .pf__doc-meta {
+    font-size: 0.75rem;
+  }
+
+  .pf__doc-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .pf__grid,
+    .pf__grid--imagenes {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 12px;
+    }
+
+    .pf__cap {
+      font-size: 0.8125rem;
+      line-height: 1.35;
+    }
+
+    .pf__chip {
+      min-width: 0;
+      flex: 1 1 45%;
+      padding: 10px 14px 12px;
+    }
+
+    .pf__hint {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+</style>

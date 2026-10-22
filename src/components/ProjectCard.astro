@@ -39,7 +39,8 @@ const total = cmp?.usedTotal ?? wf?.total;
       {p.status && <span>{p.status}</span>}
     </div>
     <Tag class="pc__title">{p.title}</Tag>
-    <p class="pc__summary">{p.summary}</p>
+    <p class="pc__summary">{p.tagline ?? p.summary}</p>
+    {p.speed && <p class="pc__speed"><span class="pc__speed-v">{p.speed.value}</span> {p.speed.label}</p>}
   </a>
   <footer class="pc__foot">
     <ul class="pc__cats mono" aria-label="Categorías">
@@ -63,6 +64,22 @@ const total = cmp?.usedTotal ?? wf?.total;
 </article>
 
 <style>
+  .pc__speed {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  .pc__speed-v {
+    font-size: var(--step-2);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
   .pc {
     display: grid;
     grid-template-rows: auto 1fr;

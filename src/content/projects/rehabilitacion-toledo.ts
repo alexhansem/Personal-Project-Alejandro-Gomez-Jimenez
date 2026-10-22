@@ -18,6 +18,81 @@ const project: Project = {
   summary:
     'Rehabilitación integral de un edificio real de 1969, desde el plano existente hasta el estudio de viabilidad y el preproyecto completo: estado actual en CAD y BIM, estructura oculta deducida por probabilidad, normativa, escenarios, distribución y presupuesto medido partida a partida. Preparado para presentarlo a inversores o para que lo firme un técnico competente.',
 
+  tagline:
+    'Un edificio de viviendas de 1969 estudiado de arriba abajo para decidir si merece la pena rehabilitarlo: planos, modelo 3D, estructura oculta, presupuesto y un dosier listo para inversores.',
+
+  speed: {
+    value: '< 48 h',
+    label: 'del plano de partida al dosier y el presupuesto',
+    source: 'Tiempo total indicado por el autor, sin desglose por fases.',
+  },
+
+  delivered: [
+    { value: '10', label: 'láminas de planos' },
+    { value: '1', label: 'modelo 3D descargable (IFC)' },
+    { value: '300', label: 'simulaciones de la estructura' },
+    { value: '202', label: 'partidas de presupuesto' },
+    { value: '32', label: 'diapositivas de dosier' },
+  ],
+
+  skills: [
+    {
+      area: 'planos',
+      text: 'Estado actual limpio y acotado a 1:50: plantas, cubierta y alzado, con superficies por estancia.',
+      sample: {
+        src: `${base}/planos/ea04-planta-tipo.png`,
+        alt: 'Planta tipo a 1:50 con las dos viviendas, escalera central, patio y superficies por estancia',
+        caption: 'EA-04 · Planta tipo · E 1:50',
+        kind: 'plano',
+        ratio: 1.414,
+      },
+    },
+    {
+      area: 'modelo-3d',
+      text: 'El edificio tal como está, en 3D y en IFC para abrirlo en cualquier programa BIM.',
+      sample: {
+        src: `${base}/imagenes/modelo-frontal.jpg`,
+        alt: 'Modelo 3D del edificio en esquina: cuatro plantas de fachada ocre, balcones volados, terraza de cubierta, casetas y torreón',
+        caption: 'Modelo 3D · vista frontal',
+        kind: 'modelo',
+        ratio: 1.5,
+      },
+    },
+    {
+      area: 'analisis',
+      text: 'Dónde están los pilares que nadie ve: 300 simulaciones con criterios de 1969 y 8 catas ordenadas.',
+      sample: {
+        src: `${base}/planos/es02-probabilidad-pilares.png`,
+        alt: 'Probabilidad de ubicación de pilares a lo largo de la línea de jácenas',
+        caption: 'ES-02 · Probabilidad de pilares',
+        kind: 'plano',
+        ratio: 1.414,
+      },
+    },
+    {
+      area: 'presupuesto',
+      text: '202 partidas medidas desde el modelo y valoradas con precios de CYPE, agrupadas en 15 capítulos.',
+      sample: {
+        src: `${base}/dosier/dosier-capitulos.png`,
+        alt: 'Gráfico de barras del presupuesto de ejecución material por capítulos, de instalaciones de las viviendas a gestión de residuos',
+        caption: 'Presupuesto por capítulos',
+        kind: 'esquema',
+        ratio: 1.778,
+      },
+    },
+    {
+      area: 'laminas',
+      text: 'Un dosier de 32 diapositivas con tres lecturas: general, para el inversor y para el técnico.',
+      sample: {
+        src: `${base}/dosier/dosier-lecturas.png`,
+        alt: 'Diapositiva con tres tarjetas: para todos, 2 minutos; inversor, 15 minutos; técnico, a fondo',
+        caption: 'Dosier · tres formas de leer la propuesta',
+        kind: 'esquema',
+        ratio: 1.778,
+      },
+    },
+  ],
+
   highlights: [
     {
       title: 'Un proyecto completo, no un ejercicio',
@@ -358,6 +433,7 @@ const project: Project = {
   ],
 
   media: [
+    { src: `${base}/imagenes/modelo-corte-p1.jpg`, alt: 'Modelo 3D cortado por encima de la planta primera: tabiquería de las dos viviendas, escalera y patio', caption: 'Modelo cortado sobre la planta 1ª', kind: 'modelo', ratio: 1.5 },
     { src: `${base}/imagenes/modelo-trasera.jpg`, alt: 'Vista 3D trasera del modelo con el patio central abierto, la tapia de la finca trasera, casetas y torreón', caption: 'Modelo 3D · vista trasera', kind: 'modelo', ratio: 1.5 },
     { src: `${base}/planos/ea04-planta-tipo.png`, alt: 'Planta tipo a 1:50 con las dos viviendas, escalera central, patio y superficies por estancia', caption: 'EA-04 · Planta tipo 1ª, 2ª y 3ª · E 1:50', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/ea03-planta-baja.png`, alt: 'Planta baja a 1:50 con portal, escalera y la vivienda fuera de alcance rayada', caption: 'EA-03 · Planta baja · E 1:50', kind: 'plano', ratio: 1.414 },
@@ -366,9 +442,15 @@ const project: Project = {
     { src: `${base}/planos/es01-estructura-supuesta.png`, alt: 'Planta de estructura supuesta con viguetas, jácena por tramos con su perfil IPN, pilares y catas', caption: 'ES-01 · Estructura supuesta y catas · E 1:50', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/es02-probabilidad-pilares.png`, alt: 'Probabilidad de ubicación de pilares a lo largo de la línea de jácenas', caption: 'ES-02 · Probabilidad de pilares', kind: 'plano', ratio: 1.414 },
     { src: `${base}/planos/v01-escenario-a.png`, alt: 'Escenario A: plantas con dos viviendas de tres dormitorios y ascensor en el patio', caption: 'V-01 · Escenario A, recomendado', kind: 'plano', ratio: 1.414 },
-    { src: `${base}/dosier/dosier-preproyecto.png`, alt: 'Diapositiva con ocho tarjetas: estado actual, estructura, urbanismo, riesgo legal, distribución, presupuesto, modelo económico y panel de control', caption: 'Dosier · qué hay detrás de las cifras', kind: 'esquema', ratio: 1.778 },
-    { src: `${base}/dosier/dosier-calidades.png`, alt: 'Diapositiva de calidades de gama media: puerta acorazada, ventanas de PVC, laminado, baños, aerotermia, clima, cocina y ascensor', caption: 'Dosier · calidades del presupuesto', kind: 'esquema', ratio: 1.778 },
-    { src: `${base}/dosier/dosier-metodo.png`, alt: 'Diapositiva del anexo técnico: cadena CAD, modelo, planos, mediciones, CYPE y BC3, cuenta', caption: 'Dosier · anexo técnico, todo sale del mismo modelo', kind: 'esquema', ratio: 1.778 },
+    { src: `${base}/planos/v02-escenario-b.png`, alt: 'Lámina del escenario B con el mejor reparto posible de la vivienda derecha en dos unidades y sus superficies', caption: 'V-02 · Escenario B: por qué no cabe', kind: 'plano', ratio: 1.414 },
+    { src: `${base}/imagenes/propuestas-planta-tipo.png`, alt: 'Dos plantas tipo amuebladas: la versión propia y la variante con quiebro de entrada en la vivienda derecha', caption: 'Propuestas de distribución B1 y B2', kind: 'plano', ratio: 0.742 },
+    { src: `${base}/imagenes/r1-cad-vs-catastro.png`, alt: 'Planta tipo del CAD con la parcela y la huella catastral superpuestas y cuatro diferencias numeradas', caption: 'R1 · CAD frente a Catastro', kind: 'esquema', ratio: 1.22 },
+    { src: `${base}/imagenes/r2-copias-planta-tipo.png`, alt: 'Superposición de las dos copias de la planta tipo con las diferencias de ventanas marcadas en rojo y azul', caption: 'R2 · Diferencias entre las copias de la planta tipo', kind: 'esquema', ratio: 2.178 },
+    { src: `${base}/dosier/dosier-lecturas.png`, alt: 'Diapositiva con tres tarjetas: para todos, 2 minutos; inversor, 15 minutos; técnico, a fondo', caption: 'Dosier · tres formas de leer la propuesta', kind: 'esquema', ratio: 1.778, group: 'presentacion' },
+    { src: `${base}/dosier/dosier-capitulos.png`, alt: 'Gráfico de barras del presupuesto de ejecución material por capítulos, de instalaciones de las viviendas a gestión de residuos', caption: 'Dosier · presupuesto por capítulos', kind: 'esquema', ratio: 1.778, group: 'presentacion' },
+    { src: `${base}/dosier/dosier-preproyecto.png`, alt: 'Diapositiva con ocho tarjetas: estado actual, estructura, urbanismo, riesgo legal, distribución, presupuesto, modelo económico y panel de control', caption: 'Dosier · qué hay detrás de las cifras', kind: 'esquema', ratio: 1.778, group: 'presentacion' },
+    { src: `${base}/dosier/dosier-calidades.png`, alt: 'Diapositiva de calidades de gama media: puerta acorazada, ventanas de PVC, laminado, baños, aerotermia, clima, cocina y ascensor', caption: 'Dosier · calidades del presupuesto', kind: 'esquema', ratio: 1.778, group: 'presentacion' },
+    { src: `${base}/dosier/dosier-metodo.png`, alt: 'Diapositiva del anexo técnico: cadena CAD, modelo, planos, mediciones, CYPE y BC3, cuenta', caption: 'Dosier · anexo técnico, todo sale del mismo modelo', kind: 'esquema', ratio: 1.778, group: 'presentacion' },
   ],
 
   tables: [
