@@ -8,11 +8,13 @@ import { url } from '../../lib/url';
 
 interface Props {
   datos: ModeloLineas;
+  /** Versión compacta (tarjeta): sin pie ni descarga. */
+  compacto?: boolean;
 }
-const { datos: d } = Astro.props;
+const { datos: d, compacto = false } = Astro.props;
 ---
 
-<figure class="ml">
+<figure class:list={['ml', { 'ml--c': compacto }]}>
   <div
     class="ml-lienzo"
     data-ml
@@ -23,10 +25,10 @@ const { datos: d } = Astro.props;
     aria-label={d.pie}
   >
   </div>
-  <figcaption>
+  {!compacto && <figcaption>
     <span class="v-k">{d.pie} · arrastra para girar</span>
     {d.descarga && <a href={url(d.descarga.src)} download>{d.descarga.etiqueta}</a>}
-  </figcaption>
+  </figcaption>}
 </figure>
 
 <style>
@@ -42,6 +44,13 @@ const { datos: d } = Astro.props;
   .ml-lienzo :global(canvas) {
     display: block;
     width: 100%;
+    height: 100%;
+  }
+  .ml--c .ml-lienzo {
+    height: 100%;
+    min-height: 0;
+  }
+  .ml--c {
     height: 100%;
   }
   figcaption {

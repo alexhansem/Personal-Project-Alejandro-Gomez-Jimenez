@@ -1,173 +1,111 @@
 ---
-import { nav, siteTitle } from '../config/site';
+import { nav } from '../config/site';
 import { profile } from '../config/profile';
 import { url } from '../lib/url';
 
-const path = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
-const isActive = (href: string) => path.startsWith(href);
+/** Monograma de la marca: iniciales del nombre (cambia solo con el perfil). */
+const monograma = profile.name
+  .split(/\s+/)
+  .filter((w) => w.length > 2)
+  .map((w) => w[0])
+  .join('')
+  .toUpperCase();
 ---
 
-<header class="site-header">
-  <div class="container site-header__inner">
-    <a class="brand" href={url('/')} aria-label={`${profile.name}, inicio`}>
-      <span class="brand__mark" aria-hidden="true"></span>
-      <span class="brand__text">
-        <span class="brand__name">
-          {profile.name}
-          {profile.isExample && <span class="stamp stamp--demo">Ejemplo</span>}
-        </span>
-        <span class="brand__sub">{siteTitle}</span>
-      </span>
+<header class="sh">
+  <div class="sh__in">
+    <a class="sh__brand" href={url('/')} aria-label={`${profile.name}, inicio`}>
+      <i aria-hidden="true">{monograma}</i>
+      <span>{profile.name}</span>
     </a>
-
     <nav aria-label="Principal">
-      <ul class="nav">
+      <ul>
         {
           nav.map((item) => (
             <li>
-              <a href={url(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>
-                <span class="nav__code" aria-hidden="true">{item.code}</span>
-                <span>{item.label}</span>
-              </a>
+              <a href={url(item.href)}>{item.label}</a>
             </li>
           ))
         }
+        <li><a class="sh__cta" href={url('/#contacto')}>Cuéntame tu encargo</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <style>
-  .site-header {
-    border-bottom: 1px solid var(--ink);
-    background: var(--paper);
+  .sh {
     position: sticky;
     top: 0;
     z-index: 20;
+    background: #0c1b2ae6;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--v-rule);
   }
-
-  .site-header__inner {
+  .sh__in {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    min-height: 64px;
+    gap: 16px;
+    padding: 14px var(--v-gutter);
   }
-
-  .brand {
+  .sh__brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    text-decoration: none;
-    padding-block: 10px;
-  }
-
-  .brand:hover {
-    color: inherit;
-  }
-
-  .brand__mark {
-    width: 22px;
-    height: 22px;
-    border: 1.5px solid var(--ink);
-    background:
-      linear-gradient(var(--accent), var(--accent)) center / 1.5px 100% no-repeat,
-      linear-gradient(var(--ink), var(--ink)) center / 100% 1px no-repeat;
-    flex: none;
-  }
-
-  .brand__text {
-    display: grid;
-    line-height: 1.15;
-  }
-
-  .brand__name {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
   }
-
-  .brand__sub {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
+  .sh__brand i {
+    font: 400 17px/1 var(--v-serif);
+    font-style: normal;
+    border: 1.5px solid var(--v-tx);
+    padding: 6px 5px 4px;
   }
-
-  .nav {
+  ul {
     list-style: none;
     display: flex;
-    height: 100%;
-  }
-
-  .nav a {
-    display: flex;
     align-items: center;
-    gap: 8px;
-    height: 100%;
-    padding-inline: 16px;
-    border-left: 1px solid var(--line);
+    gap: 26px;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    font-size: 15px;
     text-decoration: none;
-    font-size: 0.9375rem;
-    position: relative;
+    opacity: 0.88;
   }
-
-  .nav__code {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    color: var(--muted);
+  nav a:hover {
+    opacity: 1;
+    color: var(--v-ac);
   }
-
-  .nav a[aria-current='page']::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 3px;
-    background: var(--accent);
+  .sh__cta {
+    opacity: 1;
+    background: var(--v-ac);
+    color: var(--v-bg);
+    padding: 9px 16px;
+    font-weight: 600;
   }
-
-  @media (max-width: 960px) {
-    .site-header {
-      position: static;
+  nav .sh__cta:hover {
+    color: var(--v-bg);
+    background: var(--v-tx);
+  }
+  @media (max-width: 900px) {
+    li:not(:last-child) {
+      display: none;
     }
-
-    .site-header__inner {
-      flex-direction: column;
-      gap: 0;
-      padding-inline: 0;
+    .sh__brand span {
+      font-size: 14.5px;
     }
-
-    .brand {
-      padding-inline: var(--gutter);
+    .sh__cta {
+      padding: 8px 12px;
+      font-size: 14px;
     }
-
-    nav {
-      border-top: 1px solid var(--line);
-    }
-
-    .nav {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .nav a {
-      padding: 11px var(--gutter);
-      border-left: 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.875rem;
-    }
-
-    .nav li:nth-child(odd) a {
-      border-right: 1px solid var(--line);
-    }
-
-    .nav li:nth-last-child(-n + 2) a {
-      border-bottom: 0;
+  }
+  @media (max-width: 400px) {
+    .sh__brand span {
+      display: none;
     }
   }
 </style>

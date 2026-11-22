@@ -128,7 +128,10 @@ const pasoDetalle = pasoDe('detalle');
       )
     }
     <div class="sv-dibujo">
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${d.titulo}. ${d.fuente}`} set:html={svg} />
+      <div class="sv-scroll" tabindex="0" aria-label="Sección: desliza para verla entera">
+        <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${d.titulo}. ${d.fuente}`} set:html={svg} />
+      </div>
+      <p class="v-note sv-desliza" aria-hidden="true">Desliza la sección →</p>
       {
         d.detalle && (
           <aside class="sv-capa sv-detalle" data-paso={pasoDetalle}>
@@ -172,7 +175,7 @@ const pasoDetalle = pasoDe('detalle');
     gap: 14px;
   }
   .sv-montaje {
-    height: calc(var(--pasos) * 70vh + 40vh);
+    height: calc(var(--pasos) * 45vh + 60vh);
   }
   .sv-montaje .sv-pin {
     position: sticky;
@@ -355,6 +358,9 @@ const pasoDetalle = pasoDe('detalle');
   .sv-pasos li.cur {
     color: var(--v-ac);
   }
+  .sv-desliza {
+    display: none;
+  }
   .sv-nota {
     margin-top: 2px;
   }
@@ -370,11 +376,27 @@ const pasoDetalle = pasoDe('detalle');
     .sv-tira {
       height: 48px;
     }
-    svg :global(text) {
-      font-size: 20px;
+    .sv-montaje {
+      height: auto;
     }
-    svg :global(.lbl) {
+    .sv-montaje .sv-pin {
+      position: static;
+      min-height: 0;
+    }
+    .sv-pasos {
       display: none;
+    }
+    .sv-scroll {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
+    }
+    .sv-scroll svg {
+      width: 880px;
+      max-width: none;
+    }
+    .sv-desliza {
+      display: block;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -386,7 +408,8 @@ const pasoDetalle = pasoDe('detalle');
 
 <script>
   // Montaje por orden de obra: cada tramo de scroll añade un paso.
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // En móvil se muestra completa (la sección se desliza de lado).
+  const reduce = matchMedia('(prefers-reduced-motion: reduce), (max-width: 860px)').matches;
   document.querySelectorAll<HTMLElement>('[data-sv].sv-montaje').forEach((el) => {
     if (reduce) return;
     el.classList.add('sv-js');
