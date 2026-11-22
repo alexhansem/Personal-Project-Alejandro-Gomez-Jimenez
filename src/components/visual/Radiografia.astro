@@ -1,0 +1,124 @@
+---
+/**
+ * Molde «Radiografía»: un plano técnico pasado a la línea visual, con lo que
+ * no se ve (lo que se quiere demostrar) en naranja y una cifra clave.
+ */
+import type { Radiografia, Mascaras } from '../../visual/types';
+import { url } from '../../lib/url';
+
+interface Props {
+  datos: Radiografia;
+}
+const { datos: d } = Astro.props;
+
+const capas = (m: Mascaras) =>
+  [
+    { src: m.lineas, color: 'var(--v-tx)', op: 1 },
+    m.frio && { src: m.frio, color: 'var(--v-cold)', op: 1 },
+    m.calido && { src: m.calido, color: 'var(--v-ac)', op: 1, brillo: true },
+  ].filter(Boolean) as { src: string; color: string; op: number; brillo?: boolean }[];
+const estilo = (c: { src: string; color: string }) =>
+  `background:${c.color};-webkit-mask-image:url(${url(c.src)});mask-image:url(${url(c.src)})`;
+const g = d.grafico;
+---
+
+<section class="rx">
+  <div class="rx-txt">
+    <p class="v-k ac">{d.etiqueta}</p>
+    <h2 class="v-h">{d.pregunta} {d.preguntaResaltada && <em>{d.preguntaResaltada}</em>}</h2>
+    <p class="rx-cifra">{d.cifra}</p>
+    <p>{d.cifraTexto}</p>
+    <p class="rx-t">{d.texto}</p>
+    <p class="v-note rx-aviso">{d.aviso}</p>
+  </div>
+  <figure class="rx-fig">
+    <div
+      class="rx-lay"
+      style={`aspect-ratio:${d.plano.ratio};${g ? `margin-left:${g.planoIzquierda * 100}%;width:${g.planoAncho * 100}%` : ''}`}
+      role="img"
+      aria-label={`${d.plano.pie}. ${d.fuente}`}
+    >
+      {capas(d.plano).map((c) => <i class:list={{ brillo: c.brillo }} style={estilo(c)} />)}
+    </div>
+    {
+      g && (
+        <div class="rx-lay" style={`aspect-ratio:${g.ratio}`} role="img" aria-label={g.pie}>
+          {capas(g).map((c, i) => (
+            <i style={`${estilo(i === 0 ? { ...c, color: 'var(--v-mu)' } : { ...c, color: 'var(--v-ac)' })};opacity:${i === 0 ? 0.75 : 1}`} />
+          ))}
+        </div>
+      )
+    }
+    <figcaption class="v-k rx-pie">
+      <span>{d.plano.pie}</span>
+      {g && <span>{g.pie}</span>}
+    </figcaption>
+  </figure>
+</section>
+
+<style>
+  .rx {
+    display: grid;
+    grid-template-columns: minmax(260px, 330px) 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+  }
+  .ac {
+    color: var(--v-ac);
+  }
+  .rx-txt {
+    display: grid;
+    gap: 10px;
+  }
+  .rx-txt p {
+    color: #dcd6cb;
+    max-width: 32ch;
+  }
+  .rx-txt .v-h {
+    margin-top: 2px;
+  }
+  .rx-txt .rx-cifra {
+    font: 400 clamp(64px, 8vw, 96px) / 1 var(--v-serif);
+    color: var(--v-ac);
+    margin-top: 18px;
+  }
+  .rx-t {
+    margin-top: 8px;
+  }
+  .rx-aviso {
+    margin-top: 14px;
+    border-top: 1px solid var(--v-rule);
+    padding-top: 10px;
+  }
+  .rx-fig {
+    margin: 0;
+  }
+  .rx-lay {
+    position: relative;
+    width: 100%;
+  }
+  .rx-lay i {
+    position: absolute;
+    inset: 0;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+  .rx-lay i.brillo {
+    filter: drop-shadow(0 0 6px var(--v-ac));
+  }
+  .rx-pie {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  @media (max-width: 860px) {
+    .rx {
+      grid-template-columns: 1fr;
+    }
+    .rx-pie {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>

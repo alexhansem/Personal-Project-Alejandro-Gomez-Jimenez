@@ -1,0 +1,343 @@
+---
+/**
+ * Molde «Expediente»: el proyecto como un expediente técnico con cajetín,
+ * índice de hojas navegable, hoja abierta con sello y presupuesto por capítulos.
+ */
+import type { Expediente } from '../../visual/types';
+import { url } from '../../lib/url';
+
+interface Props {
+  datos: Expediente;
+}
+const { datos: d } = Astro.props;
+const total = d.presupuesto?.capitulos.reduce((s, c) => s + c.importe, 0) ?? 0;
+const vis = d.presupuesto?.capitulos.slice(0, d.presupuesto.mostrar) ?? [];
+const resto = (d.presupuesto?.capitulos.length ?? 0) - vis.length;
+const max = vis[0]?.importe ?? 1;
+const eur = (n: number) => `${Math.round(n).toLocaleString('es-ES')} €`;
+const k = (n: number) => `${(n / 1000).toFixed(1).replace('.', ',')} k€`;
+const total_hojas = String(d.hojas.length).padStart(2, '0');
+---
+
+<section class="ex" data-ex>
+  <dl class="ex-caj">
+    {
+      d.cajetin.map((c) => (
+        <div>
+          <dt class="v-k">{c.clave}</dt>
+          <dd>{c.valor}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <div class="ex-cuerpo">
+    <div class="ex-l">
+      <div>
+        <p class="v-k ac" data-ex-n>{d.hoja} {d.hojas[d.activa]?.n} de {total_hojas}</p>
+        <h2 class="v-h">{d.pregunta} {d.preguntaResaltada && <em>{d.preguntaResaltada}</em>}</h2>
+        <p class="ex-q">{d.entradilla}</p>
+      </div>
+      <ol class="ex-idx">
+        {
+          d.hojas.map((h, i) => (
+            <li>
+              <button type="button" class:list={{ on: i === d.activa }} data-i={i} aria-pressed={i === d.activa ? 'true' : 'false'}>
+                <span class="n">{h.n}</span>
+                <span>{h.titulo}</span>
+                <span class="dato">{h.dato}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ol>
+      {d.notas?.map((n) => <p class="v-note">{n}</p>)}
+    </div>
+    <div class="ex-r">
+      <figure class="ex-mesa">
+        {
+          d.hojas.map((h, i) =>
+            h.imagen ? (
+              <div class="ex-hoja" data-hoja={i} hidden={i !== d.activa}>
+                <div class="ex-papel">
+                  <img src={url(h.imagen)} alt={h.alt ?? h.titulo} loading={i === d.activa ? 'eager' : 'lazy'} />
+                </div>
+                <figcaption class="v-k">{h.pie ?? h.titulo}</figcaption>
+              </div>
+            ) : null,
+          )
+        }
+        {
+          d.sello && (
+            <p class="ex-sello">
+              {d.sello.texto}
+              <small>{d.sello.firma}</small>
+            </p>
+          )
+        }
+      </figure>
+      {
+        d.presupuesto && (
+          <div class="ex-bud">
+            <h3>
+              <span>{d.presupuesto.titulo}</span>
+              <span class="tot">{eur(total)}</span>
+            </h3>
+            <ul class="ex-bars">
+              {vis.map((c) => (
+                <li>
+                  <span>{c.nombre}</span>
+                  <i style={`width:${(c.importe / max) * 100}%`} />
+                  <span class="imp">{k(c.importe)}</span>
+                </li>
+              ))}
+              {resto > 0 && <li class="resto">+ {resto} capítulos más</li>}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ac {
+    color: var(--v-ac);
+  }
+  .ex-caj {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr) 1.4fr;
+    border: 1px solid var(--v-rule);
+    margin: 0;
+  }
+  .ex-caj div {
+    padding: 10px 14px;
+    border-right: 1px solid var(--v-rule);
+  }
+  .ex-caj div:last-child {
+    border: 0;
+  }
+  .ex-caj dd {
+    margin: 2px 0 0;
+    font: 400 26px/1.1 var(--v-serif);
+  }
+  .ex-cuerpo {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    border: 1px solid var(--v-rule);
+    border-top: 0;
+  }
+  .ex-l {
+    padding: 34px 34px 26px;
+    border-right: 1px solid var(--v-rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 22px;
+  }
+  .ex-l .v-h {
+    margin-top: 12px;
+    font-size: clamp(44px, 6vw, 76px);
+  }
+  .ex-q {
+    font-size: 19px;
+    margin-top: 16px;
+    max-width: 32ch;
+    color: #dcd6cb;
+  }
+  .ex-idx {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--v-tx);
+  }
+  .ex-idx button {
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 8px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--v-rule);
+    font-size: 16.5px;
+    align-items: baseline;
+    transition: padding 0.2s;
+  }
+  .ex-idx button:hover,
+  .ex-idx button:focus-visible {
+    color: var(--v-tx);
+    background: #ffffff08;
+  }
+  .ex-idx button:focus-visible {
+    outline: 2px solid var(--v-ac);
+  }
+  .ex-idx .n {
+    font: 400 20px var(--v-serif);
+    color: var(--v-mu);
+  }
+  .ex-idx .dato {
+    font-size: 13px;
+    color: var(--v-mu);
+  }
+  .ex-idx button.on {
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--v-ac);
+    padding-left: 12px;
+  }
+  .ex-idx button.on .n {
+    color: var(--v-ac);
+  }
+  .ex-r {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .ex-mesa {
+    margin: 0;
+    padding: 30px 34px 18px;
+    border-bottom: 1px solid var(--v-rule);
+    position: relative;
+  }
+  .ex-papel {
+    background: #f4f1e8;
+    padding: 10px;
+    box-shadow: 0 30px 60px -30px #000;
+    aspect-ratio: 1.414;
+  }
+  .ex-papel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .ex-hoja figcaption {
+    margin-top: 12px;
+  }
+  .ex-sello {
+    position: absolute;
+    right: 54px;
+    top: 44px;
+    border: 2.5px solid var(--v-ac);
+    color: var(--v-ac);
+    padding: 6px 12px;
+    transform: rotate(-7deg);
+    font: 600 15px var(--v-sans);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    background: #f4f1e8e6;
+  }
+  .ex-sello small {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+  }
+  .ex-bud {
+    padding: 22px 34px 26px;
+  }
+  .ex-bud h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font: 400 28px var(--v-serif);
+  }
+  .ex-bud .tot {
+    white-space: nowrap;
+  }
+  .ex-bars {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: grid;
+    gap: 6px;
+  }
+  .ex-bars li {
+    display: grid;
+    grid-template-columns: 220px 1fr 64px;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .ex-bars i {
+    display: block;
+    height: 10px;
+    background: var(--v-tx);
+    opacity: 0.85;
+  }
+  .ex-bars li:first-child i {
+    background: var(--v-ac);
+    opacity: 1;
+  }
+  .ex-bars .imp {
+    text-align: right;
+    color: var(--v-mu);
+  }
+  .ex-bars .resto {
+    color: var(--v-mu);
+    display: block;
+  }
+  @media (max-width: 860px) {
+    .ex-caj {
+      grid-template-columns: 1fr 1fr;
+    }
+    .ex-caj div:first-child {
+      grid-column: 1 / -1;
+      border-right: 0;
+      border-bottom: 1px solid var(--v-rule);
+    }
+    .ex-caj div:last-child {
+      display: none;
+    }
+    .ex-caj dd {
+      font-size: 22px;
+    }
+    .ex-cuerpo {
+      grid-template-columns: 1fr;
+    }
+    .ex-l {
+      padding: 22px 16px;
+      border-right: 0;
+    }
+    .ex-mesa {
+      padding: 16px;
+    }
+    .ex-sello {
+      right: 24px;
+      top: 24px;
+      font-size: 12px;
+    }
+    .ex-bud {
+      padding: 16px;
+    }
+    .ex-bud h3 {
+      flex-wrap: wrap;
+      font-size: 24px;
+    }
+    .ex-bars li {
+      grid-template-columns: 118px 1fr 50px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<script>
+  // Índice navegable: cada hoja del índice abre su lámina en la mesa.
+  document.querySelectorAll<HTMLElement>('[data-ex]').forEach((ex) => {
+    const btns = [...ex.querySelectorAll<HTMLButtonElement>('.ex-idx button')];
+    const n = ex.querySelector<HTMLElement>('[data-ex-n]');
+    const hojas = [...ex.querySelectorAll<HTMLElement>('[data-hoja]')];
+    btns.forEach((b) =>
+      b.addEventListener('click', () => {
+        const i = b.dataset.i!;
+        const destino = hojas.find((h) => h.dataset.hoja === i);
+        if (!destino) return;
+        hojas.forEach((h) => (h.hidden = h !== destino));
+        btns.forEach((x) => {
+          x.classList.toggle('on', x === b);
+          x.setAttribute('aria-pressed', String(x === b));
+        });
+        if (n) n.textContent = n.textContent!.replace(/\d+ de/, `${b.querySelector('.n')!.textContent} de`);
+      }),
+    );
+  });
+</script>

@@ -1,0 +1,134 @@
+---
+/**
+ * Molde «Modelo 3D en líneas»: un GLB dibujado con sus aristas, en la línea
+ * visual. Se carga solo cuando entra en pantalla y se puede girar.
+ */
+import type { ModeloLineas } from '../../visual/types';
+import { url } from '../../lib/url';
+
+interface Props {
+  datos: ModeloLineas;
+}
+const { datos: d } = Astro.props;
+---
+
+<figure class="ml">
+  <div
+    class="ml-lienzo"
+    data-ml
+    data-glb={url(d.glb)}
+    data-angulo={d.angulo ?? 25}
+    data-camara={(d.camara ?? [0.85, 0.3, 0.7]).join(',')}
+    role="img"
+    aria-label={d.pie}
+  >
+  </div>
+  <figcaption>
+    <span class="v-k">{d.pie} · arrastra para girar</span>
+    {d.descarga && <a href={url(d.descarga.src)} download>{d.descarga.etiqueta}</a>}
+  </figcaption>
+</figure>
+
+<style>
+  .ml {
+    margin: 0;
+  }
+  .ml-lienzo {
+    height: min(70svh, 560px);
+    min-height: 320px;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+  .ml-lienzo :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    align-items: baseline;
+  }
+  figcaption a {
+    color: var(--v-ac);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+</style>
+
+<script>
+  const iniciar = async (el: HTMLElement) => {
+    const THREE = await import('three');
+    const { GLTFLoader } = await import('three/examples/jsm/loaders/GLTFLoader.js');
+    const css = getComputedStyle(document.documentElement);
+    const col = (v: string, d: string) => new THREE.Color(css.getPropertyValue(v).trim() || d);
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    const r = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    r.setPixelRatio(Math.min(2, devicePixelRatio));
+    r.setSize(w, h, false);
+    el.appendChild(r.domElement);
+    const sc = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(28, w / h, 0.1, 1000);
+    sc.add(new THREE.HemisphereLight(0xffffff, 0x222222, 1.1));
+    const g = await new GLTFLoader().loadAsync(el.dataset.glb!);
+    const m = g.scene;
+    const relleno = new THREE.MeshStandardMaterial({ color: 0x1a3048, roughness: 0.9 });
+    const linea = new THREE.LineBasicMaterial({ color: col('--v-ln', '#c9d6e2'), transparent: true, opacity: 0.8 });
+    const ang = Number(el.dataset.angulo);
+    m.traverse((o) => {
+      const mesh = o as import('three').Mesh;
+      if (!mesh.isMesh) return;
+      mesh.material = relleno;
+      mesh.add(new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, ang), linea));
+    });
+    const caja = new THREE.Box3().setFromObject(m);
+    const centro = caja.getCenter(new THREE.Vector3());
+    const tam = caja.getSize(new THREE.Vector3());
+    m.position.sub(centro);
+    const giro = new THREE.Group();
+    giro.add(m);
+    sc.add(giro);
+    const D = Math.max(tam.x, tam.y, tam.z) * 2.1;
+    const [cx, cy, cz] = el.dataset.camara!.split(',').map(Number);
+    cam.position.set(D * cx, D * cy, D * cz);
+    cam.lookAt(0, 0, 0);
+    const pintar = () => r.render(sc, cam);
+    pintar();
+    // Giro con arrastre horizontal.
+    let x0: number | null = null;
+    el.addEventListener('pointerdown', (e) => {
+      x0 = e.clientX;
+      el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener('pointermove', (e) => {
+      if (x0 === null) return;
+      giro.rotation.y += (e.clientX - x0) * 0.01;
+      x0 = e.clientX;
+      pintar();
+    });
+    el.addEventListener('pointerup', () => (x0 = null));
+    new ResizeObserver(() => {
+      const W = el.clientWidth;
+      const H = el.clientHeight;
+      r.setSize(W, H, false);
+      cam.aspect = W / H;
+      cam.updateProjectionMatrix();
+      pintar();
+    }).observe(el);
+  };
+  const io = new IntersectionObserver(
+    (es) =>
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        iniciar(e.target as HTMLElement).catch((err) => console.error('Modelo 3D:', err));
+      }),
+    { rootMargin: '200px' },
+  );
+  document.querySelectorAll<HTMLElement>('[data-ml]').forEach((el) => io.observe(el));
+</script>

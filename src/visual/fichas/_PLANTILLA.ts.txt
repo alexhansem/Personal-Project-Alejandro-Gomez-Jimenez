@@ -1,0 +1,35 @@
+import type { FichaVisual } from '../types';
+
+/**
+ * PLANTILLA de ficha visual. Copia este archivo como `<proyecto>.ts`
+ * (mismo nombre que en src/content/projects) y rellena solo los moldes
+ * para los que el proyecto tenga material. Borra el resto.
+ * Cada dato con su lámina en `fuente`. Lo que no conste, a `notas`.
+ */
+const ficha: FichaVisual = {
+  proyecto: 'nombre-del-proyecto',
+  nombre: 'Nombre visible',
+
+  // Sección viva: medidas en metros desde el primer eje; cotas desde ±0,00.
+  seccion: {
+    titulo: 'Sección por …',
+    fuente: 'Plano … ',
+    ejes: [{ nombre: '1', x: 0 }, { nombre: '2', x: 5 }],
+    niveles: [{ cota: 0, etiqueta: '±0,00' }, { cota: 3, etiqueta: '+3,00' }],
+    pilares: { x: [0, 5], ancho: 0.3, hasta: 3, etiqueta: 'Pilar …' },
+    forjados: [{ cota: 3, tramos: [[0, 5]] }],
+    pasos: [
+      { titulo: 'Retícula y niveles', capas: ['reticula'] },
+      { titulo: 'Pilares', capas: ['pilares'] },
+      { titulo: 'Forjados', capas: ['forjados'] },
+    ],
+    notas: [],
+  },
+
+  // radiografia: { … }   ver src/visual/fichas/rehabilitacion-toledo.ts
+  // apiladas:    { … }   ver src/visual/fichas/bloque-oficinas.ts
+  // expediente:  { … }   ver src/visual/fichas/rehabilitacion-toledo.ts
+  // modelo:      { glb: '/proyectos/…/modelo.glb', pie: '…' },
+};
+
+export default ficha;
