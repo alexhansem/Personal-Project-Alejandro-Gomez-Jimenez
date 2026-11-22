@@ -1,0 +1,79 @@
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource-variable/inter-tight/wght.css';
+
+/* Línea visual v2: azul Prusia + naranja. Identidad centralizada aquí. */
+:root {
+  color-scheme: dark;
+  --v-bg: #0c1b2a;
+  --v-bg-2: #12263a;
+  --v-tx: #f1ece2;
+  --v-mu: #a9b8c7;
+  --v-ln: #c9d6e2;
+  --v-ac: #ff6b3d;
+  --v-rule: #ffffff24;
+  --v-cold: #5f7890;
+  --v-serif: 'Instrument Serif', Georgia, serif;
+  --v-sans: 'Inter Tight Variable', 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+  --v-gutter: clamp(16px, 4vw, 48px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  overflow-x: clip;
+}
+body {
+  background: var(--v-bg);
+  color: var(--v-tx);
+  font: 16px/1.5 var(--v-sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.v-k {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--v-mu);
+}
+.v-h {
+  font: 400 clamp(38px, 5.4vw, 64px) / 0.98 var(--v-serif);
+  letter-spacing: -0.005em;
+}
+.v-h em {
+  font-style: normal;
+  color: var(--v-ac);
+}
+.v-note {
+  font-size: 13px;
+  color: var(--v-mu);
+}
+.v-wrap {
+  padding: 0 var(--v-gutter);
+}
+.v-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

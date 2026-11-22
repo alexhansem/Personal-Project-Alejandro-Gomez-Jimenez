@@ -1,0 +1,27 @@
+---
+import '../styles/v2.css';
+import { url } from '../lib/url';
+
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { title, description = '', noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#0c1b2a" />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

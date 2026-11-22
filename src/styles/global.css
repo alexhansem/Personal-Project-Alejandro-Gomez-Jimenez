@@ -1,4 +1,4 @@
-@import '@fontsource-variable/instrument-sans/wdth.css';
+@import './v2.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
 
@@ -7,27 +7,29 @@
 /* ================================================================== */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
-  --paper: #f3f1ea;
-  --paper-2: #ebe8df;
-  --paper-3: #e2ded2;
-  --sheet: #fbfaf6;
-  --ink: #1b1b19;
-  --ink-2: #3d3c38;
-  --muted: #65635c;
-  --line: #cdc8bb;
-  --line-soft: #ddd9ce;
-  --accent: #b0321c;
-  --accent-soft: #f1ddd5;
+  --paper: #0c1b2a;
+  --paper-2: #12263a;
+  --paper-3: #183049;
+  --sheet: #12263a;
+  --ink: #f1ece2;
+  --ink-2: #dcd6cb;
+  --muted: #a9b8c7;
+  --line: #ffffff38;
+  --line-soft: #ffffff1f;
+  --accent: #ff6b3d;
+  --accent-soft: #ff6b3d26;
 
   /* Actores de la secuencia de trabajo */
   --actor-ia: var(--accent);
   --actor-humano: var(--ink);
-  --actor-software: #4f6a72;
+  --actor-software: #7f9bb5;
 
-  --font-sans: 'Instrument Sans Variable', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-sans: var(--v-sans);
+  --font-serif: var(--v-serif);
+  --font-mono: var(--v-sans);
+  --font-code: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   --gutter: clamp(16px, 4vw, 56px);
   --max: 1480px;
@@ -89,6 +91,14 @@ h4 {
   line-height: 1.12;
   letter-spacing: -0.015em;
   text-wrap: balance;
+}
+
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.02;
 }
 
 p {
@@ -300,9 +310,9 @@ button {
   padding: 0.55em 1em;
   border: 1px solid var(--ink);
   background: transparent;
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -316,13 +326,14 @@ button {
 }
 
 .btn--solid {
-  background: var(--ink);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--paper);
 }
 
 .btn--solid:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--ink);
+  border-color: var(--ink);
   color: var(--paper);
 }
 
@@ -332,9 +343,9 @@ button {
 }
 
 .link-arrow {
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
-  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;

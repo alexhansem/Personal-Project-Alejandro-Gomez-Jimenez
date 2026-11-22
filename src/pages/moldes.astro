@@ -1,0 +1,85 @@
+---
+/**
+ * Banco de pruebas de los moldes visuales (no enlazada ni indexada).
+ * Muestra cada molde con las fichas de los proyectos que lo tienen.
+ */
+import V2Layout from '../layouts/V2Layout.astro';
+import SeccionViva from '../components/visual/SeccionViva.astro';
+import Radiografia from '../components/visual/Radiografia.astro';
+import PlantasApiladas from '../components/visual/PlantasApiladas.astro';
+import Expediente from '../components/visual/Expediente.astro';
+import ModeloLineas from '../components/visual/ModeloLineas.astro';
+import { fichas } from '../visual/fichas';
+
+const moldes = [
+  { id: 'apiladas', nombre: 'Plantas apiladas', pide: 'Máscaras de cada planta (la parcela solo en planta baja) y la zona a destacar.' },
+  { id: 'seccion', nombre: 'Sección viva · montaje por orden de obra', pide: 'Ejes, niveles, pilares, forjados, petos, huecos y capas de fachada, cada dato con su lámina.' },
+  { id: 'radiografia', nombre: 'Radiografía', pide: 'Un plano de estudio (estructura oculta, patologías…) y una cifra clave con su aviso.' },
+  { id: 'expediente', nombre: 'Expediente', pide: 'Cajetín, índice de hojas con sus láminas y, si hay, presupuesto por partidas.' },
+  { id: 'modelo', nombre: 'Modelo 3D en líneas', pide: 'Un modelo GLB exportado del BIM (y el IFC para descargar).' },
+] as const;
+---
+
+<V2Layout title="Moldes visuales · pruebas" noindex>
+  <header class="v-wrap top">
+    <p class="v-k">Banco de pruebas · no publicado</p>
+    <h1 class="v-h">Moldes visuales <em>replicables</em></h1>
+    <p class="lead">Cada bloque se dibuja solo a partir de la ficha de datos de un proyecto. Para uno nuevo, se rellena su ficha.</p>
+  </header>
+  {
+    moldes.map((m, i) => (
+      <section class="v-wrap molde">
+        <div class="cab">
+          <p class="v-k">
+            Molde {i + 1} · {m.nombre}
+          </p>
+          <p class="v-note">Pide: {m.pide}</p>
+        </div>
+        {fichas
+          .filter((f) => f[m.id])
+          .map((f) => (
+            <div class="ficha">
+              <p class="v-note quien">Ficha: {f.nombre}</p>
+              {m.id === 'apiladas' && f.apiladas && <PlantasApiladas datos={f.apiladas} />}
+              {m.id === 'seccion' && f.seccion && <SeccionViva datos={f.seccion} montaje />}
+              {m.id === 'radiografia' && f.radiografia && <Radiografia datos={f.radiografia} />}
+              {m.id === 'expediente' && f.expediente && <Expediente datos={f.expediente} />}
+              {m.id === 'modelo' && f.modelo && <ModeloLineas datos={f.modelo} />}
+            </div>
+          ))}
+      </section>
+    ))
+  }
+</V2Layout>
+
+<style>
+  .top {
+    padding-top: 40px;
+    padding-bottom: 20px;
+    display: grid;
+    gap: 12px;
+  }
+  .lead {
+    color: var(--v-mu);
+    max-width: 56ch;
+    font-size: 18px;
+  }
+  .molde {
+    border-top: 1px solid var(--v-rule);
+    padding-top: 28px;
+    padding-bottom: 56px;
+  }
+  .cab {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px 24px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .cab .v-k {
+    color: var(--v-ac);
+  }
+  .quien {
+    margin-bottom: 10px;
+  }
+</style>

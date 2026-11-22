@@ -1,8 +1,8 @@
 /** Navegación principal. Numeración tipo plano. */
 export const nav = [
-  { href: '/proyectos/', label: 'Proyectos', code: '01' },
-  { href: '/#que-hago', label: 'Qué sé hacer', code: '02' },
-  { href: '/#trayectoria', label: 'Sobre mí', code: '03' },
+  { href: '/#proyectos', label: 'Proyectos', code: '01' },
+  { href: '/#servicios', label: 'Qué hago por ti', code: '02' },
+  { href: '/#como', label: 'Cómo trabajo', code: '03' },
   { href: '/profesionales/', label: 'Para profesionales', code: '04' },
 ] as const;
 
