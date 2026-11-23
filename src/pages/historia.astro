@@ -1,0 +1,448 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HistoriaScroll from '../components/story/HistoriaScroll.astro';
+import ModeloLineas from '../components/visual/ModeloLineas.astro';
+import CompareSlider from '../components/CompareSlider.astro';
+import { profile } from '../config/profile';
+import { projects } from '../lib/content';
+import { fichaDe } from '../visual/fichas';
+import { url } from '../lib/url';
+
+const reh = fichaDe('rehabilitacion-toledo')!;
+const p = (slug: string) => projects.find((x) => x.slug === slug);
+const href = (slug: string) => url(`/proyectos/${slug}/`);
+const timed = projects.filter((x) => x.speed);
+const linkedin = profile.links.find((l) => /linkedin/i.test(l.href));
+
+// Antes/después de Daniel: plano de clase → plano rehecho en AutoCAD.
+const daniel = {
+  src: '/proyectos/vivienda-daniel/planos/02-planta-baja.png',
+  alt: 'Planta baja rehecha en AutoCAD, en lámina A3',
+  label: 'Después · A3',
+  ratio: 1.414,
+  compareWith: { src: '/proyectos/vivienda-daniel/original/planta-baja.png', alt: 'Planta baja original de clase', label: 'Antes · clase' },
+};
+
+const servicios = [
+  { t: 'Planos a escala desde fotos', prueba: 'Casa Moriyama', slug: 'moriyama-house' },
+  { t: 'Modelo 3D + IFC de un edificio existente', prueba: 'Rehabilitación de 1969', slug: 'rehabilitacion-toledo' },
+  { t: 'Tus planos rehechos en AutoCAD y BIM', prueba: 'Vivienda Daniel · Casa piloto', slug: 'vivienda-daniel' },
+  { t: 'Presupuesto navegable por partidas', prueba: '202 partidas', slug: 'rehabilitacion-toledo' },
+].filter((s) => p(s.slug));
+---
+
+<BaseLayout title="Portada en historia (maqueta)" noindex>
+  <!-- Entrada -->
+  <section class="intro">
+    <p class="v-k">Técnico en Proyectos de Edificación · Toledo</p>
+    <h1 class="intro__h">Planos y modelos 3D de edificios, <em>hechos con IA y revisados por mí.</em></h1>
+    <div class="intro__pie">
+      <a class="btn btn--solid" href="#contacto">Cuéntame tu encargo</a>
+      <span class="intro__baja" aria-hidden="true">Baja y te lo enseño ↓</span>
+    </div>
+  </section>
+
+  <HistoriaScroll />
+
+  <!-- Proyectos -->
+  <section class="block" id="proyectos">
+    <p class="v-k">Proyectos</p>
+    <h2>Lo que he entregado.</h2>
+    <div class="pg">
+      {
+        p('moriyama-house') && (
+          <a class="pr big" href={href('moriyama-house')}>
+            <div class="im">
+              <img src={url('/proyectos/moriyama-house/renders/r2-calle-este.jpg')} alt="Imagen realista de la Casa Moriyama desde la calle este" loading="lazy" />
+            </div>
+            <h3>Casa Moriyama</h3>
+            <p>
+              <span class="tm">{p('moriyama-house')!.speed?.value}</span>Desde fotos y documentos publicados, sin medir el edificio: 13 planos A3, 3 láminas A1, modelo BIM y 6 imágenes realistas.
+            </p>
+          </a>
+        )
+      }
+      <div class="side">
+        {
+          p('rehabilitacion-toledo') && reh.modelo && (
+            <div class="pr">
+              <div class="im im--3d">
+                <ModeloLineas datos={reh.modelo} compacto />
+              </div>
+              <h3><a href={href('rehabilitacion-toledo')}>Rehabilitación de viviendas, 1969</a></h3>
+              <p>
+                <span class="tm">{p('rehabilitacion-toledo')!.speed?.value}</span>Modelo 3D con IFC descargable, 10 láminas, presupuesto de 202 partidas y dosier.
+              </p>
+            </div>
+          )
+        }
+        {
+          p('bloque-oficinas') && (
+            <a class="pr" href={href('bloque-oficinas')}>
+              <div class="im">
+                <img src={url('/proyectos/bloque-oficinas/portada/planta-baja-patio.png')} alt="Planta baja de las oficinas con el patio de bambú" loading="lazy" class="inv" />
+              </div>
+              <h3>Oficinas con patio de bambú</h3>
+              <p>10 láminas: distribución, cotas y superficies, cubiertas, alzados y detalle de cerramientos.</p>
+            </a>
+          )
+        }
+      </div>
+    </div>
+    <div class="row2">
+      {
+        p('vivienda-daniel') && (
+          <div class="pr">
+            <CompareSlider item={daniel} />
+            <h3><a href={href('vivienda-daniel')}>Vivienda Daniel</a></h3>
+            <p>Los planos de clase, mejorados en AutoCAD, y a partir de ellos el modelo BIM. Desliza para comparar.</p>
+          </div>
+        )
+      }
+      {
+        p('casa-piloto') && (
+          <a class="pr" href={href('casa-piloto')}>
+            <div class="im">
+              <img class="inv" src={url('/proyectos/casa-piloto/portada/seccion-escalera.png')} alt="Sección de la casa piloto por la escalera vista" loading="lazy" />
+            </div>
+            <h3>Casa piloto con escalera vista</h3>
+            <p>11 planos A3 de una casa entre medianeras: secciones, 6 detalles constructivos, carpintería y patios.</p>
+          </a>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="block" id="servicios">
+    <p class="v-k">Qué hago por ti</p>
+    <h2>Lo que puedo hacer por ti, con su prueba.</h2>
+    <div class="svc">
+      {
+        servicios.map((s) => (
+          <a href={href(s.slug)}>
+            <span class="t">{s.t}</span>
+            <span class="pz">{s.prueba}</span>
+            <span class="go">Ver →</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Cómo trabajo -->
+  <section class="block" id="como">
+    <p class="v-k">Cómo trabajo</p>
+    <h2>Yo decido. La IA dibuja. Yo reviso.</h2>
+    <ol class="how">
+      <li><span class="who a">Yo</span><p>Programa, criterios y medidas</p></li>
+      <li><span class="who">IA</span><p>Dibuja y modela con scripts en AutoCAD y Revit</p></li>
+      <li><span class="who a">Yo</span><p>Reviso cotas, lámina a lámina</p></li>
+      <li><span class="who">Entrega</span><p>PDF · DWG · IFC</p></li>
+    </ol>
+    <p class="v-note how__pro">¿Quieres el detalle técnico? <a href={url('/profesionales/')}>Para profesionales →</a></p>
+  </section>
+
+  <!-- Contacto -->
+  <section class="contact" id="contacto">
+    <div>
+      <p class="v-k">Contacto</p>
+      <h2>Cuéntame tu encargo.</h2>
+    </div>
+    <div class="contact__l">
+      <a class="contact__big" href={`mailto:${profile.email}`}>{profile.email}</a>
+      {linkedin && <a class="contact__big" href={linkedin.href} rel="me">LinkedIn · alexhansem</a>}
+      <span class="v-k">{(profile.location ?? 'Toledo').split(',')[0]} · AutoCAD · Revit · CYPE</span>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    min-height: calc(100svh - 64px);
+    display: grid;
+    align-content: center;
+    gap: 22px;
+  }
+  .intro__h {
+    font-size: clamp(48px, 7.4vw, 116px);
+    line-height: 0.95;
+    max-width: 15ch;
+  }
+  .intro__h em {
+    font-style: normal;
+    color: var(--v-ac);
+  }
+  .intro__pie {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .intro__baja {
+    color: var(--v-mu);
+    animation: baja 2s ease-in-out infinite;
+  }
+  @keyframes baja {
+    50% {
+      transform: translateY(6px);
+    }
+  }
+  section {
+    padding: clamp(56px, 8vw, 96px) var(--v-gutter);
+  }
+  h2 {
+    font-size: clamp(38px, 4.6vw, 56px);
+    margin: 10px 0 36px;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 24px;
+    align-items: center;
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+  .hero__h {
+    font-size: clamp(44px, 5.6vw, 76px);
+    line-height: 0.98;
+    margin-top: 18px;
+  }
+  .hero__h em {
+    font-style: normal;
+    color: var(--v-ac);
+  }
+  .hero__sub {
+    font-size: 20px;
+    color: #dcd6cb;
+    max-width: 40ch;
+    margin: 22px 0 28px;
+  }
+  .hero__ctas {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .hero__ln {
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+  }
+  .hero__times {
+    display: flex;
+    gap: 34px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 40px;
+    border-top: 1px solid var(--v-rule);
+    padding-top: 18px;
+  }
+  .hero__times a {
+    display: grid;
+    text-decoration: none;
+  }
+  .hero__times b {
+    font: 400 40px/1 var(--v-serif);
+  }
+  .hero__times span {
+    font-size: 14px;
+    color: var(--v-mu);
+  }
+  .hero__times .v-note {
+    max-width: 18ch;
+    font-size: 14px;
+  }
+  .hero__viz {
+    position: relative;
+  }
+  .hero__cap {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font: italic 400 24px var(--v-serif);
+    text-align: right;
+  }
+  .block__lead {
+    color: var(--v-mu);
+    max-width: 52ch;
+    margin: -20px 0 12px;
+    font-size: 18px;
+  }
+  .montaje {
+    padding-bottom: 0;
+  }
+  .pg {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 48px 40px;
+  }
+  .pr {
+    display: block;
+    border-top: 1px solid var(--v-rule);
+    padding-top: 18px;
+    text-decoration: none;
+  }
+  .pr .im {
+    position: relative;
+    overflow: hidden;
+    background: #0a1724;
+  }
+  .pr .im img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+  }
+  a.pr:hover .im img {
+    transform: scale(1.03);
+  }
+  .pr h3 {
+    font: 400 34px/1.05 var(--v-serif);
+    margin: 16px 0 8px;
+  }
+  .pr h3 a {
+    text-decoration: none;
+  }
+  .pr p {
+    color: var(--v-mu);
+    font-size: 15.5px;
+    max-width: 46ch;
+  }
+  .tm {
+    display: inline-block;
+    border: 1px solid var(--v-mu);
+    color: var(--v-tx);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 2px 8px;
+    margin-right: 10px;
+  }
+  .big .im {
+    height: 560px;
+  }
+  .side {
+    display: grid;
+    gap: 40px;
+  }
+  .side .im {
+    height: 240px;
+  }
+  .im--3d {
+    background: transparent !important;
+  }
+  .inv {
+    filter: invert(1) grayscale(1) brightness(1.1);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    object-fit: contain !important;
+  }
+  .pr .im:has(.inv) {
+    background: var(--v-bg-2);
+  }
+  .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+  .row2 .im {
+    height: 300px;
+  }
+  .svc a {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-top: 1px solid var(--v-rule);
+    text-decoration: none;
+  }
+  .svc a:last-child {
+    border-bottom: 1px solid var(--v-rule);
+  }
+  .svc .t {
+    font: 400 32px/1.1 var(--v-serif);
+  }
+  .svc .pz {
+    color: var(--v-mu);
+  }
+  .svc .go {
+    color: var(--v-mu);
+  }
+  .svc a:hover .go {
+    color: var(--v-ac);
+  }
+  .svc a:hover .t {
+    color: var(--v-ac);
+  }
+  .how {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--v-rule);
+  }
+  .how li {
+    padding: 22px 22px 0 0;
+  }
+  .who {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .who.a {
+    color: var(--v-ac);
+  }
+  .how p {
+    font: 400 26px/1.15 var(--v-serif);
+    margin-top: 10px;
+  }
+  .how__pro {
+    margin-top: 28px;
+  }
+  .contact {
+    background: var(--v-bg-2);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: end;
+  }
+  .contact h2 {
+    margin-bottom: 0;
+  }
+  .contact__l {
+    display: grid;
+    gap: 14px;
+  }
+  .contact__big {
+    font-size: 19px;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 900px) {
+    .hero,
+    .pg,
+    .row2,
+    .contact {
+      grid-template-columns: 1fr;
+    }
+    .hero__cap {
+      position: static;
+      text-align: left;
+      font-size: 20px;
+    }
+    .big .im {
+      height: 300px;
+    }
+    .svc a {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .svc .t {
+      font-size: 26px;
+    }
+    .how {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

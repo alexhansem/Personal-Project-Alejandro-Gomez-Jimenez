@@ -1,0 +1,401 @@
+---
+/**
+ * Portada como una sola historia que avanza al bajar: el escenario se queda
+ * fijo y cambia lo de dentro. Cinco capítulos con los moldes reales:
+ * plano → estructura → modelo 3D → láminas → tiempo con IA.
+ */
+import PlantasApiladas from '../visual/PlantasApiladas.astro';
+import SeccionViva from '../visual/SeccionViva.astro';
+import ModeloLineas from '../visual/ModeloLineas.astro';
+import { fichaDe } from '../../visual/fichas';
+import { projects } from '../../lib/content';
+import { url } from '../../lib/url';
+
+const ofi = fichaDe('bloque-oficinas')!;
+const reh = fichaDe('rehabilitacion-toledo')!;
+const speed = (slug: string) => projects.find((x) => x.slug === slug)?.speed?.value;
+
+const laminas = [
+  '02-1-distribucion-planta-baja',
+  '02-2-distribucion-planta-primera',
+  '02-3-distribucion-planta-segunda',
+  '02-4-cubiertas',
+  '03-1-cotas-superficies-planta-baja',
+  '03-2-cotas-superficies-planta-primera',
+  '03-3-cotas-superficies-planta-segunda',
+  '03-4-cotas-superficies-cubiertas',
+  '04-alzados',
+  '05-detalle-cerramientos',
+];
+
+const caps = [
+  { id: 'plano', rail: 'Plano', titulo: 'Todo empieza en un plano.', texto: 'Tres plantas reales de unas oficinas, una encima de otra.', dato: 'Oficinas PB + 2 · patio de bambú' },
+  { id: 'estructura', rail: 'Estructura', titulo: 'Luego, cómo se sostiene.', texto: 'La misma obra en sección, montada en el orden en que se construye.', dato: 'Pilares HA 40×40 · retícula 5,50 m' },
+  { id: 'modelo', rail: 'Modelo 3D', titulo: 'Si ya existe, lo modelo en 3D.', texto: 'Un edificio de 1969, levantado desde sus planos para decidir si rehabilitarlo.', dato: 'Modelo IFC descargable' },
+  { id: 'laminas', rail: 'Láminas', titulo: 'Y lo entrego en láminas.', texto: 'A escala, acotadas y listas para imprimir o enviar.', dato: '10 láminas A1 · oficinas' },
+  { id: 'tiempo', rail: 'Tiempo', titulo: 'Con IA. Revisado por mí.', texto: 'La IA dibuja en AutoCAD y Revit. Yo decido, reviso y firmo cada lámina.', dato: 'Tiempo total indicado por el autor, sin desglose' },
+];
+---
+
+<section class="hs" style={`--n:${caps.length}`} data-hs aria-label="Cómo trabajo, en cinco pasos">
+  <div class="hs__stage">
+    <div class="hs__txt">
+      <ol class="hs__rail" aria-hidden="true">
+        {caps.map((c, i) => <li data-i={i}><span>{String(i + 1).padStart(2, '0')}</span>{c.rail}</li>)}
+      </ol>
+      <div class="hs__caps">
+        {
+          caps.map((c, i) => (
+            <div class="hs__cap" data-i={i}>
+              <h2>{c.titulo}</h2>
+              <p>{c.texto}</p>
+              <p class="v-k">{c.dato}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="hs__viz">
+      <div class="hs__v" data-i="0">{ofi.apiladas && <PlantasApiladas datos={ofi.apiladas} />}</div>
+      <div class="hs__v hs__v--sec" data-i="1">{ofi.seccion && <SeccionViva datos={ofi.seccion} />}</div>
+      <div class="hs__v" data-i="2">{reh.modelo && <ModeloLineas datos={reh.modelo} compacto />}</div>
+      <div class="hs__v hs__v--lam" data-i="3">
+        <div class="lam">
+          {
+            laminas.map((f, k) => (
+              <img
+                src={url(`/visual/bloque-oficinas/laminas/${f}.jpg`)}
+                alt=""
+                loading="lazy"
+                style={`--k:${k};--gx:${(k % 5) - 2};--gy:${Math.floor(k / 5) - 0.5};--mx:${(k % 3) - 1};--my:${Math.floor(k / 3) - 0.5};--r:${(k - 4.5) * 2.2}deg`}
+              />
+            ))
+          }
+        </div>
+      </div>
+      <div class="hs__v hs__v--t" data-i="4">
+        <div class="tiempos">
+          {speed('moriyama-house') && (
+            <div><b>{speed('moriyama-house')}</b><span>Casa Moriyama · desde fotos</span></div>
+          )}
+          {speed('rehabilitacion-toledo') && (
+            <div><b>{speed('rehabilitacion-toledo')}</b><span>Rehabilitación de 1969 · de los planos al dosier</span></div>
+          )}
+        </div>
+        <ol class="flujo">
+          <li class="yo"><span>Yo</span>Programa y medidas</li>
+          <li><span>IA</span>Dibuja y modela</li>
+          <li class="yo"><span>Yo</span>Reviso cada cota</li>
+          <li><span>Entrega</span>PDF · DWG · IFC</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hs {
+    position: relative;
+    height: calc(var(--n) * 120vh + 60vh);
+  }
+  .hs__stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
+    gap: 24px;
+    align-items: center;
+    padding: 70px var(--v-gutter) 24px;
+    overflow: hidden;
+  }
+  .hs__rail {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px;
+    display: grid;
+    gap: 8px;
+    font-size: 16px;
+    color: var(--v-mu);
+  }
+  .hs__rail li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    transition: color 0.3s;
+  }
+  .hs__rail span {
+    font: 400 16px var(--v-serif);
+    width: 22px;
+  }
+  .hs__rail li::after {
+    content: '';
+    height: 1px;
+    width: 0;
+    background: var(--v-ac);
+    transition: width 0.4s;
+  }
+  .hs__rail li.on {
+    color: var(--v-tx);
+  }
+  .hs__rail li.on::after {
+    width: 48px;
+  }
+  .hs__caps {
+    position: relative;
+    min-height: 300px;
+  }
+  .hs__cap {
+    position: absolute;
+    inset: 0 0 auto 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.5s,
+      transform 0.5s;
+    pointer-events: none;
+  }
+  .hs__cap.on {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .hs__cap h2 {
+    font-size: clamp(40px, 4.8vw, 68px);
+    line-height: 0.98;
+  }
+  .hs__cap p:not(.v-k) {
+    font-size: 19px;
+    color: #dcd6cb;
+    max-width: 30ch;
+    margin: 18px 0 16px;
+  }
+  .hs__cap .v-k {
+    color: var(--v-mu);
+  }
+  .hs__viz {
+    position: relative;
+    height: 100%;
+  }
+  .hs__v {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+      opacity 0.6s,
+      transform 0.6s;
+    pointer-events: none;
+  }
+  .hs__v.on {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  @media (min-width: 861px) {
+    .hs__v--sec :global(.sv-dibujo) {
+      grid-template-columns: minmax(0, 1fr) 200px;
+    }
+  }
+  .hs__v--sec :global(.sv-nota) {
+    display: none;
+  }
+  /* Láminas: del mazo a la cuadrícula según el avance (--e, 0-1) */
+  .lam {
+    position: relative;
+    height: min(70vh, 560px);
+  }
+  .lam img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 19%;
+    aspect-ratio: 1.416;
+    object-fit: cover;
+    background: #f4f1e8;
+    --X: var(--gx);
+    --Y: var(--gy);
+    box-shadow: 0 18px 40px -18px #000;
+    border: 1px solid #ffffff30;
+    transform: translate(-50%, -50%)
+      translate(calc(var(--X) * 104% * var(--e, 0)), calc(var(--Y) * 112% * var(--e, 0) + (1 - var(--e, 0)) * var(--k) * -3px))
+      rotate(calc(var(--r) * (1 - var(--e, 0))))
+      scale(calc(1.9 - 0.9 * var(--e, 0)));
+  }
+  /* Tiempo */
+  .tiempos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    border-top: 1px solid var(--v-rule);
+    padding-top: 18px;
+  }
+  .tiempos b {
+    display: block;
+    font: 400 clamp(64px, 8vw, 120px) / 1 var(--v-serif);
+  }
+  .tiempos span {
+    color: var(--v-mu);
+  }
+  .flujo {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--v-rule);
+    position: relative;
+  }
+  .flujo::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    height: 2px;
+    width: calc(var(--t, 0) * 100%);
+    background: var(--v-ac);
+  }
+  .flujo li {
+    padding: 16px 16px 0 0;
+    font: 400 22px/1.15 var(--v-serif);
+  }
+  .flujo span {
+    display: block;
+    font: 600 12px var(--v-sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--v-mu);
+    margin-bottom: 6px;
+  }
+  .flujo .yo span {
+    color: var(--v-ac);
+  }
+
+  @media (max-width: 860px) {
+    .hs {
+      height: calc(var(--n) * 110vh + 40vh);
+    }
+    .hs__stage {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+      align-items: start;
+      padding-top: 72px;
+      gap: 8px;
+    }
+    .hs__rail {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .hs__rail li {
+      font-size: 0;
+      flex: 1;
+      height: 3px;
+      background: var(--v-rule);
+    }
+    .hs__rail li.on {
+      background: var(--v-ac);
+    }
+    .hs__rail li::after,
+    .hs__rail span {
+      display: none;
+    }
+    .hs__caps {
+      min-height: 190px;
+    }
+    .hs__cap h2 {
+      font-size: 38px;
+    }
+    .hs__cap p:not(.v-k) {
+      font-size: 17px;
+      margin: 10px 0 8px;
+    }
+    .hs__v--sec :global(.sv-detalle),
+    .hs__v--sec :global(.sv-desliza),
+    .hs__v--sec :global(.sv-nota) {
+      display: none;
+    }
+    .hs__v--sec :global(.sv-scroll) {
+      overflow: hidden;
+    }
+    /* En móvil la sección se recorre de lado al bajar */
+    .hs__v--sec :global(.sv-scroll svg) {
+      width: 820px;
+      transform: translateX(calc(var(--t, 0) * (100vw - 2 * var(--v-gutter) - 820px)));
+    }
+    .lam {
+      height: 46vh;
+    }
+    /* En móvil, 6 láminas más grandes en 3 × 2 */
+    .lam img {
+      width: 31%;
+      --X: var(--mx);
+      --Y: var(--my);
+    }
+    .lam img:nth-child(n + 7) {
+      display: none;
+    }
+    .tiempos {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .tiempos b {
+      font-size: 64px;
+    }
+    .flujo {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 20px;
+    }
+    .flujo li {
+      font-size: 18px;
+      padding-bottom: 10px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hs__cap,
+    .hs__v {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-hs]').forEach((hs) => {
+    const caps = [...hs.querySelectorAll<HTMLElement>('.hs__cap')];
+    const vis = [...hs.querySelectorAll<HTMLElement>('.hs__v')];
+    const rail = [...hs.querySelectorAll<HTMLElement>('.hs__rail li')];
+    const n = caps.length;
+    const sec = hs.querySelector<HTMLElement>('.hs__v--sec');
+    const capasSec = sec ? [...sec.querySelectorAll<SVGGElement | HTMLElement>('.sv-capa')] : [];
+    sec?.querySelector('.sv')?.classList.add('sv-js');
+    const pasosSec = Math.max(1, ...capasSec.map((c) => Number(c.dataset.paso) + 1));
+    const lam = hs.querySelector<HTMLElement>('.lam');
+    const t4 = hs.querySelector<HTMLElement>('.hs__v--t');
+    let actual = -1;
+    const pintar = () => {
+      const r = hs.getBoundingClientRect();
+      const recorrido = Math.max(1, hs.offsetHeight - innerHeight);
+      const p = Math.min(0.9999, Math.max(0, -r.top / recorrido));
+      const i = Math.floor(p * n);
+      const t = p * n - i;
+      if (i !== actual) {
+        actual = i;
+        [caps, vis].forEach((g) => g.forEach((e, k) => e.classList.toggle('on', k === i)));
+        rail.forEach((e, k) => e.classList.toggle('on', k <= i));
+      }
+      // Avance dentro del capítulo
+      if (i === 1) sec!.style.setProperty('--t', String(t));
+      if (i === 1) capasSec.forEach((c) => c.classList.toggle('on', Number(c.dataset.paso) <= Math.floor(t * (pasosSec + 0.6))));
+      if (i === 2) vis[2].querySelector('[data-ml]')?.dispatchEvent(new CustomEvent('story-t', { detail: t }));
+      if (lam) lam.style.setProperty('--e', String(i > 3 ? 1 : i < 3 ? 0 : Math.min(1, Math.max(0, (t - 0.15) / 0.6))));
+      if (t4) t4.style.setProperty('--t', String(i === 4 ? Math.min(1, t * 1.4) : 0));
+    };
+    pintar();
+    addEventListener('scroll', pintar, { passive: true });
+    addEventListener('resize', pintar);
+  });
+</script>

@@ -102,7 +102,8 @@ const { datos: d, compacto = false } = Astro.props;
     const giro = new THREE.Group();
     giro.add(m);
     sc.add(giro);
-    const D = Math.max(tam.x, tam.y, tam.z) * 2.1;
+    // En lienzos verticales (móvil) se aleja la cámara para que quepa entero.
+    const D = Math.max(tam.x, tam.y, tam.z) * 2.1 * Math.max(1, 1.15 / (w / h));
     const [cx, cy, cz] = el.dataset.camara!.split(',').map(Number);
     cam.position.set(D * cx, D * cy, D * cz);
     cam.lookAt(0, 0, 0);
@@ -121,6 +122,11 @@ const { datos: d, compacto = false } = Astro.props;
       pintar();
     });
     el.addEventListener('pointerup', () => (x0 = null));
+    // Dentro de una historia de scroll: el giro sigue al avance (evento 'story-t', 0-1).
+    el.addEventListener('story-t', (e) => {
+      giro.rotation.y = -0.6 + (e as CustomEvent<number>).detail * Math.PI * 0.9;
+      pintar();
+    });
     new ResizeObserver(() => {
       const W = el.clientWidth;
       const H = el.clientHeight;
